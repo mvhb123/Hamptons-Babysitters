@@ -1,0 +1,4 @@
+<?php if($this->searchParams['modify']>0){?>
+<li><a <?php echo  $this->actionName=='events'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/events/<?php echo  $this->userid>0 ? 'user/'.$this->userid:''?>/modify/<?php echo $this->searchParams['modify']?>">Jobs</a></li>
+<?php }else {?>
+<?php }?>

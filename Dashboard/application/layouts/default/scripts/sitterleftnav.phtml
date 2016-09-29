@@ -1,0 +1,60 @@
+<aside>
+    <div id="sidebar"  class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+            <li>
+                <a  <?php echo (($this->searchParams['action'] == 'index') && ($this->searchParams['controller'] == 'sitters')) ?'class="active"' : '' ?>href="<?php echo SITE_URL ?>" >
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="sub-menu">
+                <a <?php echo (($this->searchParams['action'] == 'jobs') || ($this->searchParams['action'] == 'preview')) ? 'class="active dcjq-parent"' : '' ?> href="javascript:;">
+                    <i class="fa fa-laptop"></i>
+                    <span>My Jobs</span>
+                </a>
+                <ul class="sub">
+                   <!-- <li <?php //echo $this->searchParams['view'] == 'pending' ? 'class="active"' : '' ?>><a href="<?php //echo SITE_URL ?>sitters/jobs/view/pending">Available Jobs</a></li>
+                    <li <?php //echo $this->searchParams['view'] == 'confirmed' ? 'class="active"' : '' ?>><a href="<?php //echo SITE_URL ?>sitters/jobs/view/confirmed/">Confirmed Jobs</a></li>
+                    <li <?php //echo $this->searchParams['view'] == 'completed' ? 'class="active"' : '' ?>><a href="<?php //echo SITE_URL ?>sitters/jobs/view/completed/">Completed Jobs</a></li>
+                   --> 
+                    
+                    <!-- for jobs menu -->
+                    <li <?php echo $this->searchParams['view'] == 'pending' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>sitters/jobs/view/pending">Open Jobs</a></li>
+                    <li <?php echo $this->searchParams['view'] == 'scheduled' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>sitters/jobs/view/scheduled/">Scheduled Jobs</a></li>
+                    <li <?php echo $this->searchParams['view'] == 'active' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>sitters/jobs/view/active/">Active Jobs</a></li>
+                    <li <?php echo $this->searchParams['view'] == 'completed' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>sitters/jobs/view/completed/">Completed Jobs</a></li>
+                    <li <?php echo $this->searchParams['view'] == 'closed' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>sitters/jobs/view/closed/">Closed Jobs</a></li>
+                    <li <?php echo $this->searchParams['view'] == 'cancelled' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>sitters/jobs/view/cancelled/">Cancelled Jobs</a></li>
+                </ul>
+            </li>
+
+           <li class="sub-menu">
+                <a <?php echo (($this->searchParams['action'] == 'profile') || ($this->searchParams['action'] == 'password')) ? 'class="active dcjq-parent"' : '' ?> href="javascript:;">
+                    <i class="fa fa-suitcase"></i>
+                    <span>My Profile</span>
+                </a>
+                <ul class="sub">
+                    <li <?php echo $this->searchParams['action'] == 'profile' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>sitters/profile">Contact Information</a></li>
+                    <li <?php echo $this->searchParams['action'] == 'password' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>sitters/password">Password</a></li>
+                </ul>
+            </li>
+
+           <li>
+                <a <?php echo (($this->searchParams['controller'] == 'sitters') && ($this->searchParams['action'] == 'referafriend')) ?'class="active"' : '' ?>href="<?php echo SITE_URL ?>sitters/referafriend" >
+                    <i class="fa fa-share"></i>
+                    <span>Refer a Friend</span>
+                </a>
+            </li>
+ 
+            <li>
+                <a href="<?php echo SITE_URL ?>logout" >
+                    <i class="fa fa-sign-out"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+        <!-- sidebar menu end-->
+    </div>
+</aside>

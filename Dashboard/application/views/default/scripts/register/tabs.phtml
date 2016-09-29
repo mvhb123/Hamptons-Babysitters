@@ -1,0 +1,10 @@
+
+<li><a <?php echo $this->actionName=='profile' ? 'class="active"':''?>  href="<?php echo ADMIN_URL?>sitters/profile/<?php echo $this->userid>0 ? 'modify/'.$this->userid:'create/new/'?>">Contact Information</a></li>
+
+<?php if($this->userid>0){?>
+<li><a <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='pending' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/jobs/<?php echo  $this->userid>0 ? 'user/'.$this->userid.'/view/pending/':''?>">Available Jobs</a></li>
+<li><a <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='confirmed' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/jobs/<?php echo  $this->userid>0 ? 'user/'.$this->userid.'/view/confirmed/':''?>">Confirmed Jobs</a></li>
+<li><a <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='completed' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/jobs/<?php echo  $this->userid>0 ? 'user/'.$this->userid.'/view/completed/':''?>">Completed Jobs</a></li>
+<li><a <?php echo $this->actionName=='password' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/password/<?php echo  $this->userid>0 ? 'user/'.$this->userid:''?>">Password</a></li>
+
+<?php }?>

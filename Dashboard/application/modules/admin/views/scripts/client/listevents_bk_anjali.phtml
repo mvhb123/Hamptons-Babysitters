@@ -1,0 +1,156 @@
+
+<?php
+//print_r($this->searchParams['listevents']);die;
+?>
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel clearfix">
+                    <header class="panel-heading tab-bg-dark-navy-blue tab-right ">
+                        <ul class="nav nav-tabs pull-right">
+                            <?php include_once('tabs.phtml'); ?>
+                        </ul>
+                        <span class="hidden-sm wht-color"> <?php echo $this->userInfo['firstname'] . ' ' . $this->userInfo['lastname'] ?> </span>
+                    </header>
+                    <div class="panel-body">
+                        <section id="flip-scroll">
+
+                            <?php if (!empty($this->events)) { ?>
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr>
+                                            <th><a href="<?php echo $this->url(array('key' => 'j.job_id', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'j.job_id' ? 'desc' : 'asc')) ?>">Job Number</a></th>
+                                            <th><a href="<?php echo $this->url(array('key' => 'jm.actual_start_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'jm.actual_start_date' ? 'desc' : 'asc')) ?>">Job Rec. Date/Time</a></th>
+                                            <th><a href="<?php echo $this->url(array('key' => 'job_start_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_start_date' ? 'desc' : 'asc')) ?>">Start Date</a></th>
+                                            <th ><a href="<?php echo $this->url(array('key' => 'jm.actual_end_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'jm.actual_job_end_date' ? 'desc' : 'asc')) ?>">End date</th>	
+                                            <!--<th class="tc"><a href="<?php echo $this->url(array('key' => 'job_end_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_end_date' ? 'desc' : 'asc')) ?>">Actual End time</th>-->	
+                                            <th class='text-right'>Sitter's Rate</th>	
+                                            <th><a href="<?php echo $this->url(array('key' => 'job_status', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_status' ? 'desc' : 'asc')) ?>">Status</a></th>	
+                                          <?php if( $this->searchParams['listevents']!='history')
+                                          {?>
+                                            <th>Actions</th>  
+                                          <?php } ?>
+                                            
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php $status_class = array('new' => 'btn btn-info', 'pending' => 'btn btn-warning', 'confirmed' => 'btn btn-success', 'completed' => 'btn btn-success', 'cancelled' => 'btn btn-danger'); ?>
+                                        <?php foreach ($this->events as $event) { ?>
+                                            <tr>
+                                                <td> 
+                                                    <a href="<?php echo ADMIN_URL . 'client/events/user/' . $this->userid . '/modify/' . $event['job_id'] ?>">
+                                                        <?php echo $this->jobnumber($event['job_id']) ?>
+                                                    </a>
+                                                </td>
+                                                <td> <?php echo date(DATETIME_FORMAT, strtotime($event['jobs_posted_date'])) ?></td>
+                                                <td> <?php echo date(DATETIME_FORMAT, strtotime($event['job_start_date'])) ?></td>
+                                                <td class="tc"> <?php echo date(DATETIME_FORMAT, strtotime($event['job_end_date'])) ?></td>
+                                                <!--<td class="tc"> <?php echo date(DATETIME_FORMAT, strtotime($event['actual_end_date'])) ?></td>-->
+                                                
+                                                
+                                                 <?php
+                                            if (($event['rate'] == "") || ($event['rate'] == null)) {
+                                                $rate = $event['sitter_rate_pre'];
+                                            } else {
+                                                $rate = $event['rate'];
+                                            }
+                                            ?>
+<!--                                                <td class="text-center">
+                                                    
+                                                    <input onkeyup="saveRate(this);" rel="<?php echo $event['job_id'] ?>" type="text" name="rate[<?php echo $event['job_id'] ?>]" class="form-control" style="width: 70px;" value="<?php echo $event['rate'] ?>" />
+                                                
+                                                
+                                                </td>-->
+                                                 <td class="numeric">  
+                                              
+                                              <?php
+                                              $rate=number_format((float)$rate, 2, '.', ''); 
+                                              ?>
+                                              
+                                                <?php if ($event['sitter_payment_status'] == 'unpaid'&&$event['job_status']!='closed' && $event['job_status']!='cancelled') { ?>
+                                              <span style="line-height: 33px; margin-right: 5px;">$</span> <input onkeyup="saveRate(this);" rel="<?php echo $event['job_id'] ?>" type="text" name="rate[<?php echo $event['job_id'] ?>]" class="form-control" style="width: 65px; float: right" value="<?php echo $rate ?>" />
+                                                <?php } else { ?> 
+                                                
+                 
+                                              <span style="line-height: 33px; margin-right: 5px;">$</span> <input onkeyup="saveRate(this);" rel="<?php echo $event['job_id'] ?>" type="text" name="rate[<?php echo $event['job_id'] ?>]" class="form-control" style="width: 65px; float: right" value="<?php echo $rate ?>" disabled="" />
+
+                                                    <?php// echo money_format('%.2n', $rate);?> 
+                                                  
+                                            <?php } ?>
+                                            </td>
+                                                
+                                                
+                                                
+                                                
+                                                <td class="text-center"> <span class="tag <?php echo $status_class[$event['job_status']] ?>"><?php echo ucwords($event['job_status']) ?></span></td>
+                                                
+                                                
+                                                  <?php if( $this->searchParams['listevents']!='history')
+                                          {?>
+                                                <td class="text-center">	
+<!--                                                    <ul>-->
+                                                        <?php if (!in_array($event['job_status'], array('completed', 'cancelled'))) { ?>
+
+<!--                                                            <li>-->
+                                                                <a class="btn btn-primary btn-xs fa fa-pencil" href="<?php echo ADMIN_URL . 'client/events/user/' . $this->userid . '/modify/' . $event['job_id'] ?>">
+                                                                </a>
+<!--                                                            </li>
+                                                            <li>-->
+                                                                <?php if (!in_array($event['job_status'], array('confirmed'))) { ?>
+
+                                                                    <a class="btn btn-danger btn-xs fa fa-trash-o" href="<?php echo ADMIN_URL . 'client/events/user/' . $this->userid . '/delete/' . $event['job_id'] ?>">
+
+                                                                    </a>
+                                                                <?php } else if (in_array($event['job_status'], array('confirmed'))) { ?>
+                                                                    <a class="btn btn-danger btn-xs fa fa-trash-o" href="<?php echo ADMIN_URL . 'client/events/user/' . $this->userid . '/delete/' . $event['job_id'] ?>">
+
+                                                                    </a>		<?php } ?>
+<!--                                                            </li>                                             -->
+
+                                                        <?php } ?>
+                                                    <!--</ul>-->
+                                                </td>
+                                          <?php } ?>
+
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+
+                                </table>
+                            <?php } else { ?>
+                                <div >No Jobs Posted yet. To create a new job <a href="<?php echo ADMIN_URL ?>client/events/user/<?php echo $this->userid ?>" class="btn btn-info">Click here</a></div>
+                            <?php } ?>
+
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+                </section>
+
+
+
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<script>
+    function saveRate(th) {
+        //alert(th.value);
+        //alert(th.name);
+        $.ajax({url: "<?php echo ADMIN_URL . 'client/events/' ?>",
+            data: {rate: th.value, saverate: 'rate', job_id: $(th).attr('rel')}, success: function (data) {
+            }
+        });
+    }
+
+</script>

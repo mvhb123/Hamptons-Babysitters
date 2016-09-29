@@ -1,0 +1,150 @@
+<div class="inner-container">
+				
+				<!-- Main content – all content is within boxes. Feel free to add your boxes (see the examples on the bottom of this document) and your content within -->
+				<div class="box box-100 altbox">
+				  <div class="boxin">
+				    <div class="header">
+				      <h3>Jobs</h3>
+				      <ul>
+				       <?php require_once('tabs.phtml');?>
+			          </ul>
+			        </div>
+				    <div class="content">
+<table border="1">
+<thead>
+<tr>
+<th><a href="<?php echo $this->url(array('key'=>'j.job_id','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='j.job_id'? 'desc' :'asc' ))?>">Job Number</a></th>
+
+<?php if(!in_array($this->searchParams['status'],array('pending','confirmed','completed'))){?>
+
+<th><a href="<?php echo $this->url(array('key'=>'j.jobs_posted_date','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='j.jobs_posted_date'? 'desc' :'asc' ))?>">Rec'd Date/Time</a></th>
+<?php }?>
+<th><a href="<?php echo $this->url(array('key'=>'jm.job_start_date','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='job_start_date'? 'desc' :'asc' ))?>">Start Date/Time</a></th>
+<th><a href="<?php echo $this->url(array('key'=>'job_end_date','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='job_end_date'? 'desc' :'asc' ))?>">End Date/Time</a></th>
+
+<?php if(!in_array($this->searchParams['status'],array('pending','confirmed','completed'))){?>
+
+<?php }?>
+
+<th>Client</th>
+<th>Child</th>
+<th>Rate</th>
+<?php if(in_array($this->searchParams['status'],array('confirmed','completed'))){?>
+				
+<th>Baby Sitter</th>
+<?php }?>
+<?php if(in_array($this->searchParams['status'],array('completed'))){?>
+		<td>Actual End Date</td>
+		<td>Total Paid</td>
+		<?php }?>
+		<?php if(in_array($this->searchParams['status'],array('new','pending'))){?>
+		
+<th>Assign</th>
+<?php }?>
+</tr>
+<form name="searchform" method="post" >
+<tr>
+<th><input placeholder="Job Number" type="text" class="txt" name="job_id"  size="6"/></th>
+
+<th colspan="<?php if(!in_array($this->searchParams['status'],array('pending','confirmed','completed'))){?>3<?php }else{echo '2';}?>"><div style="display:inline;margin:0px 69px" align="center">
+<input placeholder="Start date" type="text" class="txt" name="job_start_date" id="job_start_date" size="10"/> between 
+<input placeholder="End date" type="text"  class="txt" name="job_end_date" id="job_end_date" size="10"/></div>
+</th>
+<th><input placeholder="Client Name" type="text" class="txt" name="client" size="15"/></th>
+<th></th>
+<th></th>
+
+<?php if(in_array($this->searchParams['status'],array('confirmed','completed'))){?>
+				
+<th></th>
+<?php }?>
+<?php if(in_array($this->searchParams['status'],array('completed'))){?>
+		<td></td>
+		<td><input type="submit" name="filter" value="Filter"/></td>
+		<?php }?>
+		<?php if(in_array($this->searchParams['status'],array('new','pending'))){?>
+		
+<th><input type="submit" name="filter" value="Filter"/></th>
+<?php }?>
+</tr>
+<input type="submit" value="filter" style="display:none" />
+</form>
+</thead><?php if(!empty($this->jobs)){
+	
+	?>
+<?php foreach($this->jobs as $job){?>
+	<tr>
+		<th><a href="<?php echo ADMIN_URL.'client/events/user/'.$job['client_user_id'].'/modify/'.$job['job_id']?>"><?php echo str_pad($job['job_id'],4,0,STR_PAD_LEFT);?></a></th>
+		
+		
+<?php if(!in_array($this->searchParams['status'],array('pending','confirmed','completed'))){?>
+		<td> <?php echo date(DATETIME_FORMAT,strtotime($job['jobs_posted_date']))?></td>
+		<?php }?>
+		<td> <?php echo date(DATETIME_FORMAT,strtotime($job['job_start_date']))?></td>
+		<td> <?php echo date(DATETIME_FORMAT,strtotime($job['job_end_date']))?></td>
+		
+		<?php if(!in_array($this->searchParams['status'],array('pending','confirmed','completed'))){?>
+
+		<?php }?>
+		
+		<td> <a href="<?php echo ADMIN_URL.'client/profile/modify/'.$job['client_user_id']?>"><?php echo $job['firstname'].' '.$job['lastname']?></a></td>
+		<td> <?php echo count($job['children'])?></td>
+		<td class="tc"> $<input onkeyup="saveRate(this);" rel="<?php echo $job['job_id']?>" type="text" name="rate[<?php echo $job['job_id']?>]" class="txt" style="width: 40px;" value="<?php echo $job['rate']?>" /></td>
+		<?php if(in_array($this->searchParams['status'],array('confirmed','completed'))){?>
+			
+		<td> <a href="<?php echo ADMIN_URL.'sitters/profile/modify/'.$job['sitter_user_id']?>"> <?php echo $job['sitter_firstname'].' '.$job['sitter_lastname']?></a></td>
+		
+		<?php }?>
+		<?php if(in_array($this->searchParams['status'],array('completed'))){?>
+		<td><?php echo date(DATETIME_FORMAT,strtotime($job['completed_date']))?></td>
+		<td>$<?php echo (float)$job['total_paid']?></td>
+		<?php }?>
+		<?php if(in_array($this->searchParams['status'],array('new','pending'))){?>
+		
+		<td> <input type="submit" class="button altbutton" value="Assign" onclick="window.location='<?php echo ADMIN_URL.'client/assign/user/'.$job['client_user_id'].'/modify/'.$job['job_id']?>'"  /></td>
+		<?php }?>
+	</tr>
+	
+<?php }?>	
+<?php }?>
+</table>
+<?php
+ echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml'); 
+?>
+	</div>
+			      </div>
+			  </div>
+				<br clear="all" />
+			</div><!-- .inner-container -->
+<link type="text/css" href="<?php echo SITE_URL?>resources/css/redmond/jquery-ui-1.7.3.custom.css" rel="stylesheet" />	
+		 <script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-ui-1.7.3.custom.min.js"></script>
+        <script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-ui-timepicker-addon.js"></script>
+        <script type="text/javascript">
+			$(function(){
+
+				$('#job_start_date,#job_end_date').datepicker({
+					ampm: true,dateFormat:'mm/dd/yy',changeMonth: true,
+			changeYear: true
+
+				});
+								
+			});
+		</script>
+		<style type="text/css">
+			/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+		</style>
+<script>
+function saveRate(th){
+	//alert(th.value);
+	//alert(th.name);
+	$.ajax({url:"<?php echo ADMIN_URL.'client/events/' ?>",
+	data:{rate:th.value,saverate:'rate',job_id:$(th).attr('rel')},success:function(data){}
+	});
+}
+
+</script>

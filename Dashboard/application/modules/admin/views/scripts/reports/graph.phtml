@@ -1,0 +1,174 @@
+<script src="<?php echo SITE_URL?>resource/assets/Highcharts-4.2.4/js/highcharts.js"></script>
+<section id="main-content">
+<section class="wrapper">
+ 	<div class="row">
+            <div class="col-md-12">
+				<section class="panel">
+					<div class="fixed-position col-md-12">
+					<header class="panel-heading clearfix">Sitter earning 
+					<a href="<?php echo ADMIN_URL .'reports';?>">
+								<input class="btn btn-info" type="submit" style="float:right" value="Hide Graph">
+							</a>
+					</header>
+						<form name="searchform"  class="clearfix" id="searchform">
+	                        <div class="mar-top">
+	                            <div class="col-md-3">
+	                                <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group btn-block date default-date-picker clearfix">
+	                                    <input type="text" readonly  size="16"  value="<?php echo $this->searchParams['start_date'] ?>"  class="form-control datep" name="start_date" id="start_date" placeholder="Start Date">
+	                                    <span class="input-group-btn" style="width: auto">
+	                                        <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+	                                    </span>  
+	                                </div>
+	
+	                            </div>
+	
+	                            <div class="col-md-3">	
+	                                <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group btn-block date default-date-picker clearfix">
+	                                    <input type="text" readonly  size="16" class="form-control datep"  value="<?php echo $this->searchParams['end_date'] ?>" name="end_date" id="end_date" placeholder="End Date" >
+	                                    <span class="input-group-btn" style="width: auto">
+	                                        <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+	                                    </span> 
+	                                </div>
+	                            </div>
+	                            <div class="col-md-3">	
+                                    <select name="sitter_id" id="sitter_id" class="form-control">
+                                        <option value=""
+                                        <?php if ($this->searchParams['sitter_id'] == '') { ?>
+                                                    selected="selected" <?php } ?>>All Sitters</option>
+                                                <?php foreach ($this->sitters as $sitter) { ?>
+                                            <option value="<?php echo $sitter['userid']; ?>"
+                                            <?php if ($this->searchParams['sitter_id'] == $sitter['userid']) { ?>
+                                                        selected="selected" <?php } ?>><?php echo $sitter['name']; ?></option>
+                                                <?php } ?>      
+                                    </select>
+                                </div>
+	                            <div class="col-md-3">
+	                                <input type="button" name="filter" value="Filter" class="btn btn-danger submit_btn"/>
+	                            </div>
+	                        </div>
+                    	</form> 
+					</div>
+					<div class="panel-body list_margin" >
+						<div id="container1"></div>
+					</div>
+				</section>
+			</div>
+		</div>
+</section>
+</section>
+
+<script>
+function generate_graph(json) {
+	//var json=<?php //echo $this->earning;?>;
+	console.log(json);
+	//console.log(json[0][0]);
+	if(json!=null){
+		var d =json[0][0].split(",");
+	    var x = Date.UTC(d[0],d[1]-1,d[2]);
+	
+	    var jsondata=[];
+		$.each(json, function(key,val) {
+			if(val[1]!=0)
+	        {
+		        var d1 =val[0].split(",");
+	       		var x1 = Date.UTC(d1[0],d1[1]-1,d1[2]);
+	       		// alert(val[1]);
+	        	jsondata.push([x1,val[1]]);
+	        }
+	    });
+	  console.log(jsondata);
+
+	  if(jsondata!=null && jsondata.length>0){
+	  $('#container1').highcharts({
+		chart: {
+	            type: 'column'
+	    },
+	    title: {
+	      //text: 'Sitter Earning',
+	    	text: '',  
+	    },
+	    tooltip: {
+	    		xDateFormat: '%b %d, %Y',
+	    		pointFormat: "Earning: ${point.y:,.1f}"
+	         },
+	    xAxis: {
+	      type: 'datetime',
+	      rotation: 45,
+	      dateTimeLabelFormats: {
+	    		millisecond: '%H:%M:%S.%L',
+	    		second: '%H:%M:%S',
+	    		minute: '%H:%M',
+	    		hour: '%H:%M',
+	    		day: '%e, %b',
+	    		week: '%e, %b',
+	    		month: '%b %Y',
+	    		year: '%Y'
+          },
+          labels: {
+              rotation: 45,
+              align: 'left'
+          },
+          title: {
+              text: 'Date'
+          }
+	    },
+	    yAxis: {
+	    	title: {
+	              text: 'Earnings in $'
+	          }
+        },
+        plotOptions: {
+            series: {
+            	pointWidth: 15
+            }
+        },
+	    series: [{
+	      name: 'Earnings',
+	      data: jsondata,
+	      pointStart: x,  
+	     // pointInterval: 24 * 3600 * 1000 * 365 // one day
+	      /*
+	      pointInterval: 24 * 3600 * 1000 * 7 // one week
+	      pointInterval: 24 * 3600 * 1000 * 30 // one month
+	      pointInterval: 24 * 3600 * 1000 * 30 * 12// one year
+	      */
+	    }]
+	  });
+	  	}
+	  	else
+		 {
+	  		$("#container1").empty();
+			$('#container1').append("<p>No Record Found</p>");
+		 }
+	 }
+	 else
+	 {
+		 $("#container1").empty();
+		 $('#container1').append("<p>No Record Found</p>");
+	 }
+	}
+$(document).ready(function(){
+	generate_graph(<?php echo $this->earning; ?>); 
+	// this is the id of the form
+	$('.submit_btn').on('click', function(){		
+	    var url = "<?php echo ADMIN_URL.'reports/graph'?>"; // the script where you handle the form input.
+		var start_date=$("#start_date").val();
+		var end_date=$("#end_date").val();
+		var sitter_id=$("#sitter_id").val();
+	    $.ajax({
+	           type: "POST",
+	           url: url,
+	           data: {"start_date":start_date,"end_date":end_date,"sitter_id":sitter_id,"ajaxcall":1}, // serializes the form's elements.
+	           success: function(data)
+	           {
+	           		var res = JSON.parse(data)
+	               	generate_graph(res.data); // generating graph.
+	           }
+	         });
+
+	    //e.preventDefault(); // avoid to execute the actual submit of the form.
+	
+	});
+});
+
+</script>

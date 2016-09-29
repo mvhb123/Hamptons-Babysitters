@@ -1,0 +1,236 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <div class="fixed-position col-lg-12">
+                        <header class="panel-heading clearfix">
+                            BabySitters
+
+                            <!--  <a class="label label-success pull-right" href="javascript:void(0)" onclick="$('#searchbyprefer').toggle();">Advance search&nbsp;»</a>-->
+
+                        </header>
+                        </br></br>
+
+                        <form name="searchform" method="post">
+                            <div class="col-md-12">
+
+                                <div class="col-md-3">
+                                    <input placeholder="Name" type="text" class="form-control" name="fullname" size="6" value="<?php echo $this->searchParams['fullname'] ?>" /> 
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="area_prefer" name="area_prefer">
+                                                 <option value="" <?php if ($this->searchParams['area_prefer'] == '') { ?> selected="selected" <?php } ?> >Will Work Areas</option>
+                                                	 <?php foreach ($this->area_prefer as $area_pre) { ?>
+				                                        <option value="<?php echo $area_pre['prefer_id']; ?>"
+				                                        <?php  if ($this->searchParams['area_prefer'] == $area_pre['prefer_id']) { ?>
+				                                                    selected="selected" <?php } ?>><?php echo $area_pre['prefer_name']; ?></option>
+				                                            <?php } ?> 
+                                	</select>
+                                </div>
+                                <div class="col-md-3">
+                                    <select class="form-control" id="skills" name="skills">
+                                                 <option value="" <?php if ($this->searchParams['skills'] == '') { ?> selected="selected" <?php } ?> >Skills</option>
+                                                	 <?php foreach ($this->skills as $key=>$value) { ?>
+				                                        <option value="<?php echo $key; ?>"
+				                                        <?php  if ($this->searchParams['skills'] == $key) { ?>
+				                                                    selected="selected" <?php } ?>><?php echo  $value; ?></option>
+				                                            <?php } ?> 
+                                	</select>
+                                </div>
+                                <div class="col-md-3">
+                                     <select class="form-control" id="lang_prefer" name="lang_prefer">
+                                                 <option value="" <?php if ($this->searchParams['lang_prefer'] == '') { ?> selected="selected" <?php } ?> >Language</option>
+                                                	 <?php foreach ($this->lang_prefer as $lang_pre) { ?>
+				                                        <option value="<?php echo $lang_pre['prefer_id']; ?>"
+				                                        <?php  if ($this->searchParams['lang_prefer'] == $lang_pre['prefer_id']) { ?>
+				                                                    selected="selected" <?php } ?>><?php echo $lang_pre['prefer_name']; ?></option>
+				                                            <?php } ?> 
+                                	</select>
+                                </div>
+                                
+                            </div>
+                            
+                            <div class="col-md-12 clearfix ">
+
+                                <div class="col-md-3 mar-top">
+                                    <select name="status" class="form-control">
+                                        <option value="">All</option>
+                                        <option <?php echo $this->searchParams['status'] == 'active' ? 'selected="selected"' : '' ?> value="active">Active</option>
+                                        <option value="inactive" <?php echo $this->searchParams['status'] == 'inactive' ? 'selected="selected"' : '' ?>>Inactive</option>
+                                        <option value="unapproved" <?php echo $this->searchParams['status'] == 'unapproved' ? 'selected="selected"' : '' ?>>New Applicant</option>
+                                        <option value="" disabled="disabled" >----------</option>
+                                        <option value="deleted" <?php echo $this->searchParams['status'] == 'deleted' ? 'selected="selected"' : '' ?>>Deleted Profile</option>
+                                    </select>
+
+                                </div>
+                               
+                                <div class="col-md-3 mar-top">	
+                                    <input type="submit" name="filter" value="Filter" class="btn btn-danger" />
+                                </div>
+                            </div>
+
+                        </form>   
+
+                    </div>
+
+                    <div class="panel-body list_margin">
+                        <section id="flip-scroll">
+                            <div class="clearfix"></div>
+                            <table class="table table-bordered table-striped table-condensed cf">
+                                <thead class="cf">
+                                    <tr>
+                                        <th><a href="<?php echo $this->url(array('key' => 'firstname', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'firstname' ? 'desc' : 'asc')) ?>">Name</a></th>
+
+                                        <th><a href="<?php echo $this->url(array('key' => 'joining_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'joining_date' ? 'desc' : 'asc')) ?>">Joined Date</a></th>
+                                       	<th>Will Work Areas</th>
+                                       	<th>Status N/A/I<br>(New,Active,Inactive)</th>
+                                       	<th>Special Skills</th>
+                                        <th>Phone</th>                                        
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <form name="searchform" method="post" action="<?php echo ADMIN_URL . 'sitters/' ?>" class="cmxform form-horizontal tasi-form custom-form">
+
+                                    <tbody>
+
+
+                                    <tr>
+                                    <div id="searchbyprefer" style="<?php echo $this->searchParams['filter'] == 'Search' ? '' : 'display:none' ?>">  
+
+
+                                        <?php if (!empty($this->preferences)) { ?>
+                                            <?php $this->preferences = array_chunk($this->preferences, 2); // print_r($this->preferences); ?>
+
+                                            <?php foreach ($this->preferences as $k => $part) {
+                                                ?>
+
+                                                <?php foreach ($part as $group) { ?>
+                                                    <div class="checkboxes">
+                                                        <ul>
+                                                            <li><strong><?php echo $group['label'] ?></strong></li>
+                                                            <div class="border-top m-bot20"></div>
+
+                                                            <?php
+                                                            if (!empty($group['prefer']))
+                                                                foreach ($group['prefer'] as $p) {
+                                                                    ?>
+
+                                                                    <li style="float:left;width:220px" >
+                                                                        <label class="label_check">
+                                                                            <input  <?php echo in_array($p['prefer_id'], $this->sitterPreference) || @in_array($p['prefer_id'], $this->searchParams['prefer']) ? 'checked="checked"' : '' ?> type="checkbox" name="prefer[]" value="<?php echo $p['prefer_id'] ?>" class="form-control width-50"/> <?php echo $p['prefer_name'] ?> 
+                                                                        </label>
+
+
+                                                                    </li>
+
+                                                                <?php }
+                                                            ?>                        
+                                                        </ul>
+                                                        <div class="clearfix"></div>
+                                                    <?php } ?>
+                                                </div>
+
+
+                                            <?php } ?>
+
+                                        <?php } ?>
+                                        </br>
+
+
+                                        </br>
+                                        </br>
+                                        <div class="clearfix">
+
+                                            <input title="Reset and close" onclick="$('.prefercheck').attr('checked', false);
+                                                    $('#searchbyprefer').toggle();
+                                                    return false;" type="reset" name="filter" value="Close" class="btn btn-default"  />      
+                                            &nbsp;&nbsp;&nbsp;&nbsp;<input title="Search babysitter "  type="submit" name="filter" value="Search" class="btn btn-danger"  />     
+
+                                        </div></br>
+                                        </br>
+
+                                    </div>
+                                    </tr>
+
+
+                                    <div class="clearfix"></div>
+
+
+                                    <?php foreach ($this->sitters['rows'] as $sitter) { ?>
+                                        <tr>
+                                            <td><a href="<?php echo ADMIN_URL ?>sitters/profile/modify/<?php echo $sitter['sitter_id'] ?>" title="edit" ><?php echo $sitter['firstname'] . ' ' . $sitter['lastname'] ?></a> </td>
+                                            <td><?php echo date(DATE_FORMAT, strtotime($sitter['joining_date'])) ?></td>
+                                            <td><?php echo $sitter['area_preferences']?$sitter['area_preferences']:"-";?></td>
+                                            <td class="text-center">
+                                                <?php if ($sitter['status'] == 'active') { ?>
+                                                	<p>A</p>
+                                                    <a onclick="if (confirm('This action will deactivate the sitter. Are you sure?'))
+                                                                        return true;
+                                                                    else
+                                                                        return false;" href="<?php echo ADMIN_URL ?>sitters/index/deactivate/<?php echo $sitter['userid'] ?>" title="click here to deactivate" >Deactivate
+                                                    </a>
+                                                <?php } else if ($sitter['status'] == 'unapproved') { ?> 
+                                                	<p>N</p>
+                                                    <a onclick="if (confirm('This action will approve the sitter to get jobs. Are you sure?'))
+                                                                        return true;
+                                                                    else
+                                                                        return false;" href="<?php echo ADMIN_URL ?>sitters/index/approve/<?php echo $sitter['userid'] ?>" title="click here to approve" >Approve
+                                                    </a>
+
+                                                <?php } else { ?> 
+                                                	<p>I</p>
+                                                    <a onclick="if (confirm('This action will activate the sitter to get jobs. Are you sure?'))
+                                                                        return true;
+                                                                    else
+                                                                        return false;" href="<?php echo ADMIN_URL ?>sitters/index/approve/<?php echo $sitter['userid'] ?>" title="click here to activate" >Activate
+                                                    </a>
+                                                <?php } ?>
+                                            </td>
+                                            <td><?php echo $sitter['skills']?$sitter['skills']:'-';?></td>
+                                            <td><?php echo $sitter['phone'] ?> </td>
+                                          
+                                            
+
+                                            <td class="table_input_padding">
+                                                <a class="btn btn-primary btn-xs" href="<?php echo ADMIN_URL ?>sitters/profile/modify/<?php echo $sitter['sitter_id'] ?>" title="edit" ><i class="fa fa-pencil"></i>
+                                                </a> 
+
+                                                <a class="btn btn-danger btn-xs" onclick="if (confirm('Are you sure wants to delete \'<?php echo $sitter['firstname'] . ' ' . $sitter['lastname'] ?>\'?'))
+                                                                return true;
+                                                            else
+                                                                return false;" href="<?php echo ADMIN_URL ?>sitters/delete/id/<?php echo $sitter['sitter_id'] ?>" title="delete"><i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+
+                                    </tbody>
+                                </form>
+
+                            </table>
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+

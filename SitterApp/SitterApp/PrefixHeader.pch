@@ -1,0 +1,34 @@
+//
+//  PrefixHeader.pch
+//  SitterApp
+//
+//  Created by Vikram gour on 07/04/15.
+//  Copyright (c) 2015 Sofmen. All rights reserved.
+//
+
+#ifndef SitterApp_PrefixHeader_pch
+#define SitterApp_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <SMCoreComponent/SMCoreComponent.h>
+#import <QuartzCore/QuartzCore.h>
+#import "SMCoreComponent.h"
+#import "SMCoreNetworkFramework.h"
+#import "Sitter.h"
+#import "JobList.h"
+#import "AsyncImageView.h"
+#import "DDTTYLogger.h"
+#import "DDFileLogger.h"
+#import "CocoaLumberjack.h"
+#import "AppDelegate.h"
+#import "AppBaseViewController.h"
+#import "ApplicationManager.h"
+#import "Constants.h"
+#import "APIURL.h"
+#import "AlertMessages.h"
+#import "NSDictionary+Safe.h"
+#import <CoreText/CoreText.h>
+#import "VerticallyAlignedLabel.h"
+#import "KeychainItemWrapper.h"
+#endif

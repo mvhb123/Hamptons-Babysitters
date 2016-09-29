@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="50" id="KGk-i7-Jjw" customClass="HomeViewTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn" translatesAutoresizingMaskIntoConstraints="NO" id="tLu-ru-trn">
+                        <rect key="frame" x="10" y="5" width="380" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="Xmg-TE-slT"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nw5-Qm-snu">
+                        <rect key="frame" x="24" y="15" width="274" height="19"/>
+                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RoundArrow" translatesAutoresizingMaskIntoConstraints="NO" id="QUw-eS-7e4">
+                        <rect key="frame" x="356" y="11" width="27" height="27"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="27" id="0GE-oh-kb9"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="27" id="5I7-98-Ugz"/>
+                            <constraint firstAttribute="height" constant="27" id="VIp-MR-Tut"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tLu-ru-trn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="7fd-oD-g3s"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="nw5-Qm-snu" secondAttribute="bottom" constant="7" id="8MH-rD-LNu"/>
+                    <constraint firstItem="QUw-eS-7e4" firstAttribute="leading" secondItem="nw5-Qm-snu" secondAttribute="trailing" constant="58" id="9fB-GC-B1p"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="QUw-eS-7e4" secondAttribute="trailing" constant="9" id="Iw4-8X-fDd"/>
+                    <constraint firstItem="tLu-ru-trn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="ZjY-R9-OHS"/>
+                    <constraint firstItem="nw5-Qm-snu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="hsN-kP-pft"/>
+                    <constraint firstItem="tLu-ru-trn" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="kWA-M5-izI"/>
+                    <constraint firstItem="QUw-eS-7e4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="sw0-rC-gke"/>
+                    <constraint firstItem="nw5-Qm-snu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="tPG-wJ-f93"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lbl_ParentButton" destination="nw5-Qm-snu" id="rqy-f9-d41"/>
+            </connections>
+            <point key="canvasLocation" x="-84" y="345"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="RoundArrow" width="27" height="27"/>
+        <image name="btn" width="240" height="40"/>
+    </resources>
+</document>

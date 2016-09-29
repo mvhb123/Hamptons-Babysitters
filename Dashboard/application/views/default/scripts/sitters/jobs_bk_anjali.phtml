@@ -1,0 +1,172 @@
+
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                       
+                         <?php if ($this->searchParams['view'] == 'confirmed') { ?>
+                       Confirmed Jobs
+                         <?php } else if ($this->searchParams['view'] == 'pending'){?>
+                       Available Jobs
+                    <?php } else {?>
+                        Completed Jobs
+                    <?php }?>
+                    </header>
+                    <?php
+                    if ((isset($this->errorMessage)) && (!empty($this->errorMessage))) {
+                        ?>
+                        </br>
+                        <div>
+                            <p class="emessage" style="margin-left:15px">
+                                <?php echo $this->errorMessage; ?>
+                            </p>
+                        </div>
+                    <?php } ?> 
+                    <div class="panel-body">
+                        <section id="flip-scroll">
+
+                            <form name="searchform" method="post" >  
+                                <input type="hidden" name="userid" value="<?php echo $this->userid; ?>" />
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr><th>Job Number</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Child</th>
+                                            <?php if (in_array($this->searchParams['view'], array('pending', 'confirmed'))) { ?>
+                                                <th>View Details</th>
+                                            <?php } if ($this->searchParams['view'] == 'confirmed') { ?>
+                                                <th>Actual End Time</th>
+                                                <th> Complete</th>
+
+                                            <?php } else if ($this->searchParams['view'] == 'completed') { ?>
+                                                <th>Actual End Time</th>
+
+<!--                                                <th>Total Amount</th>-->
+                                                <th class="text-right">Total Received</th>
+                                                <th>Payment Status</th>
+                                            <?php } ?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (!empty($this->jobs)) { ?>
+
+                                            <?php foreach ($this->jobs as $job) { ?>
+                                                <tr>
+                                                    <td ><a title="Click here to view Job Details" href="<?php echo SITE_URL . 'sitters/preview/job/' . $job['job_id'] ?>"><?php echo $this->jobnumber($job['job_id']) ?></a></td>
+                                                    <td> <?php echo date(DATETIME_FORMAT, strtotime($job['job_start_date'])) ?></td>
+                                                    <td> <?php echo date(DATETIME_FORMAT, strtotime($job['job_end_date'])) ?></td>
+                                                    <?php
+                                                    if (!empty($job['actual_child_count'])) {
+                                                        $children = $job['actual_child_count'];
+                                                    } else {
+                                                        $children = $job['child_count'];
+                                                    }
+                                                    ?>
+                                                    <td> <?php echo $children; ?></td>
+
+                                                        <!--<td> $<?php echo (int) $job['rate'] ?></td>-->
+                                                    <?php if (in_array($this->searchParams['view'], array('pending', 'confirmed'))) { ?>
+                                                    <td style="text-align:center"> 
+                                                            <input onclick="window.location = '<?php echo SITE_URL . 'sitters/preview/job/' . $job['job_id'] ?>';
+                                                                                return false;" class="btn btn-info" type="submit" name="jobaction[<?php echo $job['job_id'] ?>]" value="View" /> 
+                                                        </td>
+                                                    <?php } if ($this->searchParams['view'] == 'confirmed') { ?>
+                                                        <td>
+
+                                                            <?php
+                                                            $date = date(DATETIME_FORMAT, strtotime($job['job_end_date']));
+                                                            $time = date('h:i a', strtotime($date));
+
+                                                            //print_r($time);die;
+                                                            ?>
+                                                            <div class="input-group bootstrap-timepicker" >
+                                                                <input  type="text" name="completed_date[<?php echo $job['job_id'] ?>]" id="end<?php echo $job['job_id'] ?>" class="form-control timepicker-default" readonly="" placeholder="Actual End Time" value="<?php echo $time; ?>">
+                                                                <div class="input-group-btn">
+                                                                    <button type="button" class="btn btn-default"><i class="fa fa-clock-o"></i></button>                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td style="text-align:center"><input class="btn btn-success" type="submit" name="jobaction[<?php echo $job['job_id'] ?>]" value="Complete" onclick="if (confirm('You are going to complete this job <?php echo $this->jobnumber($job['job_id']) ?>. Are you sure? '))
+                                                                                return true;
+                                                                            return false;" /></td> 
+                                                            <?php $endTimes[] = 'end' . $job['job_id'] ?>
+                                                        <?php } else if ($this->searchParams['view'] == 'completed') { ?>
+                                                        <td> <?php echo date(DATETIME_FORMAT, strtotime($job['completed_date'])) ?></td>
+
+
+
+
+
+                                                        <?php
+                                                        $start_date = $job['job_start_date'];
+                                                        $end_date = $job['completed_date'];
+
+                                                        $diff = strtotime($end_date) - strtotime($start_date);
+                                                        $diff_in_hrs = $diff / 3600;
+
+                                                        $amount = $job['rate'] * $diff_in_hrs;
+                                                        ?>
+
+<!--                                                        <td> $<?php //echo (float) $amount ?></td>-->
+                                                        
+                                                        <?php
+                                                        $pamount=$job['total_paid'];
+                                                        
+                                                        if($pamount==0) {
+                                                           $pamount="" ; } else {
+                                                            $pamount=$pamount;
+                                                        }?>
+                                                        <td class="numeric"> <?php echo money_format('%.2n',$pamount) ?></td>
+
+
+                                                        <?php
+                                                        if ($job['sitter_payment_status'] == 'paid') {
+                                                            $status = 'Received';
+                                                        } else {
+                                                            $status = 'Not Received';
+                                                        }
+                                                        ?>
+                                                        <td><?php echo $status ?></td>
+                                                    <?php } ?>
+                                                </tr>
+                                            <?php } ?>	
+                                        <?php } else { ?>
+                                            <tr><td colspan="6">No records found</td></tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </form>
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+
+
+<script>
+    function saveRate(th) {
+        //alert(th.value);
+        //alert(th.name);
+        $.ajax({url: "<?php echo ADMIN_URL . 'client/events/' ?>",
+            data: {rate: th.value, saverate: 'rate', job_id: $(th).attr('rel')}, success: function (data) {
+            }
+        });
+    }
+
+</script>

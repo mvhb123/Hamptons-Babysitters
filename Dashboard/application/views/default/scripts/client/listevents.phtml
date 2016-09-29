@@ -1,0 +1,323 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        <?php if ($this->searchParams['listevents'] != 'history') { ?>
+                            <h3>Current Bookings</h3>
+                        <?php } else { ?>
+                            <h3>Booking History</h3>
+                        <?php } ?>
+
+
+                    </header>
+
+                    <div class="panel-body">
+                        <section id="flip-scroll">
+ 
+                            <?php if (!empty($this->events)) { ?>
+
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr>
+                                            <th><a href="<?php echo $this->url(array('key' => 'j.job_id', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'j.job_id' ? 'desc' : 'asc')) ?>">Job Number</a></th>
+                                            <th><a href="<?php echo $this->url(array('key' => 'j.jobs_posted_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'j.jobs_posted_date' ? 'desc' : 'asc')) ?>">Job Rec.d Date/Time</a></th>
+                                            <!--<th><a href="<?php echo $this->url(array('key' => 'jm.actual_start_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'jm.actual_start_date' ? 'desc' : 'asc')) ?>">Job Rec. Date/Time</a></th>-->
+                                            <th><a href="<?php echo $this->url(array('key' => 'job_start_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_start_date' ? 'desc' : 'asc')) ?>">Start Date</a></th>
+                                            <th ><a href="<?php echo $this->url(array('key' => 'job_end_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_end_date' ? 'desc' : 'asc')) ?>">End date</th>	
+                                            <!--<th class="tc"><a href="<?php echo $this->url(array('key' => 'jm.actual_end_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'jm.actual_end_date' ? 'desc' : 'asc')) ?>">Actual End Time</th>	-->
+                                            <th class="text-right">Rate</th>	
+                                            <th><a href="<?php echo $this->url(array('key' => 'job_status', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_status' ? 'desc' : 'asc')) ?>">Status</a></th>	
+                                            <th>Babysitter</th>
+                                            <?php if ($this->searchParams['listevents'] != 'history') { ?>
+
+
+                                                <th>Actions</th>	
+                                            <?php } else { ?>
+
+                                                <th>Actual End Date/Time</th>
+                                                <th>Payment Details</th>
+
+                                            <?php } ?>
+                                        </tr>
+
+                                    </thead>
+
+                                    <tbody>	
+                                        <?php $status_class = array('new' => 'btn-xs btn-default', 'pending' => 'btn-xs btn-warning', 'confirmed' => 'btn-xs btn-success', 'completed' => 'btn-xs btn-success', 'cancelled' => 'btn-xs btn-danger'); ?>
+                                        <?php foreach ($this->events as $event) { ?>
+                                            <tr>
+                                                <td> 
+                                                    <a href="<?php echo SITE_URL . 'client/events/modify/' . $event['job_id'] ?>">
+                                                        <?php echo $this->jobnumber($event['job_id']) ?>
+                                                    </a>
+                                                </td>
+                                                <td> <?php echo date(DATETIME_FORMAT, strtotime($event['jobs_posted_date'])) ?></td>
+                                                <td> <?php echo date(DATETIME_FORMAT, strtotime($event['job_start_date'])) ?></td>
+                                                <td> <?php echo date(DATETIME_FORMAT, strtotime($event['job_end_date'])) ?></td>
+
+                                                <?php
+                                                if (empty($event['client_updated_rate']) || $event['client_updated_rate'] == 0 || $event['client_updated_rate'] == null) {
+                                                    $rate = $event['client_rate'];
+                                                } else {
+                                                    $rate = $event['client_updated_rate'];
+                                                }
+                                                ?>
+
+                                                <td class="numeric"> <?php echo money_format('%.2n',$rate); ?></td>
+
+                                                <td class="text-center"> <span class="<?php echo $status_class[$event['job_status']] ?>"><?php echo ucwords($event['job_status']) ?></span></td>
+                                                <td> <?php if ($event['sitter_user_id'] > 0) { ?> <a onclick='open_model();' href="<?php echo SITE_URL . 'client/sitterprofile/sitter/' . $event['sitter_user_id'] ?>" target="sitterpreview"><img src="<?php echo SITE_URL ?>/resource/img/sitter.gif" /><?php echo ucwords($event['sitter_firstname'] . ' ' . $event['sitter_lastname']) ?></a><?php } ?></td>
+
+                                                <?php if ($this->searchParams['listevents'] != 'history') { ?>
+
+                                                    <td class="text-center">
+
+
+
+                                                        <?php if (!in_array($event['job_status'], array('completed', 'cancelled'))) { ?>
+
+                                                            <a  class="btn btn-primary btn-xs" href="<?php echo SITE_URL . 'client/events/modify/' . $event['job_id'] ?>">
+                                                            <i class="fa fa-pencil"></i>
+                                                            </a>
+
+
+                                                            <?php
+                                                            $today_date = date("Y-m-d H:i:s");
+                                                            $tmrw_date = date("Y-m-d H:i:s", strtotime('+ 24 hours'));
+                                                            ?>
+
+                                                            
+
+                                                                <a class="btn btn-danger btn-xs" onclick="confirmDelete(<?php echo $event['job_id']?>,'<?php echo $event['job_status']?>','<?php echo strtotime($event['job_start_date'])-time()?>')"> <i class="fa fa-trash-o"></i>
+                                                                </a>
+                                                            
+
+                                                        <?php } ?>         
+
+                                                    </td>
+                                                <?php } else { ?>
+                                                    <td ><?php echo strtotime($event['completed_date']) > 0 ? date(DATETIME_FORMAT, strtotime($event['completed_date'])) : '' ?></td>
+
+                                                    
+                                                    <?php if($event['client_payment_status']=='paid'&&$event['job_status']=='completed'){?>
+                                                   <td class="text-center"><button class="btn btn-info" onclick="get_job_details(<?php echo $event['job_id']; ?>)">Details</button></td>
+                                                    <?php }else
+                                                    {?>
+                                                    <td class="text-center">NA</td>
+                                                    <?php }?>
+
+
+  <?php } ?>	
+                                            </tr>
+                                        <?php } ?>
+
+                                    </tbody>
+                                </table>
+                            <?php } else { ?>
+                                <div >No records found, to create a new job <a href="<?php echo SITE_URL ?>client/events" class="btn btn-info">Click here</a></div>
+                            <?php } ?>
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+
+
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade in" >
+
+
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"><b>Babysitter Info</b></h4>
+            </div>
+            <div class="modal-body sitter-profile>">
+
+                <iframe class="iframeblk" border="0"  name="sitterpreview"></iframe>
+
+
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>
+<script>
+    function saveRate(th) {
+        //alert(th.value);
+        //alert(th.name);
+        $.ajax({url: "<?php echo SITE_URL . 'client/events/' ?>",
+            data: {rate: th.value, saverate: 'rate', job_id: $(th).attr('rel')}, success: function (data) {
+            }
+        });
+    }
+
+</script>
+<script>
+
+
+    function open_model()
+    {
+        $('#myModal').modal('show');
+    }
+
+</script>
+
+
+<script type="text/javascript">
+    function  get_job_details(job_id)
+    {
+        $.ajax({
+            url: "<?php echo SITE_URL . 'client/getjobpaymentdetails' ?>",
+            cache: false,
+            //    contentType: false,
+            //  processData: false,
+            data: {job_id: job_id}, // Setting the data attribute of ajax with file_data
+            dataType: 'json',
+            type: 'post',
+            async: false,
+            success: function (data) {
+
+                if (data.status == 'success')
+                {
+                    $("#job_id").text(data.job_id);
+                    $("#Booking_credits").text(data.credits_used);
+                    $("#child_count").text(data.actual_child_count);
+                    $("#client_rate").text(data.client_updated_rate);
+                    $("#job_hour").text(data.job_hour);
+                    $("#total_received").text(data.total_received);
+                    $('#paymentDetailsModel').modal('show');
+
+                }
+            },
+            complete: function () {
+                //hide_loader();
+            }
+        });
+    }
+
+    function hide_popup()
+    {
+        $('#paymentDetailsModel').modal('hide');
+    }
+</script>
+
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="paymentDetailsModel" class="modal fade in" >
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Payment Details</h4>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <div class="col-md-6"> Job ID </div>
+                    <div class="col-md-6" id="job_id"> </div>
+                </div>
+                </br>
+                </br>
+
+                <div>
+                    <div class="col-md-6"> Booking Credits </div>
+                    <div class="col-md-6" id="Booking_credits"> </div>
+                </div>
+                </br>
+                </br>
+                <div>
+                    <div class="col-md-6">No. Of Children</div>
+                    <div class="col-md-6" id="child_count"></div>
+                </div>
+                </br>
+                </br>
+                <div>  
+                    <div class="col-md-6">Hourly Rate</div>
+                    <div class="col-md-6" id="client_rate"></div>    
+                </div>
+                </br>
+                </br>
+
+                <div>
+                    <div class="col-md-6">Total Hours </div>                                                
+                    <div class="col-md-6" id="job_hour"></div>     
+                </div>
+
+                </br>
+                </br>
+                <div>
+                    <div class="col-md-6"> Paid Amount</div>                                                
+                    <div class="col-md-6" id="total_received"></div>     
+                </div>
+                <div>
+                    <div class="col-md-12">   
+                        <button  style="float:right" class="btn btn-send" type="button" onclick="hide_popup()">Ok</button>
+                    </div>
+                </div>
+                <div  class="clearfix"></div>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="confirmdelete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Delete Job</h4>
+      </div>
+      <div class="modal-body">
+        <div id="jobmsg"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Do Not Cancel Job</button>
+        <a id="deletejob" href=""  class="btn btn-danger">Cancel Job</a>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+  
+<script>
+<?php if ($_SESSION['cancelJob']) { ?>
+$(document).ready(function () {
+alert_notification('success','Cancel Job',"<?php echo $_SESSION['cancelJob']?>");
+});
+<?php  unset($_SESSION['cancelJob']);}?>
+
+function confirmDelete(job_id,status,timediff)     
+{
+	if(timediff < 86400)
+    	$('#jobmsg').html('<p>Cancellations inside 24 hours before the job start with be billed the minimum 3 hour engagement. You keep the booking credit for future use.</p>');
+	else
+		$('#jobmsg').html('<p>Are you sure, you want to cancel this job?</p>');
+	
+    $('#deletejob').attr('href','<?php echo SITE_URL . "client/events/delete/" ?>'+job_id);
+    $('#confirmdelete').modal('show');
+}
+</script>
+
+

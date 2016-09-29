@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<configdata>
+    <production>
+        <webhost>www.example.com</webhost>
+        <database>
+            <adapter>pdo_mysql</adapter>
+            <params>
+                <host>db.example.com</host>
+                <username>dbuser</username>
+                <password>secret</password>
+                <dbname>dbname</dbname>
+            </params>
+        </database>
+        <phpSettings>
+			<display_startup_errors>0</display_startup_errors>
+			<display_errors>0</display_errors>
+		</phpSettings>
+		<includePaths>
+			<library>APPLICATION_PATH "/../library"</library>
+		</includePaths>
+		<bootstrap>
+			<path>APPLICATION_PATH "/Bootstrap.php"</path>
+			<class>"Bootstrap"</class>
+		</bootstrap>
+		<appnamespace>"Application"</appnamespace>
+		
+    </production>
+    <staging extends="production">
+        
+    </staging>
+    <development extends="production">
+        
+    </development>
+</configdata>

@@ -1,0 +1,124 @@
+<aside>
+    <div id="sidebar"  class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <?php if ($_SESSION['Zend_Auth']['storage']->usertype == 'A') { ?>
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li>
+                    <a <?php echo $this->searchParams['controller'] == 'index' ? 'class="active"' : '' ?>href="<?php echo ADMIN_URL ?>" >
+                        <i class="fa fa-dashboard"></i>
+                        <span>Dashboard </span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+<!--                    <a  href="javascript:;">-->
+                        
+                 <a <?php echo (($this->searchParams['controller'] == 'jobs')&&($this->searchParams['action']!='billablejobs')) ? 'class="active dcjq-parent"' : '' ?> href="javascript:;">
+
+                        <i class="fa fa-laptop"></i>
+                        <span>Jobs</span>
+                    </a>
+                    <ul class="sub">
+                        <li <?php echo $this->searchParams['status'] == 'new' ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>jobs/view/status/new/">New Jobs</a></li>
+
+                        <li <?php echo (($this->searchParams['action'] == 'specialscheduledjobs') || ($this->searchParams['action'] == 'scheduledjobs')) ? 'class="active"' : '' ?> ><a href="<?php echo ADMIN_URL ?>jobs/specialscheduledjobs">Scheduled jobs</a></li>
+                        <li <?php echo $this->searchParams['status'] == 'confirmed' ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>jobs/view/status/confirmed/">Confirmed Jobs</a></li>
+                        <li <?php echo $this->searchParams['status'] == 'completed' ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>jobs/view/status/completed/">Completed Jobs</a></li>
+                        <li <?php echo (($this->searchParams['action'] == 'immediatespecial') || ($this->searchParams['action'] == 'immediate')) ? 'class="active"' : '' ?> ><a href="<?php echo ADMIN_URL ?>jobs/immediatespecial">Immediate jobs</a></li>
+                        <li <?php echo $this->searchParams['action'] == 'jobalert' ? 'class="active"' : '' ?> ><a href="<?php echo ADMIN_URL ?>jobs/jobalert"> jobs Alert</a></li>
+                        <li <?php echo (($this->searchParams['action'] == 'cancelledjobs') || ($this->searchParams['action'] == 'immidiatecancelledjobs')) ? 'class="active"' : '' ?> ><a href="<?php echo ADMIN_URL ?>jobs/cancelledjobs">Cancelled jobs</a></li>
+
+
+                        <li <?php echo $this->searchParams['status'] == 'closed' ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>jobs/view/status/closed/">Closed Jobs</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a <?php echo $this->searchParams['controller'] == 'client' ? 'class="active dcjq-parent"' : '' ?> href="javascript:;">
+                        <i class="fa fa-user"></i>
+                        <span>Client</span>
+                    </a>
+                    <ul class="sub">
+                        <li <?php echo (($this->searchParams['action'] == 'profile') && ($this->searchParams['controller'] == 'client')) ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>client/profile">Add new client </a></li>
+                        <li <?php echo (($this->searchParams['action'] == 'index') && ($this->searchParams['controller'] == 'client')) ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>client">Client List</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a <?php echo $this->searchParams['controller'] == 'sitters' ? 'class="active dcjq-parent"' : '' ?> href="javascript:;">
+                        <i class="fa fa-users"></i>
+                        <span>BabySitters</span>
+                    </a>
+                    <ul class="sub">
+                        <li <?php echo (($this->searchParams['action'] == 'profile') && ($this->searchParams['controller'] == 'sitters') && ($this->searchParams['create'] == 'new')) ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>sitters/profile/create/new">Add new babysitters </a></li>
+                        <li <?php echo (($this->searchParams['action'] == 'index') && ($this->searchParams['controller'] == 'sitters')) ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>sitters/">Sitters List</a></li>
+                        <li <?php echo (($this->searchParams['action'] == 'paysitter') && ($this->searchParams['controller'] == 'sitters')) ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>sitters/paysitter">Pay Sitters</a></li>
+                        <li <?php echo (($this->searchParams['action'] == 'sitterpaymenthistory') && ($this->searchParams['controller'] == 'sitters')) ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>sitters/sitterpaymenthistory">Sitters payment history</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a <?php echo $this->searchParams['controller'] == 'settings' ? 'class="active dcjq-parent"' : '' ?>  >
+                        <i class="fa fa-cogs"></i>
+                        <span>Setting</span>
+                    </a>
+                    <ul class="sub">
+                        <li <?php echo (($this->searchParams['action'] == 'index') && ($this->searchParams['controller'] == 'settings')) ? 'class="active"' : '' ?>><a  href="<?php echo ADMIN_URL ?>settings/">Site</a></li>
+                        <li <?php echo (($this->searchParams['action'] == 'preference') && ($this->searchParams['controller'] == 'settings')) ? 'class="active"' : '' ?>><a  href="<?php echo ADMIN_URL ?>settings/preference">Sitter Preferences</a></li>
+                        <li <?php echo (($this->searchParams['action'] == 'mail') && ($this->searchParams['controller'] == 'settings')) ? 'class="active"' : '' ?>><a  href="<?php echo ADMIN_URL ?>settings/mail/">Mail</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a <?php echo (($this->searchParams['action'] == 'index') && ($this->searchParams['controller'] == 'reports')) ? 'class="active"' : '' ?>href="<?php echo ADMIN_URL ?>reports" >
+                        <i class="fa fa-list-alt"></i>
+                        <span>Sitters Report</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a <?php echo (($this->searchParams['action'] == 'alltransactions') && ($this->searchParams['controller'] == 'reports')) ? 'class="active"' : '' ?>href="<?php echo ADMIN_URL ?>reports/alltransactions" >
+                        <i class="fa fa-exchange"></i>
+                        <span>All Billing Transactions</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a <?php echo (($this->searchParams['action'] == 'billablejobs') && ($this->searchParams['controller'] == 'jobs')) ? 'class="active"' : '' ?>href="<?php echo ADMIN_URL ?>jobs/billablejobs" >
+                        <i class="fa fa-credit-card"></i>
+                        <span>Billable Jobs</span>
+                    </a>
+                </li>
+
+                <li class="sub-menu">
+                    <a <?php echo $this->searchParams['controller'] == 'packages' ? 'class="active dcjq-parent"' : '' ?> href="javascript:;">
+                        <i class="fa fa-th-large"></i>
+                        <span>Packages</span>
+                    </a>
+                    <ul class="sub">
+                        <li <?php echo $this->searchParams['action'] == 'index' ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>packages/index">Package List</a></li>
+                        <li <?php echo (($this->searchParams['action'] == 'add') || ($this->searchParams['action'] == 'addpackage')) ? 'class="active"' : '' ?>><a href="<?php echo ADMIN_URL ?>packages/addpackage">Add Packages</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a  href="<?php echo ADMIN_URL ?>index/refreshcache">
+                        <i class="fa fa-repeat"></i>
+                        <span>Reset Cache</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="<?php echo ADMIN_URL ?>logout">
+                        <i class="fa fa-sign-out"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+
+            </ul>
+        <?php } ?>
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->

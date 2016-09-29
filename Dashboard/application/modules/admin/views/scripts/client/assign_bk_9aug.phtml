@@ -1,0 +1,677 @@
+<?php
+//print_r($this->event);die;
+?>
+
+
+<?php if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && $this->searchParams['search'] == 'sitter') { ?>
+
+    <?php if (!empty($this->sitters)) { ?>
+        <?php foreach ($this->sitters as $sitter) { ?>
+            <tr>
+                <td>
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-info chk">
+                            <input type="checkbox" autocomplete="off" name="sitter[]"
+                                   value="<?php echo $sitter['userid'] ?>">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+
+                </td>
+                <td><a title="View/Edit"
+                       href="<?php echo ADMIN_URL . 'sitters/profile/modify/' . $sitter['userid'] ?>"><?php echo $sitter['firstname'] . ' ' . $sitter['lastname'] ?></a>
+                </td>
+                <td><?php echo $sitter['phone'] ?></td>
+                <td><span
+                        style="color:red;"><?php echo implode(', ', array_diff_key($this->jobPreferSearch, $sitter['prefer'])); ?></span>
+                </td>
+                <?php if ($this->event['job_status'] != 'confirmed') { ?>
+                    <td>
+                     	<input type="button" id="<?php echo $sitter['userid']; ?>" onclick="auto_confirmnew(<?php echo $sitter['userid'] ?>,<?php echo "'".$sitter['firstname']."'" ?>,<?php echo $sitter['jobs']['jobsIn4hrs'] ?>,<?php echo $sitter['jobs']['jobsOfday'] ?>);
+                                 return false;" class="btn btn-info" value="Assign"/>
+						<!-- commented dispacthed code<?php	//if($sitter['is_sent']=='Assign'){?>
+                        <button onclick="auto_confirm(<?php echo $sitter['userid'] ?>)" class="btn btn-info confirm">
+                            <?php //echo $sitter['is_sent']?>
+                        </button>
+						<?php //} else { echo $sitter['is_sent'];?>
+						  <input type="button" id="<?php //echo $sitter['userid'] ?>"
+                                                                       onclick="auto_confirm(<?php //echo $sitter['userid'] ?>);
+                                                                           return false;" class="btn btn-info"
+                                                                       value="Assign"/>
+						<?php //}?>
+                    </td>-->
+                <?php } ?>
+            </tr>
+        <?php } ?>
+    <?php } ?>
+    <?php
+    die();
+}
+?>
+
+
+
+<?php
+if ($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' && ($this->searchParams['sendto'] == 'sitter' || $this->searchParams['sendto'] == 'allsitter' || $this->searchParams['remove'] == 'sitter' || $this->searchParams['sendto'] == 'confirmsitter')) {
+    if (!empty($this->sentJobs))
+        foreach ($this->sentJobs as $sitter) {
+            ?>
+            <tr>
+                <td>
+
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-info chk ">
+                            <input type="checkbox" autocomplete="off" name="sitter[]"
+                                   value="<?php echo $sitter['userid'] ?>">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </label>
+                    </div>
+
+                </td>
+                <!-- .first for first row of the table (only if there is thead) -->
+                <td><a title="View/Edit"
+                       href="<?php echo ADMIN_URL . 'sitters/profile/modify/' . $sitter['userid'] ?>"><?php echo $sitter['firstname'] . ' ' . $sitter['lastname'] ?></a>
+                </td>
+                <td><?php echo $sitter['phone'] ?></td>
+
+
+            </tr>
+        <?php } ?>
+    <?php
+    die();
+}
+?>
+
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel clearfix">
+                    <!--  <header class="panel-heading tab-bg-dark-navy-blue tab-right ">
+                        <ul class="nav nav-tabs pull-right"><?php //include_once('job-tabs.phtml'); ?></ul>
+                        <span class="hidden-sm wht-color"> Manage Sitter</span>
+                    </header>-->
+                    <!--header fixes -->
+                     <div class="fixed-position ">
+	                    <header class="panel-heading tab-bg-dark-navy-blue tab-right ">
+	                        <ul class="nav nav-tabs pull-left">
+	                        <li>     
+	                        	<span class="profile_name"><?php echo  $this->job_id; ?> - Manage Sitter</span>
+	                        </li>
+	                            <?php include_once('job-tabs.phtml'); ?>
+	                        </ul>
+	                    </header>
+	                     <div class="clearfix"></div>
+	                 </div>
+                    <!--end header fixes -->
+                    <?php $timediff = $this->timediff($this->event['job_start_date']); ?>
+                    <div class="panel-body list_margin">
+                        <section class="clearfix">
+                            <?php if ($timediff) { ?>
+                                <div class="alert alert-success fade in">
+                                    <strong>Reminder:</strong> <?php echo $timediff ?> remaining for this job.
+                                </div>
+                            <?php } else { ?>
+                                <div class="alert alert-warning fade in">
+                                    Job Expired
+                                </div>
+                            <?php } ?>
+                            <div class="col-sm-6">
+                                <form name="searchSitterForm" class="cmxform form-horizontal tasi-form custom-form"
+                                      method="post" onsubmit="searchSitter(this);
+                                          return false;">
+
+
+                                    <?php if ((empty($this->event['total_assigned']) || ($this->event['total_assigned']) == null || ($this->event['total_assigned']) <= '0') && ($this->event['job_status'] == 'new')) { ?>
+
+                                        <input class="btn btn-danger" type="submit" id="assign_btn_sitter"
+                                               value="Auto Dispatch To All Sitter" onclick="sendToAllSitter();
+                                             return false;"/>
+
+                                        <span id="assign_sitter_loading"
+                                              style="display:none;">sending please wait..</span>
+                                    <?php } ?>
+
+
+
+                                    <?php if (!empty($this->jobsPreferences)) { ?>
+                                        <h4>Search / Assign Babysitters</h4>
+                                        <div class="border-top m-bot20"></div>
+                                        <?php foreach ($this->jobsPreferences as $groupId => $group) { ?>
+                                            <ul class="preflist">
+                                                <li><strong><?php echo $group['label'] ?></strong>
+
+
+                                                    <a id="exp<?php echo $groupId ?>" style="display:none;" href="#"
+                                                       onclick="$('.group<?php echo $groupId ?>').show();
+                                                           $(this).hide();
+                                                           $('#col<?php echo $groupId ?>').show();
+                                                           return false;">(+)Expand</a>
+                                                    <a id="col<?php echo $groupId ?>" href="#" href="#"
+                                                       onclick="$('.group<?php echo $groupId ?>').hide();
+                                                           $(this).hide();
+                                                           $('#exp<?php echo $groupId ?>').show();
+                                                           return false;">(-)Collapse</a>
+                                                </li>
+                                                <?php //for language filter
+                                                	if($group['label']=='Language Spoken')
+													{
+														$group = array_unique(array_merge($this->lp,$group['prefer']));
+													}
+												?>
+                                                <div class="border-top m-bot20"></div>
+                                                <?php foreach ($group['prefer'] as $prefer) { ?>
+                                                    <li style="float:left;width:50%"
+                                                        class="group<?php echo $prefer['group_id'] ?>">
+
+
+                                                        <div class="btn-group " data-toggle="buttons">
+                                                            <label
+                                                                class="btn btn-info chk <?php if ($prefer['for_manage_sitter'] != 1) { ?>active<?php } ?>">
+                                                                <input type="checkbox" autocomplete="off" id="some5"
+                                                                       <?php if ($prefer['for_manage_sitter'] != 1) { ?>checked="checked"<?php } ?>
+                                                                       name="prefer[]"
+                                                                       value="<?php echo $prefer['prefer_id'] ?>">
+                                                                <span class="glyphicon glyphicon-ok"></span>
+
+                                                            </label>
+                                                            <span class="listpreference"><?php echo $prefer['prefer_name'] ?></span>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </li>
+                                                <?php } ?>
+                                                <div class="clearfix"></div>
+                                                <div class="border-top m-bot20"></div>
+
+                                            </ul>
+                                        <?php } ?>
+                                    <?php } ?>
+									<div class="col-md-12" style="margin-bottom:10px;">
+                                    	<select class="form-control" id="skills" name="skills">
+                                            <option value="" <?php if ($this->searchParams['skills'] == '') { ?> selected="selected" <?php } ?> >Skills</option>
+                                                	 <?php foreach ($this->skills as $key=>$value) { ?>
+	                                        <option value="<?php echo $key; ?>"
+	                                        <?php  if ($this->searchParams['skills'] == $key) { ?>
+	                                                    selected="selected" <?php } ?>><?php echo  $value; ?></option>
+	                                            <?php } ?> 
+                                		</select>
+                                	</div>
+                                	<div class="col-md-12" style="margin-bottom:10px;">
+                                    	<input type="text" class="form-control" id="sitter_name" placeholder="Sitter Name" name="sitter_name" value="<?php echo $this->searchParams['sitter_name']?>"/>
+                                	</div>
+                                	<div class="col-md-12" style="margin-bottom:10px;">
+                                    	<input type="text" class="form-control" id="seacrh_job" placeholder="Job Id" name="seacrh_job" value="<?php echo $this->searchParams['seacrh_job']?>"/>
+                                	</div>
+                                    <input id="search_btn" class="btn btn-danger" type="submit" onclick="searchSitter(this.form);
+                                            return false;" value="Search"/>
+                                    <span id="search_loading" style="display:none;">searching please wait... </span>
+                                </form>
+                                </br>
+
+                                <h3 id="sitter_count"><?php echo count($this->sitters) ?> Babysitter(s) Found</h3>
+                                <div class="border-top m-bot20"></div>
+                                <form method="post" name="sendToSitterForm" onsubmit="sendToSitter(this);
+                                        return false;" class="cmxform form-horizontal tasi-form custom-form"
+                                      action="<?php echo ADMIN_URL . 'jobs/assign/jobid/' . $this->job_id . '/' ?>">
+
+                                    <table class="table table-bordered table-striped table-condensed cf">
+                                        <thead class="cf">
+                                        <tr>
+                                            <th><span class="check"></span></th>
+                                            <th>Name</th>
+                                            <th>Mobile</th>
+                                            <th>UnMatched Preference</th>
+
+                                            <?php if ($this->event['job_status'] != 'confirmed') { ?>
+                                                <th>Assign</th>
+                                            <?php } ?>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody id="sitters-table">
+                                        <?php if (!empty($this->sitters)) { ?>
+                                            <?php foreach ($this->sitters as $sitter) { ?>
+                                                <tr>
+                                                    <td>
+
+                                                        <div class="btn-group" data-toggle="buttons">
+                                                            <label class="btn btn-info chk">
+                                                                <input type="checkbox" autocomplete="off"
+                                                                       name="sitter[]"
+                                                                       value="<?php echo $sitter['userid'] ?>">
+                                                                <span class="glyphicon glyphicon-ok"></span>
+                                                            </label>
+                                                        </div>
+
+
+                                                    </td>
+                                                    <td><a title="View/Edit"
+                                                           href="<?php echo ADMIN_URL . 'sitters/profile/modify/' . $sitter['userid'] ?>"><?php echo $sitter['firstname'] . ' ' . $sitter['lastname'] ?></a>
+                                                    </td>
+                                                    <td><?php echo $sitter['phone'] ?></td>
+                                                    <td><span style="color:red"><?php echo implode(', ', array_diff_key($this->jobPreferSearch, $sitter['prefer'])); ?>
+                                                            <span style="color:red"></td>
+                                                    <?php if ($this->event['job_status'] != 'confirmed') { ?>
+                                                        <?php if ($this->event['job_status'] != 'confirmed') { ?>
+
+                                                            <td>
+                                                            	<input type="button" id="<?php echo $sitter['userid'] ?>"
+                                                                       onclick="auto_confirmnew(<?php echo $sitter['userid'] ?>,<?php echo "'".$sitter['firstname']."'" ?>,<?php echo $sitter['jobs']['jobsIn4hrs'] ?>,<?php echo $sitter['jobs']['jobsOfday'] ?>);
+                                                                           return false;" class="btn btn-info"
+                                                                       value="Assign"/>
+                                                                <span class="confirm_loading" style="display:none;"> please wait...</span>
+																<!--commented dispacthed code<?php	//if($sitter['is_sent']=='Assign'){?>
+                                                                <input type="button" id="<?php //echo $sitter['userid'] ?>"
+                                                                       onclick="auto_confirm(<?php //echo $sitter['userid'] ?>);
+                                                                           return false;" class="btn btn-info"
+                                                                       value="Assign"/>
+                                                                <span class="confirm_loading" style="display:none;"> please wait...</span>
+																<?php //}else{ echo $sitter['is_sent'];?>
+																<input type="button" id="<?php //echo $sitter['userid'] ?>"
+                                                                       onclick="auto_confirm(<?php //echo $sitter['userid'] ?>);
+                                                                           return false;" class="btn btn-info"
+                                                                       value="Assign"/>
+																<?php //}?>-->
+                                                            </td>
+                                                        <?php } ?>
+                                                    <?php } ?>
+                                                </tr>
+                                                <?php
+                                            }
+                                            ?>
+                                        <?php } ?>
+                                        </tbody>
+                                    </table>
+
+                                    <br clear="all"/>
+                                    <input class="btn btn-danger" type="submit" id="assign_btn" value="Dispatch"
+                                           onclick="sendToSitter(this.form);
+                                                                        return false;"/>
+
+
+                                    <span id="assign_loading" style="display:none;">sending please wait..</span>
+                                </form>
+                            </div>
+                            <div class="col-sm-6">
+                                <?php if (isset($this->selectedSitter)) { ?>
+                                    <h4>Confirmed Babysitters</h4>
+                                    <div class="border-top m-bot20"></div>
+                                <?php } ?>
+                                <div class="">
+                                    <?php if (isset($this->selectedSitter)) { ?>
+                                        <div class="Children_pic col-sm-3">
+                                            <?php if ($this->selectedSitter['thumb_image'] != '' && file_exists($this->selectedSitter['thumb_image'])) { ?>
+                                                <img
+                                                    src="<?php echo SITE_URL . $this->selectedSitter['thumb_image'] ?>"/>
+                                            <?php } else { ?>
+                                                <img alt="No Image"
+                                                     src="<?php echo SITE_URL . 'resource/img/noimage.jpg' ?>"/>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="bio-desk col-sm-9">
+                                            <h4 class="terques"><a
+                                                    href="<?php echo ADMIN_URL ?>sitters/profile/modify/<?php echo $this->selectedSitter['userid'] ?>"><?php echo $this->selectedSitter['firstname'] . ' ' . $this->selectedSitter['lastname'] ?></a>
+                                            </h4>
+                                            <p><b>Mobile :</b><?php echo $this->selectedSitter['phone'] ?></p>
+                                            <p><b>Home :</b><?php echo $this->selectedSitter['local_phone'] ?></p>
+                                            <p><b>Email :</b><a
+                                                    href="mailto:<?php echo $this->selectedSitter['username'] ?>"><?php echo $this->selectedSitter['username'] ?>
+                                            </p></a>
+                                            <div>
+                                                <div class="col-sm-2"></div>
+                                            </div>
+                                        </div>
+
+                                        <input type="button" id="remove_sitter" class="btn btn-info"
+                                               value="remove sitter"
+                                               onclick="remove_confirmed_sitter(<?php echo $this->job_id; ?>)">
+                                        <span id="remove_cloading" style="display:none; float:left;">removing please wait...</span>
+                                    <?php } ?>
+                                    <div class="clearfix"></div>
+
+
+                                    <div
+                                        id="sendto-div" <?php echo empty($this->sentJobs) ? 'style="display:none"' : '' ?>>
+                                        <h4>Sent To Babysitter</h4>
+                                        <div class="border-top m-bot20"></div>
+                                        <form method="post" onsubmit="sendToSitter(this.form, 'resend');
+                                                                                    return false;">
+                                            <table class="table table-bordered table-striped table-condensed cf">
+                                                <thead>
+                                                <tr>
+                                                    <th><span class="check"></span></th>
+                                                    <th>Name</th>
+                                                    <th>Mobile</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="sendto-table">
+                                                <?php
+                                                if (!empty($this->sentJobs))
+                                                    foreach ($this->sentJobs as $sitter) {
+                                                        ?>
+                                                        <tr>
+                                                            <td class="text-center">
+
+                                                                <div class="btn-group" data-toggle="buttons">
+                                                                    <label class="btn btn-info chk">
+                                                                        <input type="checkbox" autocomplete="off"
+                                                                               name="sitter[]"
+                                                                               value="<?php echo $sitter['userid'] ?>">
+                                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                                    </label>
+                                                                </div>
+
+                                                            </td>
+                                                            <!-- .first for first row of the table (only if there is thead) -->
+                                                            <td>
+                                                                <a href="<?php echo ADMIN_URL . 'sitters/profile/modify/' . $sitter['userid'] . '' ?>"><?php echo $sitter['firstname'] . ' ' . $sitter['lastname'] ?></a>
+                                                            </td>
+                                                            <td><?php echo $sitter['phone'] ?></td>
+
+
+                                                            <!-- a.ico-comms for comment-like backgrounds -->
+                                                        </tr>
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+                                            <br clear="all"/>
+                                            <input class="btn btn-danger" id="resend_btn" type="submit" value="Resend"
+                                                   onclick="sendToSitter(this.form, 'resend');
+                                                                                        return false;"/>
+                                            <input class="btn btn-default" id="remove_btn" onclick="removeAssign(this.form);
+                                                                                        return false;" type="button"
+                                                   value="Remove"/>
+       
+                                            <input class="btn btn-default" id="removeall_btn" onclick="removeAllAssign(<?php echo $this->job_id; ?>); return false;" type="button" value="Remove All sitters"/>
+                                            <!--<input class="button altbutton" type="submit" value="Assign" />-->
+                                            <span id="resend_loading"
+                                                  style="display:none;">resending please wait...</span>
+                                            <span id="remove_loading"
+                                                  style="display:none;">removing please wait...</span>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!--                                                            </form>-->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="confimAssign">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Assign sitter</h4>
+      </div>
+      <div class="modal-body">
+        <div id="jobmsg"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger cassign">Continue</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+<!--main content end-->
+<script>
+    $(document).ready(function () {
+        <?php if (in_array($this->event['job_status'], array('confirmed', 'completed'))) { ?>
+        $('input[type=button],input[type=submit]').hide();
+        $('input[type=checkbox]').attr('disabled', 'disabled');
+        <?php }
+        ?>
+        <?php if (in_array($this->event['job_status'], array('confirmed'))) { ?>
+        $("#remove_sitter").show();
+        <?php } ?>
+
+
+
+        <?php if (!$timediff) { ?>
+        $('input[type=button],input[type=submit]').hide();
+        $('input[type=checkbox]').attr('disabled', 'disabled');
+        <?php } ?>
+
+	<?php if (in_array($this->event['job_status'], array('confirmed','completed'))) { ?>
+        $("#remove_sitter").show();
+        <?php } ?>
+    });
+
+
+    /*by namrata to auto confirm of job*/
+
+    function auto_confirm(sitter_id) {
+
+        if (confirm("This action will assign the job to sitter. Are you sure?") == true) {
+
+
+            $('input[type="button"]').prop('disabled', true);
+            $('#'+sitter_id).val('Wait...');
+            $.ajax({
+                url: '<?php echo ADMIN_URL ?>client/assign/user/<?php echo $this->userid ?>/modify/<?php echo $this->job_id ?>/sendto/confirmsitter/',
+                data: {sitter_id: sitter_id},
+                type: 'post',
+                success: function (data) {
+
+
+                    window.location.reload();
+                    $('html, body').animate({scrollTop: 0}, 0);
+                    $('input[type="button"]').prop('disabled', false);
+                }
+            });
+
+        } else {
+            $('input[type="button"]').prop('disabled', false);
+            return false;
+        }
+    }
+  
+    function sendToSitter(thisform, opt) {
+
+
+        if ((!$(thisform).serialize()) && (opt != 'resend')) {
+            alert("Please select sitter's whom you want to dispatch the job");
+            $('html, body').animate({scrollTop: 0}, 0);
+            return false;
+        }
+
+        console.log($(thisform).serialize());
+        if (opt != 'resend') {
+            $("#assign_btn").hide();
+            $("#assign_loading").show();
+        } else {
+            $("#resend_btn").hide();
+            $("#resend_loading").show();
+        }
+        $.ajax({
+            url: '<?php echo ADMIN_URL ?>client/assign/user/<?php echo $this->userid ?>/modify/<?php echo $this->job_id ?>/sendto/sitter/',
+            data: $(thisform).serialize(),
+            type: 'post',
+            success: function (data) {
+                if (opt != 'resend') {
+                    $("#sendto-table").html(data);
+
+
+                    $("#sendto-div").show();
+                    searchSitter(document.searchSitterForm);
+
+                    $("#assign_btn").show();
+                    $("#assign_loading").hide();
+
+                    $("#assign_btn_sitter").hide();
+                    $('html, body').animate({scrollTop: 0}, 0);
+
+                } else {
+                    $("#resend_btn").show();
+                    $("#resend_loading").hide();
+                }
+            }
+        });
+    }
+
+
+    //to all sitter by namrata
+
+    function sendToAllSitter() {
+
+        $("#assign_sitter_loading").show();
+        $("#assign_btn_sitter").hide();
+
+        $.ajax({
+            url: '<?php echo ADMIN_URL ?>client/assign/user/<?php echo $this->userid ?>/modify/<?php echo $this->job_id ?>/sendto/allsitter/',
+            //   data: {sitter:'all'},
+            type: 'post',
+            success: function (data) {
+ window.location.reload();
+               /* $("#sendto-table").html(data);
+                $("#sendto-div").show();
+                searchSitter(document.searchSitterForm);
+
+                $("#assign_sitter_loading").hide();
+                $("#assign_btn_sitter").hide();*/
+
+            }
+        });
+    }
+
+
+    function searchSitter(thisform) {
+        $("#search_btn").hide();
+        $("#search_loading").show();
+        $.ajax({
+            url: '<?php echo ADMIN_URL ?>client/assign/user/<?php echo $this->userid ?>/modify/<?php echo $this->job_id ?>/search/sitter/',
+            data: $(thisform).serialize(),
+            type: 'post',
+            success: function (data) {
+                $("#sitters-table").html(data);
+                //$("#sitters-table label").bind('click', Script.check_it);
+                $("#sitter_count").html($("#sitters-table tr").length + ' Babysitters Found');
+                $("#search_btn").show();
+                $("#search_loading").hide();
+            }
+        });
+
+    }
+    function removeAssign(thisform) {
+
+        $("#remove_loading").show();
+        $("#remove_btn").hide();
+
+        $.ajax({
+            url: '<?php echo ADMIN_URL ?>client/assign/user/<?php echo $this->userid ?>/modify/<?php echo $this->job_id ?>/remove/sitter/',
+            data: $(thisform).serialize(),
+            type: 'post',
+            success: function (data) {
+
+                $("#sendto-table").html(data);
+                $("#remove_loading").hide();
+                $("#remove_btn").show();
+                searchSitter(document.searchSitterForm);
+            }
+        });
+    }
+
+
+    function remove_confirmed_sitter(id) {
+    	 $("#remove_cloading").show();
+         $("#remove_sitter").hide();
+        $.ajax({
+            url: '<?php echo ADMIN_URL ?>client/remove',
+            data: {job_id: id},
+            type: 'post',
+            success: function (data) {
+                location.reload();
+
+            }
+        });
+    }
+        
+    /*by anjali to auto confirm of job with 4hrs check and no of jobs check*/
+    function cassignaction(sitterid,sittername){
+        $('.cassign').on('click', function(){
+        	auto_confirmnew(sitterid,sittername,0,0,1)
+            });  	
+        }
+
+    function auto_confirmnew(sitter_id,sittername,jobin4hr,jobinday, fassign=0) {
+    	
+    	if(jobin4hr>0)
+    	{
+        	$('#jobmsg').html("<p>"+sittername+" already have job scheduled in 4hrs time frame.<br> If you still want to assign this job press continue</p>");
+        	cassignaction(sitter_id);
+ 			$('#confimAssign').modal('show');
+			
+    	}
+    	else if(jobinday>=2)
+    	{
+    		$('#jobmsg').html("<p>"+sittername+" has already scheduled 2 job for the day <br> If you still want to assign this job press continue.</p>");
+    		cassignaction(sitter_id,sittername);
+    		$('#confimAssign').modal('show');
+    	}
+    	else if(fassign==1)
+    	{
+    		$('#confimAssign').modal('hide');
+            $('input[type="button"]').prop('disabled', true);
+            $('#'+sitter_id).val('Wait...');
+            $.ajax({
+                url: '<?php echo ADMIN_URL ?>client/assign/user/<?php echo $this->userid ?>/modify/<?php echo $this->job_id ?>/sendto/confirmsitter/',
+                data: {sitter_id: sitter_id},
+                type: 'post',
+                success: function (data) {
+
+
+                    window.location.reload();
+                    $('html, body').animate({scrollTop: 0}, 0);
+                    $('input[type="button"]').prop('disabled', false);
+                }
+            });
+        	
+    	}
+    	else if(confirm("This action will assign the job to sitter. Are you sure?") == true) {
+
+            $('input[type="button"]').prop('disabled', true);
+            $('#'+sitter_id).val('Wait...');
+            $.ajax({
+                url: '<?php echo ADMIN_URL ?>client/assign/user/<?php echo $this->userid ?>/modify/<?php echo $this->job_id ?>/sendto/confirmsitter/',
+                data: {sitter_id: sitter_id},
+                type: 'post',
+                success: function (data) {
+
+
+                    window.location.reload();
+                    $('html, body').animate({scrollTop: 0}, 0);
+                    $('input[type="button"]').prop('disabled', false);
+                }
+            });
+
+        } else {
+            $('input[type="button"]').prop('disabled', false);
+            return false;
+        }
+    }
+function removeAllAssign(id) {
+
+        $("#remove_loading").show();
+        $("#removeall_btn").hide();
+
+        $.ajax({
+            url: '<?php echo ADMIN_URL ?>client/removeall',
+            data: {job_id: id},
+            type: 'post',
+            success: function (data) {
+            	window.location.reload();
+            }
+        });
+    }
+    
+</script>

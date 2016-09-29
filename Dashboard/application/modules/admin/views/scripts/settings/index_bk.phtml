@@ -1,0 +1,51 @@
+<div class="inner-container">
+            <div class="box box-100 altbox">
+              <div class="boxin">
+                <div class="header">
+
+                  <h3>Settings</h3>
+                  <ul>
+				       <?php include 'tabs.phtml'?>
+			          </ul>
+                </div>
+                <div class="content pad20">
+                
+						<div class="msg msg-error" style="display:none"><p></p></div>
+						<form class="basic" method="post" >
+						
+<dl>
+		<dt>Site Name </dt><dd><input type="text" class="txt"  name="SITE_NAME" value="<?php echo $this->site['SITE_NAME']['value']?>" /></dd>
+		<dt>Choose Template </dt><dd>
+		<?php foreach($this->templates as $temp){?>
+		<input type="radio" name="SITE_USER_TEMPLATE" <?php echo ($temp==$this->site['SITE_USER_TEMPLATE']['value']) ? 'checked="checked"' :''?> value="<?php echo $temp?>"/><?php echo ucwords($temp);?>
+		
+		<?php } ?>
+		</dd>
+		<dt>Environment</dt><dd>
+                    
+        <select name="ENVIRONMENT">
+	<option>Development</option>
+	<option>Staging</option>
+	<option>Production</option>
+	</select></dd>
+		<dt>Time Zone</dt><dd><input type="text" class="txt"  name="TIMEZONE" value="<?php echo $this->site['TIMEZONE']['value']?>" /></dd>
+		<dt>Date Format</dt><dd><input type="text" class="txt"  name="DATE_FORMAT" value="<?php echo $this->site['DATE_FORMAT']['value']?>" /></dd>
+		<dt>DateTime Format</dt><dd><input type="text" class="txt"  name="DATETIME_FORMAT" value="<?php echo $this->site['DATETIME_FORMAT']['value']?>" /></dd>
+		<dt>dtumb Image Size</dt><dd><input type="text" class="txt"  name="THUMB_SIZE" value="<?php echo $this->site['THUMB_SIZE']['value']?>" /></dd>
+		<dt>large Image Size</dt><dd><input type="text" class="txt"  name="LARGE_SIZE" value="<?php echo $this->site['LARGE_SIZE']['value']?>" /></dd>
+	
+<dt></dt>	
+<dd>	
+<input class="button altbutton" type="submit" name="save" value="Save" />
+		<input class="button altbutton" type="button" onclick="history.back();" name="reset" value="Back" />
+	</dd>
+</dl>
+</form>
+</div>
+             
+            </div>
+            
+          </div>
+          <br clear="all" />
+          </div>
+          <!-- .inner-container -->

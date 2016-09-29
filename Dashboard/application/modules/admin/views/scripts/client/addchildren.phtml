@@ -1,0 +1,316 @@
+
+<div>
+
+<form class="cmxform form-horizontal tasi-form custom-form" id="childform" method="post" enctype="multipart/form-data"  >
+
+
+                                                <h4>Add Child</h4>
+                                                <div class="border-top m-bot20"></div>
+
+                                                <div class="form-group ">
+                                                    <label for="cname" class="control-label col-lg-3">Child's Name</label>
+                                                    <div class="col-lg-9">
+                                                        <input class="form-control" type="text" id="child_name" name="child_name" />
+                                                        <input type="hidden" id="job_id">
+                            <input type="hidden" id="parent_id">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-3">Date of Birth</label>
+                                                    <div class="col-lg-9">
+                                                        <div data-date-viewmode="years" data-date-format="mm/dd/yyyy"   class="input-append date dpYears">
+                                                            <input type="text" readonly size="16" class="form-control datep">
+                                                            <span class="input-group-btn add-on">
+                                                                <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div> 
+
+                                                    </div>
+                                                </div>
+                                            <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-3">Allergies</label>
+                                            <div class="col-lg-9 radiop">
+                                                <label class="label_radio" for="radio-13">
+                                                    <input  id="radio-13" class="form-control " type="radio" name="allergy_status" value="Yes"> Yes 
+                                                </label>
+                                                <label class="label_radio" for="allergy_status">
+                                                    <input  class="form-control" type="radio"  name="allergy_status" id="allergy_status" value="No" > No 
+                                                </label>
+                                                <div class="clearfix"></div> 
+                                                <div class="col-lg-9 allergies_text" style="display:none">
+                                                    <!--                                             <label>-->
+                                                    <textarea placeholder="Allergies can be life threatening. Please describe in detail. " name="allergies" id="allergies"class="form-control"></textarea>
+                                                    <div>     
+                                                        <small>Allergies can be life threatening. Please describe in detail. 
+                                                        </small>     
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                              <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-3">Medication</label>
+                                            <div class="col-lg-9 radiop">
+                                                <label class="label_radio" for="radio-15">
+                                                    <input  id="radio-15"  class="form-control" type="radio"  name="medicator_status" value="Yes" > Yes 
+                                                </label>
+                                                <label class="label_radio" for="radio-14">
+                                                    <input  id="radio-14" class="radio" type="radio" name="medicator_status" value="No" > No 
+                                                </label>
+                                                <div class="clearfix"></div> 
+                                                <div class="col-lg-9 medicator_text" style="display:none">
+                                                    <!--                                             <label>-->
+                                                    <textarea placeholder="List all medications" name="medicator" id="medicator" class="form-control"></textarea>
+                                                    <div>
+                                                    <small>List all medications </small>
+                                                </div>
+                                                    </div>
+                                                    
+                                            </div>
+                                        </div>
+
+
+
+                                                <div class="form-group ">
+                                                    <label for="curl" class="control-label col-lg-3">Helpfull hints</label>
+                                                    <div class="col-lg-9">
+                                                        <textarea name="notes" id="notes" class='form-control'></textarea>
+                                                        <small>(ie. Billy loves Thomas the Tank Engine and  needs Teddy for naps)  </small> </dd>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group ">
+                                                    <label class="control-label col-lg-3">Upload Picture</label>
+                                                    <div class="col-lg-9">
+                                                        <input type="hidden" name="MAX_FILE_SIZE" value="8388608" id="MAX_FILE_SIZE">
+                                                        <input class="file" type="file" id="image" name="image" />
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group clearfix">
+                                                    <div class="m-bot20 m-top20">
+                                                        <input class="btn btn-danger" type="button" value="Add" onclick="add_children()"/>
+                                                        <input class="btn btn-default" type="reset"  value="Cancel" onclick="window.location = '<?php echo SITE_URL ?>client/children/parent/<?php echo $this->userid ?>'"/>
+
+                                                    </div>
+                                                </div>
+
+</form>
+</div>
+<script src="<?php echo SITE_URL?>resource/js/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/jquery-validator.js"></script>
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/additional-methods-new.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+
+
+
+	$("#childform").validate({
+	    rules:
+	    {
+	    	child_name:
+	            {
+	                    required: true    
+	                                  
+	            },
+	         
+	            dob: {
+					required: true
+				},
+				allergy_status: {
+					required: true
+				},
+				medicator_status: {
+					required: true
+				},	
+				allergies: {
+					required: function(){ var status = $("input[name=allergy_status]:checked").val()=='Yes'; if(status)$(".allergies_text").show(); return status;}
+				},
+				medicator: {
+					required: function(){ var status =  $("input[name=medicator_status]:checked").val()=='Yes'; if(status)$(".medicator_text").show(); return status;}
+				},	
+	           
+	    },
+	    messages:
+	    {
+	    	child_name:
+	            {
+	                    required: "<div class='red'>Please enter the Child name.</div>"
+	            },
+
+	            dob: {
+					required:"<div class='red'>Please provide your child Date of Birth.</div>"
+				},
+				allergy_status: {
+					required:"<div class='red'>Please select allergy information.</div>"
+				
+				},
+				medicator_status: {
+					required:"<div class='red'>Please select medication information.</div>"
+				},
+
+	            
+	       
+	    //debug:true,
+	    },
+	    errorPlacement: function(error, element)
+	    {          
+                
+            
+	            error.appendTo(element.parent());
+	    }
+	    
+	    
+	    });
+	
+	// validate signup form on keyup and submit
+	$('input[name=allergy_status]').click(function(event){
+
+		if(this.value=='Yes')$('.allergies_text').slideDown();else $('.allergies_text').slideUp();});
+	$('input[name=medicator_status]').click(function(event){if(this.value=='Yes')$('.medicator_text').slideDown();else $('.medicator_text').slideUp();
+        });
+	
+
+});
+</script>
+<script>
+function add_children()
+                                    {
+
+
+                                        if ($('#childform').valid())
+{
+
+                                            var al_status = $('input:radio[name=allergy_status]:checked').val();
+                                        var m_status = $('input:radio[name=medicator_status]:checked').val();
+
+                                        var FormDat = new FormData();
+
+
+                                        if ($('#c_image').val().split('.').pop().toLowerCase())
+                                        {
+                                            var ext = $('#c_image').val().split('.').pop().toLowerCase();
+                                            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                                                $('#error').html('');
+                                                $('#error').html('Invalid File Extension');
+                                                $('#c_image').focus();
+                                                return false;
+                                            }
+                                            else
+                                            {
+                                                $('#error').html('');
+                                            }
+
+                                        }
+
+
+                                        var myFile = $("#c_image")[0].files[0];
+
+
+
+                                        FormDat.append("child_name", $("#child_name").val());
+
+                                        FormDat.append("image", myFile);
+                                        FormDat.append("dob", $("#dob").val());
+
+                                        FormDat.append("allergies", $("#allergies").val());
+                                        FormDat.append("medicator", $("#medicator").val());
+                                        FormDat.append("allergy_status", al_status);
+                                        FormDat.append("medicator_status", m_status);
+                                        FormDat.append("notes", $("#notes").val());
+                                        FormDat.append("job_id", $("#job_id").val());
+
+                                        FormDat.append("parent_id", $("#parent_id").val());
+                                        $.ajax({
+                                            url: "<?php echo ADMIN_URL . 'client/children' ?>",
+                                            cache: false,
+                                            contentType: false,
+                                            processData: false,
+                                            data: FormDat, // Setting the data attribute of ajax with file_data
+                                            dataType: 'json',
+                                            type: 'post',
+                                            success: function (data) {
+                                                if (data.status == 'success')
+                                                {
+                                                    parent.location.reload();
+                                                    $(window.top.document).find("#mydiv").hide();
+                                                    $(window.top.document).find("#add_ok").show();
+                                                    $(window.top.document).find("#add_ok").html('<p>Child has been added to job successfully</p>');
+                                                }
+
+                                                else
+                                                {
+                                                    parent.location.reload();
+                                                    alert("error");
+                                                }
+                                            },
+                                            complete: function () {
+                                                //	parent.location.reload();
+                                            },
+                                        });
+
+                                    }
+                                    else
+                                    {
+                                    alert('a');
+                                    }
+                                    }
+</script>
+
+ <script type="text/javascript">
+
+
+	        function adjust_frame()
+	        {
+     	          var iframe = $(window.top.document).find("#frame");
+	        	  var al_status = $('input:radio[name=allergy_status]:checked').val();
+	        	  var m_status = $('input:radio[name=medicator_status]:checked').val();
+   	        	  if(!m_status)
+	        	  {
+	        		 var m_status='No';
+			       }
+	        	 if(!al_status)
+	        	 {
+	        		 var al_status='No';
+
+			     }
+	        	
+	        	  if((al_status=='Yes')&&(m_status=='Yes'))
+	        	  {
+	        		 $(window.top.document).find("#frame").height( "720px" );
+			      }
+	        	  
+
+	        	   if((al_status=='Yes')&&(m_status=='No'))
+	        	  {
+	        		  $(window.top.document).find("#frame").height( "600px" );
+			      }
+
+	        	   if((al_status=='No')&&(m_status=='Yes'))
+	        	  {
+	        		 
+	        		  $(window.top.document).find("#frame").height( "600px" );
+			      }
+
+	        	   if((al_status=='No')&&(m_status=='No'))
+		        	  {
+		        		 
+		        		  $(window.top.document).find("#frame").height( "450px" );
+				      }
+	        	 
+			}	
+
+
+			function remove_iframe()
+			{
+				$(window.top.document).find("#mydiv").hide();
+				}
+		
+	        </script>
+
+

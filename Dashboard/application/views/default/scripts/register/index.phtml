@@ -1,0 +1,340 @@
+<?php
+$errors = $this->userform->getMessages();
+if (!empty($errors))
+    $this->errorMessage = 'Error while registering! Please verify your fields';
+
+foreach ($errors as $key => $err) {
+    if (!isset($err[0])) {
+        foreach ($err as $key2 => $r)
+            $er[$key . '[' . $key2 . ']'] = implode(', ', $r);
+    } else
+        $er[$key] = implode(', ', $err);
+}
+$errors = $er;
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="img/favicon.png">
+        <title>Baby sitters</title>
+        <!-- Bootstrap core CSS -->
+        <link href="<?php echo SITE_URL ?>resource/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo SITE_URL ?>resource/css/bootstrap-reset.css" rel="stylesheet">
+        <!--external css-->
+        <link href="<?php echo SITE_URL ?>resource/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="<?php echo SITE_URL ?>resource/css/style.css" rel="stylesheet">
+        <link href="<?php echo SITE_URL ?>resource/css/style-responsive.css" rel="stylesheet" />
+
+    </head>
+    <body class="login-body">
+        <div class="container">
+
+            <div class="col-sm-offset-1 col-sm-10">
+                <form id="userform" class="cmxform form-reg"  enctype="multipart/form-data" method="post" action="">
+                    <dl class="zend_form">
+                        <h2 class="form-reg-heading">sign up now</h2>
+                        <?php if ($this->errorMessage != '') { ?>
+                            <div style="color: #B94A48"><p><?php echo $this->errorMessage; ?></p></div>
+                        <?php } ?>
+                        <?php if ($this->successMessage != '') { ?>
+                            <div><p><?php echo $this->successMessage; ?></p></div>
+                        <?php } ?>
+
+                    <div class="clearfix">
+                        <div class="col-sm-6">
+                            <div class="login-wrap">
+                                <div class="form-group ">
+                                    <input name="username"  class="form-control" id="username" value="<?php //echo $this->userform->username->getValue()     ?>" placeholder="Email" type="text" />
+                                </div>
+                                <div class="form-group ">
+                                    <input name="password" type="password" class="form-control" id="password" value="" placeholder="Password"/>
+                                </div>    
+                                <div class="form-group ">
+                                    <input name="confirm_password" type="password" class="form-control" id="confirm_password" value=""  placeholder="Confirm Password"/>
+                                </div>   
+                                <div class="form-group ">
+                                    <div class="radios clearfix">
+                                        <label class="col-lg-4 no-padding">Register as</label>
+                                        <label class="label_radio" for="P">
+                                            <input class="form-control" name="usertype" id="P" value="P" type="radio"  />
+                                            <a onclick="$('#P').click();">Parent</a>
+                                        </label>
+                                        <label class="label_radio" for="BS">
+                                            <input class="form-control" name="usertype" id="BS" value="S" type="radio" /> <a onclick="$('#BS').click();">Babysitter </a>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix m-top20">
+                                    <div class="form-group iagree"  style="display:none">
+                                        <div>                                                
+                                            <div data-toggle="buttons" class="btn-group">    
+                                                <label class="btn btn-info chk  ">
+                                                    <input type="checkbox" autocomplete="off" value="agreed" name="iagree" id="iagree2"> 
+                                                    <span class="glyphicon glyphicon-ok"></span>          
+                                                </label> I agree to the <b><a  onclick="openDialog();
+                                                        return false;" title="Click here to view the Terms and condition">Terms and Condition</a></b>
+                                            </div>
+                                        </div>  
+                                    </div>  
+                                </div> 
+                                
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="login-wrap">
+                                <div class="form-group ">
+                                    <input name="firstname" type="text" class="form-control" id="firstname" value="<?php echo $this->userform->firstname->getValue() ?>" placeholder="First Name"/>
+                                </div>
+                                <div class="form-group ">       
+                                    <input name="lastname" type="text" class="form-control" id="lastname" value="<?php echo $this->userform->lastname->getValue() ?>" placeholder="Last Name"/>
+                                </div>
+                                <div class="form-group ">
+                                    <input name="phone"  class="form-control" id="phone" value="<?php echo $this->userform->phone->getValue() ?>"  placeholder="Phone" type="text"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="register">
+                        <input class="btn btn-lg btn-login" type="submit" value="Continue" />
+                        <input class="btn btn-lg btn-login" type="reset" value="Back" onclick="history.back()"/>
+                    </div>
+                   </dl>
+            </form>
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <h4 class="modal-title">Terms and Conditions</h4>
+            </div>
+            <h1><strong>Client Referral Agreement</strong></h1></p><br>
+            <p>Welcome to the&nbsp; Hamptons Babysitters,&nbsp; (“we,” “us”, “our”) service!&nbsp; By clicking the “I Accept” button below, you are agreeing on behalf or you and anyone for whom you procure services through the Hamptons Babysitter service (“you”, “yours”) that you will be legally bound to all of the terms and conditions set forth in this Client Referral Agreement (the “Agreement”).&nbsp; Do not click the “I Accept” button if you do not agree to be bound by this Agreement.&nbsp; If you do not click the “I Accept” button, you will not be permitted to register to use our referral services.&nbsp; The terms and conditions of this Agreement are as follows.</p>
+
+            <p>1.&nbsp;&nbsp; &nbsp;Registration for a Hamptons Babysitter Account. In order to use the Hamptons Babysitter services, you will be required to provide to us certain personal information, such as your name, address, phone number and e-mail address.&nbsp; You may also choose to provide to us specific information about your children and your household (e.g., allergies, food preferences, pets, etc.) or your preferences for particular child care service providers whom we have accepted through our selection process (described in more detail below) to be eligible for referral by us to our clients (the “Sitters”).&nbsp; All of this information will be used and protected in accordance with the Hamptons Babysitter Privacy Policy, located at <a href="http://www.hamptonsbabysitters.com/privacy-policy/">PRIVACY POLICY</a> and which is hereby incorporated into and governed by this Agreement.&nbsp; By your acceptance of this Agreement, you are representing that you have carefully read and understand the Hamptons Babysitter Privacy Policy, and agree to its terms.&nbsp; You also represent that all information you provide to us through our website is accurate and that you will it up-to-date.&nbsp; We will not be responsible or liable to you in any manner whatsoever for any costs, expenses or damages incurred by you which result or arise from the inaccuracy or expiration of information you provide to us.</p>
+
+            <p>2.&nbsp;&nbsp; &nbsp;Sitter Selection Process.&nbsp; Prior to selection as Sitters, we perform background checks on all Sitter candidates including using the following services: ACXIOM.&nbsp;Although we believe these services to be reputable, we DO NOT WARRANT the accuracy of the checks provided by any third party, and therefore are not responsible for any inaccurate results.&nbsp; We also conduct screening interviews of candidates and may check candidate references, but despite these reasonable efforts to screen candidates, you acknowledge that selection of Sitters is a subjective process, and that therefore we DO NOT WARRANT the quality of services to be provided by a particular Sitter.</p>
+            <p>3. &nbsp;&nbsp; &nbsp; Our Service; Fees.&nbsp; At your request, we will make available to you the opportunity to request an appointment for the services of a Sitter.&nbsp; Appointments will be processed and confirmed in accordance with the instructions set forth <span style="text-decoration: underline;"><a href="http://www.hamptonsbabysitters.com/book-now/">BOOK BABYSITTER</a></span>.&nbsp;&nbsp; In consideration of our services, we will charge you applicable fees in accordance with our Rates and Policies set forth at<a href="http://www.hamptonsbabysitters.com/rates-policies/"> RATES AND POLICIES</a>, which you represent you have read and understand.</p>
+
+            <p>4.&nbsp;&nbsp; &nbsp;Hamptons Babysitters&nbsp; are NOT&nbsp; Hamptons Babysitters Employees.&nbsp; Babysitters are NOT our employees.&nbsp; We are a referral agency.&nbsp; Babysitters are independent contractors.&nbsp; You are solely responsible for determining and agreeing with a babysitter the exact nature of the services to be provided and the manner in which such services will be carried out.&nbsp; You are solely responsible for payment of a babysitter (in accordance with the rates set forth at <a href="http://www.hamptonsbabysitters.com/rates-policies/">RATES AND POLICIES</a> prior to the conclusion of a babysitter’s services. You are responsible for complying with all applicable laws (including without limitation local, state and federal tax laws) that are applicable to a babysitter’s provision of services to you, and you will indemnify and hold us, our owners and employees from and against any claims against us arising out of or relating to your failure to comply with such laws.</p>
+            <p>5.&nbsp; Non-Solicitation.&nbsp; During the term of this Agreement, and for a period of one (1) year following its termination or expiration, you agree not to:&nbsp; (i) solicit or induce any employee or independent contractor to terminate or breach an employment, contractual or other relationship with us; or (ii) solicit any babysitter of whom you become aware through a referral by us to employ or contract with babysitter for child-care services other than through our services.&nbsp; You agree that your breach of this Section will cause substantial damages to Hamptons Babysitters may be difficult if not impossible to quantify.&nbsp; Accordingly, in the event of such a breach by you, you will pay $5,000 in liquidated damages to Hamptons Babysitters as a reasonable estimate of such damages and not a penalty.</p>
+            <p>6.&nbsp;&nbsp; &nbsp;Disclaimer.&nbsp; We are not responsible or liable in any manner whatsoever for the acts or omissions of any babysitter while providing services to you or the loss or damage arising there&nbsp; from.&nbsp; TO THE EXTENT PERMISSIBLE UNDER APPLICABLE LAW, WE MAKE NO WARRANTIES IN CONNECTION WITH OUR SERVICES OR THE SERVICES PROVIDED BY SITTERS AND HEREBY DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED OR STATUTORY.&nbsp; You will indemnify and hold us, our owners and employees from and against any claims by you or any third party arising out of or relating to the acts or omissions of any Sitter.</p>
+
+            <p>7.&nbsp;&nbsp; &nbsp;Limitation of Liability.&nbsp; In no event will we be liable to you for any punitive, special, incidental or consequential damages in connection with this Agreement or the acts or omissions of any babyitter.&nbsp; In no event will our liability to you for any claims by you under this Agreement exceed the greater of Booking Fees paid by you to us in the twelve (12) months preceding the claim or $1,000.</p>
+            <p>8.&nbsp;&nbsp; &nbsp;Disputes.&nbsp; Except in the case of an action relating to breach by you of Section 5 above (which may be brought in any court with appropriate jurisdiction), you agree that all disputes arising under or relating to this Agreement will be settled by binding arbitration in New York before a single arbitrator under the auspices of the American Arbitration Association in accordance with its then-current rules for commercial arbitration.&nbsp; YOU EXPRESSLY AGREE THAT BY ENTERING INTO THIS AGREEMENT, YOU ARE WAIVING YOUR RIGHT TO TRIAL BY JURY FOR ANY CLAIM ARISING UNDER OR RELATING TO THIS AGREEMENT.</p>
+            <p>9.&nbsp;&nbsp; Amendments; Termination.&nbsp; We may amend this Agreement at any time upon notice posted to our website, and your continued use of this website constitutes your acceptance thereof.&nbsp; Otherwise, the Agreement may not be amended without the written agreement of both us and you.&nbsp; Either we or you may terminate this Agreement immediately upon notice to the other.&nbsp; Sections 4-10 shall survive any such termination.</p>
+
+            <p>10.&nbsp;&nbsp; &nbsp;Miscellaneous.&nbsp; This Agreement will be governed by the laws of the State of New York.&nbsp; It constitutes the entire agreement between us and you, and supersedes any other prior or contemporaneous written or verbal representations by any party.&nbsp; If any portion of this Agreement is or is deemed to be invalid or unenforceable, the rest of this Agreement will remain in full force and effect.</p>
+            <p><span style="font-weight: bold;">I HEREBY REPRESENT THAT I HAVE READ AND UNDERSTOOD THIS AGREEMENT AND AGREE TO BE BOUND BY ITS TERMS.</span></p>
+            <p>&nbsp;</p>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="parent_accept();">I Accept</button>
+                <button type="button" class="btn btn-default"  onclick="parent_reject();">Cancel</button>
+                <span id="sending" style="display:none;">sending please wait..</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="sitterModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <h4 class="modal-title">Terms and Conditions</h4>
+            </div>
+            <h1><strong>BabySitter Referral Agreement</strong></h1></p><br>
+            <p>Welcome to the&nbsp; Hamptons Babysitters,&nbsp; (“we,” “us”, “our”) service!&nbsp; By clicking the “I Accept” button below, you are agreeing on behalf or you and anyone for whom you procure services through the Hamptons Babysitter service (“you”, “yours”) that you will be legally bound to all of the terms and conditions set forth in this Client Referral Agreement (the “Agreement”).&nbsp; Do not click the “I Accept” button if you do not agree to be bound by this Agreement.&nbsp; If you do not click the “I Accept” button, you will not be permitted to register to use our referral services.&nbsp; The terms and conditions of this Agreement are as follows.</p>
+
+            <p>1.&nbsp;&nbsp; &nbsp;Registration for a Hamptons Babysitter Account. In order to use the Hamptons Babysitter services, you will be required to provide to us certain personal information, such as your name, address, phone number and e-mail address.&nbsp; You may also choose to provide to us specific information about your children and your household (e.g., allergies, food preferences, pets, etc.) or your preferences for particular child care service providers whom we have accepted through our selection process (described in more detail below) to be eligible for referral by us to our clients (the “Sitters”).&nbsp; All of this information will be used and protected in accordance with the Hamptons Babysitter Privacy Policy, located at <a href="http://www.hamptonsbabysitters.com/privacy-policy/">PRIVACY POLICY</a> and which is hereby incorporated into and governed by this Agreement.&nbsp; By your acceptance of this Agreement, you are representing that you have carefully read and understand the Hamptons Babysitter Privacy Policy, and agree to its terms.&nbsp; You also represent that all information you provide to us through our website is accurate and that you will it up-to-date.&nbsp; We will not be responsible or liable to you in any manner whatsoever for any costs, expenses or damages incurred by you which result or arise from the inaccuracy or expiration of information you provide to us.</p>
+            <p>2.&nbsp;&nbsp; &nbsp;Sitter Selection Process.&nbsp; Prior to selection as Sitters, we perform background checks on all Sitter candidates including using the following services: ACXIOM.&nbsp;Although we believe these services to be reputable, we DO NOT WARRANT the accuracy of the checks provided by any third party, and therefore are not responsible for any inaccurate results.&nbsp; We also conduct screening interviews of candidates and may check candidate references, but despite these reasonable efforts to screen candidates, you acknowledge that selection of Sitters is a subjective process, and that therefore we DO NOT WARRANT the quality of services to be provided by a particular Sitter.</p>
+            <p>3. &nbsp;&nbsp; &nbsp; Our Service; Fees.&nbsp; At your request, we will make available to you the opportunity to request an appointment for the services of a Sitter.&nbsp; Appointments will be processed and confirmed in accordance with the instructions set forth <span style="text-decoration: underline;"><a href="http://www.hamptonsbabysitters.com/book-now/">BOOK BABYSITTER</a></span>.&nbsp;&nbsp; In consideration of our services, we will charge you applicable fees in accordance with our Rates and Policies set forth at<a href="http://www.hamptonsbabysitters.com/rates-policies/"> RATES AND POLICIES</a>, which you represent you have read and understand.</p>
+            <p>4.&nbsp;&nbsp; &nbsp;Hamptons Babysitters&nbsp; are NOT&nbsp; Hamptons Babysitters Employees.&nbsp; Babysitters are NOT our employees.&nbsp; We are a referral agency.&nbsp; Babysitters are independent contractors.&nbsp; You are solely responsible for determining and agreeing with a babysitter the exact nature of the services to be provided and the manner in which such services will be carried out.&nbsp; You are solely responsible for payment of a babysitter (in accordance with the rates set forth at <a href="http://www.hamptonsbabysitters.com/rates-policies/">RATES AND POLICIES</a> prior to the conclusion of a babysitter’s services. You are responsible for complying with all applicable laws (including without limitation local, state and federal tax laws) that are applicable to a babysitter’s provision of services to you, and you will indemnify and hold us, our owners and employees from and against any claims against us arising out of or relating to your failure to comply with such laws.</p>
+            <p>5.&nbsp; Non-Solicitation.&nbsp; During the term of this Agreement, and for a period of one (1) year following its termination or expiration, you agree not to:&nbsp; (i) solicit or induce any employee or independent contractor to terminate or breach an employment, contractual or other relationship with us; or (ii) solicit any babysitter of whom you become aware through a referral by us to employ or contract with babysitter for child-care services other than through our services.&nbsp; You agree that your breach of this Section will cause substantial damages to Hamptons Babysitters may be difficult if not impossible to quantify.&nbsp; Accordingly, in the event of such a breach by you, you will pay $5,000 in liquidated damages to Hamptons Babysitters as a reasonable estimate of such damages and not a penalty.</p>
+            <p>6.&nbsp;&nbsp; &nbsp;Disclaimer.&nbsp; We are not responsible or liable in any manner whatsoever for the acts or omissions of any babysitter while providing services to you or the loss or damage arising there&nbsp; from.&nbsp; TO THE EXTENT PERMISSIBLE UNDER APPLICABLE LAW, WE MAKE NO WARRANTIES IN CONNECTION WITH OUR SERVICES OR THE SERVICES PROVIDED BY SITTERS AND HEREBY DISCLAIM ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS, IMPLIED OR STATUTORY.&nbsp; You will indemnify and hold us, our owners and employees from and against any claims by you or any third party arising out of or relating to the acts or omissions of any Sitter.</p>
+
+            <p>7.&nbsp;&nbsp; &nbsp;Limitation of Liability.&nbsp; In no event will we be liable to you for any punitive, special, incidental or consequential damages in connection with this Agreement or the acts or omissions of any babyitter.&nbsp; In no event will our liability to you for any claims by you under this Agreement exceed the greater of Booking Fees paid by you to us in the twelve (12) months preceding the claim or $1,000.</p>
+            <p>8.&nbsp;&nbsp; &nbsp;Disputes.&nbsp; Except in the case of an action relating to breach by you of Section 5 above (which may be brought in any court with appropriate jurisdiction), you agree that all disputes arising under or relating to this Agreement will be settled by binding arbitration in New York before a single arbitrator under the auspices of the American Arbitration Association in accordance with its then-current rules for commercial arbitration.&nbsp; YOU EXPRESSLY AGREE THAT BY ENTERING INTO THIS AGREEMENT, YOU ARE WAIVING YOUR RIGHT TO TRIAL BY JURY FOR ANY CLAIM ARISING UNDER OR RELATING TO THIS AGREEMENT.</p>
+            <p>9.&nbsp;&nbsp; Amendments; Termination.&nbsp; We may amend this Agreement at any time upon notice posted to our website, and your continued use of this website constitutes your acceptance thereof.&nbsp; Otherwise, the Agreement may not be amended without the written agreement of both us and you.&nbsp; Either we or you may terminate this Agreement immediately upon notice to the other.&nbsp; Sections 4-10 shall survive any such termination.</p>
+
+            <p>10.&nbsp;&nbsp; &nbsp;Miscellaneous.&nbsp; This Agreement will be governed by the laws of the State of New York.&nbsp; It constitutes the entire agreement between us and you, and supersedes any other prior or contemporaneous written or verbal representations by any party.&nbsp; If any portion of this Agreement is or is deemed to be invalid or unenforceable, the rest of this Agreement will remain in full force and effect.</p>
+            <p><span style="font-weight: bold;">I HEREBY REPRESENT THAT I HAVE READ AND UNDERSTOOD THIS AGREEMENT AND AGREE TO BE BOUND BY ITS TERMS.</span></p>
+            <p>&nbsp;</p>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success"  onclick="sitter_accept();">I Accept</button>
+                <button type="button" class="btn btn-default"  onclick="sitter_reject();">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+    </body>
+<script  type="text/javascript"  src="<?php echo SITE_URL ?>resource/js/jquery.js"></script>
+<script  type="text/javascript"  src="<?php echo SITE_URL ?>resource/js/bootstrap.min.js"></script>
+<script type="text/javascript"  src="<?php echo SITE_URL ?>resource/js/jquery-validator.js"></script>
+<script type="text/javascript"  src="<?php echo SITE_URL ?>resource/js/form-component.js"></script>
+<script type="text/javascript"  src="<?php echo SITE_URL ?>resource/js/advanced-form-component.js"></script>
+<script type="text/javascript">
+
+function openDialog() {
+    var val = $("input[name=usertype]:checked").val();
+    if (val == 'P'){
+        $('#myModal').modal({backdrop: 'static', keyboard: false})
+        $('#myModal').modal('show');}
+    else if (val == 'S'){
+        $('#sitterModal').modal({backdrop: 'static', keyboard: false})
+        $('#sitterModal').modal('show');}
+    else
+        alert("Please select register as.");
+    return false;
+}
+
+function checkEveryTime() {
+    if ($("input[name=usertype]:checked").length > 0) {
+        $(".iagree").slideDown();
+        $(".iagree").show();
+    }
+}
+
+$(document).ready(function () {
+    // validate signup form on keyup and submit
+    setInterval('checkEveryTime()', 5000);
+    $("input[name=usertype]").change(function (event) {
+        $("input[name=iagree]:checked").attr('checked', false);
+        $(".iagree").slideDown();
+        $(".iagree").show();
+    });
+
+      $.validator.addMethod("alpha", function(value, element) {
+      return this.optional(element) || value == value.match(/^[a-zA-Z\s]+$/); });
+
+     var validator = $("#userform").validate({
+        rules: {
+            firstname: {
+                required: true,
+                alpha:true
+            },
+            lastname: {
+                required: true
+            },
+            username: {
+                required: true,
+                email: true
+            },
+            phone: {
+                minlength: 9,
+                maxlength: 12,
+                required: true,
+                number: true
+            },
+            password: {
+                required: true
+            },
+            confirm_password: {
+                required: true,
+                equalTo: "#password"
+            },
+            usertype: {required: true},
+            iagree: {required: true},
+        },
+        messages: {
+            firstname: {
+                required: 'Please enter the First Name',
+                 alpha:'Please enter the valid First Name'
+            },
+            lastname: {
+                required: 'Please enter the Last Name',
+                alpha:'Please enter the valid Last Name'
+            },
+            phone: {
+                required: 'Please enter the Phone Number',
+                number: 'Please enter the valid phone'
+            },
+            username: {
+                required: 'This email is used for login/primary Email address',
+                email: "Your email address must be in the format of name@domain"
+            },
+            password: {
+                required: "Please enter the Password"
+            },
+            confirm_password: {
+                required: "Re-enter your password",
+                equalTo: "Enter the same password as above"
+            }
+        },
+        // the errorPlacement has to take the table layout into account
+        errorPlacement: function (error, element) {
+            // alert(element.attr('type'));
+            if (element.is(":radio"))
+                error.appendTo(element.parent().parent());
+            else if (element.is(":checkbox"))
+                error.appendTo(element.parent().parent().parent().parent());
+            else
+                error.appendTo(element.parent());
+        },
+        // specifying a submitHandler prevents the default submit, good for the demo
+        submitHandler: function (form) {
+            //$("#userform").submit();
+            form.submit();
+        },
+        // set this class to error-labels to indicate valid fields
+        success: function (label) {
+            // set &nbsp; as text for IE
+            // label.html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;").addClass("checked");
+        }
+    });
+
+<?php
+if (!empty($errors)) {
+    echo "validator.showErrors(" . json_encode($errors) . ");";
+}
+?>
+
+$('#iagree2').change(function () {
+    if (this.checked)
+    {
+        openDialog();
+        return false;
+    }
+});
+});
+
+function parent_accept(){
+    $('.error').html('');
+    $('.error').removeClass('error');
+    $("input[name=iagree]").attr('checked', true);
+    $('#myModal').modal('hide'); 
+    }
+
+function parent_reject()
+{
+    $('.chk').removeClass('active');
+    $("input[name=iagree]").attr('checked', false);// $("input[name=iagree]").attr('checked', false);
+    $('#myModal').modal('hide');
+
+}
+
+function sitter_accept()
+{
+    $('.error').html('');
+    $('.error').removeClass('error');
+    $("input[name=iagree]").attr('checked', true);
+    $('#sitterModal').modal('hide');
+
+}
+
+function sitter_reject()
+{
+    $('.chk').removeClass('active');
+    $("input[name=iagree]").attr('checked', false);
+    $('#sitterModal').modal('hide');
+}
+</script>
+</html>
+
+

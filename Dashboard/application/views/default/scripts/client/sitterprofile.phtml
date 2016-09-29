@@ -1,0 +1,72 @@
+
+<link href="<?php echo SITE_URL ?>resource/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo SITE_URL ?>resource/css/bootstrap-reset.css" rel="stylesheet">
+
+<link href="<?php echo SITE_URL ?>resource/css/style.css" rel="stylesheet">
+<link href="<?php echo SITE_URL ?>resource/css/style-responsive.css" rel="stylesheet" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="<?php echo SITE_URL ?>resource/js/bootstrap.min.js"></script>
+<!-- for modal background -->
+<style>
+ body{
+background:#fff;}
+</style>
+<div class="bg-white">
+    <header class="panel-heading clearfix">
+        <span class="table_heading">Basic Information</span>
+    </header>
+    <div class="m-top20 m-bot20 clearfix">
+        <div class="col-sm-12 ">
+        	<span class="sitterdmodal">Name:</span>
+        	<span class="sitterdmodal"><?php echo $this->sitterDetails['firstname'] . ' ' . $this->sitterDetails['lastname'] ?></span>
+        </div>
+    </div>
+    <header class="panel-heading clearfix">
+        <span class="table_heading">Education</span>
+    </header>
+    <section class="panel-heading" id="flip-scroll">
+        <table class="table table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+                <tr>
+                    <th>School</th>
+                    <th>Start Date/Time</th>
+                    <th>End Date/Time</th>
+                    <th>Degree</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($this->sitterEducation as $edu) { ?>
+                    <tr class="first"><!-- .first for first row of the table (only if there is thead) -->
+                        <td ><?php echo $edu['institution'] ?></td>
+                        <td><?php echo strtotime($edu['start_date']) > 0 ? date(DATE_FORMAT, strtotime($edu['start_date'])) : '' ?></td>
+                        <td ><?php echo strtotime($edu['end_date']) > 0 ? date(DATE_FORMAT, strtotime($edu['end_date'])) : '' ?></td>
+                        <td ><?php echo $edu['degree'] ?></td>
+                    <!-- a.ico-comms for comment-like backgrounds -->
+                </tr>
+                                <?php }?>
+            </tbody>
+        </table>
+    </section>
+                 <?php  if($this->sitterDetails['about_me']!='Please provide details.' ){?>
+
+    <header class="panel-heading clearfix">
+      <span class="table_heading">About <?php  echo $this->sitterDetails['firstname'].' '.$this->sitterDetails['lastname']?></span>
+       
+    
+    </header>
+    <div class="panel-heading">
+        <p> <?php echo $this->sitterDetails['about_me']?></p>
+    </div>
+       <?php }?>
+            
+    <?php  if($this->sitterDetails['exp_summary']!='Please provide details.' ){?>
+     <header class="panel-heading clearfix">
+       <span class="table_heading">Summary of childcare experiences</span>
+    </header>
+    <div class="panel-heading">
+        <p><span class="sitterdmodal"><?php echo $this->sitterDetails['exp_summary']?></span></p>
+    </div>
+     <?php }?>
+
+</div><div class="clearfix"></div>

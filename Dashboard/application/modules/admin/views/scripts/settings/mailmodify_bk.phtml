@@ -1,0 +1,113 @@
+<script type="text/javascript" src="<?php echo SITE_URL?>resources/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+	tinyMCE.init({
+		// General options
+		mode : "textareas",
+		theme : "advanced",
+		plugins : "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
+
+		// Theme options
+		theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+		theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+		theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+		theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,restoredraft",
+		theme_advanced_toolbar_location : "top",
+		theme_advanced_toolbar_align : "left",
+		theme_advanced_statusbar_location : "bottom",
+		theme_advanced_resizing : true,
+
+		// Example content CSS (should be your site CSS)
+		content_css : "<?php echo SITE_URL?>resources/css/black.css",
+
+		// Drop lists for link/image/media/template dialogs
+		template_external_list_url : "lists/template_list.js",
+		external_link_list_url : "lists/link_list.js",
+		external_image_list_url : "lists/image_list.js",
+		media_external_list_url : "lists/media_list.js",
+		relative_urls : false,
+		remove_script_host : false,
+		document_base_url : "http://www.hamptonsbabysitters.com/",
+		convert_urls : false,
+		height:'750',
+
+		// Style formats
+		style_formats : [
+			{title : 'Bold text', inline : 'b'},
+			{title : 'Red text', inline : 'span', styles : {color : '#ff0000'}},
+			{title : 'Red header', block : 'h1', styles : {color : '#ff0000'}},
+			{title : 'Example 1', inline : 'span', classes : 'example1'},
+			{title : 'Example 2', inline : 'span', classes : 'example2'},
+			{title : 'Table styles'},
+			{title : 'Table row 1', selector : 'tr', classes : 'tablerow1'}
+		],
+
+		// Replace values for the template plugin
+		template_replace_values : {
+			username : "Some User",
+			staffid : "991234"
+		}
+	});
+</script>
+<!-- /TinyMCE -->
+<div class="inner-container">
+            <div class="box box-100 altbox">
+              <div class="boxin">
+                <div class="header">
+
+                  <h3>Settings</h3>
+                  <ul>
+				       <?php include 'tabs.phtml'?>
+			          </ul>
+                </div>
+                <div class="content pad20">
+                
+						<div class="msg msg-error" style="display:none"><p></p></div>
+						<!-- TinyMCE -->
+
+
+
+
+<form method="post" class="basic">
+	
+		
+		<dl>
+		<dt><label>Mail Name:</label></dt>
+		<dd><input class="txt" name="label" type="text" value="<?php echo $this->mailTemplate['label']?>" /></dd>
+		<dt><label>From:</label></dt>
+		<dd><input  class="txt" name="from" type="text" value="<?php echo $this->mailTemplate['from']?>" /></dd>
+		<dt><label>To:</label></dt>
+		<dd><input class="txt" name="to" type="text" value="<?php echo $this->mailTemplate['to']?>" /></dd>
+		<dt><label>Cc</label></dt>
+		<dd><input class="txt" name="cc" type="text" value="<?php echo $this->mailTemplate['cc']?>" />
+		<small>eg:- John &lt;john@hb.com&gt;, Sam &lt;sam@hb.com&gt; seperate email address by commma. put spance between name and email address</small>
+		</dd>
+		<dt><label>Bcc</label></dt>
+		<dd><input class="txt" name="bcc" type="text" value="<?php echo $this->mailTemplate['bcc']?>" /></dd>
+		<dt><label>Subject</label></dt>
+		<dd><input class="txt" name="subject" type="text" value="<?php echo $this->mailTemplate['subject']?>" /></dd>
+		<!-- Gets replaced with TinyMCE, remember HTML in a textarea should be encoded -->
+		<dt><label>Mail Body</label></dt><dd>
+		<div class="msg msg-warn" ><p>Please donot update {variables}, <br> You are able to delete/remove variables which you don't need. <br>{Variables} are case sensitve, <br>Do not respell {variables}, because these are already defined in the system. </p></div>
+			<textarea id="body" name="body" rows="15" cols="60" style="width: 70%">
+				<?php echo $this->mailTemplate['description']?>
+			</textarea>
+		</dd>
+		<input type="hidden" name="mail_id" value="<?php echo $this->mailTemplate['mail_id']?>" />
+		<input class="button altbutton" type="submit" name="save" value="Save" />
+		<input class="button altbutton" type="button" onclick="history.back();" name="reset" value="Back" />
+	</dl>
+</form>
+
+<script type="text/javascript">
+if (document.location.protocol == 'file:') {
+	alert("The examples might not work properly on the local file system due to security settings in your browser. Please use a real webserver.");
+}
+</script>
+</div>
+             
+            </div>
+            <br clear="all" />
+          </div>
+          <!-- .inner-container -->
+
+

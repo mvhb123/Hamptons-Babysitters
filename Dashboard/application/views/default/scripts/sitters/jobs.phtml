@@ -1,0 +1,524 @@
+
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                      	<?php if ($this->searchParams['view'] == 'open') { ?>
+                            Open Jobs
+                        <?php } else if (($this->searchParams['view'] == 'scheduled')) { ?>
+                            Scheduled Jobs
+                        <?php } else if (($this->searchParams['view'] == 'active')) { ?>
+                            Active Jobs
+                        <?php }else if (($this->searchParams['view'] == 'completed')) { ?>
+                            Completed Jobs
+                        <?php } else if (($this->searchParams['view'] == 'cancelled')) { ?>
+                            Cancelled Jobs
+                        <?php } else if (($this->searchParams['view'] == 'closed')) { ?>
+                            Closed Jobs
+                        <?php } ?>     
+                    </header>
+                    <?php
+                    if ((isset($this->errorMessage)) && (!empty($this->errorMessage))) {
+                        ?>
+                        </br>
+                        <div>
+                            <p class="emessage" style="margin-left:15px">
+                                <?php echo $this->errorMessage; ?>
+                            </p>
+                        </div>
+                    <?php } ?> 
+                    <div class="panel-body">
+                        <section id="flip-scroll">
+
+                            <form name="searchform" method="post" >  
+                                <input type="hidden" name="userid" value="<?php echo $this->userid; ?>" />
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr><th>Job Number</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Child</th>
+                                            <?php if (in_array($this->searchParams['view'], array('pending', 'scheduled','active','cancelled'))) { 
+                                            	if ($this->searchParams['view'] == 'cancelled') {?>
+                                            		<th>Cancelled Date</th>
+                                            	<?php }
+                                            	?>
+                                                <th>View Details</th>
+                                            <?php } if ($this->searchParams['view'] == 'scheduled' || $this->searchParams['view'] == 'active' ) { ?>
+                                            	<th>Actual Start Time</th>
+                                                <th>Actual End Time</th>
+                                                <th>Add Child</th>
+                                                <th>Complete</th>
+
+                                            <?php } else if ($this->searchParams['view'] == 'completed' || $this->searchParams['view'] == 'closed') { ?>
+                                                <th>Actual End Time</th>
+												<th>Rate</th>
+												<th>Hours</th>
+<!--                                                <th>Total Amount</th>-->
+                                                <th class="text-right">Total Received</th>
+                                                <th>Payment Status</th>
+                                            <?php }?>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        if (!empty($this->jobs)) { ?>
+
+                                            <?php foreach ($this->jobs as $job) { //print_r($job);die;?>
+                                                <tr  class="_job_tr">
+                                                    <td ><a title="Click here to view Job Details" href="<?php echo SITE_URL . 'sitters/preview/job/' . $job['job_id'] ?>"><?php echo $this->jobnumber($job['job_id']) ?></a></td>
+                                                    <td> <?php echo date(DATETIME_FORMAT, strtotime($job['job_start_date'])) ?></td>
+                                                    <td> <?php echo date(DATETIME_FORMAT, strtotime($job['job_end_date'])) ?></td>
+                                                    <?php
+                                                    if (!empty($job['actual_child_count'])) {
+                                                        $children = $job['actual_child_count'];
+                                                    } else {
+                                                        $children = $job['child_count'];
+                                                    }
+                                                    ?>
+                                                    <td class="_children_count"> <?php echo $children; ?></td>
+
+                                                        <!--<td> $<?php echo (int) $job['rate'] ?></td>-->
+                                                    <?php if (in_array($this->searchParams['view'], array('pending', 'scheduled','active','cancelled'))) {
+															if($this->searchParams['view']=="cancelled"){ ?>
+															<td> <?php echo date(DATETIME_FORMAT, strtotime($job['cancelled_date'])) ?></td>
+															<?php }
+                                                    	?>
+                                                    <td style="text-align:center"> 
+                                                            <input onclick="window.location = '<?php echo SITE_URL . 'sitters/preview/job/' . $job['job_id'] ?>';
+                                                                                return false;" class="btn btn-info" type="submit" name="jobaction[<?php echo $job['job_id'] ?>]" value="View" /> 
+                                                        </td>
+                                                    <?php } if ($this->searchParams['view'] == 'scheduled' || $this->searchParams['view'] == 'active' ) { ?>
+                                                    
+                                                    	<td>
+
+                                                            <?php
+                                                            $date = date(DATETIME_FORMAT, strtotime($job['job_start_date']));
+                                                            $time = date('h:i a', strtotime($date));
+
+                                                            //print_r($time);die;
+                                                            ?>
+                                                            <div class="input-group bootstrap-timepicker" >
+                                                                <input  type="text" name="completed_date[<?php echo $job['job_id'] ?>][start_date]" id="start<?php echo $job['job_id'] ?>" class="form-control timepicker-default" readonly="" placeholder="Actual Start Time" value="<?php echo $time; ?>">
+                                                                <div class="input-group-btn">
+                                                                    <button type="button" class="btn btn-default"><i class="fa fa-clock-o"></i></button>                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+
+                                                            <?php
+                                                            $date = date(DATETIME_FORMAT, strtotime($job['job_end_date']));
+                                                            $time = date('h:i a', strtotime($date));
+
+                                                            //print_r($time);die;
+                                                            ?>
+                                                            <div class="input-group bootstrap-timepicker" >
+                                                                <input  type="text" name="completed_date[<?php echo $job['job_id'] ?>][end_date] " id="end<?php echo $job['job_id'] ?>" class="form-control timepicker-default" readonly="" placeholder="Actual End Time" value="<?php echo $time; ?>">
+                                                                <div class="input-group-btn">
+                                                                    <button type="button" class="btn btn-default"><i class="fa fa-clock-o"></i></button>                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input job_id="<?php echo $job['job_id'] ?>" onclick="return add_children_popup($(this))" type="button" class="btn btn-danger" name="jobchlid[<?php echo $job['job_id'] ?>]" value="Add Child"/>
+                                                        </td>
+                                                        <td style="text-align:center"><input class="btn btn-success" type="submit" name="jobaction[<?php echo $job['job_id'] ?>]" value="Complete" onclick="if (confirm('You are going to complete this job <?php echo $this->jobnumber($job['job_id']) ?>. Are you sure? '))
+                                                                                return true;
+                                                                            return false;" /></td> 
+                                                            <?php $endTimes[] = 'end' . $job['job_id'] ?>
+                                                        <?php } else if ($this->searchParams['view'] == 'completed' ||$this->searchParams['view'] == 'closed' ) { 
+                                                        	$start_date = $job['job_start_date'];
+                                                        	if($job['completed_date']!=null && $job['completed_date']!='0000-00-00 00:00:00')
+                                                        		$end_date = $job['completed_date'];
+                                                        	else 
+                                                        		$end_date = $job['job_end_date'];
+                                                        	
+                                                        	if(strtotime($start_date)>strtotime($end_date))
+                                                        		$end_date = $job['job_end_date'];
+                                                        	
+                                                        	$diff = strtotime($end_date) - strtotime($start_date);
+                                                        	$diff_in_hrs = $diff / 3600;
+                                                        	
+                                                        	if($job['rate']==null || $job['rate']==0 || $job['rate']=='')
+                                                        		$job['rate']=$job['sitter_rate_pre'];
+                                                        	
+                                                        	$amount = $job['rate'] * $diff_in_hrs;
+                                                        	
+                                                        	?>
+                                                        <td> <?php echo date(DATETIME_FORMAT, strtotime($end_date)) ?></td>
+
+<!--                                                        <td> $<?php //echo (float) $amount ?></td>-->
+                                                        
+                                                        <?php
+                                                        $pamount=$job['total_paid'];
+                                                        
+                                                        if($pamount==0 || $pamount=='' || $pamount==null) {
+                                                           $pamount=$amount ; } else {
+                                                            $pamount=$pamount;
+                                                        }?>
+                                                        
+                                                        <td class="numeric"><?php echo $job['rate']; ?></td>
+                                                        <td class="numeric"><?php echo $diff_in_hrs;?></td>
+                                                        <td class="numeric"> <?php echo money_format('%.2n',$pamount) ?></td>
+
+
+                                                        <?php
+                                                        if ($job['sitter_payment_status'] == 'paid') {
+                                                            $status = 'Received';
+                                                        } else {
+                                                            $status = 'Not Received';
+                                                        }
+                                                        ?>
+                                                        <td><?php echo $status ?></td>
+                                                    <?php } ?>
+                                                </tr>
+                                            <?php } ?>	
+                                        <?php } else { ?>
+                                            <tr><td colspan="6">No records found</td></tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </form>
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+<!-- Modal -->
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Add Child</h4>
+            </div>
+            <div class="modal-body">
+                <form name="userform" id="userform" method="post" enctype="multipart/form-data" role="form" class="form-horizontal">
+                <input id="j_id" name="j_id" type="hidden" value="">
+
+                    <div id="mydiv"  >
+
+                    <h4>Add Child</h4>
+                    <div class="border-top m-bot20"></div>
+
+                    <div class="form-group ">
+                        <label for="cname" class="control-label col-lg-3">Child's Name</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" id="child_name" name="child_name" />
+                            <span class="text-danger" id="name_child"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="control-label col-lg-3">Gender</label>
+                        <div class="col-lg-9">
+                            <select class="form-control" id="sex" name="sex">
+                                <option value=""  selected="selected">Select Gender</option>
+                                <?php foreach ($this->eventsForm->sex->getMultiOptions() as $key=>$value) { ?>
+                                    <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+                                <?php } ?>
+                            </select>
+                            <span class="text-danger" id="child_gender"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="control-label col-lg-3">Date of Birth</label>
+                        <div class="col-lg-9">
+                            <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group date default-date-picker clearfix">
+                                <input type="text" readonly size="16" class="form-control datep" id="dob" name="dob">
+                                                                <span class="input-group-btn" style="width: auto">
+                                                                    <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                                                </span>
+
+                            </div>
+                            <span class="text-danger" id="bod"></span>
+
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="curl" class="control-label col-lg-3">Allergies</label>
+                        <div class="col-lg-9 radiop">
+                            <label class="label_radio" for="radio-13">
+                                <input  id="radio-13" class="form-control " type="radio" name="allergy_status" value="Yes"> Yes
+                            </label>
+                            <label class="label_radio" for="allergy_status">
+                                <input  class="form-control" type="radio"  name="allergy_status" id="allergy_status" value="No" > No
+                            </label>
+
+                            <div class="clearfix"></div>
+                            <span class="text-danger" id="status_allergy"></span>
+
+                            <div class="col-lg-9 allergies_text" style="display:none">
+                                <!--                                             <label>-->
+                                <textarea placeholder="Allergies can be life threatening. Please describe in detail. " name="allergies" id="allergies"class="form-control"></textarea>
+                                <div>
+                                    <small>Allergies can be life threatening. Please describe in detail.
+                                    </small>
+                                </div>
+                                <span class="text-danger" id="text_allergy"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="curl" class="control-label col-lg-3">Medication</label>
+                        <div class="col-lg-9 radiop">
+                            <label class="label_radio" for="radio-15">
+                                <input  id="radio-15"  class="form-control" type="radio"  name="medicator_status" value="Yes" > Yes
+                            </label>
+                            <label class="label_radio" for="radio-14">
+                                <input  id="radio-14" class="radio" type="radio" name="medicator_status" value="No" > No
+                            </label>
+                            <div class="clearfix"></div>
+
+                            <span class="text-danger" id="status_medicator"></span>
+                            <div class="col-lg-9 medicator_text" style="display:none">
+                                <!--                                             <label>-->
+                                <textarea placeholder="List all medications" name="medicator" id="medicator" class="form-control"></textarea>
+                                <div>
+                                    <small>List all medications </small>
+                                </div>
+                                <span class="text-danger" id="text_medicator"></span>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label class="control-label col-lg-3">Special Needs</label>
+                        <div class="col-lg-9">
+                            <select class="form-control" id="special_needs" name="special_needs">
+                                <option value="" selected="selected">Select if any</option>
+                                <?php foreach ($this->eventsForm->special_needs->getMultiOptions() as $needs) { ?>
+                                    <option value="<?php echo $needs['special_need']; ?>" <?php if($this->eventsForm->special_needs->getvalue()==$needs['special_need']){ echo 'selected="selected"';}?>><?php echo $needs['special_need']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="cname" class="control-label col-lg-3">Favorite Food</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name="fav_food" id="fav_food" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="cname" class="control-label col-lg-3">Favorite Book</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name="fav_book" id="fav_book" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="cname" class="control-label col-lg-3">Favorite Cartoon</label>
+                        <div class="col-lg-9">
+                            <input class="form-control" type="text" name="fav_cartoon" id="fav_cartoon" value="" />
+                        </div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="curl" class="control-label col-lg-3">Helpfull hints</label>
+                        <div class="col-lg-9">
+                            <textarea name="notes" id="notes" class='form-control'></textarea>
+                            <small>(ie. Billy loves Thomas the Tank Engine and  needs Teddy for naps)  </small> </dd>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group ">
+                        <label class="control-label col-lg-3">Upload Picture</label>
+                        <div class="col-lg-9">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="8388608" id="MAX_FILE_SIZE">
+                            <input class="file" type="file" id="c_image" name="image" />
+                            <span class="text-danger" id="upload_image"></span>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                 </form>
+
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                <button id="add_children" onclick="add_children()" class="btn btn-success" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[name=allergy_status]').click(function (event) {
+
+            if (this.value == 'Yes')
+                $('.allergies_text').slideDown();
+            else
+                $('.allergies_text').slideUp();
+        });
+        $('input[name=medicator_status]').click(function (event) {
+            if (this.value == 'Yes')
+                $('.medicator_text').slideDown();
+            else
+                $('.medicator_text').slideUp();
+        });
+
+    });
+
+    function saveRate(th) {
+        //alert(th.value);
+        //alert(th.name);
+        $.ajax({url: "<?php echo ADMIN_URL . 'client/events/' ?>",
+            data: {rate: th.value, saverate: 'rate', job_id: $(th).attr('rel')}, success: function (data) {
+            }
+        });
+    }
+    function add_children_popup(_temp)
+    {
+        _job_this = _temp;
+        $('#myModal').modal('show');
+        $('#j_id').val(_temp.attr('job_id'));
+
+    }
+
+    var _job_this;
+    function add_children(){
+        var flag = true;
+        var childname = $("#child_name").val();
+        var dob = $("#dob").val();
+        var sex = $("#sex").val();
+
+        var al_status = $('input:radio[name=allergy_status]:checked').val();
+        var me_status = $('input:radio[name=medicator_status]:checked').val();
+        if (!childname)  {
+            $("#name_child").html('Please enter the child name');
+            var flag = false;
+        }
+        if (!sex)  {
+            $("#child_gender").html('Please select the child gender');
+            var flag = false;
+        }
+        if (!dob){
+            $("#bod").html('Please enter the child date of birth');
+            var flag = false;
+        }
+
+        if (!al_status){
+            $("#status_allergy").html('Please Select allergy status of the child');
+            var flag = false;
+        }
+        if (al_status){
+            if (al_status == 'Yes') {
+                var allergy_text = $("#allergies").val();
+                if (!allergy_text){
+                    $("#text_allergy").html('Please mention the allergies');
+                    var flag = false;
+                }
+                else{
+                    $("#text_allergy").html('');
+                    var flag = true;
+                }  }
+        }
+        if (!me_status) {
+            $("#status_medicator").html('Please Select medicator status of the child');
+            var flag = false;
+        }
+        if (me_status){
+            if (me_status == 'Yes'){
+                var medicator_text = $("#medicator").val();
+                if (!medicator_text){
+                    $("#text_medicator").html('Please mention the medications');
+                    var flag = false;
+                }
+            }
+        }
+
+
+
+        if ($('#c_image').val() == ''){
+                $('#upload_image').html('Please upload file');
+                var flag = false;
+        }
+        else if ($('#c_image').val().split('.').pop().toLowerCase()){
+            var ext = $('#c_image').val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                $('#upload_image').html('Invalid File Extension');
+                var flag = false;
+            }
+        }
+
+        if (flag == true){
+            var al_status = $('input:radio[name=allergy_status]:checked').val();
+            var m_status = $('input:radio[name=medicator_status]:checked').val();
+            var FormDat = new FormData();
+            var myFile = $("#c_image")[0].files[0];
+            FormDat.append("child_name", $("#child_name").val());
+            FormDat.append("sex", $("#sex").val());
+            FormDat.append("image", myFile);
+            FormDat.append("dob", $("#dob").val());
+            FormDat.append("allergies", $("#allergies").val());
+            FormDat.append("medicator", $("#medicator").val());
+            FormDat.append("allergy_status", al_status);
+            FormDat.append("medicator_status", m_status);
+            FormDat.append("notes", $("#notes").val());
+            FormDat.append("job_id", $("#j_id").val());
+            FormDat.append("parent_id", $("#user_id").val());
+            FormDat.append("special_needs", $("#special_needs").val());
+            FormDat.append("fav_food", $("#fav_food").val());
+            FormDat.append("fav_book", $("#fav_book").val());
+            FormDat.append("fav_cartoon", $("#fav_cartoon").val());
+
+            $('#add_children').append('<i class="fa fa-spinner fa-spin _common_loading_ico"></i>')
+            $.ajax({
+                url: "<?php echo SITE_URL . 'sitters/children' ?>",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: FormDat, // Setting the data attribute of ajax with file_data
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+
+                    if (data.status == 'success') {
+
+                        $('#myModal').modal('hide');
+                        $('#userform')[0].reset();
+                        $('._common_loading_ico').remove();
+                      var child_count =   _job_this.parents('._job_tr').find('._children_count').text();
+                        _job_this.parents('._job_tr').find('._children_count').text(parseInt(child_count)+1);
+
+                        alert_notification('success','Success',data.message)
+                        //parent.location.reload();
+                    }
+
+                    else {
+                        $('._common_loading_ico').remove();
+
+                        alert_notification('error','',data.message)
+                        ///parent.location.reload();
+                    }
+                },
+                complete: function () {
+                },
+            });
+        }
+    }
+</script>

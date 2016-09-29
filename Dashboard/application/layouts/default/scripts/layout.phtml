@@ -1,0 +1,26 @@
+ <?php if($_SESSION['Zend_Auth']['storage']->usertype=='A'){?>
+
+    <?= $this->render('header.phtml') ?>   
+    <?= $this->render('leftnav.phtml') ?>   
+
+    <?php echo $this->layout()->content; ?>
+    <?= $this->render('footer.phtml') ?>   
+<?php }?>
+
+<?php if($_SESSION['Zend_Auth']['storage']->usertype=='P'){?>
+    
+    <?= $this->render('header.phtml') ?>   
+    <?= $this->render('clientleftnav.phtml') ?>   
+
+    <?php echo $this->layout()->content; ?>
+    <?= $this->render('footer.phtml') ?>   
+<?php }?>
+
+<?php if($_SESSION['Zend_Auth']['storage']->usertype=='S'){?>
+
+    <?= $this->render('header.phtml') ?>   
+    <?= $this->render('sitterleftnav.phtml') ?>   
+
+    <?php echo $this->layout()->content; ?>
+    <?= $this->render('footer.phtml') ?>   
+<?php }?>

@@ -1,0 +1,102 @@
+<?php
+//print_r($this->searchParams);die;
+?>
+
+
+<aside>
+    <div id="sidebar"  class="nav-collapse ">
+        <!-- sidebar menu start-->
+
+
+        <ul class="sidebar-menu" id="nav-accordion">
+            <li>
+                <a <?php echo (($this->searchParams['controller'] == 'client')&&($this->searchParams['action']=='index'))? 'class="active"' : '' ?>href="<?php echo SITE_URL ?>client" >
+                    <i class="fa fa-dashboard"></i>
+                    <span>Dashboard</span>
+
+
+                </a>
+            </li>
+
+            <li>
+                <a <?php echo (($this->searchParams['controller'] == 'client')&&($this->searchParams['action']=='events'))? 'class="active"' : '' ?>href="<?php echo SITE_URL ?>client/events" >
+                    <i class="fa fa-user"></i>
+                    <span>Schedule Babysitter</span>
+
+
+                </a>
+            </li>
+
+              <li class="sub-menu">
+                <a <?php echo (($this->searchParams['action'] == 'profile') || ($this->searchParams['action'] == 'password')||($this->searchParams['action'] == 'children')) ? 'class="active dcjq-parent"' : '' ?> href="javascript:;">
+                    <i class="fa fa-suitcase"></i>
+                    <span>My Profile</span>
+                </a>
+                <ul class="sub">
+                    <li <?php echo $this->searchParams['action'] == 'profile' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>client/profile">Contact Information</a></li>
+                    
+                     <li <?php echo $this->searchParams['action'] == 'children' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>client/children">Children</a></li>
+
+                    <li <?php echo $this->searchParams['action'] == 'password' ? 'class="active"' : '' ?>><a href="<?php echo SITE_URL ?>client/password">Password</a></li>
+
+
+                </ul>
+            </li>
+<li>
+                <a  <?php echo (($this->searchParams['controller'] == 'client') && ($this->searchParams['action'] == 'subscription')) ?'class="active"' : '' ?>href="<?php echo SITE_URL ?>client/subscription" >
+                    <i class="fa fa-credit-card"></i>
+                    <span>Buy Credits Now</span>
+
+
+                </a>
+            </li>
+            
+           <li>
+                <a  <?php echo (($this->searchParams['controller'] == 'client') && ($this->searchParams['listevents'] == 'jobs')) ?'class="active"' : '' ?>href="<?php echo SITE_URL ?>client/events/listevents/jobs" >
+                    <i class="fa fa-th-list"></i>
+                    <span>Current Bookings</span>
+
+
+                </a>
+            </li> 
+            
+            
+            
+            <li>
+                <a  <?php echo (($this->searchParams['controller'] == 'client') && ($this->searchParams['listevents'] == 'history')) ?'class="active"' : '' ?>href="<?php echo SITE_URL ?>client/events/listevents/history" >
+                    <i class="fa fa-th"></i>
+                    <span>Booking History</span>
+
+
+                </a>
+            </li>
+            
+            
+            
+            
+            
+            
+           <li>
+                <a  <?php echo (($this->searchParams['controller'] == 'client') && ($this->searchParams['action'] == 'referafriend')) ?'class="active"' : '' ?>href="<?php echo SITE_URL ?>client/referafriend" >
+                    <i class="fa fa-share"></i>
+                    <span>Refer a Friend</span>
+
+
+                </a>
+            </li>
+           
+            <li>
+                <a href="<?php echo SITE_URL ?>logout" >
+                    <i class="fa fa-sign-out"></i>
+                    <span>Logout</span>
+
+
+                </a>
+            </li>
+
+        </ul>
+
+        <!-- sidebar menu end-->
+    </div>
+</aside>
+<!--sidebar end-->

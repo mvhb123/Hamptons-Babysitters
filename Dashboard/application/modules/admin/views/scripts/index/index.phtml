@@ -1,0 +1,204 @@
+
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+              <!-- page start-->
+              
+              <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading clearfix">
+                              New Jobs
+                              <a href="<?php echo ADMIN_URL?>jobs/view/status/new/" class="label label-success pull-right">View all New Jobs</a>
+                          </header>
+                          <div class="panel-body">
+                              <section id="flip-scroll">
+                                  <table class="table table-bordered table-striped table-condensed cf">
+                                      <thead class="cf">
+                                      <tr>
+                                          <th>Job No.</th>
+                                          <th>Start Date/Time</th>
+                                          <th>End Date/Time</th>
+                                          <th>Client</th>
+                                          <th>Children</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <?php 
+					if(!empty($this->newJobs['rows']))
+					foreach($this->newJobs['rows'] as $job){?>
+                                        <tr class="first"><!-- .first for first row of the table (only if there is thead) -->
+					<td><a href="<?php echo ADMIN_URL.'client/events/user/'.$job['client_user_id'].'/modify/'.$job['job_id']?>"><?php echo $this->jobnumber($job['job_id']);?></a></td>
+					<td><?php echo date(DATETIME_FORMAT,strtotime($job['job_start_date']));?></td>
+					<td ><?php echo date(DATETIME_FORMAT,strtotime($job['job_start_date']));?></td>
+					<td ><a href="<?php echo ADMIN_URL.'client/profile/modify/'.$job['client_user_id']?>"><?php echo ucwords($job['firstname'].' '.$job['lastname']);?></a></td>
+					
+                                        
+                                         <?php
+                                                if (!empty($job['actual_child_count'])) {
+                                                    $children = $job['actual_child_count'];
+                                                } else {
+                                                    $children = $job['child_count'];
+                                                }
+                                                ?>
+
+                                                <td> <?php echo $children; ?></td>
+                                        
+				</tr>
+                                  <?php }?> 
+                                      </tbody>
+                                  </table>
+                              </section>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+              
+              <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading clearfix">
+                              Scheduled Jobs
+                              <a href="<?php echo ADMIN_URL?>jobs/specialscheduledjobs/" class="label label-success pull-right">View all Scheduled Jobs</a>
+                          </header>
+                          <div class="panel-body">
+                              <section id="flip-scroll">
+                                  <table class="table table-bordered table-striped table-condensed cf">
+                                      <thead class="cf">
+                                      <tr>
+                                          <th>Job No.</th>
+                                          <th>Start Date/Time</th>
+                                          <th>End Date/Time</th>
+                                          <th>Client</th>
+                                          <th>Assigned</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                       <?php if(!empty($this->pendingJobs['rows'])){?>
+						 <?php foreach($this->pendingJobs['rows'] as $job){?>
+						      <tr class="first"><!-- .first for first row of the table (only if there is thead) -->
+							<td><a href="<?php echo ADMIN_URL.'client/events/user/'.$job['client_user_id'].'/modify/'.$job['job_id']?>"><?php echo $this->jobnumber($job['job_id']);?></a></td>
+							<td><?php echo date(DATE_FORMAT,strtotime($job['job_start_date']));?><span class="tc"> - </span><?php echo date('h:i a',strtotime($job['job_start_date']));?></td>
+							<td><?php echo date(DATETIME_FORMAT,strtotime($job['job_start_date']));?></td>
+							<td><a href="<?php echo ADMIN_URL.'client/profile/modify/'.$job['client_user_id']?>"><?php echo ucwords($job['firstname'].' '.$job['lastname']);?></a></td>
+							<td><?php echo $job['total_assigned']?></td>
+                                        </tr>
+						      <?php }?>
+				          <?php }else {?>
+				          <tr><td>No records found.</td></tr>
+                         <?php }?>
+					        </tbody>
+                                      </tbody>
+                                  </table>
+                              </section>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+              
+              <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading clearfix">
+                              Confirmed Jobs
+                              <a href="<?php echo ADMIN_URL?>jobs/view/status/confirmed/" class="label label-success pull-right">View all Confirmed Jobs</a>
+                          </header>
+                          <div class="panel-body">
+                              <section id="flip-scroll">
+                                  <table class="table table-bordered table-striped table-condensed cf">
+                                      <thead class="cf">
+                                      <tr>
+                                          <th>Job No.</th>
+                                          <th>Start Date/Time</th>
+                                          <th>Client</th>
+                                          <th>Children</th>
+                                          <th>Babysitter</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                     <?php if(!empty($this->confirmedJobs['rows'])){?>
+						    
+				       <?php foreach($this->confirmedJobs['rows'] as $job){?>
+				<tr class="first"><!-- .first for first row of the table (only if there is thead) -->
+					<td><a href="<?php echo ADMIN_URL.'client/events/user/'.$job['client_user_id'].'/modify/'.$job['job_id']?>"><?php  echo $this->jobnumber($job['job_id']);?></a></a></td>
+					<td ><?php echo date(DATETIME_FORMAT,strtotime($job['job_start_date']));?></td>
+					<td><a href="<?php echo ADMIN_URL.'client/profile/modify/'.$job['client_user_id']?>"><?php echo ucwords($job['firstname'].' '.$job['lastname']);?></a></td>
+					  <?php
+                                                if (!empty($job['actual_child_count'])) {
+                                                    $children = $job['actual_child_count'];
+                                                } else {
+                                                    $children = $job['child_count'];
+                                                }
+                                                ?>
+
+                <!--                                                <td> <?php //echo count($job['children'])  ?></td>-->
+                                                <td> <?php echo $children; ?></td>
+					<td><a href="<?php echo ADMIN_URL.'sitters/profile/modify/'.$job['sitter_user_id']?>"><?php echo $job['sitter_firstname']?></a></td>
+				</tr>
+				           <?php }?>
+				          <?php }else {?>
+				           <tr><td>No records found.</td></tr>
+                         <?php }?>
+                                      </tbody>
+                                  </table>
+                              </section>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+              
+              <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading clearfix">
+                              Completed Jobs
+                              <a href="<?php echo ADMIN_URL?>jobs/view/status/completed/" class="label label-success pull-right">View all Completed Jobs</a>
+                          </header>
+                          <div class="panel-body">
+                              <section id="flip-scroll">
+                                  <table class="table table-bordered table-striped table-condensed cf">
+                                      <thead class="cf">
+                                      <tr>
+                                          <th>Job No.</th>
+                                          <th>Start Date/Time</th>
+                                          <th>Actual End Date/Time</th>
+                                          <th>Client</th>
+                                          <th style="text-align: right">Total paid</th>
+                                          <th>Babysitter</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                    <?php if(!empty($this->completedJobs['rows'])){?>
+                                          <?php foreach($this->completedJobs['rows'] as $job){?>
+						      <tr class="first"><!-- .first for first row of the table (only if there is thead) -->
+					<td><a href="<?php echo ADMIN_URL.'client/events/user/'.$job['client_user_id'].'/modify/'.$job['job_id']?>"><?php  echo $this->jobnumber($job['job_id']);?></a></td>
+					<td ><?php echo date(DATETIME_FORMAT,strtotime($job['job_start_date']));?></td>
+					<td ><?php echo date(DATETIME_FORMAT,strtotime($job['completed_date']));?></td>
+					<td ><a href="<?php echo ADMIN_URL.'client/profile/modify/'.$job['client_user_id']?>"><?php echo ucwords($job['firstname'].' '.$job['lastname'])?></a></td>
+				
+					<td class="numeric"><?php echo money_format('%.2n',$job['total_paid']);?></td>
+					<td><a href="<?php echo ADMIN_URL.'sitters/profile/modify/'.$job['sitter_user_id']?>"><?php echo ucwords($job['sitter_firstname'])?></a></td>
+										<!-- a.ico-comms for comment-like backgrounds -->
+									</tr>
+				          <?php }?>
+				          <?php }else {?>
+				           <tr><td>No records found.</td></tr>
+                         <?php }?>
+                                      </tbody>
+                                  </table>
+                              </section>
+                          </div>
+                      </section>
+                  </div>
+              </div>
+              <!-- page end-->
+          </section>
+      </section>
+      <!--main content end-->
+      <!-- Right Slidebar start -->
+      
+      
+      
+      
+      
+      

@@ -1,0 +1,9 @@
+<?php if($this->searchParams['modify']>0){?>
+<li <?php echo  $this->actionName=='events'?'class="active"' :''?>><a <?php echo  $this->actionName=='events'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/events/<?php echo  $this->userid>0 ? 'user/'.$this->userid:''?>/modify/<?php echo $this->searchParams['modify']?>">Jobs</a></li>
+<li <?php echo  $this->actionName=='assign'?'class="active"' :''?> ><a <?php echo  $this->actionName=='assign'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/assign/<?php echo  $this->userid>0 ? 'user/'.$this->userid:''?>/modify/<?php echo $this->searchParams['modify']?>">Manage Sitter</a></li>
+
+<?php }else {?>
+<li <?php echo  $this->actionName=='events'?'class="active"' :''?>><a <?php echo  $this->actionName=='events'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/events/<?php echo  $this->userid>0 ? 'user/'.$this->userid:''?>">Jobs</a></li>
+
+<?php }?>
+

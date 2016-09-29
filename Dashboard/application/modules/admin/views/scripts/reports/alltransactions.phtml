@@ -1,0 +1,239 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <div class="fixed-position col-lg-12">
+                        <header class="panel-heading clearfix">
+                            <div class="col-md-6 col-sm-12">Transaction History</div>
+                            <?php
+                            $key = Zend_Controller_Front::getInstance()->getRequest()->getParam('key');
+                            $odr = Zend_Controller_Front::getInstance()->getRequest()->getParam('odr');
+                            if (empty($this->searchParams['transaction_type'])) {
+                                $this->searchParams['transaction_type'] = "";
+                            }
+                            if (empty($this->searchParams['start_date'])) {
+                                $this->searchParams['start_date'] = "";
+                            }
+                            if (empty($this->searchParams['end_date'])) {
+                                $this->searchParams['end_date'] = "";
+                            }
+                            ?>
+                            
+                            <div class="col-sm-12 col-md-6 text-right">
+                                    <a class="btn btn-primary clearfix"  href="<?php echo ADMIN_URL . 'reports/createpdf/type/' . $this->searchParams['transaction_type'] . '/start_date/' . $this->searchParams['start_date'] . '/end_date/' . $this->searchParams['end_date'] . '/key/' . $key . '/odr/' . $odr ?>" > Generate pdf</a> 
+                                    <input class="btn btn-primary" type="button"  value="Print" onclick="printpage()">  
+                            </div>
+
+                        </header>
+                        <form name="searchform" method="post" class="clearfix">
+                        <br>
+                            <div>
+                               <div class="col-md-10">	
+                                <div class="col-md-3">	
+                                    <div data-date-viewmode="years" data-date-format="mm/dd/yyyy"   class="input-group btn-block date default-date-picker clearfix">
+                                        <input type="text" id="start_date" name="start_date" class="form-control datep" value="<?php echo $this->searchParams['start_date']; ?>" size="16" readonly="" placeholder="Start Date">
+                                        <span class="input-group-btn" style="width: auto">
+                                            <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group btn-block date default-date-picker clearfix">
+                                        <input type="text" id="end_date" name="end_date" class="form-control datep" value="<?php echo $this->searchParams['end_date']; ?>" size="16" readonly="" placeholder="End Date">
+                                        <span class="input-group-btn" style="width: auto">
+                                            <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">	
+                                    <select name="transaction_type" class="form-control t_type">
+                                        <option value="all"<?php if ($this->searchParams['transaction_type'] == "all") { ?>
+                                                    selected="selected" <?php } ?>>All Transaction</option>                           
+
+                                        <option value="Cr."<?php if ($this->searchParams['transaction_type'] == "Cr.") { ?>
+                                                    selected="selected" <?php } ?>>Client Charge - Credit</option>
+
+                                        <option value="Dr."<?php if ($this->searchParams['transaction_type'] == "Dr.") { ?>
+                                                    selected="selected" <?php } ?>>Sitter Payments - Debit</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-3" id='client_name_div' style="display:none;">
+                                        <input type="text" id="client_name" name="client_name" class="form-control" value="<?php echo $this->searchParams['client_name']; ?>" placeholder="Client Name">
+                                </div>
+ 								<div class="col-md-3" id='sitter_name_div' style="display:none;">
+                                        <input type="text" id="sitter_name" name="sitter_name" class="form-control" value="<?php echo $this->searchParams['sitter_name']; ?>" placeholder="Sitter Name">
+                                </div>
+                                </div>
+                                <div class="col-md-2">
+                                <div class="col-md-12">
+                                    <input type="submit" name="filter" value="Filter" class="btn btn-danger" />
+                                </div>
+                                </div>
+                            </div>
+                        </form>     
+
+                    </div>
+                   
+                    <div class="panel-body list_margin">
+                        <section id="flip-scroll" class="mar-top">
+                            <table class="table table-bordered table-striped table-condensed cf content" id="b_transaction">
+                                <thead class="cf">
+                                    <tr>
+                                        <th><a href="<?php echo $this->url(array('key' => 'job_id', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_id' ? 'desc' : 'asc')) ?>">Job Id</a> </th>
+                                        <th class="text-right"><a href="<?php echo $this->url(array('key' => 'amount', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'amount' ? 'desc' : 'asc')) ?>">Amount</a></th>
+                                        <th><a href="<?php echo $this->url(array('key' => 'transaction_type', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'transaction_type' ? 'desc' : 'asc')) ?>">Transaction Type</a></th>
+                                        <th><a href="<?php echo $this->url(array('key' => 'date_added', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'date_added' ? 'desc' : 'asc')) ?>">Date</a></th>
+                                        <th>Client Name</th>
+                                        <th>Sitter Name</th>
+                                        <th>Payment Method</th>
+                                        <th>Transaction id</th>
+                                    <tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($this->transactions as $details) { ?>
+                                        <tr>
+                                        <td><a href="<?php echo ADMIN_URL . 'client/events/user/' . $details['userid'] . '/modify/' . $details['job_id'] ?>"><?php echo $details['job_id'] ?></a></td>
+                                            <td class="numeric"><?php echo money_format('%.2n', $details['amount']);?> </td>
+										    <?php
+                                            if ($details['transaction_type'] == 'Cr.') {
+                                                $type = 'Client Charges - Credit';
+                                                $var = 'client';
+                                            } else {
+                                                $var = 'sitters';
+                                                $type = 'Sitter Payment - Debit';
+                                            }
+                                            ?>
+                                            <td><?php echo $type ?></td>
+                                            <td><?php echo date('m/d/Y', strtotime($details['date_added'])) ?></td>
+                                            <td><a href="<?php if($var=='client') {echo ADMIN_URL . $var . '/profile/modify/' . $details['userid'] ?>"><?php echo ucwords($details['firstname'] . " " . $details['lastname']);}else { echo ""?>"><?php echo "";}?></a></td>
+                                            <td><a href="<?php if($var=='sitters') {echo ADMIN_URL . $var . '/profile/modify/' . $details['userid'] ?>"><?php echo ucwords($details['firstname'] . " " . $details['lastname']);}else { echo ""?>"><?php echo "";}?></a></td>
+                                            <td><?php echo $details['payment_method'] ?></td>
+                                            <td><?php echo $details['transaction_id'] ?></td>
+                                        </tr><?php } ?>
+                                </tbody>
+                            </table>
+                            <div style="display:none">
+                                <table style="border: 1px solid gray; border-collapse: collapse; font-size:14px" id="billing_transactions" >
+                                    <thead >
+                                        <tr>
+                                         	<th style="padding:5px; border: 1px solid gray; border-collapse: collapse;">Job Id </th>
+                                            <th style="padding:5px; border: 1px solid gray; border-collapse: collapse;">Amount</th>
+                                            <th style="padding:5px; border: 1px solid gray; border-collapse: collapse;">Credit/Debit</th>
+                                            <th style="padding:5px; border: 1px solid gray; border-collapse: collapse;">Date</th>
+                                            <th style="padding:5px; border: 1px solid gray; border-collapse: collapse;">Client Name/Sitter Name</th>
+                                           
+                                        <tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($this->alltransaction as $details) { ?>
+                                            <tr>
+                                             <td style="padding:3px;border: 1px solid gray; border-collapse: collapse;"><?php echo $details['job_id'] ?></td>
+                                                <td style="padding:3px;border: 1px solid gray; border-collapse: collapse;"><?php echo $details['amount'] ?> </td>
+                                                <td style="padding:3px;border: 1px solid gray; border-collapse: collapse;"><?php echo $details['transaction_type'] ?></td>
+                                                <td style="padding:3px;border: 1px solid gray; border-collapse: collapse;"><?php echo date('m/d/Y', strtotime($details['date_added'])) ?></td>
+                                                <td style="padding:3px;border: 1px solid gray; border-collapse: collapse;"><?php echo ucwords($details['firstname'] . " " . $details['lastname']) ?></td>
+                                            </tr><?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <?php if ($this->searchParams['transaction_type'] == "all" || $this->searchParams['transaction_type'] == "") { ?>
+                                <b> Total Credit :<?php echo money_format('%.2n',$this->transactions_credit); ?></b>
+                                &nbsp;&nbsp;&nbsp;
+                                <b> Total Debit  :<?php echo money_format('%.2n',$this->transactions_debit); ?></b>
+                                &nbsp;&nbsp;&nbsp;
+                                <b> Balance  : <?php echo money_format('%.2n',$this->transactions_amt); ?></b>                     
+                            <?php } ?>
+                    <?php if ($this->searchParams['transaction_type'] == "Cr.") { ?>
+                        <b> Total Credit :<?php echo $this->transactions_credit; ?></b>
+                    <?php } ?>
+                    <?php if ($this->searchParams['transaction_type'] == "Dr.") { ?>
+                        <b> Total Debit  :<?php echo $this->transactions_debit; ?></b>
+                    <?php } ?>
+
+                    <?php
+                    echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                    ?>
+                </section>
+            </div>
+    </section>
+</div>
+</div>
+<!-- page end-->
+</section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/jquery.PrintArea.js"></script>
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/core.js"></script>
+
+<script>
+$(document).ready(function () {
+
+    if ($(".t_type").val()== 'Cr.') {
+        $("#client_name_div").show();
+        $("#sitter_name_div").hide();
+    }
+    else if($(".t_type").val()== 'Dr.')
+    {
+    	$("#sitter_name_div").show();
+    	$("#client_name_div").hide();
+    }
+    else
+    {
+    	$("#sitter_name_div").hide();
+    	$("#client_name_div").hide();
+	}
+	
+	$(".t_type").change(function () {
+	    if ($(this).val()== 'Cr.') {
+	        $("#client_name_div").show();
+	        $("#sitter_name_div").hide();
+	    }
+	    else if($(this).val()== 'Dr.')
+	    {
+	    	$("#sitter_name_div").show();
+	    	$("#client_name_div").hide();
+	    }
+	    else
+	    {
+	    	$("#sitter_name_div").hide();
+	    	$("#client_name_div").hide();
+		}
+	});
+	
+});
+
+function printpage()
+{
+    var divToPrint = document.getElementById('billing_transactions');
+    var htmlToPrint = '' +
+            '<style type="text/css">' +
+            'table th, table td {' +
+            'border:1px solid #000;' +
+            'padding;0.5em;' +
+            '}' +
+            '</style>';
+    htmlToPrint += divToPrint.outerHTML;
+    newWin = window.open("");
+    newWin.document.write(htmlToPrint);
+    newWin.print();
+    newWin.close();
+}
+
+function create_pdf()
+{
+
+    $.ajax({url: "<?php echo ADMIN_URL . 'reports/createpdf/' ?>",
+        data: {rate: '7'}, success: function (data) {
+        }
+    });
+}
+</script>

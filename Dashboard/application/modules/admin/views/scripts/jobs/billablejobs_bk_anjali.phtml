@@ -1,0 +1,264 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        Billable  Jobs
+                    </header>
+
+                    <div class="panel-body">
+                        <section id="flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed cf">
+                                <thead class="cf">
+                                    <tr>
+                                        <th>Job</th>
+                                        <th>Client</th>
+                                        <th>Sitter</th>
+                                        <th>Start/End Time</th>
+                                        <th>Hours</th>
+                                        <th>Kids</th>
+                                       <th>Modified</th>
+                                        <th>Actual Kids</th>
+                                        <th>Actual Time</th>
+                                        <th>Actual Hours</th>
+                                        <th style="text-align: right">Hourly Rate</th>
+                                       <th style="text-align: right">Total Charged</th>
+                                        <th style="text-align: right">Charge Client</th>                        
+                                    </tr>
+
+                                </thead>
+                                <?php foreach ($this->billablejobs as $job) {?>
+                                    <tr>
+                                        <td class="numeric"><a href="<?php echo ADMIN_URL . 'client/events/user/' . $job['userid'] . '/modify/' . $job['job_id'] ?>"><?php echo $job['job_id']; ?></a></td>
+                                        <td><a href="<?php echo ADMIN_URL . 'client/profile/modify/' . $job['userid'] ?>"><?php echo $job['client_first_name'] . " ", $job['client_last_name']; ?></a></td>
+                                        <td><a href="<?php echo ADMIN_URL . 'sitters/profile/modify/' . $job['sitterid'] ?>"><?php echo $job['sitter_first_name'] . " ", $job['sitter_last_name']; ?></a></td>
+                                        <?php
+                                        $start_date = date('m/d/Y', strtotime($job['job_start_date']));
+                                        $start_time = date('h:i a', strtotime($job['job_start_date']));
+                                        $end_time = date('h:i a', strtotime($job['job_end_date']));
+                                        ?>
+                                        <td><?php echo $start_date . " " . $start_time . " To " . $end_time; ?></td>
+                                        <td><?php echo $job['hr'] ?></td>
+                                        <td><?php echo $job['child_count'] ?></td>
+                                        <td><?php echo $job['modified'] ?></td>
+                                        <td><?php echo $job['actual_child_count'] ?></td>
+
+                                        <?php
+                                        $a_start_date = date('m/d/Y', strtotime($job['job_start_date']));
+                                        $a_start_time = date('h:i a', strtotime($job['job_start_date']));
+                                        $a_end_time = date('h:i a', strtotime($job['completed_date']));
+                                        ?>
+                                        <td><?php echo $a_start_date . " " . $a_start_time . " To " . $a_end_time; ?></td>
+
+                                        <td>
+
+                                            <?php
+                                            if ($job['ac_hr'] < 0) {
+                                                $ac_hr = $job['hr'];
+                                            } else {
+                                                $ac_hr = $job['ac_hr'];
+                                            }
+                                            
+                                            //$ac_hr=date("g:i ", strtotime($ac_hr));
+                                            
+                                            ?>
+                                        <?php echo $ac_hr; ?>
+                                        </td>
+
+                                        <?php
+                                        $rate = $job['client_updated_rate'];
+                                        $total_hours=0;
+                                        if($job['completed_date']!='0000-00-00 00:00:00'&& $job['completed_date']!='' && $job['completed_date']!=null)
+                                        {
+                                        	$total_hours = round((strtotime(date('Y-m-d H:i:s',strtotime($job['completed_date'])))-strtotime(date('y-m-d H:i:s',strtotime($job['job_start_date']))))/(60*60),2);
+                                        }
+                                        else
+                                        {
+                                        	$total_hours = round((strtotime(date('Y-m-d H:i:s',strtotime($job['job_end_date'])))-strtotime(date('y-m-d H:i:s',strtotime($job['job_start_date']))))/(60*60),2);
+                                        }
+                                        
+                                        if($total_hours<0)
+                                        	$total_hours = round((strtotime(date('Y-m-d H:i:s',strtotime($job['job_end_date'])))-strtotime(date('y-m-d H:i:s',strtotime($job['job_start_date']))))/(60*60),2);
+                                        	 
+                                        if ($rate == null || rate == "") {
+                                            $rate = $job['client_rate'];
+                                        }
+                                        //$charge = $rate * $job['ac_hr'];
+                                        $charge=$rate *$total_hours;
+
+                                        /* if ($charge < 0) {
+                                            $charge = $rate * $job['hr'];
+                                        } */
+                                        ?>
+
+                                        <td class="numeric"> <?php echo money_format('%.2n', $rate);?></td>
+                                       
+                                        
+                                        
+                                        <td class="numeric"><?php echo money_format('%.2n', $charge); ?></td>
+                                        <td><input type="submit" class="btn btn-info" value="Charge" onclick="charge_client(<?php echo $job['job_id'] ?>,<?php echo $job['userid'] ?>,<?php echo $charge ?>);"></td>
+                                    </tr><?php } ?>
+                                </tbody>
+                            </table>
+<?php
+echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+?>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+
+
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade in" >
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button" onclick="reloadPage()">×</button>
+                <h4 class="modal-title">Message</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-lg-10" id="transaction_message">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+
+                            <button style="float:right" class="btn btn-send" type="submit">Ok</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalSuccess" class="modal fade in" >
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button" onclick="reloadPage()">×</button>
+                <h4 class="modal-title">Transaction Details</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" class="form-horizontal">
+                    <div>
+                        <div class="col-md-6"> Client Name </div>
+                        <div class="col-md-6" id="cname"> </div>
+                    </div>
+                    </br>
+                    </br>
+                    <div>
+                        <div class="col-md-6">Job Id</div>
+                        <div class="col-md-6" id="client_job_id"></div>
+                    </div>
+                    </br>
+                    </br>
+                    <div>  
+                        <div class="col-md-6">Transaction Id</div>
+                        <div class="col-md-6" id="transaction_id"></div>    
+                    </div>
+                    </br>
+                    </br>
+
+                    <div>
+                        <div class="col-md-6">Amount  </div>                                                
+                        <div class="col-md-6" id="amount"></div>     
+                    </div>
+
+                    </br>
+                    </br>
+                    <div>
+                        <div class="col-md-12">   
+                            <button  style="float:right" class="btn btn-send" type="submit">Ok</button>
+                        </div>
+                    </div>
+                    <div  class="clearfix"></div>
+                </form>
+            </div>
+
+
+
+
+
+
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+
+<script>
+    function saveRate(th) {
+        //alert(th.value);
+        //alert(th.name);
+        $.ajax({url: "<?php echo ADMIN_URL . 'client/events/' ?>",
+            data: {rate: th.value, saverate: 'rate', job_id: $(th).attr('rel')}, success: function (data) {
+            }
+        });
+    }
+
+
+    function charge_client(job_id, userid, charge)
+    {
+
+        $.ajax({
+            url: "<?php echo ADMIN_URL . 'client/chargeclient' ?>",
+            cache: false,
+            //    contentType: false,
+            //  processData: false,
+            data: {job_id: job_id, user_id: userid, charge: charge}, // Setting the data attribute of ajax with file_data
+            dataType: 'json',
+            type: 'post',
+            async: false,
+            success: function (data) {
+                if (data.status == 'failed')
+                {
+                    $('#myModal').modal('show');
+                    $("#transaction_message").text(data.message);
+                }
+
+                if (data.status == 'success')
+                {
+
+                    $("#cname").text(data.client_name);
+                    $("#client_job_id").text(data.job_id);
+                    $("#amount").text(data.amount);
+                    $("#transaction_id").text(data.transaction_id);
+
+                    $('#myModalSuccess').modal('show');
+
+                }
+            },
+            complete: function () {
+                //hide_loader();
+            }
+        });
+
+
+    }
+
+    function reloadPage()
+    {
+        location.reload();
+    }
+
+</script>

@@ -1,0 +1,35 @@
+
+
+
+<?php // print_r($this->searchParams['client_id']);die;?>
+<li <?php echo  $this->actionName=='profile'?'class="active"' :''?>>
+	<a  <?php echo  $this->actionName=='profile'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/profile/<?php echo $this->searchParams['client_id']>0 ? 'modify/'.$this->searchParams['client_id']:'create/new/'?>">Contact Information</a></li>
+<?php if($this->searchParams['client_id']>0){?>
+<li <?php echo  $this->actionName=='children'?'class="active"' :''?>>
+<a  <?php echo  $this->actionName=='children'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/children/<?php echo  $this->searchParams['client_id']>0 ? 'parent/'.$this->searchParams['client_id']:''?>">Children</a></li>
+<li <?php echo  $this->actionName=='index'&&$this->searchParams['controller']=='jobs'?'class="active"' :''?>>
+	<a <?php echo  $this->actionName=='index'&&$this->searchParams['controller']=='jobs'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/events/<?php echo  $this->searchParams['client_id']>0 ? 'user/'.$this->searchParams['client_id']:''?>/listevents/jobs">Jobs</a>
+</li>
+<li <?php echo  $this->actionName=='subscription'?'class="active"' :''?>><a  <?php echo  $this->actionName=='subscription'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/subscription/<?php echo  $this->searchParams['client_id']>0 ? 'client/'.$this->searchParams['client_id']:'create/new/'?>">Billing History</a></li>
+<li <?php echo  $this->actionName=='password'?'class="active"' :''?>><a  <?php echo  $this->actionName=='password'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/password/<?php echo  $this->searchParams['client_id']>0 ? 'client/'.$this->searchParams['client_id']:'create/new/'?>">Password</a></li>
+
+<li <?php echo  $this->actionName=='cardinfo'?'class="active"' :''?>><a <?php echo  $this->actionName=='cardinfo'?'class="active"' :''?> href="<?php echo ADMIN_URL?>client/cardinfo/<?php echo $this->searchParams['client_id']>0 ? 'parent/'.$this->searchParams['client_id']:''?>">Credit Card</a></li>
+
+
+
+
+
+
+<?php }else{?>
+<li <?php echo  $this->actionName=='children'?'class="active"' :''?>>
+<a  <?php echo  $this->actionName=='children'?'class="active"' :''?> href="#">Children</a></li>
+<li <?php echo  $this->actionName=='events'&&$this->searchParams['listevents']=='jobs'?'class="active"' :''?>>
+	<a <?php echo  $this->actionName=='events'&&$this->searchParams['listevents']=='jobs'?'class="active"' :''?> href="#">Jobs</a></li>
+<li <?php echo  $this->actionName=='events'&&$this->searchParams['listevents']=='history'?'class="active"' :''?>>
+	<a <?php echo  $this->actionName=='events'&&$this->searchParams['listevents']=='history'?'class="active"' :''?> href="#">Booking History</a></li>
+<li <?php echo  $this->actionName=='subscription'?'class="active"' :''?>><a <?php echo  $this->actionName=='subscription'?'class="active"' :''?> href="#">Billing History</a></li>
+<li <?php echo  $this->actionName=='password'?'class="active"' :''?>><a <?php echo  $this->actionName=='password'?'class="active"' :''?> href="#">Password</a></li>
+<?php echo  $this->actionName=='cardinfo'?'class="active"' :''?>
+<li ><a <?php echo  $this->actionName=='cardinfo'?'class="active"' :''?> href="#">Credit Card</a></li>
+
+<?php }?>

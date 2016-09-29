@@ -1,0 +1,140 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel clearfix">
+                   <!--  <div class="fixed-navtab"> -->
+                   <!--   <header class="panel-heading tab-bg-dark-navy-blue tab-right sitter_head ">
+                        <ul class="nav nav-tabs pull-right">
+                            <?php //include_once('tabs.phtml'); ?>
+                        </ul>
+                        <span class="hidden-sm wht-color profile_name">
+<?php //echo $this->userInfo['firstname'] ?> <?php //echo $this->userInfo['lastname'] ?> <?php //echo $this->userInfo['firstname']!= '' ? '-' : '' ?> Earnings
+                        </span>
+                    </header>-->
+                    <div class="fixed-position">
+                    <header class="panel-heading tab-bg-dark-navy-blue tab-right sitter_head ">
+                        <ul class="nav nav-tabs pull-left">
+                        <li> <span class="profile_name">
+					<?php echo $this->userInfo['firstname'] ?> <?php echo $this->userInfo['lastname'] ?> <?php echo $this->userInfo['firstname']!= '' ? '-' : '' ?> Earnings
+                        </span></li>
+                            <?php include_once('tabs.phtml'); ?>
+                        </ul>
+                    </header>
+                    <div class="col-md-12 mar-top mar-bottom">
+                       <div class="col-md-3"><b>Sitter Name: </b><?php echo $this->userInfo['firstname']." ".$this->userInfo['lastname'];  ?> </div>
+                       <div class="col-md-2"><b>Jobs Worked: </b><?php echo $this->total_jobs; ?></div>
+                       <div class="col-md-2"><b>Gross $: </b><?php echo money_format('%.2n',$this->total_received); ?></div>
+                       <div class="col-md-2"><b>Sitter $: </b><?php echo money_format('%.2n',$this->total_paid);  ?></div>
+                       <div class="col-md-3"><b>Company $: </b><?php echo money_format('%.2n',$this->company);  ?></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <form name="searchform" method="post" class="clearfix">
+                        <div>
+                            <div class="col-md-4">	
+
+                                <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group date default-date-picker clearfix">
+                                    <input type="text" id="job_start_date" name="job_start_date" class="form-control datep" value="<?php echo $this->searchParams['job_start_date']; ?>" size="16" readonly="" placeholder="Start Date">
+                                     <span class="input-group-btn" style="width: auto">
+                                        <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group date default-date-picker clearfix">
+                                    <input type="text" id="job_end_date" name="job_end_date" class="form-control datep" value="<?php echo $this->searchParams['job_end_date']; ?>" size="16" readonly="" placeholder="End Date">
+                                     <span class="input-group-btn" style="width: auto">
+                                        <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <input type="submit" name="filter" value="Filter" class="btn btn-danger" />
+                            </div>
+                        </div>
+                    </form>     
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="panel-body list_margin">
+                        <section id="flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed cf">
+                                <thead class="cf">
+                                    <tr>
+                                        <th><a href="<?php echo $this->url(array('key' => 'job_id', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_id' ? 'desc' : 'asc')) ?>">Job Id</a></th>
+                                        <th><a href="<?php echo $this->url(array('key' => 'firstname', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'firstname' ? 'desc' : 'asc')) ?>">Client Name</a></th>
+                                        <th><a href="<?php echo $this->url(array('key' => 'actual_child_count', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'actual_child_count' ? 'desc' : 'asc')) ?>">Kids</a></th>
+                                        <th>Date</th>
+                                        <th>Start Time</th>
+                                        <th >End Time</th>
+                                        <th><a href="<?php echo $this->url(array('key' => 'hr', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'hr' ? 'desc' : 'asc')) ?>">Time Spent</a></th>
+                                        <th class="text-right"><a href="<?php echo $this->url(array('key' => 'total_received', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'total_received' ? 'desc' : 'asc')) ?>">Total Amount</a></th>
+                                        <th class="text-right"><a href="<?php echo $this->url(array('key' => 'total_paid', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'total_paid' ? 'desc' : 'asc')) ?>">Sitter Amount</a></th>
+                                        <th class="text-right"><a href="<?php echo $this->url(array('key' => 'company', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'company' ? 'desc' : 'asc')) ?>">Company Amount</a></th>
+                                    <tr>
+                                </thead>
+                                <tbody>
+
+
+                                    <?php foreach ($this->earnings as $details) { ?>      
+                                        <tr>
+                                            <td><?php echo $details['job_id']; ?></td>
+                                            <td><?php echo $details['firstname'] . " " . $details['lastname']; ?></td>
+                                            <td ><?php echo $details['actual_child_count']; ?></td>
+
+                                            <?php
+                                            $actual_date = date('m/d/Y', strtotime($details['actual_start_date']));
+                                            ?>
+                                            <td><?php echo $actual_date; ?></td>
+                                            <?php
+                                            $actual_start_time = date('h:i a', strtotime($details['actual_start_date']));
+                                            $actual_end_time = date('h:i a', strtotime($details['actual_end_date']));
+                                            ?>
+                                            <td><?php echo $actual_start_time; ?></td>
+                                            <td><?php echo $actual_end_time; ?></td>
+                                            <td><?php echo $details['hr']; ?></td>
+                                            <td class="numeric"><?php echo money_format('%.2n',$details['total_received']); ?></td>
+                                            <td class="numeric"><?php echo money_format('%.2n',$details['total_paid']);  ?></td>
+                                            <td class="numeric"><?php echo money_format('%.2n',$details['company']);  ?></td>                                            </tr>
+                                    <?php } ?>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td style="font-weight: bold"><?php echo 'Total'; ?></td>
+                                <td style="font-weight: bold" class="numeric"><?php echo money_format('%.2n',$this->total_received); 
+                                    ; ?></td>
+                                <td style="font-weight: bold" class="numeric"><?php echo money_format('%.2n',$this->total_paid);
+                                    ; ?></td>
+
+                                <td style="font-weight: bold" class="numeric"><?php echo money_format('%.2n',$this->company);
+                                    ; ?></td>
+
+
+                                </tbody>
+                            </table>
+                            <?php
+                                echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+
+            
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+
+
+

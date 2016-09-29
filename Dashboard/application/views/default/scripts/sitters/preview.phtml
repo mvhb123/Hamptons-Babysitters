@@ -1,0 +1,314 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        <h3>Job: <?php echo $this->jobnumber($this->job_id) ?></h3>
+                    </header>
+
+                    <?php
+                    $timediff = $this->timediff($this->event['job_start_date']);
+                    $today_date = date("Y-m-d H:i:s");
+                    //added by namrata for 48 hours format cancellation
+                    $hourdiff = round((strtotime($this->event['job_start_date']) - strtotime($today_date)) / 3600, 1);
+                    ?>
+
+                    <div class="panel-body">
+
+                        <?php if ((isset($this->warning_message)) && (!empty($this->warning_message))) { ?>
+                            <div class="alert alert-warning fade in">
+                                <?php echo $this->warning_message; ?>
+                            </div>
+                        <?php } ?>
+
+                        <?php if ($timediff) { ?>
+                            <div class="alert alert-success fade in">
+                                <strong>Reminder:</strong> <?php echo $timediff ?> remaining for this job
+                            </div>
+                        <?php } else { if(in_array($this->event['job_status'], array('new', 'pending'))){?>
+                            <div class="alert alert-warning fade in">
+                                Job Expired
+                            </div><?php }} ?>
+
+                        <?php if ($this->event['sitter_user_id'] == $this->userInfo['userid']) { ?>
+                            <div class="alert alert-success fade in">
+                                You have been assigned to this job 
+                            </div>
+                        <?php } ?>  
+
+                        <?php if ($timediff) { ?>
+                            <?php if ($this->event['sitter_user_id'] == $this->userInfo['userid']) { ?>
+                                <?php if ($hourdiff < 48) { ?>
+                                    <div class="alert alert-warning fade in">
+                                        To cancel this job, please contact Admin
+                                    </div>
+                                <?php } ?>
+                            <?php } ?>
+                        <?php } ?>
+
+
+                        <?php if ($timediff) { ?>
+                            <?php if ($this->event['sitter_user_id'] != $this->userInfo['userid']) { ?>
+                                <?php if ($this->is_accept == '2') { ?>
+                                    <div class="alert alert-warning fade in">
+                                        You Can not accept this job as you have allready confirmed a job within the 4 hours time frame of this job.
+                                    </div>
+                                <?php } ?>
+
+                            <?php } ?>
+
+                            <?php if ($this->event['sitter_user_id'] != $this->userInfo['userid']) { ?>
+                                <?php if ($this->is_accept == '1') { ?>
+                                    <div class="alert alert-warning fade in">
+                                        You Can not accept more than two jobs in a same day.
+                                    </div>
+                                <?php } ?>
+
+                            <?php } ?>
+                        <?php } ?>
+<?php 
+							$newstartdate = strtotime('-3 hours',  strtotime($this->event['job_start_date']));
+							$newendate= strtotime('+3 hours', strtotime($this->event['job_end_date']));
+							if ($newstartdate<=time() && $newendate>=time()) { ?>
+                            <div class="alert alert-info fade in">
+                                <p><span><i class="fa fa-user"></i></span> Client Name: <span class="parentinfo"><?php echo $this->event['firstname']." ".$this->event['lastname'];  ?></span></p>
+                            	<p><span><i class="fa fa-phone-square"></i></span> Contact Number: <span class="parentinfo"><?php echo $this->event['phone'];  ?></span></p>
+                            	<p><span><i class="fa fa-envelope"></i></span> Email: <span class="parentinfo"><?php echo $this->event['username'];  ?></span></p>
+                            </div>
+                        <?php } ?> 
+
+                        <div class="col-sm-6">
+                            <h4>Date and Time</h4>
+                            <div class="border-top m-bot20"></div>
+                            <div class="form-group clearfix">
+                                <label for="cname" class="control-label col-lg-3">Start Date/Start Time:</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control " name="some1" minlength="2" type="text" id="some1" value="<?php echo date(DATETIME_FORMAT, strtotime($this->event['job_start_date'])); ?>" />
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <label class="control-label col-lg-3">End Date/End Time:</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control " name="some2" type="text"  id="some2" value="<?php echo date(DATETIME_FORMAT, strtotime($this->event['job_end_date'])); ?>" />
+                                </div>
+                            </div>
+
+				<?php if(in_array($this->event['job_status'], array('new','pending','confirmed'))){
+				$status_class = ' alert-info';
+				}
+				elseif(in_array($this->event['job_status'], array('completed','closed'))) 
+				{
+					$status_class = ' alert-success';
+				}
+				else {
+					$status_class = ' alert-danger';
+				}
+				?>
+			    <div class="alert<?php echo $status_class; echo $cb;  ?> fade in" id="info">
+                                Job Status: <strong><?php echo $this->event['jstatus'] ?></strong>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <h4>Address</h4>
+                                <div class="border-top m-bot20"></div>
+                                <?php if ($this->address['billing_name'] != '') { ?>
+                                    <div class="form-group clearfix">
+                                        <label for="cname" class="control-label col-lg-3">Hotel</label>
+                                        <div class="col-lg-9">
+                                            <input name="som16" type="text" class="form-control" id="some16" value="<?php echo $this->address['billing_name'] ?>" />
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                                <?php if ($this->address['address_1'] != '') { ?>
+                                    <div class="form-group clearfix">
+                                        <label for="cname" class="control-label col-lg-3">Cross Street</label>
+                                        <div class="col-lg-9">
+                                            <input name="som16" type="text" class="form-control" id="some16" value="<?php echo $this->address['address_1'] ?>" />
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                                <div class="form-group clearfix">
+                                    <label for="cname" class="control-label col-lg-3">Street Address</label>
+                                    <div class="col-lg-9">
+                                        <input name="some15" type="text" class="form-control" id="some15" value="<?php echo $this->address['streat_address'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-lg-3">City</label>
+                                    <div class="col-lg-9">
+                                        <input name="some17" type="text" class="form-control" id="some17" value="<?php echo $this->address['city'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-lg-3">Zip Code</label>
+                                    <div class="col-lg-9">
+                                        <input name="some17" type="text" class="form-control" id="some17" value="<?php echo $this->address['zipcode'] ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-lg-3">State</label>
+                                    <div class="col-lg-9">
+                                        <input name="some17" type="text" class="form-control" id="some17" value="<?php echo $this->states[$this->address['state']] ?>" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <h4>Children</h4>
+                            <div class="border-top m-bot20"></div>
+                            <div class="">
+                                <?php if (!empty($this->children)) { ?>  
+                                    <?php foreach ($this->children as $child) { ?>
+                                        <div class="Children_pic col-sm-3">
+                                            <?php if ($child['thumb_image'] != '') { ?>
+                                                <img src="<?php echo SITE_URL . $child['thumb_image'] ?>"  />
+                                            <?php } else { ?>
+                                                <img alt="No Image" src="<?php echo SITE_URL . 'resource/img/noimage.jpg' ?>"  />
+                                            <?php } ?>                                
+                                        </div>
+                                        <div class="bio-desk col-sm-9">
+                                            <h4 class="terques"><?php echo $child['child_name'] ?> </h4>
+                                            <p><b>Age :</b> <?php echo $this->age($child['dob']) ?></p>
+                                            <p><b>Allergies :</b><?php echo $child['allergy_status'] ?></p>
+                                            <?php if ($child['allergy_status'] == 'Yes') { ?>	 
+                                                <?php echo $child['allergies'] ?><br /><br />
+                                            <?php } ?>
+                                            <p><b>Medications :</b><?php echo $child['medicator_status'] ?></p>
+
+                                            <?php if ($child['medicator_status'] == 'Yes') { ?>	 
+                                                <?php echo $child['medicator'] ?><br /><br />
+                                            <?php } ?>
+                                            <p><b>Helpful Hints :</b>  <?php echo $child['notes'] ?></p>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="border-top m-bot20"></div>    
+                                    <?php }
+                                } ?>       
+                            </div>
+
+
+                            <div class="form-group clearfix">
+                                <h4>Sitter Requirements</h4>
+                                <div class="border-top m-bot20"></div>
+                                <div class="clearfix">
+                                    <div class="checkboxes clearfix">
+                                            <?php if (!empty($this->jobPreferences)) { ?>
+                                            <ul>
+                                                <?php foreach ($this->jobPreferences as $groupId => $group) { ?>
+                                                    <?php
+                                                    foreach ($group['prefer'] as $p) {
+                                                        if ($p['for_manage_sitter'] != 1) {
+                                                            ?>
+                                                            <li style="float:left;width:200px" >
+                                                                <label class="label_check"><input class="form-control" checked="checked" type="checkbox" name="prefer[]" value="<?php echo $p['prefer_id'] ?>" /> <?php echo $p['prefer_name'] ?></label> 
+                                                            </li>
+                                                        <?php }
+                                                    } ?>
+                                        <?php } ?>
+                                    <?php } ?>
+                                        </ul>                            
+                                        <div class="clearfix"> </div>                  
+                                    </div>
+
+                                    <?php if ($this->event['notes'] != '') { ?>
+                                        <h4 class="m-top20">Special Instructions</h4>
+                                        <div class="border-top m-bot20 m-top20"></div>
+                                        <div class="form-group ">
+                                            <label for="cname" class="control-label col-lg-3">Notes/ Instructions</label>
+                                            <div class="col-lg-12">
+                                                <textarea class="form-control"><?php echo $this->event['notes'] ?></textarea>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+
+                            <h4>Job Details</h4>
+                            <div class="border-top m-bot20"></div>
+
+                            <?php
+                            $start_date = $this->event['job_start_date'];
+                            $end_date = $this->event['job_end_date'];
+
+                            if ($this->event['job_status'] == 'completed') {
+                                $end_date = $this->event['completed_date'];
+                                
+                                if(strtotime($end_date) < strtotime($start_date)) {
+                                     $end_date = $this->event['job_end_date'];
+                                }
+                            }
+                            $end_date = new DateTime($end_date);
+                            $start_date = new DateTime($start_date);
+
+                            $interval = date_diff($end_date,$start_date);
+                            ?>
+                            <p><b>Hours :</b> <?php echo  $interval->format('%h:%i'); ?></p>
+                            <p><b>Kids :</b><?php echo $this->event['actual_child_count']; ?></p>
+
+                        </div>
+                        <div class="clearfix"></div>
+                        
+                        <?php if($this->event['note_by_sitter']!=''&& $this->event['note_by_sitter']!=null ){?>
+                                    <h4>Notes about job</h4> 
+                                    <div class="border-top m-bot20"></div>
+                                    <p><?php echo $this->event['note_by_sitter']; ?></p>
+                        <?php }?>
+                        
+                        <form class="cmxform form-horizontal tasi-form custom-form" method="post" action="<?php echo SITE_URL . 'sitters/jobs/' ?>">
+                            <div class="col-sm-6">
+                                <div class="m-bot20 m-top20">
+                                    <?php if ($timediff) { ?>
+                                        <?php if ($this->event['job_status'] == 'pending') { ?>
+                                            <input onclick="if (confirm('You are now going accept this job. Are you sure?'))
+                                                        return true;
+                                                    return false;" id="accept" class="btn btn-info" type="submit" name="jobaction[<?php echo $this->job_id ?>]" value="Accept" /> 
+                                                    <?php } elseif ($this->event['sitter_user_id'] == $this->userInfo['userid'] && $this->event['job_status'] == 'confirmed') { ?>
+
+
+                                                    <input onclick="if (confirm('You are now going cancel this job. Are you sure?'))
+                                                        window.location = '<?php echo SITE_URL . 'sitters/cancelconfirmed/job/' . $this->job_id ?>';
+                                                    return false" class="btn btn-warning" type="button" name="jobaction[<?php echo $this->job_id ?>]" value="Cancel" id="reject"/> 
+                                               <?php } ?>
+                                            <?php } 
+$jobstatus=$this->event['jstatus']=='Open'?'pending':strtolower($this->event['jstatus']) 
+?>
+                                    <input class="btn btn-default" type="button" onclick="window.location.href = '<?php echo SITE_URL . 'sitters/jobs/view/'.$jobstatus.'' ?>'" value="Back" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+                
+            </div>
+    </section>
+</div>
+</div>
+
+<!-- page end-->
+</section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+<script>
+    $(document).ready(function () {
+        $('input,textarea').attr('disabled', true);
+        $('input[type=submit],input[type=button]').attr('disabled', false);
+    });
+
+<?php if ($this->event['sitter_user_id'] == $this->userInfo['userid']) { ?>
+    <?php if ($hourdiff < 48) { ?>
+            $("#reject").hide();
+    <?php } ?>
+<?php } ?>
+
+
+<?php if ($this->is_accept != '3') { ?>
+        $("#accept").hide();
+<?php } ?>
+
+</script>

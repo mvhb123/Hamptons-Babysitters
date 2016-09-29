@@ -1,0 +1,108 @@
+<div class="inner-container">
+				
+				<!-- Main content – all content is within boxes. Feel free to add your boxes (see the examples on the bottom of this document) and your content within -->
+			<div class="box box-100 altbox">
+				  <div class="boxin">
+				    <div class="header">
+				      <h3>Clients</h3>
+			        <a class="button" href="<?php echo ADMIN_URL?>client/profile">Add New Client&nbsp;»</a>
+			        <?php /*<div style="float:right">
+			        <input class="txt" name="search" value="<?php echo $this->searchKeyword?>" /> <a class="button" href="<?php echo ADMIN_URL?>client/">Search&nbsp;»</a>
+			       Filter By
+			        <select >
+			        <option>Filter </option>
+			        <option>Active</option>
+			        <option>Inactive</option>
+			        </select>
+			        </div>*/?>
+			        </div>
+				    <div class="content">
+<table border="1" style="max-width:100%">
+<thead>
+<tr>
+<th><a href="<?php echo $this->url(array('key'=>'firstname','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='firstname'? 'desc' :'asc' ))?>">Name</a></th>
+<th><a title="Sort" href="<?php echo $this->url(array('key'=>'joining_date','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='joining_date'? 'desc' :'asc' ))?>">Joined Date</a></th>
+<th><a href="<?php echo $this->url(array('key'=>'available_credits','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='available_credits'? 'desc' :'asc' ))?>">Available credits</a></th>
+<th><a href="<?php echo $this->url(array('key'=>'open_requests','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='open_requests'? 'desc' :'asc' ))?>">Open Requests</a></th>
+<th><a href="<?php echo $this->url(array('key'=>'events_compeleted','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='events_compeleted'? 'desc' :'asc' ))?>">Completed Events</a></th>
+<th>Phone</th>
+<th>Email</th>
+<th>Location</th>
+<th>Actions </th>
+
+
+</tr>
+ <form name="searchform" method="post">
+			              <tr>
+				            <td class="tc"><input  type="text" class="txt resettext" name="fullname" size="15" value="<?php echo $this->searchParams['fullname']?>" placeholder="Name" /> </td>
+				            <td class="tc"></td>
+				            <td class="tc"></td>
+				            <td class="tc"></td>
+				            <td class="tc"></td>
+				           
+				            <td class="tc"><input type="text" class="txt" name="phone" placeholder="Phone" value="<?php echo $this->searchParams['phone']?>" size="8"/></td>
+				            <td class="tc"><input type="text" class="txt" name="email" placeholder="Email" size="8" value="<?php echo $this->searchParams['email']?>" /></td>
+				            <td class="tc"><input type="text" class="txt" name="current_city" placeholder="City" size="8" value="<?php echo $this->searchParams['current_city']?>" /></td>
+				           
+				            <td class="tc"><input type="submit" name="filter" value="Filter"  /></td>
+			              </tr>
+			              
+			              <tr>
+			              <td colspan="9">
+			              
+			     Misc Info: <input class="txt" type="text" name="miscinfo" value="<?php echo $this->searchParams['miscinfo']?>" />
+			     &nbsp;&nbsp;&nbsp;&nbsp;
+			     
+			     Joined Date: 
+			     <input class="txt" type="text" name="joining_start_date" value="<?php echo $this->searchParams['joining_start_date']?>" />
+					Between
+			     <input class="txt" type="text" name="joining_end_date" value="<?php echo $this->searchParams['joining_end_date']?>" />
+			    
+			     &nbsp;&nbsp;&nbsp;&nbsp;
+			     
+			     <br clear="all">
+			      &nbsp;&nbsp;&nbsp;&nbsp;<input title="Search Clients "  type="submit" name="filter" value="Search" class="button altbutton fr"  />     
+			              </td>
+			              
+			              </tr>
+			              
+			              </form>
+</thead>
+<?php if(!empty($this->clients['rows'])){ ?>
+<tbody>
+<?php foreach($this->clients['rows'] as $client){?>
+	<tr>
+		<td><a title="Edit"  href="<?php echo ADMIN_URL?>client/profile/modify/<?php echo $client['client_id']?>" > <?php echo $client['firstname'].' '.$client['lastname']?></a> </td>
+		<td><?php echo date(DATE_FORMAT,strtotime($client['joining_date']))?></td>
+		
+		<td><?php echo $client['available_credits']?> </td>
+		<td><a href="<?php echo ADMIN_URL.'client/events/user/'.$client['client_id'].'/listevents/jobs/'?>" ><?php echo $client['open_requests']?> </a></td>
+		<td><?php echo $client['events_compeleted']?> </td>
+		<td><?php echo $client['phone']?> </td>
+		<td><a href="mailto:<?php echo $client['username']?>" ><?php echo $client['username']?></a> </td>
+		<td><?php echo $client['current_city']?> </td>
+		<td>
+		<ul class="actions"><li>
+		<a title="Edit" class="ico" href="<?php echo ADMIN_URL?>client/profile/modify/<?php echo $client['client_id']?>" > 
+		<img alt="edit" src="<?php echo SITE_URL.'resources/' ?>img/led-ico/pencil.png">
+		</a></li><li>
+		<a class="ico" onclick="if(confirm('Are you sure wants to delete \'<?php echo $client['firstname'].' '.$client['lastname']?>\'?'))return true;else return false;" title="Delete" href="<?php echo ADMIN_URL?>client/delete/id/<?php echo $client['client_id']?>">
+		<img alt="delete" src="<?php echo SITE_URL.'resources/' ?>img/led-ico/delete.png">
+		</a></li>
+		</ul>
+		 </td>
+	</tr>
+
+<?php }?>
+</tbody>
+<?php }?>
+</table>
+
+<?php
+ echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml'); 
+?>
+			        </div>
+			      </div>
+			  </div>
+				<br clear="all" />
+			</div>

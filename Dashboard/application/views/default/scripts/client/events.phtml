@@ -1,0 +1,1164 @@
+<?php
+$continueSubmit = true;
+$childStyle = 'style="display:none"';
+
+$errors = $this->eventsForm->getMessages();
+if (!empty($errors))
+    $this->errorMessage = 'Error while create/update jobs! Please verify your fields';
+
+foreach ($errors as $key => $err) {
+    if (!isset($err[0])) {
+        foreach ($err as $key2 => $r)
+            $er[$key . '[' . $key2 . ']'] = implode(', ', $r);
+    } else
+        $er[$key] = implode(', ', $err);
+}
+$errors = $er;
+
+
+?>
+
+
+<?php
+//$child_error=$this->childError;
+
+$in = Zend_Controller_Front::getInstance()->getRequest()->getQuery('msg');
+
+$payment_error = Zend_Controller_Front::getInstance()->getRequest()->getQuery('error');
+
+?>
+<<style>
+<!--
+.cerror{
+        color: #B94A48;
+
+    }  
+    
+    .cerror_show{
+        color: red;
+        margin-left: 10px;
+    }  
+-->
+</style>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        <h3><?php if ($this->searchParams['modify'] > 0) { ?> Modify Job <?php
+                                echo $this->jobnumber($this->searchParams['modify']);
+                            } else {
+                                ?>Add New Job<?php } ?></h3>
+                    </header>
+
+
+                    <div class="panel-body">
+
+                        <?php if ((isset($in)) && (!empty($in))) { ?>
+                            <div class="emessage"><?php echo $in; ?></div>
+                        <?php } ?>
+
+
+
+
+
+
+
+                        <?php if ($_SESSION['jobSuccess'] != '') { ?>
+                            <div class="alert alert-success fade in">
+                                <p> <?php
+                                    echo $_SESSION['jobSuccess'];
+                                    unset($_SESSION['jobSuccess']);
+                                    ?></p>
+                            </div>
+                        <?php } ?>
+
+
+                        <?php if ($payment_error != 'payment') { ?>
+
+                            <?php if ($this->searchParams['msg'] != '') { ?>
+                                <div class="smessage">
+                                    <p>Your message was sent successfully</p>
+                                </div>
+                            <?php }
+                            ?>
+                        <?php }
+                        ?>
+
+
+
+
+                        <?php if (strtotime($this->event['jobs_posted_date']) > 0) { ?>
+                            <div class="alert alert-info fade in">
+                                <p>Job Posted
+                                    Time: <?php echo date(DATETIME_FORMAT, strtotime($this->event['jobs_posted_date'])) ?></p>
+                            </div>
+
+
+                            <?php
+                            $timeover = time() - strtotime($this->event['jobs_posted_date']) > 86400;
+                            if ($timeover) {
+                                ?>
+
+                                <div class="alert alert-success fade in">
+                                    <p>We are currently processing your request. To modify job details please cancel
+                                        this job and resubmit a new job with correct details.
+                                    </p>
+                                </div>
+
+                            <?php }
+                            ?>
+                        <?php } ?>
+
+                        <?php if ($this->event['job_status'] == "cancelled") { ?>
+                            <div class="alert alert-danger fade in">
+                                <p>Job has been cancelled</p>
+                            </div>
+
+                        <?php } ?>
+
+
+                        <form class="cmxform form-horizontal tasi-form custom-form" id="eventsform" method="post"
+                              enctype="multipart/form-data" action="<?php echo $this->eventsForm->getAction(); ?>">
+                            <dl class="zend_form">
+                                <section class="clearfix">
+
+                                    <div class="col-sm-6">
+                                        <h4>Date and Time</h4>
+
+                                        <div class="border-top m-bot20"></div>
+
+
+                                        <div class="form-group ">
+                                            <label class="control-label col-lg-3">Start Date/Time</label>
+
+                                            <div class="col-lg-9">
+                                                <div class="input-group date dtime" data-date-format="mm/dd/yyyy h:i a"
+                                                     data-date-viewmode="years">
+                                                    <input type="text" name="start_date" id="start_date"
+                                                           value="<?php echo date(DATETIME_FORMAT, strtotime($this->eventsForm->start_date->getValue())) ?>"
+                                                           class="form-control datep" readonly=""
+                                                           placeholder="Actual Start Time">
+
+                                                    <div class="input-group-btn">
+                                                        <button type="button" class="btn btn-danger date-set"><i
+                                                                class="fa fa-calendar"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <small>Click on field to change date/time</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group ">
+                                            <label class="control-label col-lg-3">End Date/Time</label>
+
+                                            <div class="col-lg-9">
+                                                <div class="input-group date dtime" data-date-format="mm/dd/yyyy h:i a"
+                                                     data-date-viewmode="years">
+                                                    <input type="text" name="end_date" id="end_date"
+                                                           value="<?php echo date(DATETIME_FORMAT, strtotime($this->eventsForm->end_date->getValue())) ?>"
+                                                           class="form-control datep" readonly=""
+                                                           placeholder="Actual End Time">
+
+                                                    <div class="input-group-btn">
+                                                        <button type="button" class="btn btn-danger date-set"><i
+                                                                class="fa fa-calendar"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <small>Click on field to change date/time</small>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="alert alert-success fade in" id="ok" style="display:none"></div>
+                                        <div class="alert alert-block alert-danger fade in" id="error"
+                                             <?php if ($this->errorMessageCredits == '') { ?>style="display:none" <?php } ?>><?php echo $this->errorMessageCredits ?></div>
+
+
+                                        <div class="alert alert-info fade in" id="info">
+                                            You have <strong><?php echo $this->credits ?> Credits </strong>
+                                            available. <?php if ($this->credits <= 0) { ?> <a
+                                                href="<?php SITE_URL ?>buycredits/" title="Go to buy credits">Buy
+                                                Credits Now</a><?php } ?>
+                                        </div>
+
+                                        <div class="alert alert-info fade in" id="info">
+                                            <a onclick="open_box();
+                                                    return false;" href="<?php echo SITE_URL ?>buycredits/"
+                                               title="Click here for short-term custom booking">Click here for
+                                                short-term custom booking</a>
+                                        </div>
+
+                                        <h4>Location</h4>
+
+                                        <div class="border-top m-bot20"></div>
+                                        <div class="alert alert-block alert-danger fade in" id="other_error"
+                                             style="display:none"></div>
+
+                                        <div class="radiop">
+
+
+                                            <?php
+                                            if (!empty($this->addresses)) {
+
+                                                $states = $this->eventsForm->other->state->getMultiOptions();
+                                                ?>
+                                                <?php foreach ($this->addresses as $address) { ?>
+                                                    <div class="clearfix"></div>
+
+
+                                                    <label class="label_radio">
+                                                        <input <?php echo $address['address_id'] == $this->selectedAddress || ((int)$this->selectedAddress <= 0 && $address['address_type'] == 'local') ? 'checked="checked"' : ''; ?>
+                                                            type="radio" name="address_id"
+                                                            value="<?php echo $address['address_id'] ?>"
+                                                            class="form-control"/>
+                                                        <strong><?php echo strtoupper($address['address_type']) ?>
+                                                            ADDRESS</strong>
+
+                                                        <br/>
+                                                        <?php if ($address['billing_name'] != '') { ?><p><b>Hotel
+                                                            Name:</b> <?php echo $address['billing_name'] ?>
+                                                            </p> <?php } ?>
+                                                        <?php if ($address['address_1'] != '') { ?><p><b>Cross
+                                                            Street: </b><?php echo $address['address_1'] ?>
+                                                            </p><?php } ?>
+                                                        <p><b>Street
+                                                                Address:</b> <?php echo $address['streat_address'] ?>
+                                                        </p>
+
+                                                        <p><b>City: </b><?php echo $address['city'] ?></p>
+
+                                                        <p><b>Zip Code: </b><?php echo $address['zipcode'] ?> </p>
+
+                                                        <p><b> State:</b> <?php echo $states[$address['state']] ?> </p>
+                                                    </label>
+
+                                                <?php } ?>
+
+                                            <?php } ?>
+
+
+                                            <div class="clearfix"></div>
+
+
+                                            <label class="label_radio">
+                                                <input class="form-control" type="radio" name="address_id"
+                                                       id="address_id_other" value="other"/>
+                                                <strong>ALTERNATE ADDRESS</strong> (Please specify below if location
+                                                differs from your local address)
+                                            </label>
+
+
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div id="other_address" style="display:none">
+
+                                            <div class="form-group ">
+                                                <label for="curl" class="control-label col-lg-3">Hotel Name: (if
+                                                    applicable):</label>
+
+                                                <div class="col-lg-9">
+                                                    <input name="other[billing_name]" type="text" class="form-control"
+                                                           id="some16" value=""/></div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="curl" class="control-label col-lg-3">Street Address:</label>
+
+                                                <div class="col-lg-9">
+                                                    <input type="text" class="form-control required"
+                                                           name="other[streat_address]" id="local_streat_address"
+                                                           value="<?php echo $this->eventsForm->other->streat_address->getValue() ?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="curl" class="control-label col-lg-3">Cross Street:</label>
+
+                                                <div class="col-lg-9">
+                                                    <input type="text" name="other[address_1]" id="local_address_1"
+                                                           class="form-control required"
+                                                           value="<?php echo $this->eventsForm->other->address_1->getValue() ?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="curl" class="control-label col-lg-3">City:</label>
+
+                                                <div class="col-lg-9">
+                                                    <input name="other[city]" id="local_city" type="text"
+                                                           class="form-control required"
+                                                           value="<?php echo $this->eventsForm->other->city->getValue() ?>"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="curl" class="control-label col-lg-3">State:</label>
+
+                                                <div class="col-lg-9">
+                                                    <select id="local_state" name="other[state]"
+                                                            class="form-control required">
+
+                                                        <?php foreach ($this->eventsForm->other->state->getMultiOptions() as $key => $option) { ?>
+                                                            <option
+                                                                value="<?php echo $key ?>" <?php echo $this->eventsForm->other->state->getValue() == $key ? 'checked="checked"' : '' ?>><?php echo $option ?></option>
+                                                        <?php } ?>
+
+                                                    </select></div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <label for="curl" class="control-label col-lg-3">Zip Code:</label>
+
+                                                <div class="col-lg-9">
+                                                    <input name="other[zipcode]" id="local_zipcode" type="text"
+                                                           class="form-control required"
+                                                           value="<?php echo $this->eventsForm->other->zipcode->getValue() ?>"/>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h4>Children</h4>
+
+                                        <div class="border-top m-bot20"></div>
+                                        <div class="">
+
+                                            <?php if (!empty($this->children)) { ?>
+                                                <?php foreach ($this->children as $child) { ?>
+
+
+                                                    <div class="btn-group" data-toggle="buttons">
+                                                        <label
+                                                            class=" _parent_div btn btn-info chk <?php echo in_array($child['child_id'], $this->selectedChild)||!(int)$this->searchParams['modify'] ? 'active ' : ''; echo in_array($child['child_id'], $this->selectedChild) && (int)$this->searchParams['modify']?'disabled':'' ?>">
+                                                            <input  job_id="<?php echo $this->searchParams['modify'];?>" class="child_checkbox  _child_checkboc" autocomplete="off"
+                                                                   type="checkbox"
+                                                                   value="<?php echo $child['child_id'] ?>" <?php echo in_array($child['child_id'], $this->selectedChild) || !(int)$this->searchParams['modify'] ? 'checked="checked"' : ''; ?>
+                                                                   name="child[]"/>
+
+                                                            <span class="glyphicon glyphicon-ok _child_span"></span>
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="Children_pic col-sm-3">
+                                                        <?php if ($child['thumb_image'] != '') { ?>
+                                                            <img src="<?php echo SITE_URL . $child['thumb_image'] ?>"/>
+                                                        <?php } else { ?>
+                                                            <img alt="No Image"
+                                                                 src="<?php echo SITE_URL . 'resource/img/noimage.jpg' ?>"/>
+                                                        <?php } ?>
+
+
+                                                    </div>
+                                                    <div class="bio-desk col-sm-9">
+                                                        <h4 class="terques"><?php echo $child['child_name'] ?> </h4>
+
+                                                        <p><b>Age :</b> <?php echo $this->age($child['dob']) ?></p>
+
+                                                        <p><b>Allergies :</b><?php echo $child['allergy_status'] ?></p>
+                                                        <?php if ($child['allergy_status'] == 'Yes') { ?>
+                                                            <?php echo $child['allergies'] ?><br/><br/>
+                                                        <?php } ?>
+                                                        <p><b>Medications :</b><?php echo $child['medicator_status'] ?>
+                                                        </p>
+
+                                                        <?php if ($child['medicator_status'] == 'Yes') { ?>
+                                                            <?php echo $child['medicator'] ?><br/><br/>
+                                                        <?php } ?>
+                                                        <p><b>Special Needs: </b><?php echo trim($child['special_needs_status']); ?></p>
+
+                                                        <?php if ($child['special_needs_status'] == 'Yes') { ?>	 
+                                                            <?php echo $child['special_needs'] ?><br /><br />
+        												<?php } ?>
+                                                        <p><b>Helpful Hints :</b> <?php echo $child['notes'] ?></p>
+
+
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="border-top m-bot20"></div>
+
+
+                                                    <?php
+                                                }
+                                            } else {
+                                                $childStyle = 'style="display:block"';
+                                                ?>
+                                                <div class="alert alert-block alert-danger fade in"
+                                                     id="child_error" <?php echo $childStyle ?>><p> Must add child’s
+                                                        profile to complete job request. <a
+                                                            href="<?php echo SITE_URL . 'client/children/' ?>"> Add
+                                                            Child Now</a></p></div>
+
+                                            <?php } ?>
+
+
+                                            <div class="alert alert-block alert-danger fade in" id="child_error"
+                                                 style="display:none"><p> Please select child to schedule
+                                                    babysitter. </p>
+                                            </div>
+                                        </div>
+
+
+                                        <?php if ($this->childError != '') { ?>
+                                            <div class="alert alert-block alert-danger fade in"><p>Please add child to
+                                                    make job</p></div>
+                                        <?php } ?>
+
+                                        
+                                        <input type="button" value="Add Child" onclick="addchild()" class="btn btn-info"/>
+		
+		
+										<div id="mydiv" class="mar-top" style="display:none" >
+                                                    <h4>Add Child</h4>
+                                                    <div class="border-top m-bot20"></div>
+
+                                                    <div class="form-group ">
+                                                        <label for="cname" class="control-label col-lg-3">Child's Name</label>
+                                                        <div class="col-lg-9">
+                                                            <input class="form-control" type="text" id="child_name" name="child_name" />
+                                                            <span class="cerror" id="name_child"></span>
+                                                        </div>
+                                                    </div>
+                                                    
+		                                          <div class="form-group ">
+		                                             <label class="control-label col-lg-3">Gender</label>
+		                                                <div class="col-lg-9">
+		                                                <select class="form-control" id="sex" name="sex">
+		                                                 <option value=""  selected="selected">Select Gender</option>
+		                                                	 <?php foreach ($this->eventsForm->sex->getMultiOptions() as $key=>$value) { ?>
+						                                        <option value="<?php echo $key; ?>"><?php echo $value; ?></option>
+						                                            <?php } ?> 
+		                                				</select>
+		                                				<span class="cerror" id="child_gender"></span>
+		                                                </div>
+		                                       	 </div>	
+                                                    
+                                                    <div class="form-group ">
+                                                        <label class="control-label col-lg-3">Date of Birth</label>
+                                                        <div class="col-lg-9">
+                                                            <div data-date-viewmode="years" data-date-format="mm/dd/yyyy"   class="input-group date default-date-picker clearfix">
+                                                                <input type="text" readonly size="16" class="form-control datep" id="dob" name="dob">
+                                                                <span class="input-group-btn" style="width: auto">
+                                                                    <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                                                </span>
+
+                                                            </div> 
+                                                            <span class="cerror" id="bod"></span>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group ">
+                                                        <label for="curl" class="control-label col-lg-3">Allergies</label>
+                                                        <div class="col-lg-9 radiop">
+                                                            <label class="label_radio" for="radio-13">
+                                                                <input  id="radio-13" class="form-control " type="radio" name="allergy_status" value="Yes"> Yes 
+                                                            </label>
+                                                            <label class="label_radio" for="allergy_status">
+                                                                <input  class="form-control" type="radio"  name="allergy_status" id="allergy_status" value="No" > No 
+                                                            </label>
+
+                                                            <div class="clearfix"></div> 
+                                                            <span class="cerror" id="status_allergy"></span>
+
+                                                            <div class="col-lg-9 allergies_text" style="display:none">
+                                                                <!--                                             <label>-->
+                                                                <textarea placeholder="Allergies can be life threatening. Please describe in detail. " name="allergies" id="allergies"class="form-control"></textarea>
+                                                                <div>     
+                                                                    <small>Allergies can be life threatening. Please describe in detail. 
+                                                                    </small>     
+                                                                </div>
+                                                                <span class="cerror" id="text_allergy"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group ">
+                                                        <label for="curl" class="control-label col-lg-3">Medication</label>
+                                                        <div class="col-lg-9 radiop">
+                                                            <label class="label_radio" for="radio-15">
+                                                                <input  id="radio-15"  class="form-control" type="radio"  name="medicator_status" value="Yes" > Yes 
+                                                            </label>
+                                                            <label class="label_radio" for="radio-14">
+                                                                <input  id="radio-14" class="radio" type="radio" name="medicator_status" value="No" > No 
+                                                            </label>
+                                                            <div class="clearfix"></div> 
+
+                                                            <span class="cerror" id="status_medicator"></span>
+                                                            <div class="col-lg-9 medicator_text" style="display:none">
+                                                                <!--                                             <label>-->
+                                                                <textarea placeholder="List all medications" name="medicator" id="medicator" class="form-control"></textarea>
+                                                                <div>
+                                                                    <small>List all medications </small>
+                                                                </div>
+                                                                <span class="cerror" id="text_medicator"></span>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    
+                                     <div class="form-group ">
+                                             <label class="control-label col-lg-3">Special Needs</label>
+                                                <div class="col-lg-9">
+                                                <select class="form-control" id="special_needs" name="special_needs">
+                                                 <option value="" selected="selected">Select if any</option>
+                                                	 <?php foreach ($this->eventsForm->special_needs->getMultiOptions() as $needs) { ?>
+				                                        <option value="<?php echo $needs['special_need']; ?>" <?php if($this->eventsForm->special_needs->getvalue()==$needs['special_need']){ echo 'selected="selected"';}?>><?php echo $needs['special_need']; ?></option>
+				                                            <?php } ?> 
+                                				</select>
+                                                </div>
+                                        </div>
+
+                                        <div class="form-group ">
+                                            <label for="cname" class="control-label col-lg-3">Favorite Food</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text" name="fav_food" id="fav_food" value="" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group ">
+                                            <label for="cname" class="control-label col-lg-3">Favorite Book</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text" name="fav_book" id="fav_book" value="" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group ">
+                                            <label for="cname" class="control-label col-lg-3">Favorite Cartoon</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="text" name="fav_cartoon" id="fav_cartoon" value="" />
+                                            </div>
+                                        </div>
+                                                    
+                                                    <div class="form-group ">
+                                                        <label for="curl" class="control-label col-lg-3">Helpfull hints</label>
+                                                        <div class="col-lg-9">
+                                                            <textarea name="cnotes" id="cnotes" class='form-control'></textarea>
+                                                            <small>(ie. Billy loves Thomas the Tank Engine and  needs Teddy for naps)  </small> </dd>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group ">
+                                                        <label class="control-label col-lg-3">Upload Picture</label>
+                                                        <div class="col-lg-9">
+                                                            <input type="hidden" name="MAX_FILE_SIZE" value="8388608" id="MAX_FILE_SIZE">
+                                                            <input class="file" type="file" id="c_image" name="image" />
+                                                            <span class="cerror" id="upload_image"></span>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group clearfix">
+                                                        <div class="m-bot20 m-top20">
+                                                            <input class="btn btn-danger" type="button" value="Add" onclick="add_children()" />
+                                                            <input class="btn btn-default" type="button"  value="Cancel" onclick="rechild()"/>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+                                    </div>
+									
+                                                
+                                                
+                                </section>
+
+
+                                <h4>Sitter Requirements</h4>
+
+                                <div class="border-top m-bot20"></div>
+
+                                <div>
+
+                                    <?php if (!empty($this->preferences)) { ?>
+                                        <table class="table table-bordered table-striped table-condensed cf">
+                                            <?php foreach ($this->preferences as $groupId => $group) { ?>
+                                                <tr>
+                                                    <td><?php echo $group['label'] ?></td>
+                                                    <td>
+
+
+                                                        <?php
+                                                        if (!empty($group['prefer']))
+                                                            foreach ($group['prefer'] as $p) {
+                                                                ?>
+                                                                <div class="checkbox col-sm-3" data-toggle="buttons">
+                                                                    <label
+                                                                        class="btn btn-info chk <?php echo in_array($p['prefer_id'], @array_keys((array)$this->jobPreference[$groupId]['prefer'])) ? 'active' : '' ?>">
+                                                                        <input
+                                                                            autocomplete="off" <?php echo in_array($p['prefer_id'], @array_keys((array)$this->jobPreference[$groupId]['prefer'])) ? 'checked="checked"' : '' ?>
+                                                                            type="checkbox" name="prefer[]"
+                                                                            value="<?php echo $p['prefer_id'] ?>"/>
+
+                                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                                    </label>
+
+                                                                    <?php echo $p['prefer_name'] ?>
+                                                                </div>
+
+                                                            <?php }
+                                                        ?> </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </table>
+                                    <?php } ?>
+                                </div>
+ 								
+ 								<h4>Special Needs</h4> 
+                                    <?php $sneeds = $this->eventsForm->special_need->getValue();
+                                    ?>
+                                    <div class="border-top m-bot20"></div>
+                                     <div class="form-group ">
+                                                <label class="control-label col-lg-3">Special Needs:</label>
+                                                <div class="col-lg-9">
+                                                <!--<select class="form-control" id="special_need" name="special_need">
+                                                 <option value="" <?php //if ($sneeds == '') { ?> selected="selected" <?php //} ?> >Select if any</option>
+                                                	 <?php //foreach ($this->eventsForm->special_need->getMultiOptions() as $needs) { ?>
+				                                        <option value="<?php //echo $needs['special_need']; ?>"
+				                                        <?php  //if ($sneeds == $needs['special_need']) { ?>
+				                                                    selected="selected" <?php //} ?>><?php //echo $needs['special_need']; ?></option>
+				                                            <?php //} ?> 
+                                				</select>
+                                                -->
+                                                    <input name="special_need" id="special_need" value="<?php echo $this->eventsForm->special_need->getValue() ?>" class="form-control"/>
+                                                </div>
+                                    </div>
+                                
+                                <h4>Special instruction</h4>
+
+                                <div class="border-top m-bot20"></div>
+                                <label for="some3">Special Requests/ Instructions:<br/>
+                                    <small>(ie. Prefer babysitter who is open to staying an hour or two later if
+                                        necessary)
+                                    </small>
+                                </label>
+
+                                <textarea name="notes" id="notes"
+                                          class="form-control"><?php echo $this->eventsForm->notes->getValue() ?></textarea>
+
+                                <br/>
+
+
+                                <?php if ($continueSubmit) { ?>
+                                    <input class="btn btn-info" type="submit"
+                                           value="<?php echo $this->searchParams['modify'] > 0 ? 'Update' : 'Book It' ?>"/>
+
+                                <?php } ?>
+
+                                <input
+                                    onclick="window.location = '<?php echo SITE_URL . 'client/events/user/' . $this->userid . '/listevents/jobs' ?>'"
+                                    class="btn btn-info" type="button" value="Back to Job Listing"/>
+
+
+                            </dl>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalSuccess"
+     class="modal fade in">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Contact Us</h4>
+            </div>
+            <div class="modal-body">
+                <form id="basic" method="post" action="<?php echo SITE_URL ?>misc/contact/?page=events"
+                      class="cmxform form-horizontal tasi-form custom-form">
+
+                    <div class="text-center">Please Fill up the form</div>
+
+                    </br>
+                    </br
+                    <div>
+
+                        <div class="col-md-4"> Name</div>
+                        <div class="col-md-8"
+                        ">
+                        <input type="text" name="name" id="name"
+                               value="<?php echo $this->userInfo['firstname'] . ' ' . $this->userInfo['lastname'] ?>"
+                               class="form-control"/>
+
+                    </div>
+
+                    </br>
+                    </br>
+
+                    <div>
+                        <div class="col-md-4"> Email</div>
+                        <div class="col-md-8">
+                            <input type="email" name="email" id="email"
+                                   value="<?php echo $this->userInfo['username'] ?>" class="form-control"/>
+
+                        </div>
+                    </div>
+                    </br>
+                    </br>
+                    <div>
+                        <div class="col-md-4">Number of days</div>
+
+                        <div class="col-md-8">
+                            <input placeholder="Number of days" type="text" name="numberofdays" id="numberofdays"
+                                   required="required" value="" class="form-control"/>
+                        </div>
+                    </div>
+                    </br>
+                    </br>
+                    <div>
+                        <div class="col-md-4">Budget</div>
+                        <div class="col-md-8">
+                            <input placeholder="Provide your budget" type="text" name="budget" id="budget" value=""
+                                   class="form-control"/>
+                        </div>
+                    </div>
+                    </br>
+                    </br>
+
+                    <div>
+                        <div class="col-md-4">Comments</div>
+                        <div class="col-md-8">
+
+                            <textarea required="required" placeholder="please provide details" name="comments"
+                                      class="form-control"></textarea>
+
+                        </div>
+                    </div>
+
+                    </br>
+                    </br>
+
+                    <div>
+                        <div class="col-md-12 right">
+                            <button class="btn btn-send" type="submit" value="Submit">Submit</button>
+                            <button class="btn btn-send" type="button" onclick="hide_popup()">Close</button>
+                        </div>
+                        </br>  </br>
+                        </br>  </br>
+
+
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!--main content end-->
+<!-- Right Slidebar start -->
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/jquery-validator.js"></script>
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/additional-methods-new.min.js"></script>
+
+
+<script>
+
+
+    var form_valid = true;
+
+    $(document).ready(function () {
+
+        <?php if (in_array($this->event['job_status'], array('confirmed', 'completed')) || $timeover) { ?>
+        $('input[type=button],input[type=submit]:not(#add_children_to_job)').hide();
+        $('input[type=checkbox],input[type=radio],textarea').attr('disabled', 'disabled');
+        <?php }
+        ?>
+
+
+        <?php if($this->event['job_status']=='cancelled'){?>
+        $('input[type=button],input[type=submit]').hide();
+        $('input[type=checkbox],input[type=radio],textarea').attr('disabled', 'disabled');
+
+
+        <?php }?>
+
+
+    });
+    $(document).ready(function () {
+        // validate signup form on keyup and submit
+
+        var validator = $("#eventsform").validate({
+            rules: {
+                start_date: {
+                    required: true
+                },
+                end_date: {
+                    required: true
+                },
+                'child[]': {
+                    required: true
+
+                },
+                address_id: {
+                    required: true
+                },
+                'other[address_1]': {
+                    required: function () {
+                        return $('#address_id_other').is(':checked')
+                    }
+                },
+                'other[streat_address]': {
+                    required: function () {
+                        return $('#address_id_other').is(':checked')
+                    }
+                },
+                'other[zipcode]': {
+                    required: function () {
+                        return $('#address_id_other').is(':checked')
+                    }
+                },
+                'other[city]': {
+                    required: function () {
+                        return $('#address_id_other').is(':checked')
+                    }
+
+                },
+                'other[state]': {
+                    required: function () {
+                        return $('#address_id_other').is(':checked')
+                    }
+                }
+
+            },
+            messages: {
+                start_date: {
+                    required: 'Please Select Job Start Date'
+                },
+                end_date: {
+                    required: 'Please Select Job End date.'
+                },
+                address_id: {
+                    required: 'Please Select address.'
+                },
+                'child[]': {
+                    required: 'Please select child to schedule babysitter.'
+                }
+            },
+            // the errorPlacement has to take the table layout into account
+            errorPlacement: function (error, element) {
+                //alert(element.attr('type'));
+                if (element.is(":radio")) {
+                    //$(".msg p").html('');
+                    $("#other_error").hide();
+                    error.appendTo($("#other_error"));
+                    if (error.html() != '')
+                        $("#other_error").show();
+                    else
+                        $("#other_error").hide();
+                }
+                else if (element.is(":checkbox")) {
+                    $("#child_error").show();
+                    //$(".msg p").html('');
+                    $("#child_error p").html('');
+                    error.appendTo($("#child_error p"));
+
+                    $("#child_error").show();
+                }
+                else {
+                    //  error.appendTo(element.parent());
+                    <?php if (!empty($errors)) { ?>
+                    error.appendTo(element.parent().next());
+                    <?php } else { ?>
+                    error.appendTo(element.parent());
+                    <?php } ?>
+
+                }
+            },
+
+
+            // specifying a submitHandler prevents the default submit, good for the demo
+            submitHandler: function () {
+                //$("#login").submit();
+
+                document.getElementById('eventsform').submit();
+
+            },
+            // set this class to error-labels to indicate valid fields
+            success: function (label) {
+                // set &nbsp; as text for IE
+                //checkCredits();
+
+
+                label.html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;").addClass("checked");
+            }
+        });
+
+        <?php
+        if (!empty($errors)) {
+            echo "validator.showErrors(" . json_encode($errors) . ");";
+        }
+        ?>
+
+        $(".child_checkbox").change(function () {
+            if ($(this).is(':checked')) {
+
+                $("#child_error").hide();
+
+            }
+
+            if ($(".child_checkbox:checked").length == 0)
+                if ($("#child_error p:eq(0)").html() != '')
+                    $("#child_error").show();
+        });
+
+        $("._child_checkboc").change(function () {
+            var _this = $(this);
+            if(_this.attr('job_id')!= '')
+            {
+                if ($(this).is(':checked')) {
+
+
+                    var url = base_url + 'client/updatechildjob';
+                    var datastring = '&child_id=' + _this.val() + '&job_id=' + _this.attr('job_id');
+                    var method = "POST";
+                    var function_name = 'updatechildjob';
+                    call_ajax_jquery_json_data_all(url, datastring, _this, method, true, 'json', 'before_common_process_theme', function_name);
+
+                }
+                else
+                {
+                    _this.attr('checked','checked')
+                    _this.parents('._parent_div').addClass('active');
+                    alert_notification('error','Update Child',"You can't remove child from job.")
+                    return false;
+                }
+            }
+
+        });
+
+
+    });
+    function updatechildjob(obj, _this) {
+        if (obj['status'] != '' && obj['status'] == 'success') {
+            _this.parents('._parent_div').addClass('disabled');
+            alert_notification('success','Update Child',obj.message)
+
+        } else if (obj['status'] != '' && obj['status'] == 'error') {
+
+            _this.parents('._parent_div').removeClass('active');
+            _this.parents('._parent_div').addClass('disabled');
+            alert_notification('error','Update Child',obj.message)
+        }
+        return false;
+
+    }
+
+    function checkCredits() {
+
+
+        $.ajax({
+            url: '<?php echo $this->url() ?>',
+            data: {start_date: $('#start_date').val(), end_date: $('#end_date').val(), check: 'credits'},
+            dataType: 'json',
+            success: function (data) {
+                //alert(data.required_credits);
+
+                if (parseInt(data.required_credits) <= 0) {
+
+                    $("#ok").hide();
+                    $("#error").show();
+                    $("#error").html('<p>Start date should be less than end date</p>');
+                    form_valid = false;
+                    return false;
+                }
+                if (parseInt(data.calculated_credits) > 0) {
+                    $("#ok").show();
+                    $("#error").hide();
+                    $("#ok").html('<p>You are going to book for <strong>' + data.required_credits + ' day</strong> and ' + data.required_credits + ' credits will be used</p>');
+                    form_valid = false;
+                    //return false;
+                }
+                // else if (parseInt(data.required_credits<)
+
+
+                else {
+                    $("#ok").hide();
+                    $("#error").show();
+                    $("#error").html('<p>You are going to book for <strong>' + data.required_credits + ' days.</strong></p><p>You do not have enough credits to book you will be charged $35 for immidiate booking and $25 for normal booking per job. <a href="/webbabysitter/client/buycredits/" title="Go to Buy Credits"> Buy credits now</a></p>');
+                    form_valid = true;
+                }
+                //alert(data.available_credits);
+                //alert(data.calculated_credits);
+            }
+
+        });
+
+
+    }
+
+
+    function open_box() {
+        $('#myModalSuccess').modal('show');
+    }
+
+    function hide_popup() {
+        $('#myModalSuccess').modal('hide');
+    }
+
+
+    $("input[name=address_id]").change(function () {
+
+        if ($("input[name=address_id]:checked").val() == 'other')
+            $('#other_address').show();
+        else
+            $('#other_address').hide();
+
+    });
+
+
+    $("#start_date,#end_date").change(function () {
+
+        checkCredits();
+    });
+
+    
+    $('input[name=allergy_status]').click(function (event) {
+
+        if (this.value == 'Yes')
+            $('.allergies_text').slideDown();
+        else
+            $('.allergies_text').slideUp();
+    });
+    $('input[name=medicator_status]').click(function (event) {
+        if (this.value == 'Yes')
+            $('.medicator_text').slideDown();
+        else
+            $('.medicator_text').slideUp();
+    });
+    
+    function addchild(){
+        $("#mydiv").show();
+
+    }
+    function rechild(){
+        $("#mydiv").hide();
+    }
+
+    function add_children(){
+        var flag = true;
+        var childname = $("#child_name").val();
+        var dob = $("#dob").val();
+        var sex = $("#sex").val();
+        
+        var al_status = $('input:radio[name=allergy_status]:checked').val();
+        var me_status = $('input:radio[name=medicator_status]:checked').val();
+        if (!childname)  {
+            $("#name_child").html('Please enter the child name');
+            var flag = false;
+        }
+        if (!sex)  {
+            $("#child_gender").html('Please select the child gender');
+            var flag = false;
+        }
+        if (!dob){
+            $("#bod").html('Please enter the child date of birth');
+            var flag = false;
+        }
+
+        if (!al_status){
+            $("#status_allergy").html('Please Select allergy status of the child');
+            var flag = false;
+        }
+        if (al_status){
+            if (al_status == 'Yes'|| al_status == 'yes') {
+                var allergy_text = $("#allergies").val();
+                if (!allergy_text){
+                    $("#text_allergy").html('Please mention the allergies');
+                    var flag = false;
+                }
+                else{
+                    $("#text_allergy").html('');
+                    var flag = true;
+                }  }
+        }
+        if (!me_status) {
+            $("#status_medicator").html('Please Select medicator status of the child');
+            var flag = false;
+        }
+        if (me_status){
+            if (me_status == 'Yes'||me_status == 'yes'){
+                var medicator_text = $("#medicator").val();
+                if (!medicator_text){
+                    $("#text_medicator").html('Please mention the medications');
+                    var flag = false;
+                }
+            }
+        }
+        if ($('#c_image').val() == ''){
+            $('#upload_image').html('Please upload child\'s image');
+            var flag = false;
+    	}
+        else if ($('#c_image').val().split('.').pop().toLowerCase()){
+            var ext = $('#c_image').val().split('.').pop().toLowerCase();
+            if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+
+                $('#upload_image').html('Invalid File Extension');
+                var flag = false;
+            }
+        }
+
+        if (flag == true){
+            var al_status = $('input:radio[name=allergy_status]:checked').val();
+            var m_status = $('input:radio[name=medicator_status]:checked').val();
+            var FormDat = new FormData();
+            var myFile = $("#c_image")[0].files[0];
+            FormDat.append("child_name", $("#child_name").val());
+            FormDat.append("sex", sex);
+            FormDat.append("image", myFile);
+            FormDat.append("dob", $("#dob").val());
+            FormDat.append("allergies", $("#allergies").val());
+            FormDat.append("medicator", $("#medicator").val());
+            FormDat.append("allergy_status", al_status);
+            FormDat.append("medicator_status", m_status);
+            FormDat.append("notes", $("#cnotes").val());
+            FormDat.append("job_id", <?php echo ($this->searchParams['modify'])?$this->searchParams['modify']:0;?>);
+            FormDat.append("parent_id", <?php echo $this->userid; ?>);
+            FormDat.append("special_needs", $("#special_needs").val());
+            FormDat.append("fav_food", $("#fav_food").val());
+            FormDat.append("fav_book", $("#fav_book").val());
+            FormDat.append("fav_cartoon", $("#fav_cartoon").val());
+           
+            $.ajax({
+                url: "<?php echo SITE_URL . 'client/children' ?>",
+                cache: false,
+                contentType: false,
+                processData: false,
+                data: FormDat, // Setting the data attribute of ajax with file_data
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    if (data.status == 'success') {
+                    	 $("#mydiv").hide();
+                    	 parent.location.reload();
+                    }
+
+                    else {
+                        parent.location.reload();
+                    }
+                },
+                complete: function () {
+                },
+            });
+        }
+    }
+
+</script>

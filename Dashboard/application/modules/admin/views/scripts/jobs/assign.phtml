@@ -1,0 +1,292 @@
+
+<div class="inner-container">
+    <div class="box box-100 altbox">
+        <div class="boxin">
+            <div class="header">
+                <h3>#000007</h3>
+                <ul>
+                    <?php require_once('tabs.phtml'); ?>
+                </ul>
+            </div>
+            <div class="content pad20">
+                <form class="basic" action="" method="post" enctype="multipart/form-data">
+                    <div class="formbox floatleft w450">
+                        <h1 class="formheading">Selected Sitter</h1>
+                        <div class="childcontainer"> <div class="thumb"><img src="img/child.jpg" alt="" width="100" height="90" /></div>
+                            <div class="details">
+                                <h1><a href="#">Vicky Dulai</a></h1>
+                                <strong>Mob: </strong>1234567890<br />
+                                <strong>Home: </strong>1234567890 <br />
+                                <strong>Email: </strong>1234567890.
+                                <ul class="actions">
+                                    <li><a class="ico" href="#" title="edit"><img src="img/led-ico/pencil.png" alt="edit" /></a></li>
+                                    <li><a class="ico" href="#" title="delete"><img src="img/led-ico/delete.png" alt="delete" /></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <h1 class="formheading">Assigned Sitter</h1>
+                        <table cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th><span class="check">
+                                            <input class="check" type="checkbox" id="some7" name="some7" value="true" />
+                                        </span></th>
+                                    <th>Name</th>
+                                    <td>Preferred Contact</td>
+                                    <td>Email</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="first">
+                                    <th class="first"><span class="check">
+                                            <input class="check" type="checkbox" id="some" name="some" value="true" />
+                                        </span></th>
+                                    <!-- .first for first row of the table (only if there is thead) -->
+                                    <th class="first"><a href="#">Vicky Dulai</a></th>
+                                    <td>123456</td>
+                                    <td><a href="#">vicky@vicky.com</a></td>
+                                    <!-- a.ico-comms for comment-like backgrounds -->
+                                </tr>
+                                <tr>
+                                    <th><span class="check">
+                                            <input class="check" type="checkbox" id="some4" name="some4" value="true" />
+                                        </span></th>
+                                    <th><a href="3">Kimberly</a></th>
+                                    <td>1235465</td>
+                                    <td><a href="#">kimberly@kimberly.com</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br clear="all" />
+                        <input class="button altbutton" type="submit" value="Resend" /> <input class="button altbutton" type="submit" value="Remove" /> <!--<input class="button altbutton" type="submit" value="Assign" />--> 
+                    </div>
+                    <div class="formbox floatright w450">
+                        <h1 class="formheading">Search / Assign Sitters</h1>
+                        <ul class="preflist">
+                            <li class="sep"><strong>Child Preferences</strong> <a href="#">(+)Expand</a></li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                                    Infants up to 12mo</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Toddlers 1mo-2years </label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                </label>
+                                <label class="check">Preschool 3-5</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                                    Elementary 5-10</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Middle 10+</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                </label>
+                                two children</li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                                </label>
+                                three children </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Four children</label>
+                            </li>
+                        </ul>
+                        <ul class="preflist">
+                            <li class="sep"><strong>Town Preferences</strong> <a href="#">(+)Expand</a></li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                                    Amagansett</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Bridgehampton</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    East Hampton</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                                    East Quogue</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Hampton Bays</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Montauk</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                                    North Haven</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Quiogue</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Quogue</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                                    Sag Harbor</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Sagaponack</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Southampton</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                                    Wainscott</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Water Mill</label>
+                            </li>
+                            <li style="display:none;">
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                                    Westhampton</label>
+                            </li>
+                        </ul>
+                        <ul class="preflist2">
+                            <li class="sep"><strong>Other Preferences</strong> <a href="#">(-)Collapse</a></li>
+                            <li>
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some3" name="some3" value="true" checked="checked" />
+                                    Ok to drive children in own car</label>
+                            </li>
+                            <li>
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some8" name="some3" value="true" />
+                                    Ok to drive children in client's car</label>
+                            </li>
+                            <li>
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some8" name="some3" value="true" />
+                                    Ok with Dogs</label>
+                            </li>
+                            <li>
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some3" name="some3" value="true" checked="checked" />
+                                    Ok with Cats</label>
+                            </li>
+                            <li>
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some8" name="some3" value="true" />
+                                    Swimming</label>
+                            </li>
+                            <li>
+                                <label class="check">
+                                    <input class="check" type="checkbox" id="some8" name="some3" value="true" />
+                                    <select id="some18" name="some12">
+                                        <option value="val1" selected="selected">English</option>
+                                    </select></label>
+                            </li>
+                        </ul>
+                        <input class="button altbutton" type="submit" value="Search" />
+                        <h1 class="formheading">5 Sitters Found</h1>
+                        <table cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th><span class="check">
+                                            <input class="check" type="checkbox" id="some2" name="some2" value="true" />
+                                        </span></th>
+                                    <th>Name</th>
+                                    <td>Preferred Contact</td>
+                                    <td>Email</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="first">
+                                    <th class="first"><span class="check">
+                                            <input class="check" type="checkbox" id="some9" name="some2" value="true" />
+                                        </span></th>
+                                    <!-- .first for first row of the table (only if there is thead) -->
+                                    <th class="first"><a href="#">Vicky Dulai</a></th>
+                                    <td>123456</td>
+                                    <td><a href="#">vicky@vicky.com</a></td>
+                                    <!-- a.ico-comms for comment-like backgrounds -->
+                                </tr>
+                                <tr>
+                                    <th><span class="check">
+                                            <input class="check" type="checkbox" id="some10" name="some2" value="true" />
+                                        </span></th>
+                                    <th><a href="3">Kimberly</a></th>
+                                    <td>1235465</td>
+                                    <td><a href="#">kimberly@kimberly.com</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br clear="all" /><input class="button altbutton" type="submit" value="Assign" /> 
+                    </div>
+                    <br clear="all" />
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <br clear="all" />
+</div>
+<!-- .inner-container -->
+
+<form method="post" action="<?php echo ADMIN_URL . 'jobs/assign/jobid/' . $this->job_id . '/' ?>">
+    <ul >
+        <?php foreach ($this->sitters['rows'] as $sitter) { ?>
+            <li><input <?php echo isset($this->sentJobs[$sitter['sitter_id']]) ? 'checked="checked"' : '' ?> type="checkbox"  name="sitters[]" value="<?php echo $sitter['sitter_id'] ?>" /><?php echo $sitter['firstname'] . ' ' . $sitter['lastname'] ?></li>
+
+        <?php } ?>
+    </ul>
+
+
+
+    <input type="submit" value="Send Request" />
+</form>
+<pre>
+    <?php
+    print_r($this->sitters);
+    print_r($this->event);
+
+    print_r($this->userid);
+    print_r($this->children);
+    print_r($this->selectedChild);
+    print_r($this->selectedAddress); ///= $this->event['address_id'];
+
+    print_r($this->addresses);
+    ?>

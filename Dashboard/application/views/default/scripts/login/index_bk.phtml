@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="content-style-type" content="text/css" />
+        <meta http-equiv="content-script-type" content="text/javascript" />
+        
+        <title>Log in</title>
+        
+        <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resources/css/black.css" media="screen, projection, tv" />  		
+        
+        
+        
+        
+		<script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery.min.js"></script>
+		<!-- Adding support for transparent PNGs in IE6: -->
+
+		
+    </head>
+    <?php 
+    
+
+   $this->errorMessage=$this->error;
+   $errors = $this->loginform->getMessages();
+
+foreach($errors as $key =>$err){
+	if(!isset($err[0])){
+		foreach($err as $key2=>$r)
+			$er[$key.'['.$key2.']']=implode(', ',$r);
+		
+	}
+	else $er[$key]=implode(', ',$err);
+	
+}
+$errors = $er;?>  
+    <body id="login">
+
+		<div class="box box-50 altbox">
+			<div class="boxin">
+				<div class="header">
+					<h3><a href="/" title="Go Home"> <img src="<?php echo SITE_URL?>resources/img/logo-login.png" alt="Hamptons babysitters " /></a></h3>
+					<ul>
+						<li><a id="login_btn" onclick="tabbed('login_btn');return false;" href="" class="active">login</a></li><!-- .active for active tab -->
+						<li><a id="lost_btn" onclick="tabbed('lost_btn');return false;" href="#">forgot password</a></li>
+					</ul>
+				</div>
+				<form class="table" id="form_login" enctype="application/x-www-form-urlencoded" method="post" action="<?php echo SITE_URL.'login'?>"><!-- Default forms (table layout) -->
+					<div class="inner-form">
+						<div class="msg msg-info">
+							
+						</div>
+						<?php 
+                   if($this->errorMessage!=''){?>
+						<div class="msg msg-error"><p><?php echo $this->errorMessage;?></p></div>
+						<?php }?>
+                  <?php  if($this->successMessage!=''||$this->searchParams['msg']!=''){?>
+						<div class="msg msg-ok"><p><?php echo $this->searchParams['msg'];?></p></div>
+						<?php }?>
+						<table cellspacing="0">
+							<tr>
+								<th><label for="some1">Email:</label></th>
+								<td><input class="txt" name="<?php echo $this->loginform->email->getName()?>" id="<?php echo $this->loginform->email->getName()?>" value="<?php echo $this->loginform->email->getValue()?>" /></td>
+							</tr>
+							<tr>
+								<th><label for="some3">Password:</label></th>
+								<td><input class="txt pwd"type="password" name="<?php echo $this->loginform->password->getName()?>" id="<?php echo $this->loginform->password->getName()?>" value="" /></td><!-- class error for wrong filled inputs -->
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<a href="<?php echo SITE_URL.'register/'?>" title="Click here to register" >Not registered yet? Click here</a>
+								</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td class="tr proceed">
+									<input class="button" type="submit" name="login"  value="Login"  />
+								</td>
+							</tr>
+							
+						</table>
+					</div>
+				</form>
+				<form class="table" id="lost_password" name="lost_password" style="display:none;" enctype="application/x-www-form-urlencoded" method="post" action="<?php echo $this->loginform->getAction()?>"><!-- Default forms (table layout) -->
+					<div class="inner-form">
+						<div class="msg msg-info">
+							
+						</div>
+						<div class="msg msg-error" style="display:none" id="lostmsg_error"><p></p></div>
+						
+						<div class="msg msg-ok" style="display:none" id="lostmsg_ok"><p></p></div>
+						
+						<table cellspacing="0">
+							<tr>
+								<th><label for="some1">Email:</label></th>
+								<td><input class="txt" name="email" id="lost_email" value="" /></td>
+							</tr>
+							
+							<tr>
+								<th></th>
+								<td class="tr proceed">
+									<input class="button" type="submit" name="lost"  value="Send Password"  />
+									<span style="display:none;" id="sending">sending please wait..</span>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+<script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-validator.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// validate signup form on keyup and submit
+	var validator = $("#form_login").validate({
+		rules: {
+			
+			email: {
+				required: true
+				
+				
+			},
+			password: {
+				required: true
+			}
+			
+		},
+		messages: {
+			email: {
+				required: "Enter the email."
+				
+			},
+			password: {
+				required: "Enter the password."
+			}
+			
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			//alert(element.attr('type'));
+			if ( element.is(":radio") )
+				error.appendTo( element.parent().next().next() );
+			else if ( element.is(":checkbox") )
+				error.appendTo ( element.next() );
+			else{
+				error.appendTo( element.parent());
+				
+			}
+		},
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			//$("#login").submit();
+			document.getElementById('login').submit();
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;").addClass("checked");
+		}
+	});var lostvalidator = $("#lost_password").validate({
+		rules: {
+			
+			email: {
+				required: true,
+				email:true
+				
+				
+			}
+			
+		},
+		messages: {
+			email: {
+				required: "Enter your email address."
+				
+			}
+			
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			//alert(element.attr('type'));
+			if ( element.is(":radio") )
+				error.appendTo( element.parent().next().next() );
+			else if ( element.is(":checkbox") )
+				error.appendTo ( element.next() );
+			else{
+				error.appendTo( element.parent());
+				
+			}
+		},
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			//$("#login").submit();
+			sendPassword();
+			//document.getElementById('login').submit();
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;").addClass("checked");
+		}
+	});
+		<?php 
+	
+	if(!empty($errors)){
+		echo "validator.showErrors(".json_encode($errors).");";
+	}
+	?>
+	//$("#login").valid();
+	
+	
+
+});
+function tabbed(id){
+	if(id=='login_btn'){
+		$('#form_login').show();$('#lost_password').hide();
+		$("#login_btn").addClass('active');
+		$("#lost_btn").removeClass('active');
+	}else if(id=='lost_btn'){
+		$('#form_login').hide();$('#lost_password').show();
+		$("#lost_btn").addClass('active');
+		$("#login_btn").removeClass('active');
+	}
+}
+
+function sendPassword(){
+	var str =$(document.lost_password).serialize();
+	$("input[name=lost]").hide();
+	$('#sending').show();
+	//$("input[name=lost]").parent().append('<p id="sending">sending please wait..</p>');
+	$.ajax(
+	{
+		url:'<?php echo ADMIN_URL.'login/lostpassword/'?>',
+		data:str,
+		type:'post',
+		dataType:'json',
+		success:function(data){
+			if(data.err=='true'){
+				$("input[name=lost]").show();
+				$('#lostmsg_ok').show();
+				$('#lostmsg_error').hide();
+				$('#lostmsg_ok p').html(data.msg);
+				$('#sending').hide();
+			}else if(data.err=='false'){
+				$("input[name=lost]").show();
+				$('#lostmsg_ok').hide();
+				$('#lostmsg_error').show();
+				$('#lostmsg_error p').html(data.msg);
+				$('#sending').hide();
+			}
+		}
+		
+	}
+	);
+}
+</script>
+
+
+    </body>
+</html>
+
+
+
+
+

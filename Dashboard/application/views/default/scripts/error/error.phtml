@@ -1,0 +1,40 @@
+  <div class="inner-container"> 
+				
+				<!-- Main content – all content is within boxes. Feel free to add your boxes (see the examples on the bottom of this document) and your content within --> 
+				<div class="box box-100 altbox"> 
+				  <div class="boxin"> 
+				    <div class="header"> 
+				      <h3>Page Not Found </h3> 
+				     
+				   
+ 
+			        </div> 
+				    <div class="content"> 
+				      
+   <p>We're truly sorry, but we cannot complete your request at this    time.</p>    <p>If it's any consolation, we have scheduled a new appointment  
+      for our development team leader to encourage    his colleagues to investigate this incident.</p>
+
+
+  <h2><?php echo $this->message ?></h2>
+
+  <?php if (isset($this->exception)): ?>
+
+  <h3>Exception information:</h3>
+  <p>
+      <b>Message:</b> <?php echo $this->exception->getMessage() ?>
+  </p>
+
+  <h3>Stack trace:</h3>
+  <pre><?php echo $this->exception->getTraceAsString() ?>
+  </pre>
+
+  <h3>Request Parameters:</h3>
+  <pre><?php echo var_export($this->request->getParams(), true) ?>
+  </pre>
+  <?php endif ?>
+			        </div> 
+			      </div> 
+			  </div> 
+				<br clear="all" /> 
+			</div><!-- .inner-container --> 
+      

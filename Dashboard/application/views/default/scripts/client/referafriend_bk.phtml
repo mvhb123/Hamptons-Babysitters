@@ -1,0 +1,43 @@
+<div class="inner-container">
+    <div class="box box-100 altbox">
+              <div class="boxin">
+        <div class="header">
+                  <h3>Refer a friend</h3>
+               
+                </div>
+        <div class="content pad20">
+                  <div class="formbox floatleft w450">
+                  <h1 class="formheading">Refer a friend</h1>
+                  <span>Simply send an email to anyone you know who might need a babysitter</span>
+            <form id="changePasswordForm" enctype="multipart/form-data" method="post" action="" class="basic">
+              <dl>
+              
+              <?php if($this->errorMsg!=''){?><div class="msg msg-error"><p><?php echo $this->errorMsg?></p></div><?php }?>
+              <?php if($this->successMsg!=''){?><div class="msg msg-ok"><p><?php echo $this->successMsg?></p></div><?php }?>
+        
+        
+        <dt>
+                          <label for="some1">Recipient's Email</label>
+                        </dt>
+                <dd>
+                          <input required="required" placeholder="john@example.com,sam@example.com" type="text" name="emails" id="email" class="txt">
+                          <small>add more friends and seperate their address with a comma</small> </dd>
+                <dt>
+                          <label for="some2">Message:</label>
+                        </dt>
+                <dd>
+                          <textarea name="message" placeholder="type your message here"></textarea>
+                          <small>&nbsp;</small> </dd>
+                
+              </dl>
+                      <br clear="all">
+                      <input type="submit" name="send" value="Send Message" class="button altbutton">
+                    </form>
+          </div>
+            <br clear="all">
+                </div>
+      </div>
+            </div>
+    <br clear="all">
+  </div>
+

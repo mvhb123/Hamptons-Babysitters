@@ -1,0 +1,183 @@
+<?php $this->headTitle('Address'); ?>
+<h1>Manage Address</h1>
+
+
+<?php require_once('tabs.phtml');?>
+
+<?php
+//echo '<pre>';
+$errors = $this->addressForm->getMessages();
+//print_r($errors);
+foreach($errors as $key =>$err){
+	$er[$key]=implode(', ',$err);
+}
+$errors = $er;
+?>
+
+<?php
+if(!empty($this->addresses)){?>
+<table border="1">
+<thead>
+	<tr>
+		<th>Address Line 1</th>
+		<th>Address Line 2</th>
+		<th>Streat Address</th>
+		<th>Zipcode</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Country</th>
+		<th>Address Type</th>
+		<th>Edit</th>
+		<th>Delete</th>
+
+	</tr>
+</thead><tbody>	
+	
+	<?php foreach($this->addresses as $address){?>
+	<tr>
+		<td><?php echo $address['address_1']?> </td>
+		<td><?php echo $address['address_2']?> </td>
+		<td><?php echo $address['streat_address']?> </td>
+		<td><?php echo $address['zipcode']?> </td>
+		<td><?php echo $address['city']?> </td>
+		<td><?php echo $address['state']?> </td>
+		<td><?php echo $address['country']?> </td>
+		<td><?php echo $address['address_type']?> </td>
+		<td><a href="<?php echo ADMIN_URL.'sitters/address/userid/'.$this->userid.'/modify/'.$address['address_id']?>">Edit</a> </td>
+		<td><a href="<?php echo ADMIN_URL.'sitters/address/detele/'.$address['address_id']?>">Delete</a> </td>
+		
+		
+	</tr>
+	<?php }?>
+	</tbody>
+	
+</table>
+<?php }?>
+
+
+<h2>Add New Address</h2>
+<form id="addressform" enctype="multipart/form-data" method="post" action="<?php echo $this->addressForm->getAction()?>"><dl class="zend_form">
+<dt id="address_1-label"><label for="address_1" class="required">Address 1:</label></dt>
+
+<dd id="address_1-element">
+<input type="text" name="address_1" id="address_1" value="<?php echo $this->addressForm->address_1->getValue()?>"></dd>
+<dt id="address_2-label"><label for="address_2" class="optional">Address 2:</label></dt>
+<dd id="address_2-element">
+<input type="text" name="address_2" id="address_2" value="<?php echo $this->addressForm->address_2->getValue()?>"></dd>
+<dt id="streat_address-label"><label for="streat_address" class="required">Streat Address:</label></dt>
+<dd id="streat_address-element">
+<input type="text" name="streat_address" id="streat_address" value="<?php echo $this->addressForm->streat_address->getValue()?>"></dd>
+<dt id="zipcode-label"><label for="zipcode" class="required">Zip Code:</label></dt>
+<dd id="zipcode-element">
+<input type="text" name="zipcode" id="zipcode" value="<?php echo $this->addressForm->zipcode->getValue()?>"></dd>
+
+<br>
+City:<?php echo $this->addressForm->city->removeDecorator('label')
+              ->removeDecorator('HtmlTag');?>
+<br>
+<dt id="state-label"><label for="state" class="required">State:</label></dt>
+<dd id="state-element">
+
+<input type="text" name="state" id="state" value="<?php echo $this->addressForm->state->getValue()?>"></dd>
+
+
+<dt id="country-label"><label for="country" class="required">Country:</label></dt>
+<?php echo $this->addressForm->country->removeDecorator('label')
+              ->removeDecorator('HtmlTag');?>
+<dt id="address_type-label"><label for="address_type" class="required">Address Type:</label></dt>
+<dd id="address_type-element">
+<?php echo $this->addressForm->address_type->removeDecorator('label')
+              ->removeDecorator('HtmlTag');?></dd>
+<dt id="addressSubmit-label">&#160;</dt><dd id="addressSubmit-element">
+<input type="submit" name="addressSubmit" id="addressSubmit" value="Add Address"></dd></dl></form>
+
+<script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-validator.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// validate signup form on keyup and submit
+	
+	var validator = $("#addressform").validate({
+		rules: {			
+			address_1: {
+				required: true
+			},
+			streat_address: {
+				required: true
+			},
+			zipcode: {
+				required: true
+			},
+			city: {
+				required: true
+				
+			},
+			state: {
+				required: true
+			},country: {
+				required: false
+			
+			},address_type: {
+				required: true
+			}
+			
+		},
+		messages: {
+			address_1: {
+				required: 'Please Enter your address'
+			},
+			streat_address: {
+				required: 'Streat address can help us, so it is must'
+			},
+			zipcode: {
+				required: "now address is valid without a zipcode"
+			},
+			city: {
+				required: 'Sure, You will be near to an city'
+				
+			},
+			state: {
+				required: 'You have forgotten'
+			},country: {
+				required: 'Country is must'
+			
+			},address_type: {
+				required: 'With an address type!.. oops'
+			}
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			//alert(element.attr('type'));
+			if ( element.is(":radio") )
+				error.appendTo( element.parent().next().next() );
+			else if ( element.is(":checkbox") )
+				error.appendTo ( element.next() );
+			else{
+				error.appendTo( element.parent());
+				
+			}
+		},
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			//$("#login").submit();
+			document.getElementById('login').submit();
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;").addClass("checked");
+		}
+	});
+	
+	<?php 
+	
+	if(!empty($errors)){
+		echo "validator.showErrors(".json_encode($errors).");";
+	}
+	?>
+	
+	//$("#login").valid();
+	
+
+});
+</script>
+

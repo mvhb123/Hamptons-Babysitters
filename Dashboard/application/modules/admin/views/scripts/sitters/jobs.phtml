@@ -1,0 +1,320 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                <div class="fixed-position col-lg-11">
+                    <header class="panel-heading tab-bg-dark-navy-blue tab-right sitter_head ">
+                        <ul class="nav nav-tabs pull-left">
+                        <li>
+                        	<span class="profile_name">
+                            <?php echo $this->userInfo['firstname'] . ' ' . $this->userInfo['lastname'] ?> - Jobs
+                        	</span>
+                        </li>
+                            <?php include_once('tabs.phtml'); ?>
+                        </ul>
+                    </header>
+				</div>
+			   <div class="clearfix"></div>
+               <div class="panel-body list_margin" >
+                    <?php if (in_array($this->searchParams['view'],array('scheduled','active'))){?>
+                        
+                           <div class="col-sm-12">
+	                           <div class="col-sm-12 clearfix">
+		                            <button class="btn btn-primary pull-right mar-bottom" id='jcalendar' onclick="jobcalendar(<?php echo $this->userInfo['userid']?>);">View Calendar</button>
+		                            <button style="display:none;" class="btn btn-primary pull-right" id='jlist' onclick="joblist();">Hide Calendar</button>
+	                           </div>
+                            	<div id='calendar' class="mar-top" style="display:none;"></div>
+                            </div>
+                            <?php }?>
+                        <section id="flip-scroll">
+                            <!-- <form name="" method="post" > -->
+                                <input type="hidden" name="userid" value="<?php echo $this->userid; ?>" />
+                                <table class="table table-bordered table-striped table-condensed cf " id='jobtable'>
+                                    <thead class="cf">
+                                        <tr>
+                                            <th>Job Number</th>
+                                            <th>Start Date</th>
+                                            <th>End date</th>
+                                            <th>Client name</th>
+											<th>Sitter name</th>
+                                            <?php if (in_array($this->searchParams['view'],array('pending','scheduled','active','cancelled'))) { ?>
+                                                <th>Cancelled Date & Time</th>
+                                                <th>Special Status</th>
+                                                <th>Active Alerts</th>
+                                            <?php } else if (in_array($this->searchParams['view'],array('completed','closed'))) { ?>
+                                                <th>Babysitting Fee</th>
+                                                <th>Charge Client</th>
+                                                <th>Sitter Paid</th>
+
+                                            <?php } ?>
+                                        <tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                        <?php if (!empty($this->jobs)) { ?>
+
+                                            <?php foreach ($this->jobs as $job) { ?>
+                                                <tr>
+                                                    <th><a title="View/Edit" href="<?php echo ADMIN_URL . 'client/events/user/' . $job['client_user_id'] . '/modify/' . $job['job_id'] ?>"><?php echo $this->jobnumber($job['job_id']) ?></a></th>
+                                                    <td> <?php echo date(DATETIME_FORMAT, strtotime($job['job_start_date'])) ?></td>
+                                                    <td> <?php echo date(DATETIME_FORMAT, strtotime($job['job_end_date'])) ?></td>
+                                                    <td><a href="<?php echo ADMIN_URL . 'client/profile/modify/' . $job['client_user_id'] ?>"><?php echo ucwords($job['firstname'] . ' ' . $job['lastname']) ?></a></td>
+                                                    <td><a href="<?php echo ADMIN_URL . 'sitters/profile/modify/' . $job['sitter_user_id'] ?>"> <?php echo $job['sitter_firstname'] . ' ' . $job['sitter_lastname'] ?></a></td>
+
+                                                    <?php if(!in_array($this->searchParams['view'], array('completed', 'closed')))
+                                            { if($job['job_status']=='cancelled'){ ?>
+                                              <td>  <?php echo date(DATETIME_FORMAT, strtotime($job['cancelled_date'])); ?></td>
+                                              <?php	
+                                              }else{ ?>  
+                                               <td>  <?php echo "NA"; ?></td>
+                                              <?php
+                                              }
+                                            ?>
+                                            <?php if ($job['is_special']==1 || $job['is_special']=='1') { ?>
+                                                <td ><?php echo "S";?></td>
+                                            <?php }else{ ?><td ><?php echo "NA";?></td><?php } 
+                                           if ($job['alerts']>0) { ?>
+                                             <td ><?php echo "A";?></td>
+                                              <?php }else{ ?><td ><?php echo "NA";?></td><?php } 
+                                            }
+                                            else {
+                                            	if($job['total_received']==0 ||$job['total_received']==null)
+                                            	{	
+	                                            	if (($job['client_updated_rate'] == "") || ($job['client_updated_rate'] == null)) {
+	                                            		$rate = $job['client_rate'];
+	                                            	} else {
+	                                            		$rate = $job['client_updated_rate'];
+	                                            	}
+	                                            	
+	                                            	if($job['completed_date']!='0000-00-00 00:00:00' && $job['completed_date']!=null)
+	                                            	{
+	                                            		$end_date=$job['completed_date'];
+	                                            	}
+	                                            	else 
+	                                            	{
+	                                            		$end_date = $job['job_end_date'];
+	                                            	}
+	                                            	
+	                                            	if (strtotime($end_date) < strtotime($job['job_start_date'])) {
+	                                            		$end_date = $job['job_end_date'];
+	                                            	}
+	                                            	
+	                                            	if($job['immidiate_cancelled']=='yes' && strtotime($job['job_start_date']) > strtotime($job['cancelled_date']))
+	                                            		$total_hours = 3;
+	                                            	else 
+	                                            		$total_hours = round((strtotime(date('Y-m-d H:i:s',strtotime($end_date)))-strtotime(date('y-m-d H:i:s',strtotime($job['job_start_date']))))/(60*60),2);
+	                           
+	                                            	$job['total_received'] = $total_hours*$rate;
+                                            	}
+                                            	
+                                            	if($job['client_payment_status']=='unpaid')
+                                            	{
+                                            		$client_paid = 'Outstand';
+                                            		$btn_class=" btn-danger";
+                                            	}
+                                            	else 
+                                            	{
+                                            		$client_paid = 'Charged';
+                                            		$btn_class=" btn-success";
+                                            	}
+                                            	if($job['sitter_payment_status']=='unpaid')
+                                            	{
+                                            		$sitter_paid = 'Owed';
+                                            		$btn_class1=" btn-danger";
+                                            	}
+                                            	else
+                                            	{
+                                            		$sitter_paid = 'Paid';
+                                            		$btn_class1=" btn-success";
+                                            	}
+                                            	?>
+                                            	<td class="numeric"><?php echo "$".$job['total_received'];?></td>
+                                            	<td class="table_input_padding"><input type="submit" class="btn<?php echo $btn_class;?>" value="<?php echo $client_paid;?>" onclick="window.location = '<?php echo ADMIN_URL . 'client/events/user/' . $job['client_user_id'] . '/modify/' . $job['job_id'] ?>'"  /></td>
+                                            	<td class="table_input_padding"><input type="submit" class="btn<?php echo $btn_class1;?>" value="<?php echo $sitter_paid;?>" <?php if($sitter_paid=='Owed'){?>onclick="paysitter(<?php echo $job['sitter_user_id']?>);" <?php }?> /></td>
+                                            	<?php
+                                            }
+                                            ?>
+                                                </tr>
+
+                                            <?php } ?>	
+                                        <?php } else { ?>
+            <!--                                                <tr><td>No records found</td></tr>-->
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            <!-- </form> -->
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+
+
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalSuccess" class="modal fade in" >
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Payment Details</h4>
+            </div>
+            <div class="modal-body">
+
+                <div>
+                    <div class="col-md-6"> Job ID </div>
+                    <div class="col-md-6" id="job_ids"> </div>
+                </div>
+                </br>
+                </br>
+
+                <div>
+                    <div class="col-md-6"> sitter </div>
+                    <div class="col-md-6" id="sname"> </div>
+                </div>
+                </br>
+                </br>
+                <div>
+                    <div class="col-md-6">Total Paid</div>
+                    <div class="col-md-6" id="total_paid"></div>
+                </div>
+                </br>
+                </br>
+                <div>  
+                    <div class="col-md-6">Check Number</div>
+                    <div class="col-md-6" id="check_number"></div>    
+                </div>
+                </br>
+                </br>
+
+                <div>
+                    <div class="col-md-6">Wire Number  </div>                                                
+                    <div class="col-md-6" id="wire_number"></div>     
+                </div>
+
+                </br>
+                </br>
+                <div>
+                    <div class="col-md-6">Date  Time  </div>                                                
+                    <div class="col-md-6" id="date_time"></div>     
+                </div>
+                <div>
+                    <div class="col-md-12">   
+                        <button  style="float:right" class="btn btn-send" type="button" onclick="hide_popup()">Ok</button>
+                    </div>
+                </div>
+                <div  class="clearfix"></div>
+            </div>
+
+
+
+
+
+
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+        //$('.dpYears').datetimepicker();
+    });
+    function paysitter(id)
+    {
+    	var form= '<form method="POST" action="<?php echo ADMIN_URL.'sitters/paysitter' ?>"><input type="hidden" name="sitter_id" value="'+id+'"/></form>';
+    	$(form).appendTo('body').submit().remove();
+    }
+    
+    function jobcalendar(userid)
+    {
+    	$('#calendar').show();
+    	$('#jlist').show();
+    	$('#jcalendar').hide();
+    	$('#jobtable').hide();
+        $.ajax({
+            url: "<?php echo ADMIN_URL . 'sitters/jobscalender' ?>",
+            cache: false,
+            data: {userid: userid}, // Setting the data attribute of ajax with file_data
+            dataType: 'json',
+            type: 'post',
+            //async: false,
+            success: function (data) {
+            	var date = new Date();
+            	var d = date.getDate();
+            	var m = date.getMonth();
+            	var y = date.getFullYear();
+            
+                if (data.status == 'failed')
+                {
+                   // $('#myModal').modal('show');
+                    //$("#transaction_message").text(data.message);
+                }
+
+                if (data.status == 'success')
+                {
+                	$('#calendar').fullCalendar({
+                		header: {
+                			left: 'prev,next today',
+                			center: 'title',
+                			right: 'month,agendaWeek,agendaDay'
+                		},
+                		//editable: true,
+            			//defaultDate: y+'/'+m+'/'+d,
+            			timeFormat: 'hh:mm A',
+            			eventLimit: true,
+                		events: data.events
+                		
+                	});
+                	
+                };
+                
+            },
+            complete: function () {
+                //hide_loader();
+            }
+        });
+    }
+    function joblist()
+    {
+    	$('#calendar').hide();
+    	$('#jlist').hide();
+    	$('#jcalendar').show();
+    	$('#jobtable').show();
+    }
+</script>
+<style>
+
+/*body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		/*font-size: 14px;*/
+}*/
+.fc-view {
+    margin-top: 15px;
+    overflow: visible;
+    width: 100%;
+}
+#jobtable{
+	margin-top:15px;
+}
+
+</style>

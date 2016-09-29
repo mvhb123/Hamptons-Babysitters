@@ -1,0 +1,321 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel clearfix">
+                    <!-- <header class="panel-heading tab-bg-dark-navy-blue tab-right ">
+                        <ul class="nav nav-tabs pull-right">
+                            <?php //include_once('tabs.phtml'); ?>
+                        </ul>
+                        <span class="hidden-sm wht-color">
+                            <?php //echo $this->first_name ?> <?php //echo $this->last_name ?> <?php //echo $this->last_name != '' ? '- Card Details' : '' ?>                       
+                        </span>
+                    </header> -->
+                    <div class="fixed-position col-lg-11">
+	                    <header class="panel-heading tab-bg-dark-navy-blue tab-right ">
+	                        <ul class="nav nav-tabs pull-left">
+	                        <li>     
+	                        	<span class="profile_name"><?php echo $this->first_name ?> <?php echo $this->last_name ?> <?php echo $this->last_name != '' ? '- Card Details' : '' ?> </span>
+	                        </li>
+	                            <?php include_once('tabs.phtml'); ?>
+	                        </ul>
+	                    </header>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="panel-body list_margin">
+                        <?php if ($this->successMessage != '') { ?>
+                            <div style="color:#3c763d"><p><?php echo $this->successMessage; ?></p></div>
+                        <?php } ?>
+
+                        <?php if ($this->errorMessage != '') { ?>
+                            <div class="error"><p><?php echo $this->errorMessage; ?></p></div>
+                        <?php } ?> 
+                        <form id="childform" class="cmxform form-horizontal tasi-form custom-form"  method="post" enctype="multipart/form-data" action="<?php echo ADMIN_URL ?>Client/savecarddetails">
+                            <section class="clearfix">
+                                <h4>Credit Card Information</h4>
+                                <?php if ((isset($this->card_number)) && (!empty($this->card_number))) { ?>
+                                    </br></br>
+                                    <div >
+                                        <?php
+                                        $today_date = date("Y-m-d");
+                                        $expiry_date = $this->expiry_date;
+                                        ?>
+                                        <?php
+                                        if ($expiry_date > $today_date) {
+                                            $card_number = $this->card_number;
+                                            if (strlen($card_number) == 1) {
+                                                $card_number = "000" . $card_number;
+                                            }
+                                            if (strlen($card_number) == 2) {
+                                                $card_number = "00" . $card_number;
+                                            }
+                                            if (strlen($card_number) == 3) {
+                                                $card_number = "0" . $card_number;
+                                            }
+                                            ?>
+                                            <p>Details for the card number <?php echo '************' . $card_number ?> are stored for the  client</p>
+                                        <?php } else { ?>
+                                            <p>Details for the card number <?php echo '************' . $this->card_number ?> has been  expired for the client</p>
+                                    <?php } ?>
+                                    </div>
+<?php } ?>
+
+                                <div class="border-top m-bot20"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-group ">
+                                        <input type="hidden" value=<?php echo $this->parent_id; ?> name="parent_id"></input>
+                                        <input type="hidden" value=<?php
+                                        if (isset($this->authorizenet_profile_id) && (!empty($this->authorizenet_profile_id))) {
+                                            echo $this->authorizenet_profile_id;
+                                        } else {
+                                            echo "";
+                                        }
+                                        ?> name="authorizenet_profile_id"></input>
+                                        <input type="hidden" value=<?php
+                                        if (isset($this->client_payment_profile_id) && (!empty($this->client_payment_profile_id))) {
+                                            echo $this->client_payment_profile_id;
+                                        } else {
+                                            echo "";
+                                        }
+                                        ?> name="client_payment_profile_id"></input>
+                                        <input type="hidden" value=<?php
+                                        if (isset($this->authorizenet_payment_profile_id) && (!empty($this->authorizenet_payment_profile_id))) {
+                                            echo $this->authorizenet_payment_profile_id;
+                                        } else {
+                                            echo "";
+                                        }
+                                        ?> name="authorizenet_payment_profile_id"></input>
+
+                                        <label for="cname" class="control-label col-lg-3">Card Number</label>
+                                        <div class="col-lg-9">
+                                            <input name="card_number" type="text" class="form-control "  id="card_number"  />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label col-lg-3">Exp Date</label>
+                                        <div class="col-lg-4">
+                                            <input class="form-control" type="text"  id="exp_month"  name="exp_month" placeholder="MM" autocomplete="off"  />
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <input class="form-control" type="text"  id="exp_year" name="exp_year" placeholder="YYYY" autocomplete="off"  />
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="curl" class="control-label col-lg-3">CVV</label>
+                                        <div class="col-lg-9">
+                                            <input name="cvv" type="password" class="form-control" id="cvv" autocomplete="new-password"  />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+
+                                        <?php if ((isset($this->card_number)) && (!empty($this->card_number))) { ?>
+                                            <input type="submit" value="Save" class="btn btn-danger" style="float:right" >
+                                        <?php } else { ?>
+                                            <input type="submit" value="Save" class="btn btn-danger" id="card_details" style="float:right">
+<?php } ?>
+                                    </div>
+                                </div>
+                            </section>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- <script src="//cdn.jsdelivr.net/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+<!-- <script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/jquery-validator.js"></script>  -->
+
+ 
+<!-- <script type="text/javascript" src="<?php echo SITE_URL ?>resources/js/jquery.creditCardValidator.js"></script>-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*var validator = $("#childform").validate({
+            rules:
+                    {
+                        card_number:
+                                {
+                                    required: true,
+                                    number: true,
+                                    creditcard: true
+
+
+                                },
+                        exp_year:
+                                {
+                                    required: true,
+                                    number: true,
+                                    CCExp: {
+                                        year: "#exp_year",
+                                        month: "#exp_month",
+                                    }
+                                },
+                        exp_month:
+                                {
+                                    required: true,
+                                    number: true,
+                                    CCExp: {
+                                        year: "#exp_year",
+                                        month: "#exp_month",
+                                    }
+                                },
+                        cvv:
+                                {
+                                    required: true,
+                                    number: true,
+                                    minlength: 3,
+                                    maxlength: 4
+                                },
+                    },
+            messages:
+                    {
+                        card_number:
+                                {
+                                    required: "<div class='red'>Please enter the Card Number.</div>",
+                                    number: "<div class='red'>Please enter valid Card Number.</div>",
+                                    creditcard: "<div class='red'>Please enter valid card Number.</div>",
+                                },
+                        exp_year:
+                                {
+                                    required: "<div class='red'>Please enter the Expiration year.</div>",
+                                    //  number: "<div class='red'>Please enter valid Expiry Year.</div>",
+                                    CCExp: "<div class='red'>Please enter valid Expiration Year .</div>",
+                                },
+                        exp_month:
+                                {
+                                    required: "<div class='red'>Please enter the Expiration Month.</div>",
+                                    //number: "<div class='red'>Please enter valid Expiry Month.</div>",
+                                    CCExp: "<div class='red'>Please enter valid Expiration Month.</div>",
+                                },
+                        cvv:
+                                {
+                                    required: "<div class='red'>Please enter the cvv.</div>",
+                                    number: "<div class='red'>Please entera valid cvv.</div>",
+                                    minlength: "<div class='red'>Please enter a  valid cvv.</div>",
+                                    maxlength: "<div class='red'>Please enter a valid cvv.</div>"
+                                },
+                        debug: true
+                    },
+            errorPlacement: function (error, element)
+            {
+                error.appendTo(element.parent());
+            }
+
+
+
+        });*/
+        
+    	$('#childform').formValidation({
+            framework: 'bootstrap',
+            fields: {
+            	card_number: {
+                    //selector: '#card_number',
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter the Card Number.'
+                        },
+                        creditCard: {
+                            message: 'Please enter valid Card Number.'
+                        }
+                    }
+                },
+            	exp_month: {
+                   // row: '.col-xs-3',
+                    validators: {
+                        notEmpty: {
+                            message: "Please enter the Expiration Month."
+                        },
+                        digits: {
+                            message: ""
+                        },
+                        callback: {
+                            message: "Please enter valid Expiration Month.",
+                            callback: function(value, validator, $field) {
+                                value = parseInt(value, 10);
+                                var year         = validator.getFieldElements('exp_year').val(),
+                                    currentMonth = new Date().getMonth() + 1,
+                                    currentYear  = new Date().getFullYear();
+                                if (value < 1 || value > 12) {
+                                    return false;
+                                }
+                                if (year == '') {
+                                    return true;
+                                }
+                                year = parseInt(year, 10);
+                                if (year > currentYear || (year == currentYear && value >= currentMonth)) {
+                                    validator.updateStatus('exp_year', 'VALID');
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                },
+                exp_year: {
+                  //  row: '.col-xs-3',
+                    validators: {
+                        notEmpty: {
+                            message: "Please enter the Expiration year."
+                        },
+                        digits: {
+                            message: ""
+                        },
+                        callback: {
+                            message: "Please enter valid Expiration Year.",
+                            callback: function(value, validator, $field) {
+                                value = parseInt(value, 10);
+                                var month        = validator.getFieldElements('exp_month').val(),
+                                    currentMonth = new Date().getMonth() + 1,
+                                    currentYear  = new Date().getFullYear();
+                                if (value < currentYear || value > currentYear + 10) {
+                                    return false;
+                                }
+                                if (month == '') {
+                                    return false;
+                                }
+                                month = parseInt(month, 10);
+                                if(month <1 || month > 12) 
+                                {
+                                	   return false;
+                                }
+                                if ( value > currentYear || (value == currentYear && month >= currentMonth )) {
+                                    validator.updateStatus('exp_month', 'VALID');
+                                    return true;
+                                } else {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                },
+                cvv: {
+                    //selector: '.cvv',
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter the cvv'
+                        },
+                        cvv: {
+                            message: "Please enter a  valid cvv.",
+                            creditCardField: 'card_number'
+                        }
+                    }
+                }
+            }
+        });
+        
+
+    });
+
+</script>

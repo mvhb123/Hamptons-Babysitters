@@ -1,0 +1,157 @@
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+    tinyMCE.init({
+        // General options
+        mode: "textareas",
+        theme: "advanced",
+        plugins: "autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist,autosave",
+        // Theme options
+        theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+        theme_advanced_buttons2: "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+        theme_advanced_buttons3: "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+        theme_advanced_buttons4: "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,restoredraft",
+        theme_advanced_toolbar_location: "top",
+        theme_advanced_toolbar_align: "left",
+        theme_advanced_statusbar_location: "bottom",
+        theme_advanced_resizing: true,
+        // Example content CSS (should be your site CSS)
+        content_css: "<?php echo SITE_URL ?>resource/css/black.css",
+        // Drop lists for link/image/media/template dialogs
+        template_external_list_url: "lists/template_list.js",
+        external_link_list_url: "lists/link_list.js",
+        external_image_list_url: "lists/image_list.js",
+        media_external_list_url: "lists/media_list.js",
+        relative_urls: false,
+        remove_script_host: false,
+        document_base_url: "http://www.hamptonsbabysitters.com/",
+        convert_urls: false,
+        height: '750',
+        // Style formats
+        style_formats: [
+            {title: 'Bold text', inline: 'b'},
+            {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+            {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+            {title: 'Example 1', inline: 'span', classes: 'example1'},
+            {title: 'Example 2', inline: 'span', classes: 'example2'},
+            {title: 'Table styles'},
+            {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+        ],
+        // Replace values for the template plugin
+        template_replace_values: {
+            username: "Some User",
+            staffid: "991234"
+        }
+    });
+</script>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel clearfix">
+
+                    <div class="panel-body">
+
+
+                        <form  class="cmxform form-horizontal tasi-form custom-form"  method="post" enctype="multipart/form-data">
+
+
+                            <section class="clearfix">
+                                <h4>Settings</h4>
+
+                                <div class="border-top m-bot20"></div>
+                                <div class="col-sm-12">
+                                    <div class="form-group ">
+
+
+
+
+                                        <label for="cname" class="control-label col-lg-3">Mail Name</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" name="label" type="text" value="<?php echo $this->mailTemplate['label'] ?>" />                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label class="control-label col-lg-3">From Name</label>
+                                        <div class="col-lg-9">
+                                            <input  class="form-control" name="from" type="text" value="<?php echo $this->mailTemplate['from'] ?>" />                                        </div>
+
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="curl" class="control-label col-lg-3">To</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" name="to" type="text" value="<?php echo $this->mailTemplate['to'] ?>" />                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="curl" class="control-label col-lg-3">CC</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" name="cc" type="text" value="<?php echo $this->mailTemplate['cc'] ?>" />                                        </div>
+
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="curl" class="control-label col-lg-3"></label>
+                                        <div class="col-lg-9">
+                                            <small>eg:- John &lt;john@hb.com&gt;, Sam &lt;sam@hb.com&gt; seperate email address by commma. put spance between name and email address</small>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="curl" class="control-label col-lg-3">Bcc</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" name="bcc" type="text" value="<?php echo $this->mailTemplate['bcc'] ?>" />
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="curl" class="control-label col-lg-3">Subject</label>
+                                        <div class="col-lg-9">
+                                            <input class="form-control" name="subject" type="text" value="<?php echo $this->mailTemplate['subject'] ?>" />
+                                        </div>
+                                    </div>
+                                    <div class="alert alert-success fade in"><p>Please donot update {variables}, <br> You are able to delete/remove variables which you don't need. <br>{Variables} are case sensitve, <br>Do not respell {variables}, because these are already defined in the system. </p></div>
+
+                                    <textarea id="body" name="body" rows="15" cols="60" style="width: 70%">
+                                        <?php echo $this->mailTemplate['description'] ?>
+                                    </textarea>
+
+                                    <input type="hidden" name="mail_id" value="<?php echo $this->mailTemplate['mail_id'] ?>" />
+
+                                    <div class="form-group ">
+
+
+                                        <input type="submit" value="Save" class="btn btn-danger" id="card_details" style="float:right">
+
+                                    </div>
+
+                                </div>
+
+                            </section>
+
+
+
+
+
+
+
+                        </form>
+                    </div>
+                </section>
+
+
+
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<script type="text/javascript">
+    if (document.location.protocol == 'file:') {
+        alert("The examples might not work properly on the local file system due to security settings in your browser. Please use a real webserver.");
+    }
+</script>

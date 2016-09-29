@@ -1,0 +1,5 @@
+
+<li><a <?php echo  $this->searchParams['status']=='new' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>jobs/view/status/new/">New Jobs</a></li>
+<li><a <?php echo  $this->searchParams['status']=='pending' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>jobs/view/status/pending/">Pending Jobs</a></li>
+<li><a <?php echo  $this->searchParams['status']=='confirmed' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>jobs/view/status/confirmed/">Confirmed Jobs</a></li>
+<li><a <?php echo  $this->searchParams['status']=='completed' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>jobs/view/status/completed/">Completed Jobs</a></li>

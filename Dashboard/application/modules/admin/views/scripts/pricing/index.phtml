@@ -1,0 +1,76 @@
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        Pricing
+                        <a  href="<?php echo ADMIN_URL ?>pricing/addpricing">            
+                          <input class="btn btn-success" type="submit" value="Add Pricing" style="float:right"/>
+                        </a> 
+                    </header>
+                    
+                    <?php
+                    if ((isset($this->successMessage)) && (!empty($this->successMessage))) {
+                        ?>
+                        <div>
+                            <p class="smessage" style="margin-left:15px">
+                                <?php echo $this->successMessage; ?>
+                            </p>
+                        </div>
+                    <?php } ?> 
+                   
+                    <div class="panel-body">
+                        <section id="flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed cf">
+                                <thead class="cf">
+                                    <tr>
+                                        <th class="text-center"> <a href="<?php echo $this->url(array('key' => 'child_count', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'child_count' ? 'desc' : 'asc')) ?>">Number of Children</a></th>
+                                        <th class="text-right"><a href="<?php echo $this->url(array('key' => 'client_rate', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'client_rate' ? 'desc' : 'asc')) ?>">Client Rate($ per hr)</a></th>
+                                        <th class="text-right"><a href="<?php echo $this->url(array('key' => 'sitter_rate', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'sitter_rate' ? 'desc' : 'asc')) ?>">Sitter Rate($ per hr)</a></th>
+                                        <th class="text-center">Actions</th>
+                                    </tr>
+                                </thead>
+                                <?php foreach ($this->pricing as $details) { ?>
+                                    <tr>
+                                        <td class="text-center"><?php echo $details['child_count'] ?> </td>
+                                        <td class="numeric"><?php echo  $details['client_rate'] ?></td>
+                                        <td class="numeric"><?php echo  $details['sitter_rate'] ?></td>
+                                        <td class="text-center table_input_padding">
+                                            <a title="Edit" class="btn btn-primary btn-xs" href="<?php echo ADMIN_URL ?>pricing/editpricing/modify/<?php echo $details['rate_id'] ?>" ><i class="fa fa-pencil"></i>  </a>
+                                        <a class="btn btn-danger btn-xs" onclick="if (confirm('Are you sure wants to delete pricing details?'))
+                                            return true;
+                                            else
+                                            return false;" title="Delete" href="<?php echo ADMIN_URL ?>pricing/delete/id/<?php echo $details['rate_id'] ?>"><i class="fa fa-trash-o"></i>
+                                        </a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                                
+                            </table>
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+<script>
+    function saveRate(th) {
+        //alert(th.value);
+        //alert(th.name);
+        $.ajax({url: "<?php echo ADMIN_URL . 'client/events/' ?>",
+            data: {rate: th.value, saverate: 'rate', job_id: $(th).attr('rel')}, success: function (data) {
+            }
+        });
+    }
+
+</script>

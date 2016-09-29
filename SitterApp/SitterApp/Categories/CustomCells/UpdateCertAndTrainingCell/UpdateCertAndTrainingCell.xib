@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="UpdateCertAndTrainingCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="33"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="32"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="CPR Certification-Infant/Toddler" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOJ-yN-kfh">
+                        <rect key="frame" x="4" y="0.0" width="160" height="33"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="Gms-Sp-PpG"/>
+                            <constraint firstAttribute="height" constant="33" id="l0k-BX-9Ck"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Gms-Sp-PpG"/>
+                            </mask>
+                        </variation>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mU2-vF-Db8">
+                        <rect key="frame" x="164" y="1" width="51" height="31"/>
+                        <connections>
+                            <action selector="onValueChangeSwCertificate:" destination="-2" eventType="valueChanged" id="ziu-nr-GZV"/>
+                        </connections>
+                    </switch>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12/12/2015" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARK-Co-qqI">
+                        <rect key="frame" x="220" y="6" width="58" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="58" id="GUh-xK-eEK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XmY-3E-YRd">
+                        <rect key="frame" x="290" y="0.0" width="30" height="30"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="pR8-m7-TuJ"/>
+                        </constraints>
+                        <state key="normal" backgroundImage="calender">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="onClickedCertificateCalender:" destination="-2" eventType="touchUpInside" id="Zej-uR-CRW"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="ARK-Co-qqI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-2" id="5RK-HI-MDp"/>
+                    <constraint firstItem="mU2-vF-Db8" firstAttribute="bottom" secondItem="XmY-3E-YRd" secondAttribute="bottom" constant="2" id="9ap-OO-YvH"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="mU2-vF-Db8" secondAttribute="bottom" constant="-8" id="FUF-9W-Jv9"/>
+                    <constraint firstItem="XmY-3E-YRd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="K9O-No-x47"/>
+                    <constraint firstItem="eOJ-yN-kfh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="Z8X-hK-5St"/>
+                    <constraint firstItem="mU2-vF-Db8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="154" id="aAd-5h-7Hy"/>
+                    <constraint firstItem="mU2-vF-Db8" firstAttribute="centerY" secondItem="ARK-Co-qqI" secondAttribute="centerY" id="at3-0c-xSd"/>
+                    <constraint firstAttribute="trailing" secondItem="XmY-3E-YRd" secondAttribute="trailing" id="b0f-cX-7u3"/>
+                    <constraint firstItem="ARK-Co-qqI" firstAttribute="leading" secondItem="mU2-vF-Db8" secondAttribute="trailing" constant="7" id="cS5-ac-DAu"/>
+                    <constraint firstItem="mU2-vF-Db8" firstAttribute="leading" secondItem="eOJ-yN-kfh" secondAttribute="trailing" id="dHN-sv-1R2"/>
+                    <constraint firstItem="XmY-3E-YRd" firstAttribute="leading" secondItem="ARK-Co-qqI" secondAttribute="trailing" constant="12" id="fY8-69-Yr8"/>
+                    <constraint firstItem="eOJ-yN-kfh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-4" id="goK-bs-4jf"/>
+                    <constraint firstItem="mU2-vF-Db8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-7" id="qBc-EU-doG"/>
+                    <constraint firstItem="ARK-Co-qqI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ssH-Wu-24h"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="aAd-5h-7Hy"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="btn_calender" destination="XmY-3E-YRd" id="5wD-XO-Vu6"/>
+                <outlet property="lbl_certDate" destination="ARK-Co-qqI" id="p1j-yO-Wly"/>
+                <outlet property="lbl_certType" destination="eOJ-yN-kfh" id="vQ7-KN-Q1j"/>
+                <outlet property="sw_certType" destination="mU2-vF-Db8" id="dp6-SC-BPV"/>
+            </connections>
+            <point key="canvasLocation" x="100" y="154"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="calender" width="25" height="25"/>
+    </resources>
+</document>

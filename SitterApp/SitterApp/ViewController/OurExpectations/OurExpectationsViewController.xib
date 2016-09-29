@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OurExpectationsViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webViewForExp" destination="I3B-fC-9gt" id="eQY-EA-R6x"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I3B-fC-9gt">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="43I-ST-cYw"/>
+                    </connections>
+                </webView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="I3B-fC-9gt" secondAttribute="trailing" id="9oV-pR-D2a">
+                    <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                </constraint>
+                <constraint firstItem="I3B-fC-9gt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="cxU-41-8yR">
+                    <variation key="heightClass=regular-widthClass=compact" constant="5"/>
+                </constraint>
+                <constraint firstItem="I3B-fC-9gt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="g1E-XW-iUC"/>
+                <constraint firstAttribute="bottom" secondItem="I3B-fC-9gt" secondAttribute="bottom" id="sew-5h-7O4"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="I3B-fC-9gt"/>
+                </mask>
+                <mask key="constraints">
+                    <exclude reference="9oV-pR-D2a"/>
+                    <exclude reference="cxU-41-8yR"/>
+                    <exclude reference="g1E-XW-iUC"/>
+                    <exclude reference="sew-5h-7O4"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="subviews">
+                    <include reference="I3B-fC-9gt"/>
+                </mask>
+                <mask key="constraints">
+                    <include reference="9oV-pR-D2a"/>
+                    <include reference="cxU-41-8yR"/>
+                    <include reference="g1E-XW-iUC"/>
+                    <include reference="sew-5h-7O4"/>
+                </mask>
+            </variation>
+        </view>
+    </objects>
+</document>

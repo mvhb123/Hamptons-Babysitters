@@ -1,0 +1,317 @@
+<style>.ui-pg-input{width:50px;}
+    .custome_gritter_css{z-index:123456789;}
+    .dataTables_paginate .pagination {
+        margin: 0 6px !important;
+    }
+    .dataTables_processing {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 40px;
+        margin-left: -50%;
+        margin-top: -25px;
+        padding-top: 8px;
+        text-align: center;
+        font-size: 1.2em;
+        background-color: white;
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%, rgba(255,255,255,0)), color-stop(25%, rgba(255,255,255,0.9)), color-stop(75%, rgba(255,255,255,0.9)), color-stop(100%, rgba(255,255,255,0)));
+        background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
+        background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
+        background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
+        background: -o-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
+        background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.9) 25%, rgba(255,255,255,0.9) 75%, rgba(255,255,255,0) 100%);
+    }
+</style>
+<link href="<?php echo SITE_URL ?>resource/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="<?php echo SITE_URL ?>resource/js/bootstrap-multiselect.js" type="text/javascript"></script>
+<script src="<?php echo SITE_URL?>resource/assets/Highcharts-4.2.4/js/highcharts.js"></script>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+
+                    <div class="fixed-position col-lg-12">
+                        <header class="panel-heading clearfix">
+                            Sitters Report
+                           <!--   <a href="<?php //echo ADMIN_URL .'reports/graph';?>">
+								<input class="btn btn-info" type="submit" style="float:right" value="View Graph">
+							</a>-->
+                        </header>
+                        <form name="searchform" method="post" class="clearfix">
+                            <div class="mar-top">
+                                <div class="col-md-3">	
+                                    <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group btn-block date default-date-picker clearfix">
+                                        <input type="text" id="job_start_date" name="job_start_date" class="form-control datep" value="<?php echo $this->searchParams['job_start_date']; ?>" size="16" readonly="" placeholder="Start Date">
+                                        <span class="input-group-btn" style="width: auto">
+                                            <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group btn-block date default-date-picker clearfix">
+                                        <input type="text" id="job_end_date" name="job_end_date" class="form-control datep" value="<?php echo $this->searchParams['job_end_date']; ?>" size="16" readonly="" placeholder="End Date">
+                                        <span class="input-group-btn" style="width: auto">
+                                            <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">	
+                                    <select name="userid[]" class="form-control" multiple="multiple" id="multisitter">
+                                        <!--  <option value="0"
+                                        <?php
+
+
+                                        //if ($this->searchParams['userid'] == 0) { ?>
+                                                    selected="selected" <?php //} ?>>All Sitters</option>-->
+                                                <?php foreach ($this->sitters as $sitter) { ?>
+                                            <option value="<?php echo $sitter['userid']; ?>"
+                                            <?php if (in_array($sitter['userid'],$this->searchParams['userid']) ) { ?>
+                                                        selected="selected" <?php } ?>><?php echo $sitter['name']; ?></option>
+                                                <?php } ?>      
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="button" name="filter" id="filter_table" value="Filter" class="btn btn-danger" />
+                                    <input type="button" name="filter" value="View Report" class="btn btn-danger submit_btn"/>
+                                </div>
+                            </div>
+                        </form>                   
+                    </div>
+					<div class="clearfix"></div>
+
+                    <div class="panel-body list_margin">
+                        <div class="adv-table" >
+                            <section id="flip-scroll">
+                            <table  class="display table table-bordered table-striped" id="sitter-productivity">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Job Completed</th>
+                                    <th>Total Job Value</th>
+                                    <th class="">Sitter Payout</th>
+                                    <th class="">Company Earnings</th>
+                                </tr>
+                                </thead>
+
+                                <tbody >
+                                <tr class="gradeX">
+                                    <td>Trident</td>
+                                    <td>Internet
+                                        Explorer 4.0</td>
+                                    <td>Win 95+</td>
+                                    <td class="center hidden-phone">4</td>
+                                    <td class="center hidden-phone">X</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+            <!--                                <tr>-->
+            <!--                                    <th>&nbsp;</th>-->
+            <!--                                    <th style="font-weight: bold;text-align:left">Total Amount</th>-->
+            <!--                                    <th style="font-weight: bold;text-align:right">--><?php
+            //                                        echo money_format('%.2n', $this->total_received);
+            //
+            //                                        ?><!--</th>-->
+            <!--                                    <th style="font-weight: bold;text-align:right">--><?php
+            //                                        echo money_format('%.2n', $this->sitter_earnings);
+            //                                        ?><!--</th>-->
+            <!--                                    <th style="font-weight: bold;text-align:right">--><?php
+            //                                        echo money_format('%.2n',$this->company_profit);
+            //                                        ?><!--</th>-->
+            <!--                                </tr>-->
+                                </tfoot>
+                            </table>
+                            </section>
+                            <div class="hidden" id="container1"></div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+
+
+<script>
+function generate_graph(json,cat) {
+	//var json=<?php //echo $this->earning;?>;
+
+	if(json!=null){
+	  var jsondata=json;
+	  if(jsondata!=null && jsondata.length>0){
+	  $('#container1').highcharts({
+		chart: {
+	            type: 'column',
+	    },
+	    title: {
+	    	text: '',  
+	    },
+	    xAxis: {
+	    categories: cat,
+	    rotation: 45,
+	    labels: {
+            rotation: 45,
+            align: 'left'
+        	},
+	    },
+	    yAxis: {
+	    	title: {
+	              text: 'Earnings in $'
+	          }
+        },
+        plotOptions: {
+            series: {
+            	pointWidth: 10,
+            	column: {
+                    depth: 10
+                }
+            }
+        },
+	    series: [{ name: 'Sitter Earnings',
+		    data:jsondata}]
+	  });
+	  	}
+	  	else
+		 {
+	  		$("#container1").empty();
+			$('#container1').append("<p>No Record Found</p>");
+		 }
+	 }
+	 else
+	 {
+		 $("#container1").empty();
+		 $('#container1').append("<p>No Record Found</p>");
+	 }
+	}
+	
+$(function () {
+    $('#multisitter').multiselect({
+        includeSelectAllOption: true,
+        maxHeight: 400,
+        nonSelectedText: 'Select Sitters',
+        numberDisplayed: 1
+    });
+});
+    function saveRate(th) {
+        $.ajax({url: "<?php echo ADMIN_URL . 'client/events/' ?>",
+            data: {rate: th.value, saverate: 'rate', job_id: $(th).attr('rel')}, success: function (data) {
+            }
+        });
+    }
+
+var oTable1;
+
+    $(document).ready(function(){
+
+        // this is the id of the form
+        $('#filter_table').on('click', function(){
+            $('#container1').addClass('hidden');
+            $('#flip-scroll').removeClass('hidden');
+
+            oTable1.fnDraw();
+        });
+
+    oTable1 = $('#sitter-productivity').dataTable({
+        "aoColumns": [
+            {
+                "sClass": "firstname",
+                "mDataProp": "firstname",
+                "sName": "firstname",
+                "bSortable": true,
+                "bVisible": true
+            },
+            {
+                "sClass": "completed",
+                "sName": "completed",
+                "mDataProp": "completed",
+                "bSortable": true,
+            },
+            {
+                "sClass": "received",
+                "sName": "received",
+                "mDataProp": "received",
+                "bSortable": true,
+            },
+            {
+                "sClass": "earnings",
+                "sName": "earnings",
+                "mDataProp": "earnings",
+                "bSortable": true,
+            }
+            ,
+            {
+                "sClass": "company_profit",
+                "sName": "company_profit",
+                "mDataProp": "company_profit",
+                "bSortable": true,
+            }
+        ],
+        "bFilter" : false,
+        "bLengthChange": false,
+        aaSorting: [[3, 'desc']],
+        "bProcessing": true,
+        "bSearchable": false,
+        "bServerSide": true,
+
+        //"lengthMenu": [5, 10, 20, 40, 50, 100, 200, 500, 1000],
+        "sAjaxSource": ADMIN_URL + 'reports/sitterproductivity',
+        "fnServerParams": function (aoData) {
+                        aoData.push({
+                            name: "job_start_date",
+                            value: $('#job_start_date').val()
+                        });
+                        aoData.push({
+                            name: "job_end_date",
+                            value:$('#job_end_date').val()
+                        });
+                        aoData.push({
+                            name: "user_ids",
+                            value: $('#multisitter').val()
+                        });
+        },
+        "fnFooterCallback": function ( nRow, aaData, iStart, iEnd, aiDisplay ) {
+                //
+                //            console.log(aaData)
+                //
+                //            var nCells = nRow.getElementsByTagName('th');
+                //            nCells[1].innerHTML = parseInt(2222222);
+
+        }
+
+    });
+
+
+        // this is the id of the form
+    	$('.submit_btn').on('click', function(){	
+        		$('#container1').removeClass('hidden');
+        		$('#flip-scroll').addClass('hidden');
+    	    var url = "<?php echo ADMIN_URL.'reports/graph'?>"; // the script where you handle the form input.
+    		var start_date=$("#job_start_date").val();
+    		var end_date=$("#job_end_date").val();
+    		var sitter_id=$("#multisitter").val();
+
+    	    $.ajax({
+    	           type: "POST",
+    	           url: url,
+    	           data: {"start_date":start_date,"end_date":end_date,"sitter_id[]":sitter_id,"ajaxcall":1}, // serializes the form's elements.
+    	           success: function(data)
+    	           {
+    	           		var res = JSON.parse(data)
+    	               	generate_graph(res.data,res.categories); // generating graph.
+    	           }
+    	         });
+
+    	    //e.preventDefault(); // avoid to execute the actual submit of the form.
+    	
+    	});
+    });
+
+</script>

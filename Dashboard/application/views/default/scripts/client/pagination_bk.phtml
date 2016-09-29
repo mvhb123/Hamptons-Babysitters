@@ -1,0 +1,75 @@
+<div class="pagination">
+				        <!-- pagination underneath the box's content -->
+				        <ul>
+<?php 
+                    
+ if ($this->pageCount): 
+ if (isset($this->previous)): 
+ $searchParams['page']=$this->first;
+   $url= $searchParams;
+?>
+<li><a href="<?php echo $this->url($url);?>" >First</a></li>
+<?php 
+ else: 
+ endif; 
+ if (isset($this->previous)): 
+ $searchParams['page']=$this->previous;
+   $url= $searchParams;
+ ?>
+<li><a href ="<?php echo $this->url($url);?>" >Previous</a></li>
+<?php
+ else: 
+  //<span class="disabled">&lt; Previous</span> |
+
+ endif; 
+
+ foreach ($this->pagesInRange as $page): 
+   if ($page != $this->current): 
+   $searchParams['page']=$page;
+   $url= $searchParams;
+ 
+
+ ?>
+ <li><a href="<?php echo $this->url($url);?>" ><?php echo $page;?></a></li>
+   
+<?php
+   elseif($this->pageCount>1):
+   
+  
+   ?>
+<li ><strong><?php echo $page;?></a></strong></li>
+   
+<?php
+   endif; 
+
+ endforeach; 
+if (isset($this->next)): 
+$searchParams['page']=$this->next;
+   $url= $searchParams;
+
+?><li><a href="<?php echo $this->url($url);?>" >Next
+</a>
+</li>
+  <?php
+ else: 
+
+  //<span class="disabled">Next &gt;</span>
+
+ endif; 
+ if (isset($this->next)): 
+ $searchParams['page']=$this->last;
+   $url= $searchParams;
+?><li><a href="<?php echo $this->url($url);?>" >Last
+</a>
+</li>
+  <?php
+ else: 
+
+  //<span class="disabled">Last</span>
+
+ endif; 
+
+ endif; 
+ ?>
+ </ul>
+	</div>

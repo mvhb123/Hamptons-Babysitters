@@ -1,0 +1,728 @@
+<?php
+//echo '<pre>';
+
+$errors = $this->userform->getMessages();
+if (!empty($errors))
+    $this->errorMessage = 'Error while updating information! Please verify your fields';
+//print_r($errors);
+foreach ($errors as $key => $err) {
+    if (!isset($err[0])) {
+        foreach ($err as $key2 => $r)
+            if ($key2 != 'isEmpty')
+                $er[$key . '[' . $key2 . ']'] = implode(', ', $r);
+            else
+                $er[$key] = implode(', ', $err);
+    } else
+        $er[$key] = implode(', ', $err);
+}
+//print_r($er);
+$errors = $er;
+?>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        <h3>Profile</h3>
+                    </header>
+                    <div class="panel-body">
+
+                        <?php if ((int) $this->userInfo['profile_completed'] <= 0) { ?>
+                            <div class="alert alert-block alert-danger fade in">
+                                <p><?php echo $this->globalMessages['SitterProfileNotUpdated'] ?></p>
+                            </div>
+                        <?php } ?>
+
+                        <?php if ($this->successMessage != '') { ?>
+                            <div style="color:#3c763d"><p><?php echo $this->successMessage; ?></p></div>
+                        <?php } ?>
+                        <form class="cmxform form-horizontal tasi-form custom-form" id="userform" method="post" enctype="multipart/form-data" action="<?php echo $this->userform->getAction(); ?>" ><dl class="zend_form">
+
+                                <!--                            <dl class="zend_form">-->
+
+                                <section class="clearfix">
+                                    <h4>Contact Information</h4>
+                                    <div class="border-top m-bot20"></div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group ">
+                                            <label for="cname" class="control-label col-lg-3">First Name</label>
+                                            <div class="col-lg-9">
+                                                <input name="firstname" type="text" class="form-control" id="some1" value="<?php echo $this->userform->firstname->getValue() ?>"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="control-label col-lg-3">Last Name</label>
+                                            <div class="col-lg-9">
+                                                <input name="lastname" type="text" class="form-control" id="some2" value="<?php echo $this->userform->lastname->getValue() ?>"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-3">Mobile</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" name="phone" type="text"  id="phone" value="<?php echo $this->userform->phone->getValue() ?>"  />
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-3">Home Phone</label>
+                                            <div class="col-lg-9">
+                                                <input name="local_phone" type="number" class="form-control" id="local_phone" value="<?php echo $this->userform->local_phone->getValue() ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-3">Work Phone</label>
+                                            <div class="col-lg-9">
+                                                <input name="work_phone" type="number" class="form-control" id="work_phone" value="<?php echo $this->userform->work_phone->getValue() ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-3">Email</label>
+                                            <div class="col-lg-9">
+                                                <input name="username" type="email" class="form-control" id="username" value="<?php echo $this->userform->username->getValue() ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-3">Date of Birth</label>
+                                            <div class="col-lg-9">
+                                                <div data-date-viewmode="years"   class="input-group date default-date-picker-birth-sitter clearfix">
+                                                    <input type="text" readonly size="16" class="form-control datep"  id="dob"  value="<?php echo $this->dob($this->userform->dob->getValue()) ?>" name="dob">
+                                                    <span class="input-group-btn" style="width: auto">
+                                                        <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                                    </span>
+                                                </div>  
+                                             <div>   
+                                             </div>
+                                                 
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group ">
+                                            <label for="cname" class="control-label col-lg-3">Street Address</label>
+                                            <div class="col-lg-9">
+                                                <input name="local[streat_address]" type="text" class="form-control" id="some10" value="<?php echo $this->userform->local->streat_address->getValue() ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="cemail" class="control-label col-lg-3">City</label>
+                                            <div class="col-lg-9">
+                                                <input name="local[city]" type="text" class="form-control" id="some12" value="<?php echo $this->userform->local->city->getValue() ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-3">State</label>
+                                            <div class="col-lg-9">
+                                                <select id="local_state" name="local[state]" class="form-control required">
+                                                    <option value="">Select State</option>
+                                                    <?php foreach ($this->userform->local->state->getMultiOptions() as $key => $option) { ?>
+                                                        <option value="<?php echo $key ?>" <?php echo $this->userform->local->state->getValue() == $key || ($this->userform->local->state->getValue() == '' && $key == 3655) ? 'selected="seleceted"' : '' ?>><?php echo $option ?></option>
+                                                    <?php } ?>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-3">ZIP Code</label>
+                                            <div class="col-lg-9">
+                                                <input name="local[zipcode]" type="number" class="form-control" id="some14" value="<?php echo $this->userform->local->zipcode->getValue() ?>" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label class="control-label col-lg-3">Upload Picture</label>
+                                            <div class="col-lg-9">
+                                                <input type="hidden" id="MAX_FILE_SIZE" value="8388608" name="MAX_FILE_SIZE">
+                                                <input name="profile_image" type="file" id="profile_image" value="" />
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group" >
+                                            <div class="col-lg-9">
+                                                <a href="#" style="height:90px;width:100px !important"><?php if ($this->profile_thumb_image != '') { ?><span><img src="<?php echo SITE_URL . $this->profile_thumb_image ?>" /></span><?php } ?>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="clearfix m-top20">
+                                <h4>Basic Information</h4>
+                                    <div class="border-top m-bot20"></div>
+                                    <div class="col-sm-12">
+                                    	<div class="form-group ">
+                                            <div class="radios clearfix">
+                                                <label class="col-lg-4">Student?</label>
+                                                <label class="label_radio" for="radio-20">
+                                                    <input id="radio-20"  <?php echo $this->userform->is_student->getValue() == 1 ? 'checked="checked"' : '' ?> class="form-control required" type="radio" value="1" name="is_student"> Yes
+
+                                                </label>
+                                                <label class="label_radio" for="radio-21">
+                                                    <input id="radio-21" <?php echo $this->userform->is_student->getValue() == 0 ? 'checked="checked"' : '' ?> type="radio" value="0" name="is_student"> No 
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <label for="curl" class="control-label col-lg-4">Highest Education Attained</label>
+                                            <div class="col-lg-6">
+                                                <input name="highest_edu" type="text" class="form-control" id="highest_edu" value="<?php echo $this->userform->highest_edu->getValue() ?>" />
+                                            </div>
+                                        </div>
+                                    	<br>
+                                    </div>
+                                    
+                                   <h4>Skills & Certifications</h4>
+                                    <div class="border-top m-bot20"></div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group ">
+                                            <div class="radios clearfix">
+                                                <label class="col-lg-4">CPR Certification-Infant/Toddler?</label>
+                                                <label class="label_radio" for="radio-03">
+                                                    <input id="radio-03"  <?php echo $this->userform->cpr_holder->getValue() == 'yes' ? 'checked="checked"' : '' ?> class="form-control required" type="radio" value="yes" name="cpr_holder"> Yes
+
+                                                </label>
+                                                <label class="label_radio" for="radio-04">
+                                                    <input id="radio-04" <?php echo $this->userform->cpr_holder->getValue() == 'no' ? 'checked="checked"' : '' ?> type="radio" value="no" name="cpr_holder"> No 
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">  
+                                            <div class="radios clearfix">
+                                                <label class="col-lg-4">CPR Certification- Adult?</label>
+                                                <label class="label_radio" for="radio-05">
+                                                    <input id="radio-05" <?php echo $this->userform->cpr_adult->getValue() == 'yes' ? 'checked="checked"' : '' ?> class="form-control required" type="radio" value="yes" name="cpr_adult"> Yes 
+                                                </label>
+                                                <label class="label_radio" for="radio-06">
+                                                    <input id="radio-06"  <?php echo $this->userform->cpr_adult->getValue() == 'no' ? 'checked="checked"' : '' ?> type="radio" value="no" name="cpr_adult"> No 
+                                                </label>
+                                            </div> </div>
+                                        <div class="form-group ">  
+                                            <div class="radios clearfix">
+                                                <label class="col-lg-4">First Aid Certification?</label>
+                                                <label class="label_radio" for="radio-07">
+                                                    <input id="radio-07" <?php echo $this->userform->first_aid_cert->getValue() == 'yes' ? 'checked="checked"' : '' ?> class="form-control required" type="radio" value="yes" name="first_aid_cert"> Yes      </label>
+                                                <label class="label_radio" for="radio-08">
+                                                    <input id="radio-08" <?php echo $this->userform->first_aid_cert->getValue() == 'no' ? 'checked="checked"' : '' ?> type="radio" value="no" name="first_aid_cert"> No 
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <div class="radios clearfix">
+                                                <label class="col-lg-4">Water Certification?</label>
+                                                <label class="label_radio" for="radio-09">
+                                                    <input id="radio-09"  <?php echo $this->userform->water_certification->getValue() == 'yes' ? 'checked="checked"' : '' ?> class="form-control required" type="radio" value="yes" name="water_certification"> Yes
+
+                                                </label>
+                                                <label class="label_radio" for="radio-10">
+                                                    <input id="radio-10" <?php echo $this->userform->water_certification->getValue() == 'no' ? 'checked="checked"' : '' ?> type="radio" value="no" name="water_certification"> No 
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <div class="radios clearfix">
+                                                <label class="col-lg-4">Hamptons babysitter training?</label>
+                                                <label class="label_radio" for="radio-11">
+                                                    <input id="radio-11"  <?php echo $this->userform->hampton_babysitter_training->getValue() == 1 ? 'checked="checked"' : '' ?> class="form-control required" type="radio" value="1" name="hampton_babysitter_training"> Yes
+
+                                                </label>
+                                                <label class="label_radio" for="radio-12">
+                                                    <input id="radio-12" <?php echo $this->userform->hampton_babysitter_training->getValue() == 0 ? 'checked="checked"' : '' ?> type="radio" value="0" name="hampton_babysitter_training"> No 
+                                                </label>
+                                            </div>
+                                        </div>
+                                         <div class="form-group ">
+                                            <div class="radios clearfix">
+                                           
+                                                <label class="col-lg-4">Lifeguard</label>
+                                                <label class="label_radio" for="radio-22">
+                                                    <input id="radio-22"  <?php echo $this->userform->lifeguard->getValue()== 'yes'? 'checked="checked"' : '' ?> class="form-control required" type="radio" value="yes" name="lifeguard"> Yes
+
+                                                </label>
+                                                <label class="label_radio" for="radio-23">
+                                                    <input id="radio-23" <?php echo $this->userform->lifeguard->getValue()== 'no' ? 'checked="checked"' : '' ?> type="radio" value="no" name="lifeguard"> No 
+                                                </label>
+                                            </div>
+                                        </div>
+                                         <?php $spneed=$this->userform->special_need_exp->getValue();?>
+                                        <div class="form-group ">
+                                            <div class="radios clearfix">
+                                           
+                                                <label class="col-lg-4">Special Needs Experienced SN</label>
+                                                <label class="label_radio" for="radio-26">
+                                                    <input id="radio-26"  <?php echo $this->userform->sneed_exp->getValue()== 1? 'checked="checked"' : '' ?> class="form-control required" type="radio" value="1" name="sneed_exp"> Yes
+
+                                                </label>
+                                                <label class="label_radio" for="radio-27">
+                                                    <input id="radio-27" <?php echo $this->userform->sneed_exp->getValue()== 0 ? 'checked="checked"' : '' ?> type="radio" value="0" name="sneed_exp"> No 
+                                                </label>
+                                            </div>
+                                            
+                                        <div class="form-group " id="spnexp" style="display:none;">
+                                            <label class="col-lg-4"></label>
+                                                <div class="col-lg-6">
+                                                <!--  <select class="form-control" id="special_need_exp" name="special_need_exp">
+                                                 <option value="" <?php //if ($spneed == '') { ?> selected="selected" <?php //} ?> >Select</option>
+                                                	 <?php //foreach ($this->userform->special_need_exp->getMultiOptions() as $needs) { ?>
+				                                        <option value="<?php //echo $needs['special_need']; ?>"
+				                                        <?php // if ($spneed == $needs['special_need']) { ?>
+				                                                    selected="selected" <?php //} ?>><?php  //echo $needs['special_need']; ?></option>
+				                                            <?php //} ?> 
+                                				</select> -->
+                                				<input name="special_need_exp" type="text" class="form-control" id="special_need_exp" value="<?php echo $this->userform->special_need_exp->getValue() ?>" placeholder="Special Need" />
+                                				</div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+
+
+
+                                <section class="clearfix m-top20">
+                                    <h4>Preferences</h4>
+                                    <p>Unchecked boxes means that you would prefer not to receive jobs that fall within that particular criteria.</p>
+                                    <div class="border-top m-bot20"></div>
+                                    <div>
+
+
+
+                                        <?php if (!empty($this->preferences)) { ?>
+                                            <?php $this->preferences = array_chunk($this->preferences, 2); // print_r($this->preferences); ?>
+
+                                            <?php foreach ($this->preferences as $k => $part) {
+                                                ?>
+
+                                                <?php foreach ($part as $group) { ?>
+                                                    <div >
+                                                        <ul class="preflist">
+                                                            <li><strong><?php echo $group['label'] ?></strong></li>
+                                                            <div class="border-top m-bot20"></div>
+
+                                                            <?php
+                                                            if (!empty($group['prefer']))
+                                                                foreach ($group['prefer'] as $p) {
+                                                                    ?>
+
+                                                                    <li style="float:left;width:220px" >
+
+                                                                        <div class="btn-group" data-toggle="buttons">
+                                                                            <label class="btn btn-info chk <?php echo in_array($p['prefer_id'], $this->sitterPreference) || @in_array($p['prefer_id'], $this->searchParams['prefer']) ? 'active' : '' ?>">
+                                                                                <input  autocomplete="off"  <?php echo in_array($p['prefer_id'], $this->sitterPreference) || @in_array($p['prefer_id'], $this->searchParams['prefer']) ? 'checked="checked"' : '' ?> type="checkbox" name="prefer[]" value="<?php echo $p['prefer_id'] ?>"/> 
+
+                                                                                <span class="glyphicon glyphicon-ok"></span>
+                                                                            </label>
+                                                                            <?php echo $p['prefer_name'] ?> 
+                                                                        </div>
+
+
+                                                                    </li>
+
+                                                                <?php }
+                                                            ?>                        
+                                                        </ul>
+                                                        <div class="clearfix"></div>
+                                                    <?php } ?>
+                                                </div>
+                                            <?php } ?>
+
+                                        <?php } ?>
+                                    </div>
+                                    </div>    
+
+
+                                    <div class="">
+                                        <h4 class="m-top20">Other</h4>
+                                        <div class="border-top m-bot20"></div>
+                                        <textarea name="otherpreference" class="form-control"><?php echo $this->userform->otherpreference->getValue() ?></textarea>                                    </div>
+
+                                </section>         
+                                <section class="clearfix m-top20">
+                                    <h4>Education</h4>
+                                    <div class="border-top m-bot20"></div>
+                                    <div class="col-sm-12">
+                                        <section id="flip-scroll">
+                                            <table class="table table-bordered table-striped table-condensed cf">
+                                                <thead>
+                                                    <tr>
+                                                        <td>School</td>
+                                                        <td>Start Date</td>
+                                                        <td>End Date</td>
+                                                        <td>Degree</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="education_body">
+                                                    <?php if (!empty($this->educations)) { ?>
+                                                        <?php foreach ($this->educations as $edu) { ?>
+                                                            <tr><!-- .first for first row of the table (only if there is thead) -->
+                                                                <td>
+
+                                                                    <input name="education[institution][]" type="text" class="form-control width-70" id="some32" value="<?php echo $edu['institution'] ?>" /></td>
+                                                                <td>
+
+
+                                                                    <div data-date-viewmode="years" data-date-format="mm/dd/yyyy" data-date="12-02-2012"  class="input-append date dpYears">
+                                                                        <input type="text" readonly size="16" class="form-control datep"  name="education[start_date][]" id="some33" value="<?php echo strtotime($edu['start_date']) > 0 ? date(DATE_FORMAT, strtotime($edu['start_date'])) : '' ?>">
+                                                                        <span class="input-group-btn add-on">
+                                                                            <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                                                        </span>
+                                                                    </div>
+
+                                                                </td>
+                                                                <td>
+
+
+                                                                    <div data-date-viewmode="years" data-date-format="dd/mm/yyyy" data-date="12-02-2012"  class="input-append date dpYears">
+                                                                        <input type="text" readonly size="16" class="form-control datep"  name="education[end_date][]" id="some34" value="<?php echo strtotime($edu['end_date']) > 0 ? date(DATE_FORMAT, strtotime($edu['end_date'])) : '' ?>">
+                                                                        <span class="input-group-btn add-on">
+                                                                            <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </td>
+                                                                <td><input name="education[degree][]" type="text" class="form-control width-70" id="some35" value="<?php echo $edu['degree'] ?>" /></td>
+                                                                <!-- a.ico-comms for comment-like backgrounds -->
+                                                            </tr>
+                                                        <?php } ?>
+                                                    <?php } else { ?>
+
+                                                        <tr>
+                                                            <td>
+
+                                                                <input name="education[institution][]" type="text" class="form-control width-70" id="some36" value="" />
+
+                                                            </td>
+                                                            <td>
+
+
+                                                                <div data-date-viewmode="years" data-date-format="mm/dd/yyyy" data-date="12-02-2012"  class="input-append date dpYears">
+                                                                    <input type="text" readonly size="16" class="form-control datep"  name="education[start_date][]" id="some37" value="">
+                                                                    <span class="input-group-btn add-on">
+                                                                        <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                                                    </span>
+                                                                </div>
+
+                                                            </td>
+                                                            <td>
+
+
+                                                                <div data-date-viewmode="years" data-date-format="mm/dd/yyyy" data-date="12-02-2012"  class="input-append date dpYears">
+                                                                    <input type="text" readonly size="16" class="form-control datep"  name="education[end_date][]" id="some38" value="" >
+                                                                    <span class="input-group-btn add-on">
+                                                                        <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                                                    </span>
+                                                                </div>
+                                                            </td>
+                                                            <td><input name="education[degree][]" type="text" class="form-control width-70" id="some39" value=""/></td>
+                                                            <!-- a.ico-comms for comment-like backgrounds -->
+                                                        </tr>
+                                                    <?php } ?>
+                                                </tbody>
+                                            </table>
+
+
+
+                                        </section>
+
+                                        <div class="clearfix">
+                                            <a class="btn btn-primary pull-right" onclick="addEducation()"><i class="fa fa-plus-circle"></i> Add More</a>
+                                        </div>
+                                        
+                                        <section id="flip-scroll">
+                                            <h4>References</h4>
+                                            <div class="border-top m-bot20"></div>
+                                            <table class="table table-bordered table-striped table-condensed cf">
+                                                <thead class="cf">
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Phone Number</th>
+                                                        <th>Relationship</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="reference_body">
+                                                    <?php if (!empty($this->reference)) { ?>
+                                                        <?php foreach ($this->reference as $ref) { ?>
+
+                                                            <tr><!-- .first for first row of the table (only if there is thead) -->
+                                                                <td><input name="reference[refered_by][]" type="text" class="form-control width-70" id="some15" value="<?php echo $ref['refered_by'] ?>" /></td>
+                                                                <td><input name="reference[phone][]" type="text" class="form-control width-70" id="some16" value="<?php echo $ref['phone'] ?>" /></td>
+                                                                <td><input name="reference[relationship][]" type="text" class="form-control width-70" id="some17" value="<?php echo $ref['relationship'] ?>" /></td>
+                                                                <!-- a.ico-comms for comment-like backgrounds -->
+                                                            </tr>
+                                                        <?php }$rcount=count($this->reference);//print_r($rcount);die;
+	                                                        if($rcount<3){ while($rcount<3){?>
+	                                                        <tr><!-- .first for first row of the table (only if there is thead) -->
+                                                            <td><input name="reference[refered_by][]" type="text" class="form-control width-70" id="some20" value="" /></td>
+                                                            <td><input  name="reference[phone][]" type="text" class="form-control width-70" id="some21" value="" /></td>
+                                                            <td><input  name="reference[relationship][]" type="text" class="form-control width-70" id="some22" value="" /></td>
+                                                            <!-- a.ico-comms for comment-like backgrounds -->
+                                                       		</tr>
+	                                                        <?php $rcount++;} }?>
+                                                    <?php } else { ?>
+                                                        <tr><!-- .first for first row of the table (only if there is thead) -->
+                                                            <td><input name="reference[refered_by][]" type="text" class="form-control width-70" id="some23" value="" /></td>
+                                                            <td><input  name="reference[phone][]" type="text" class="form-control width-70" id="some24" value="" /></td>
+                                                            <td><input  name="reference[relationship][]" type="text" class="form-control width-70" id="some25" value="" /></td>
+                                                            <!-- a.ico-comms for comment-like backgrounds -->
+                                                        </tr>
+                                                        <tr><!-- .first for first row of the table (only if there is thead) -->
+                                                            <td><input name="reference[refered_by][]" type="text" class="form-control width-70" id="some26" value="" /></td>
+                                                            <td><input  name="reference[phone][]" type="text" class="form-control width-70" id="some27" value="" /></td>
+                                                            <td><input  name="reference[relationship][]" type="text" class="form-control width-70" id="some28" value="" /></td>
+                                                            <!-- a.ico-comms for comment-like backgrounds -->
+                                                        </tr>
+                                                         <tr><!-- .first for first row of the table (only if there is thead) -->
+                                                            <td><input name="reference[refered_by][]" type="text" class="form-control width-70" id="some29" value="" /></td>
+                                                            <td><input  name="reference[phone][]" type="text" class="form-control width-70" id="some30" value="" /></td>
+                                                            <td><input  name="reference[relationship][]" type="text" class="form-control width-70" id="some31" value="" /></td>
+                                                            <!-- a.ico-comms for comment-like backgrounds -->
+                                                        </tr>
+                                                    <?php } ?>  
+                                                </tbody>
+
+
+                                            </table>
+                                           <!-- <div class="clearfix">
+                                                <a href="javascript:void(0)" onclick="addReference()" class="btn btn-primary pull-right"><i class="fa fa-plus-circle"></i> Add More</a>
+                                            </div>-->
+                                        </section>
+                                        
+                                        <div class="">
+                                            <h4 class="m-top20">Summary of childcare experiences</h4>
+                                            <div class="border-top m-bot20"></div>
+                                            <textarea class="form-control" name="exp_summary" id="exp_summary"><?php echo $this->userform->exp_summary->getValue() ?></textarea>
+                                        </div>
+                                        
+                                         <?php if($this->userform->traits->getValue() && $this->userform->traits->getValue()!='Please provide details.')
+										{
+											$about_me=$this->userform->about_me->getValue();	
+											if($about_me!='' && $about_me !='Please provide details.' && $about_me!=null)
+												$about_me = $about_me."\n".$this->userform->traits->getValue();
+											else
+												$about_me = $this->userform->traits->getValue();
+										}
+										else
+										{ 
+											$about_me=$this->userform->about_me->getValue();
+										}?>
+                                        <div class="">
+                                            <h4 class="m-top20">Personal Statement</h4>
+                                            <div class="border-top m-bot20"></div>
+                                            <textarea class="form-control" name="about_me" id="about_me"><?php echo $about_me; ?></textarea>
+                                        </div>
+                                        
+                                        <div class="form-group clearfix">
+                                            <div class="m-bot20 m-top20">
+
+                                                <input class="btn btn-danger" type="submit" value="Update" />
+                                                <input class="btn btn-default" type="button" onclick="history.back();" value="Cancel" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                        </form>
+                        </dl>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/jquery-validator.js"></script>
+
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/additional-methods-new.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+	if ($("#radio-26").is(":checked")) {
+   	 $("#spnexp").show();
+   	 
+   }
+	
+    $.validator.addMethod("alpha", function(value, element) {
+     return this.optional(element) || value == value.match(/^[a-zA-Z\s]+$/); });
+
+    // validate signup form on keyup and submit
+
+    var validator = $("#userform").validate({
+        rules: {
+            firstname: {
+                required: true,
+                alpha:true,
+            },
+            middlename: {
+                required: false,
+                //  alpha:true,
+            },
+            lastname: {
+                required: true,
+                  alpha:true,
+            },
+            username: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true
+            }, profile_image: {
+                required: false,
+                accept: "image/*"
+
+            }, phone: {
+                required: true
+            }, special_need_exp: {
+                required: {
+                    depends: function(element) {
+                      return $("#radio-26:checked").length;
+                      //or whatever you need to check
+                    }
+                  }
+                },
+            'local[streat_address]': {
+                required: true
+            },
+            'local[zipcode]': {
+                required: true
+            },
+            'local[city]': {
+                required: true
+
+            },
+            'local[state]': {
+                required: true
+            }
+
+        },
+        messages: {
+            firstname: {
+                required: 'Please enter the First Name',
+                alpha:'Please enter the valid First Name'
+                
+            },
+            lastname: {
+                 required: 'Please enter the Last Name',
+                 alpha:'Please enter the valid Last Name',
+            },
+            username: {
+                required: 'Value cannot be empty',
+                email: "Your email address must be in the format of name@domain.com"
+
+            },
+            password: {
+                required: 'Value cannot be empty'
+            }, profile_image: {
+                required: '',
+                accept: 'Only jpeg/png/jpg/gif files are allowed'
+
+            }, phone: {
+                required: 'Please enter your phone number.'
+            },
+            'local[address_1]': {
+                required: 'Please Enter your address'
+            },
+            'local[streat_address]': {
+                required: 'Please enter your street address'
+            },
+            'local[zipcode]': {
+                required: "Please enter your ZIP code."
+            },
+            'local[city]': {
+                required: 'Please enter your city'
+
+            }
+        },
+        // the errorPlacement has to take the table layout into account
+        errorPlacement: function (error, element) {
+            //alert(element.attr('type'));
+            if (element.is(":radio")) {
+                error.html('Please enter yes or no');
+                error.appendTo(element.parent().parent());
+            }
+            else if (element.is(":checkbox"))
+                error.appendTo(element.next());
+           
+        else if (element.attr('id')!='dob')
+         
+         error.appendTo(element.parent());
+        
+        else {
+               
+  error.appendTo(element.parent().next());
+            }
+        },
+        // specifying a submitHandler prevents the default submit, good for the demo
+        submitHandler: function () {
+            //$("#login").submit();
+          document.getElementById('login').submit();
+        },
+        // set this class to error-labels to indicate valid fields
+        success: function (label) {
+            
+        }
+    });
+
+<?php
+if (!empty($errors)) {
+    echo "validator.showErrors(" . json_encode($errors) . ");";
+}
+?>
+
+                                              
+
+
+    $('textarea').each(function (i, ele) {
+        if ($(ele).val() == '') {
+            $(ele).val('Please provide details.')
+        }
+    })
+    $('textarea').blur(function (event) {
+        if (this.value == '' || this.value == 'Please provide details.') {
+            this.value = 'Please provide details.'
+        }
+    });
+    $('textarea').focus(function (event) {
+        if (this.value == '' || this.value == 'Please provide details.') {
+            this.value = ''
+        }
+    });
+
+    $("input[name='sneed_exp']").click(function () {
+        if ($("#radio-26").is(":checked")) {
+        	 $("#spnexp").show();
+        	 
+        } else {
+        	$("#spnexp").hide();
+        }
+    });
+
+});
+function addReference() {
+    var str = '<tr><td><input name="reference[refered_by][]" type="text" class="form-control width-70" id="some15" value="" /></td><td><input  name="reference[phone][]" type="text" class="form-control width-70" id="some16" value="" /></td><td><input  name="reference[relationship][]" type="text" class="form-control width-70" id="some16" value="" /></td></tr>';
+    $("#reference_body").append(str);
+}
+function addEducation() {
+    var str = ' ';
+    ;
+    var stsr = '<tr><td><input name="education[institution][]" type="text" class="form-control width-70" id="some15" value="" /></td><td><div data-date-viewmode="years" data-date-format="dd/mm/yyyy" data-date="12/02/2012"  class="input-append date dpYears"><input type="text" readonly size="16" class="form-control datep"  name="education[start_date][]" id="some16" value=""><span class="input-group-btn add-on"><button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button></span></div></td><td><div data-date-viewmode="years" data-date-format="dd/mm/yyyy"   class="input-append date dpYears"><input type="text" readonly size="16" class="form-control datep"  name="education[end_date][]" id="some17" value="" ><span class="input-group-btn add-on"><button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button></span></div></td><td><input name="education[degree][]" type="text" class="form-control width-70" id="some18" value=""/></td></tr>';
+
+
+    var re = ' <tr>td><div data-date-viewmode="years" data-date-format="dd/mm/yyyy"  class="input-append date dpYears"><input type="text" readonly size="16" class="form-control datep"  name="education[start_date][]" id="some16" value=""><span class="input-group-btn add-on"><button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button></span></div> </td></tr>';
+
+
+    $("#education_body").append(stsr);
+    $('.dpYears').datepicker();
+
+
+}
+</script>
+
+

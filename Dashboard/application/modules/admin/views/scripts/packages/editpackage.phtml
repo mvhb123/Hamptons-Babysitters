@@ -1,0 +1,255 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+         <div class="row">
+                  <div class="col-lg-12">
+                      <section class="panel">
+                          <header class="panel-heading">
+                             Edit Package
+                          </header>
+                          <div class="panel-body">
+                              <div class=" form">
+                                  <form class="cmxform form-horizontal tasi-form" id="form_login" method="post" action="<?php echo ADMIN_URL?>Packages/update">
+                                      <div class="form-group ">
+                                          <label for="cname" class="control-label col-lg-2">Description </label>
+                                          <div class="col-lg-4">
+                                              <input class=" form-control" name="package_name" id="package_name"  value="<?php echo $this->det[0]['package_name']?>" />
+                                          </div>
+                                      </div>
+                                      <div class="form-group ">
+                                          <label for="cemail" class="control-label col-lg-2">Credit
+                                          </label>
+                                          <div class="col-lg-4">
+                                              <input class="form-control " id="credit"  name="credit"  value="<?php echo $this->det[0]['credits']?>" />
+                                          </div>
+                                      </div>
+                                     
+                                      <div class="form-group ">
+                                          <label for="ccomment" class="control-label col-lg-2">Price</label>
+                                          <div class="col-lg-4">
+                                              <input class="form-control " id="price" name="price"  value="<?php echo $this->det[0]['price']?>"></input>
+                                                              <input name="package_id" type="hidden" class="txt" id="package_id" value="<?php echo $this->det[0]['package_id']?>"/>
+
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <div class="col-lg-offset-2 col-lg-10">
+                                              <button class="btn btn-danger" type="submit">Update</button>
+                                          </div>
+                                      </div>
+                                  </form>
+                              </div>
+
+                          </div>
+                      </section>
+                  </div>
+              </div>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+<div class="sb-slidebar sb-right sb-style-overlay">
+    <h5 class="side-title">Online Customers</h5>
+    <ul class="quick-chat-list">
+        <li class="online">
+            <div class="media">
+                <a href="#" class="pull-left media-thumb">
+<!--                          <img alt="" src="img/chat-avatar2.jpg" class="media-object">-->
+                </a>
+                <div class="media-body">
+                    <strong>John Doe</strong>
+                    <small>Dream Land, AU</small>
+                </div>
+            </div><!-- media -->
+        </li>
+        <li class="online">
+            <div class="media">
+                <a href="#" class="pull-left media-thumb">
+<!--                          <img alt="" src="img/chat-avatar.jpg" class="media-object">-->
+                </a>
+                <div class="media-body">
+                    <div class="media-status">
+                        <span class=" badge bg-important">3</span>
+                    </div>
+                    <strong>Jonathan Smith</strong>
+                    <small>United States</small>
+                </div>
+            </div><!-- media -->
+        </li>
+
+        <li class="online">
+            <div class="media">
+                <a href="#" class="pull-left media-thumb">
+<!--                          <img alt="" src="img/pro-ac-1.png" class="media-object">-->
+                </a>
+                <div class="media-body">
+                    <div class="media-status">
+                        <span class=" badge bg-success">5</span>
+                    </div>
+                    <strong>Jane Doe</strong>
+                    <small>ABC, USA</small>
+                </div>
+            </div><!-- media -->
+        </li>
+        <li class="online">
+            <div class="media">
+                <a href="#" class="pull-left media-thumb">
+<!--                          <img alt="" src="img/avatar1.jpg" class="media-object">-->
+                </a>
+                <div class="media-body">
+                    <strong>Anjelina Joli</strong>
+                    <small>Fockland, UK</small>
+                </div>
+            </div><!-- media -->
+        </li>
+        <li class="online">
+            <div class="media">
+                <a href="#" class="pull-left media-thumb">
+<!--                          <img alt="" src="img/mail-avatar.jpg" class="media-object">-->
+                </a>
+                <div class="media-body">
+                    <div class="media-status">
+                        <span class=" badge bg-warning">7</span>
+                    </div>
+                    <strong>Mr Tasi</strong>
+                    <small>Dream Land, USA</small>
+                </div>
+            </div><!-- media -->
+        </li>
+    </ul>
+    <h5 class="side-title"> pending Task</h5>
+    <ul class="p-task tasks-bar">
+        <li>
+            <a href="#">
+                <div class="task-info">
+                    <div class="desc">Dashboard v1.3</div>
+                    <div class="percent">40%</div>
+                </div>
+                <div class="progress progress-striped">
+                    <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success">
+                        <span class="sr-only">40% Complete (success)</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="task-info">
+                    <div class="desc">Database Update</div>
+                    <div class="percent">60%</div>
+                </div>
+                <div class="progress progress-striped">
+                    <div style="width: 60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="progress-bar progress-bar-warning">
+                        <span class="sr-only">60% Complete (warning)</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="task-info">
+                    <div class="desc">Iphone Development</div>
+                    <div class="percent">87%</div>
+                </div>
+                <div class="progress progress-striped">
+                    <div style="width: 87%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
+                        <span class="sr-only">87% Complete</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="task-info">
+                    <div class="desc">Mobile App</div>
+                    <div class="percent">33%</div>
+                </div>
+                <div class="progress progress-striped">
+                    <div style="width: 33%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" class="progress-bar progress-bar-danger">
+                        <span class="sr-only">33% Complete (danger)</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                <div class="task-info">
+                    <div class="desc">Dashboard v1.3</div>
+                    <div class="percent">45%</div>
+                </div>
+                <div class="progress progress-striped active">
+                    <div style="width: 45%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="45" role="progressbar" class="progress-bar">
+                        <span class="sr-only">45% Complete</span>
+                    </div>
+                </div>
+
+            </a>
+        </li>
+        <li class="external">
+            <a href="#">See All Tasks</a>
+        </li>
+    </ul>
+</div>
+ 
+ 
+    <!-- <script language="javascript"> -->
+<!--         <script type="text/javascript" src="http://localhost/webbabysitter/resource/js/jquery.min.js"></script>-->
+         
+<!--             <script src="http://localhost/webbabysitter/resource/js/jquery.js"></script>-->
+    
+<!--             <script type="text/javascript" src="<?php echo SITE_URL?>resource/js/jquery.min.js"></script>-->
+         
+             <script src="<?php echo SITE_URL?>resource/js/jquery-validator.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	var validator = $("#form_login").validate({
+		rules: {
+			
+			package_name: {
+				required: true
+				
+				
+				
+			},
+			credit: {
+				required: true,
+                                number:true
+			},
+                        
+                        price: {
+				required: true,
+                                number:true
+			}
+			
+		},
+		messages: {
+			package_name: {
+				required: "Enter the name."
+				
+			},
+			credit: {
+				required: "Enter the credit."
+			},
+                       price: {
+				required: "Enter the price."
+			} 
+			
+		}
+		
+		// specifying a submitHandler prevents the default submit, good for the demo
+		
+		// set this class to error-labels to indicate valid fields
+		
+	});
+	
+	
+		
+	
+	//$("#login").valid();
+
+
+});</script>

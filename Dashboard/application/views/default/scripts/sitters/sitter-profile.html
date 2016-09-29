@@ -1,0 +1,473 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+		<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="content-style-type" content="text/css" />
+		<meta http-equiv="content-script-type" content="text/javascript" />
+		<title>Hamptons Babysitters</title>
+		<link rel="stylesheet" type="text/css" href="css/black.css" media="screen, projection, tv" />
+		<!-- Change name of the stylesheet to change colors (blue/red/black/green/brown/orange/purple) -->
+		<!--[if lte IE 7.0]><link rel="stylesheet" type="text/css" href="css/ie.css" media="screen, projection, tv" /><![endif]-->
+		<!--[if IE 8.0]>
+			<style type="text/css">
+				form.fields fieldset {margin-top: -10px;}
+			</style>
+		<![endif]-->
+
+		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+		<!-- Adding support for transparent PNGs in IE6: -->
+		<!--[if lte IE 6]>
+			<script type="text/javascript" src="js/ddpng.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('#nav #h-wrap .h-ico');
+				DD_belatedPNG.fix('.ico img');
+				DD_belatedPNG.fix('.msg p');
+				DD_belatedPNG.fix('table.calendar thead th.month a img');
+				DD_belatedPNG.fix('table.calendar tbody img');
+			</script>
+		<![endif]-->
+		<script type="text/javascript">
+			$(document).ready(function() {
+			    // Search input text handling on focus
+					var $searchq = $("#search-q").attr("value");
+				    $('#search-q.text').css('color', '#999');
+					$('#search-q').focus(function(){
+						if ( $(this).attr('value') == $searchq) {
+							$(this).css('color', '#555');
+							$(this).attr('value', '');
+						}
+					});
+					$('#search-q').blur(function(){
+						if ( $(this).attr('value') == '' ) {
+							$(this).attr('value', $searchq);
+							$(this).css('color', '#999');
+						}
+					});
+				// Switch categories
+					$('#h-wrap').hover(function(){
+							$(this).toggleClass('active');
+							$("#h-wrap ul").css('display', 'block');
+						}, function(){
+							$(this).toggleClass('active');
+							$("#h-wrap ul").css('display', 'none');
+					});
+				// Handling with tables (adding first and last classes for borders and adding alternate bgs)
+					$('tbody tr:even').addClass('even');
+					$('table.grid tbody tr:last-child').addClass('last');
+					$('tr th:first-child, tr td:first-child').addClass('first');
+					$('tr th:last-child, tr td:last-child').addClass('last');
+					$('form.fields fieldset:last-child').addClass('last');
+				// Handling with lists (alternate bgs)
+					$('ul.simple li:even').addClass('even');
+				// Handling with grid views (adding first and last classes for borders and adding alternate bgs)
+					$('.grid .line:even').addClass('even');
+					$('.grid .line:first-child').addClass('firstline');
+					$('.grid .line:last-child').addClass('lastline');
+				// Tabs switching
+					$('#box1 .content#box1-grid').hide(); // hide content related to inactive tab by default
+					$('#box1 .header ul a').click(function(){
+						$('#box1 .header ul a').removeClass('active');
+						$(this).addClass('active'); // make clicked tab active
+						$('#box1 .content').hide(); // hide all content
+						$('#box1').find('#' + $(this).attr('rel')).show(); // and show content related to clicked tab
+						return false;
+					});
+			});
+		</script>
+		</head>
+		<body>
+<div id="container">
+          <div id="header">
+		    <div id="logo"><img src="img/txt.gif" alt="" width="1" height="12" /><img src="img/logo.jpg" width="360" height="125" alt="Hamptons Babysitters" /></div>
+            <div class="floatright"><a href="admin-home.html">ADMIN SECTION</a> | <a href="client-home.html">CLIENT SECTION</a> | <a href="sitter-home.html">BABYSITTER SECTION</a></div>
+		  </div>
+          <div id="nav">
+    <ul>
+              <li><a href="sitter-home.html">Home</a></li>
+              <li><a href="sitter-jobs.html">My Jobs</a></li>
+              <li><a href="sitter-profile.html" class="sel">Profile</a></li>
+            </ul>
+  </div>
+          <div class="inner-container">
+    <div class="box box-100 altbox">
+              <div class="boxin">
+        <div class="header">
+                  <h3>Profile</h3>
+                  <ul>
+            <li><a href="sitter-profile.html" class="active">Contact Information</a></li>
+            <li><a href="sitter-profile-password.html">Password</a></li>
+          </ul>
+                </div>
+        <div class="content pad20">
+                  <form class="basic" action="" method="post" enctype="multipart/form-data">
+            <h1 class="formheading">Basic Information</h1>
+            <div class="formbox floatleft w450">
+                      <dl>
+                <dt>
+                          <label for="some1">First Name:</label>
+                        </dt>
+                <dd>
+                          <input name="some1" type="text" class="txt" id="some1" value="Thomas" />
+                          <small>A little description.</small> </dd>
+                <dt>
+                          <label for="some2">Last Name:</label>
+                        </dt>
+                <dd>
+                          <input name="some2" type="text" class="txt" id="some2" value="Abraham" />
+                          <small>A little description.</small> </dd>
+                <dt>
+                          <label for="some5">Mobile:</label>
+                        </dt>
+                <dd>
+                          <input name="some5" type="text" class="txt" id="some5" value="123" />
+                          <small>A little description.</small> </dd>
+                <dt>
+                          <label for="some6">Home Phone:</label>
+                        </dt>
+                <dd>
+                          <input name="some6" type="text" class="txt" id="some6" value="123" />
+                          <small>A little description.</small> </dd>
+                <dt>
+                          <label for="some7">Work Phone:</label>
+                        </dt>
+                <dd>
+                          <input name="some7" type="text" class="txt" id="some7" value="123" />
+                          <small>A little description.</small> </dd>
+                <dt>
+                          <label for="some9">Email:</label>
+                        </dt>
+                <dd>
+                          <input name="some9" type="text" class="txt" id="some9" value="thomas2483@gmail.com" />
+                          <small>A little description.</small> </dd>
+              </dl>
+                    </div>
+            <div class="formbox floatright w450">
+                      <dl>
+                <dt>
+                          <label for="some10">Stree Address:</label>
+                        </dt>
+                <dd>
+                          <input name="some10" type="text" class="txt" id="some10" value="Street1" />
+                          <small>A little description.</small> </dd>
+                <dt>
+                          <label for="some12">City:</label>
+                        </dt>
+                <dd>
+                          <input name="some12" type="text" class="txt" id="some12" value="City" />
+                          <small>A little description.</small> </dd>
+                <dt>
+                          <label for="some13">State:</label>
+                        </dt>
+                <dd>
+                          <select id="some10" name="some12">
+                    <option value="val1">select …</option>
+                    <option value="val1">… something</option>
+                  </select>
+                          <small>A little description.</small> </dd>
+                <dt>
+                          <label for="some14">Zip:</label>
+                        </dt>
+                <dd>
+                          <input name="some14" type="text" class="txt" id="some14" value="12345" />
+                          <small>A little description.</small> </dd>
+              </dl>
+                      <div class="childcontainer"> <a href="#" class="thumb"><img src="img/child.jpg" alt="" width="100" height="90" /></a>
+                <div class="details">
+                          <dl>
+                    <dt>
+                              <label for="some4">Upload Picture:</label>
+                            </dt>
+                    <dd>
+                              <input class="file" type="file" id="some4" name="some4" />
+                              <span class="loading">uploading…</span><!-- OR <img src="img/upload.gif" alt="" /> --><!-- uploading animation --> 
+                            </dd>
+                  </dl>
+                        </div>
+                <br clear="all" />
+              </div>
+                    </div>
+            <h1 class="formheading">Preferences</h1>
+            <div class="formbox floatleft w450">
+                      <ul class="preflist">
+                <li class="sep"><strong>Child Preferences</strong></li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                    Infants up to 12mo</label>
+                        </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Toddlers 1mo-2years </label>
+                        </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                  </label>
+                          <label class="check">Preschool 3-5</label>
+                        </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                    Elementary 5-10</label>
+                        </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Middle 10+</label>
+                        </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                  </label>
+                          two children</li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                  </label>
+                          three children </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Four children</label>
+                        </li>
+              </ul>
+              <ul class="preflist">
+                      <li class="sep"><strong>Town Preferences</strong></li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                    Amagansett</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Bridgehampton</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    East Hampton</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                    East Quogue</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Hampton Bays</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Montauk</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                    North Haven</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Quiogue</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Quogue</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                    Sag Harbor</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Sagaponack</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Southampton</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some5" name="some5" value="true" checked="checked" />
+                    Wainscott</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Water Mill</label>
+                </li>
+                <li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some6" name="some6" value="true" />
+                    Westhampton</label>
+                </li>
+              </ul>
+            </div>
+            <div class="formbox floatright w450">
+              <ul class="preflist2">
+                <li class="sep"><strong>Other Preferences</strong></li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some3" name="some3" value="true" checked="checked" />
+                    Ok to drive children in own car</label>
+                </li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some8" name="some3" value="true" />
+                    Ok to drive children in client's car</label>
+                </li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some8" name="some3" value="true" />
+                    Ok with Dogs</label>
+                </li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some3" name="some3" value="true" checked="checked" />
+                    Ok with Cats</label>
+                </li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some8" name="some3" value="true" />
+                    Swimming</label>
+                </li>
+              </ul>
+              <ul class="preflist">
+                <li class="sep"><strong>Language Preferences</strong></li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some11" name="some8" value="true" checked="checked" />
+                    English</label>
+                </li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some13" name="some8" value="true" />
+                    French </label>
+                </li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some13" name="some8" value="true" />
+                  </label>
+                  <label class="check">Spanish</label>
+                </li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some11" name="some8" value="true" checked="checked" />
+                    Italian</label>
+                </li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some13" name="some8" value="true" />
+                    German</label>
+                </li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some13" name="some8" value="true" />
+                  </label>
+                  Japanese</li>
+                <li>
+                  <label class="check">
+                    <input class="check" type="checkbox" id="some11" name="some8" value="true" checked="checked" />
+                  </label>
+                  Mandarin</li>
+                <li>
+                  <label class="check">
+                    <input name="some8" type="checkbox" class="check" id="some13" value="true" checked="checked" />
+                    Other</label>
+                    <textarea name="some2" id="some2" cols="20" rows="3">Please provide details</textarea>
+                </li>
+              </ul><br />
+<br clear="all" />
+              
+            </div>
+            <h1 class="formheading">Education</h1>
+            <div class="content">
+            <table cellspacing="0">
+								<thead>
+									<tr>
+										<th>School</th>
+										<td>Start Date</td>
+										<td>End Date</td>
+										<td>Degree</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="first"><!-- .first for first row of the table (only if there is thead) -->
+										<th class="first"><input name="some11" type="text" class="txt" id="some15" value="School" /></th>
+										<td><input name="some13" type="text" class="txt" id="some16" value="04/04/11" /></td>
+										<td class="tc"><input name="some15" type="text" class="txt" id="some17" value="04/04/11" /></td>
+										<td class="tc"><input name="some16" type="text" class="txt" id="some18" value="Masters" /></td>
+										<!-- a.ico-comms for comment-like backgrounds -->
+									</tr>
+                                    <tr>
+                                      <th><span class="first">
+                                        <input name="some21" type="text" class="txt" id="some23" value="School" />
+                                      </span></th>
+                                      <td><input name="some22" type="text" class="txt" id="some24" value="04/04/11" /></td>
+                                      <td class="tc"><input name="some19" type="text" class="txt" id="some21" value="04/04/11" /></td>
+                                      <td class="tc"><input name="some20" type="text" class="txt" id="some22" value="Masters" /></td>
+                                    </tr>
+								</tbody>
+							</table>
+              <a href="#" class="floatright">Add More</a>
+            </div>
+            
+            <h1 class="formheading">Tell us about yourself (goals, interests, hobbies).</h1>
+            <div class="content"><textarea name="some2" id="some2" cols="20" rows="5">Please provide details</textarea>
+            </div>
+            
+            <h1 class="formheading">What traits or qualities do you possess that make you a good babysitter?</h1>
+            <div class="content"><textarea name="some2" id="some2" cols="20" rows="5">Please provide details</textarea>
+            </div>
+            
+            <h1 class="formheading">Summary of Childcare experience.</h1>
+            <div class="content"><textarea name="some2" id="some2" cols="20" rows="5">Please provide details</textarea>
+            </div>
+            
+            <h1 class="formheading">Tell us about yourself (goals, interests, hobbies).</h1>
+            <div class="formbox floatleft w450">
+            <table cellspacing="0">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<td>Phone Number</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="first"><!-- .first for first row of the table (only if there is thead) -->
+										<th class="first"><input name="some11" type="text" class="txt" id="some15" value="Thomas" /></th>
+										<td><input name="some13" type="text" class="txt" id="some16" value="123456" /></td>
+										<!-- a.ico-comms for comment-like backgrounds -->
+									</tr>
+                                    <tr>
+                                      <th><input name="some17" type="text" class="txt" id="some19" value="Thomas" /></th>
+                                      <td><input name="some18" type="text" class="txt" id="some20" value="123456" /></td>
+                                    </tr>
+								</tbody>
+							</table>
+              <a href="#" class="floatright">Add More</a>
+            </div>
+            
+            <br clear="all" />
+            <input class="button altbutton" type="submit" value="Update" />
+          </form>
+                </div>
+      </div>
+            </div>
+    <br clear="all" />
+  </div>
+          <!-- .inner-container -->
+          <div id="footer"></div>
+        </div>
+<!-- #container -->
+
+</body>
+</html>

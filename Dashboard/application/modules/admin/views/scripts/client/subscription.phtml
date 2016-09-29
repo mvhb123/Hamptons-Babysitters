@@ -1,0 +1,112 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel clearfix">
+                   <!--   <header class="panel-heading tab-bg-dark-navy-blue tab-right ">
+                        <ul class="nav nav-tabs pull-right">
+                            <?php //include_once('tabs.phtml'); ?>
+                        </ul>
+                        <span class="hidden-sm wht-color"> <?php //echo $this->userInfo['firstname'] . ' ' . $this->userInfo['lastname'] ?> </span>
+                    </header>-->
+                    <!--header fixes -->
+                    <div class="fixed-position">
+	                    <header class="panel-heading tab-bg-dark-navy-blue tab-right ">
+	                        <ul class="nav nav-tabs pull-left">
+	                        <li>     
+	                        	<span class="profile_name"><?php echo $this->userInfo['firstname'] . ' ' . $this->userInfo['lastname'] ?> </span>
+	                        </li>
+	                            <?php include_once('tabs.phtml'); ?>
+	                        </ul>
+	                    </header>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!--end header fixes -->
+                    <div class="clearfix"></div>
+                    <div class="panel-body list_margin">
+                    	<div class="row clearfix">
+                    		 <div class="col-md-10 btn-group">
+                    		 	<button class="btn btn-sm pull-left mar-bottom active" disabled onClick="location.href='<?php echo ADMIN_URL .'client/subscription/client/'.  $this->userInfo['userid'];?>'"><b>Purchase History</b></button>
+                    		 	<button class="btn btn-sm btn-danger pull-left mar-bottom"  onClick="location.href='<?php echo ADMIN_URL .'client/jobbookinghistory/client/'.  $this->userInfo['userid'];?>'"><b>Booking History</b></button>
+                    		 </div>
+		                     <div class="col-md-2">
+		                     	<button class="btn btn-primary pull-right mar-bottom" onClick="location.href='<?php echo ADMIN_URL .'client/buycredits/client/'.  $this->userInfo['userid'];?>'">Buy Credits</button>
+		                     </div>
+	                    </div>
+                    	<div class=" col-sm-12 text-right mar-bottom "><span><b>Total Credits Purchased: </b><?php echo $this->purchased_credits;?></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><b>Total Available Credits: </b><?php echo $this->total_avail_credits;?></span></div><br>
+                        <section id="flip-scroll">
+                        <?php if($this->searchParams['success']=='payment'){?>
+								<div style="color:#3c763d"><p><?php echo $this->successMessage;?></p></div>
+						<?php }?>
+						<table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr>
+                                            <th>Transaction ID</th>
+                                            <th>Payment Gateway</th>
+                                            <th>Date</th>
+                                            <th>Description</th>
+                                            <th class='text-right'>Amount</th>
+                                            <th>Purchased Credits</th>
+                                            <th>Remaining Credits</th>
+                                            <th>Expires</th>
+                                            <th>Actions</th>                      
+                                        </tr>
+                                   </thead>
+                                   <tbody>
+						<?php
+						if (!empty($this->subscriptions)) { ?>
+                                    	
+
+                                        <?php foreach ($this->subscriptions as $sub) { ?>
+                                            <tr>
+                                                <td><?php echo $sub['transaction_id'] == 'No Payment' ? 'Free' : $sub['transaction_id'] ?> </td>
+                                                <td><?php echo $sub['payment_gateway'] ?> </td>
+                                                <td><?php echo date(DATE_FORMAT, strtotime($sub['last_modified_date'])) ?> </td>
+                                                <td><?php echo $sub['notes'] ?></td>
+                                                <td class='numeric'><?php echo $sub['payment_gateway'] != 'Free' ? '$' . $sub['price'] : 'No Charge' ?></td>
+                                                <td><?php echo $sub['total_credits'] ?></td>
+                                                <td><?php echo $sub['slots'] ?></td>
+                                                <td><?php echo date(DATETIME_FORMAT, strtotime($sub['end_date'])) ?></td>
+                                                <td class='text-center'>
+
+                                                    <a class="btn btn-danger btn-xs " onclick="if (confirm('Are you sure want to delete?'))
+                                                                        return true;
+                                                                    else
+                                                                        return false;"  href="<?php echo ADMIN_URL . 'client/subscription/client/' . $this->userid . '/delete/' . $sub['client_sub_id'] ?>" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                </td>
+
+
+                                            </tr>
+                                        <?php }
+										} 
+                                     else
+                                    {?>
+                                    	<tr>
+                                       		<td colspan="9">
+                                    			No records found.
+                                    		</td>
+                                    	</tr>
+                                  <?php 
+                                    } ?>
+                                    </tbody>
+                                    
+                            </table>
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+                </section>
+
+
+
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->

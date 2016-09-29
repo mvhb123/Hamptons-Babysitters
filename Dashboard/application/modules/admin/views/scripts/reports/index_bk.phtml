@@ -1,0 +1,138 @@
+<div class="inner-container">
+
+	<!-- Main content – all content is within boxes. Feel free to add your boxes (see the examples on the bottom of this document) and your content within -->
+            <div class="box box-100 altbox">
+		<div class="boxin">
+			<div class="header">
+				<h3>Sitters Report</h3>
+			</div>
+			</br>
+
+			<form name="searchform" method="post">
+				<tr>
+					<th><div style="display: inline; margin: 0px 69px" align="center">
+							Start Date:<input placeholder="Start date" type="text"
+								class="txt" name="job_start_date" id="job_start_date" size="10"
+								value="<?php echo $this->searchParams['job_start_date']?>" />
+							End Date:<input placeholder="End date" type="text" class="txt"
+								name="job_end_date" id="job_end_date" size="10"
+								value="<?php echo $this->searchParams['job_end_date']?>" />
+						</div></th>
+					<th><select name="userid">
+							<option value="0"
+								<?php if($this->searchParams['userid'] == 0) { ?>
+								selected="selected" <?php }?>>All Sitters</option>
+                  	 <?php  foreach($this->sitters as $sitter) { ?>
+						<option value="<?php echo  $sitter['userid'] ;?>"
+								<?php if($this->searchParams['userid'] == $sitter['userid']) {?>
+								selected="selected" <?php }?>><?php echo  $sitter['name'];?></option>
+					<?php }?>      
+                    
+              </select></th>
+
+					<th><input type="submit" name="filter" value="Filter" /></th>
+				</tr>
+			</form>
+			</br>
+			<div class="content">
+
+
+
+
+				<table border="1">
+					<thead>
+						<tr>
+						
+						<th><a href="<?php echo $this->url(array('key'=>'firstname','odr'=>$this->searchParams['odr']=='asc'&&$this->searchParams['key']=='firstname'? 'desc' :'asc' ))?>">Name</a></th>
+<!-- 							<th>Name</a></th> -->
+							<th>Job Completed</th>
+							<th>Total $</th>
+							<th>Sitter $</th>
+							<th>company $</th>
+						
+						
+						<tr>
+					
+					</thead>
+				<?php foreach($this->reports as $details){?>
+					<tr>
+	
+						<td><?php echo $details['name']  ?> </td>
+						<td><?php echo $details['completed_jobs']  ?></td>
+						
+						<td><?php if($details['total_received'] !=""){echo $details['total_received']; } else {echo 0;}  ?></td>
+					
+						<td><?php if($details['sitter_earning'] !=""){echo $details['sitter_earning']; } else {echo 0;}  ?></td>
+						<td><?php if($details['company_profit'] !=""){echo $details['company_profit']; } else {echo 0;}  ?></td>
+					
+					</tr>
+					
+<?php }?>
+
+
+					
+					<td></td>
+					<td style="font-weight: bold"><?php echo 'Total';?></td>
+					<td style="font-weight: bold"><?php echo $this->total_received;;?></td>
+					<td style="font-weight: bold"><?php echo $this->sitter_earnings;;?></td>
+					
+					<td style="font-weight: bold"><?php echo $this->company_profit;;?></td>
+				</table>
+
+			
+
+<?php
+echo $this->paginationControl ( $this->paginator, 'Sliding', 'client/pagination.phtml' );
+?>
+
+
+
+	</div>
+		</div>
+	</div>
+	<br clear="all" />
+</div>
+<!-- .inner-container -->
+<link type="text/css"
+	href="<?php echo SITE_URL?>resources/css/redmond/jquery-ui-1.7.3.custom.css"
+	rel="stylesheet" />
+<script type="text/javascript"
+	src="<?php echo SITE_URL?>resources/js/jquery-ui-1.7.3.custom.min.js"></script>
+<script type="text/javascript"
+	src="<?php echo SITE_URL?>resources/js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript">
+			$(function(){
+
+				$('#job_start_date,#job_end_date').datepicker({
+					ampm: true,dateFormat:'mm-dd-yy',changeMonth: true,
+			changeYear: true
+
+				});
+								
+			});
+		</script>
+<style type="text/css">
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header {
+	margin-bottom: 8px;
+}
+
+.ui-timepicker-div dl {
+	text-align: left;
+}
+
+.ui-timepicker-div dl dt {
+	height: 25px;
+}
+
+.ui-timepicker-div dl dd {
+	margin: -25px 0 10px 65px;
+}
+
+.ui-timepicker-div td {
+	font-size: 90%;
+}
+</style>
+<script>
+
+</script>

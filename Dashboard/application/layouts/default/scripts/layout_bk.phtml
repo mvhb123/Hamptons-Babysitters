@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+    <head>
+	
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta http-equiv="content-style-type" content="text/css" />
+        <meta http-equiv="content-script-type" content="text/javascript" />
+        
+        <title>Hamptons Babysitters</title>
+        
+        <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resources/css/black.css" media="screen, projection, tv" />
+        <!--[if lte IE 7.0]><link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resources/css/ie.css" media="screen, projection, tv" /><![endif]-->
+		<!--[if IE 8.0]>
+			<style type="text/css">
+				form.fields fieldset {margin-top: -10px;}
+			</style>
+		<![endif]-->
+		
+		<script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery.min.js"></script>
+		<!-- Adding support for transparent PNGs in IE6: -->
+		<!--[if lte IE 6]>
+			<script type="text/javascript" src="<?php echo SITE_URL?>resources/js/ddpng.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('#nav #h-wrap .h-ico');
+				DD_belatedPNG.fix('.ico img');
+				DD_belatedPNG.fix('.msg p');
+				DD_belatedPNG.fix('table.calendar thead th.month a img');
+				DD_belatedPNG.fix('table.calendar tbody img');
+			</script>
+		<![endif]-->
+		<script type="text/javascript">
+			$(document).ready(function() {
+			    // Search input text handling on focus
+					var $searchq = $("#search-q").attr("value");
+				    $('#search-q.text').css('color', '#999');
+					$('#search-q').focus(function(){
+						if ( $(this).attr('value') == $searchq) {
+							$(this).css('color', '#555');
+							$(this).attr('value', '');
+						}
+					});
+					$('#search-q').blur(function(){
+						if ( $(this).attr('value') == '' ) {
+							$(this).attr('value', $searchq);
+							$(this).css('color', '#999');
+						}
+					});
+				// Switch categories
+					$('#h-wrap').hover(function(){
+							$(this).toggleClass('active');
+							$("#h-wrap ul").css('display', 'block');
+						}, function(){
+							$(this).toggleClass('active');
+							$("#h-wrap ul").css('display', 'none');
+					});
+				// Handling with tables (adding first and last classes for borders and adding alternate bgs)
+					$('tbody tr:even').addClass('even');
+					$('table.grid tbody tr:last-child').addClass('last');
+					$('tr th:first-child, tr td:first-child').addClass('first');
+					$('tr th:last-child, tr td:last-child').addClass('last');
+					$('form.fields fieldset:last-child').addClass('last');
+				// Handling with lists (alternate bgs)
+					$('ul.simple li:even').addClass('even');
+				// Handling with grid views (adding first and last classes for borders and adding alternate bgs)
+					$('.grid .line:even').addClass('even');
+					$('.grid .line:first-child').addClass('firstline');
+					$('.grid .line:last-child').addClass('lastline');
+				// Tabs switching
+					$('#box1 .content#box1-grid').hide(); // hide content related to inactive tab by default
+					$('#box1 .header ul a').click(function(){
+						$('#box1 .header ul a').removeClass('active');
+						$(this).addClass('active'); // make clicked tab active
+						$('#box1 .content').hide(); // hide all content
+						$('#box1').find('#' + $(this).attr('rel')).show(); // and show content related to clicked tab
+						return false;
+					});
+			});
+		</script>
+		
+    </head>
+    <body>	
+		<div id="container">
+		 
+		  
+		   <div id="header">
+    <div id="logo"><a href="http://www.hamptonsbabysitters.com/"><img src="/wp-content/themes/hb/img/logo.jpg" width="360" height="125" alt="Hamptons Babysitters" /></a></div>
+    <div id="logina">
+      <div id="social"><a href="http://www.hamptonsbabysitters.com/">Hamptons</a> | <a href="http://www.hamptonsbabysitters.com/new-york/">New York</a> &nbsp;&nbsp;&nbsp;Follow Us <img src="/wp-content/themes/hb/img/facebook.gif" width="14" height="14" alt="Facebook" /><img src="/wp-content/themes/hb/img/twitter.gif" width="14" height="14" alt="Twitter" /></div>
+
+      <div id="signin">
+      You are currently logged in as <?php echo $_SESSION['Zend_Auth']['storage']->firstname?> | <a href="/a/logout/">Logout</a>
+	
+      </div>
+      </div>
+    
+		  
+		  
+		     </div>
+		  <div id="nav">
+		  <ul>
+      <li class="page_item page-item-2"><a href="http://www.hamptonsbabysitters.com/about-us/" title="About Us">About Us</a></li>
+<li class="page_item page-item-15"><a href="http://www.hamptonsbabysitters.com/our-philospohy/" title="Our Philosophy">Our Philosophy</a></li>
+<li class="page_item page-item-12"><a href="http://www.hamptonsbabysitters.com/rates-policies/" title="Rates &amp; Policies">Rates &#038; Policies</a></li>
+
+<li class="page_item page-item-19 current_page_item"><a href="http://www.hamptonsbabysitters.com/book-now/" title="Book Babysitter">Book Babysitter</a></li>
+<li class="page_item page-item-21"><a href="http://www.hamptonsbabysitters.com/join-our-team/" title="Join our Team">Join our Team</a></li>
+<li class="page_item page-item-33"><a href="http://www.hamptonsbabysitters.com/faq/" title="FAQ">FAQ</a></li>
+<li class="page_item page-item-43"><a href="http://www.hamptonsbabysitters.com/blog/" title="Blog">Blog</a></li>
+<li class="page_item page-item-30"><a href="http://www.hamptonsbabysitters.com/contact-us/" title="Contact Us">Contact Us</a></li>
+    </ul>
+  </div>
+<div id="admin_nav">
+
+             <?php if($_SESSION['Zend_Auth']['storage']->usertype=='P'){?>
+             <ul>
+               <li><a <?php echo ($this->searchParams['action']=='index') ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'client'),null,true)?>" >Dashboard</a></li>
+               <li><a <?php echo ($this->searchParams['action']=='events'&&!in_array($this->searchParams['listevents'],array('jobs','history'))) ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'client','action'=>'events'),null,true)?>">Schedule Babysitter</a></li>
+                
+               <li><a <?php echo (in_array($this->searchParams['action'],array('subscription','buycredits'))) ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'client','action'=>'subscription'),null,true)?>">Buy Credits Now</a></li>
+			   <li><a <?php echo ($this->searchParams['action']=='events'&&$this->searchParams['listevents']=='jobs') ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'client','action'=>'events','listevents'=>'jobs'))?>">Current Bookings</a></li>
+			  
+               <li><a <?php echo ($this->searchParams['action']=='events'&&$this->searchParams['listevents']=='history') ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'client','action'=>'events','listevents'=>'history'))?>">Booking History</a></li>
+               <li><a <?php echo (in_array($this->searchParams['action'],array('profile','children','password'))) ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'client','action'=>'profile'),null,true)?>">My Profile</a></li>
+				<li><a <?php echo ($this->searchParams['action']=='referafriend') ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'client','action'=>'referafriend'),null,true)?>" >Refer a Friend</a></li>
+               
+            
+             </ul>
+             <?php }else if($_SESSION['Zend_Auth']['storage']->usertype=='S'){?>
+             <ul>
+              <li><a <?php echo ($this->searchParams['action']=='index') ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'sitters'),null,true)?>">Dashboard</a></li>
+               <li><a <?php echo (in_array($this->searchParams['action'],array('jobs','preview'))) ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'sitters','action'=>'jobs'),null,true)?>">My Jobs</a></li>
+               <li><a <?php echo (in_array($this->searchParams['action'],array('profile','password'))) ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'sitters','action'=>'profile'),null,true)?>">My Profile</a></li>
+               <li><a <?php echo ($this->searchParams['action']=='referafriend') ? 'class="sel"' :''?> href="<?php echo $this->url(array('controller'=>'sitters','action'=>'referafriend'),null,true)?>" >Refer a Friend</a></li>
+              
+              </ul>
+             
+            
+            <?php }else if($_SESSION['Zend_Auth']['storage']->usertype=='A'){?>
+               <ul>
+               <li><a <?php echo $this->searchParams['controller']=='index' ? 'class="sel"' : ''?> href="<?php echo ADMIN_URL?>">Dashboard</a></li>
+               <li><a <?php echo $this->searchParams['controller']=='jobs' ? 'class="sel"' : ''?> href="<?php echo ADMIN_URL?>jobs/view/status/new/">Jobs</a></li>
+               <li><a <?php echo $this->searchParams['controller']=='client' ? 'class="sel"' : ''?> href="<?php echo ADMIN_URL?>client/" >Clients</a></li>
+               <li><a <?php echo $this->searchParams['controller']=='sitters' ? 'class="sel"' : ''?>href="<?php echo ADMIN_URL?>sitters/">Babysitters</a></li>
+               <li><a <?php echo $this->searchParams['controller']=='settings' ? 'class="sel"' : ''?>href="<?php echo ADMIN_URL?>settings/">Settings</a></li>
+               <?php //added after ?>
+               
+               
+               <li><a <?php echo $this->searchParams['controller']=='reports' ? 'class="sel"' : ''?>href="<?php echo ADMIN_URL?>reports/">Sitters Report</a></li>
+                <li><a <?php echo $this->searchParams['controller']=='settings' ? 'class="sel"' : ''?>href="<?php echo ADMIN_URL?>settings/">Show all earnings</a></li>
+                <li><a <?php echo $this->searchParams['controller']=='settings' ? 'class="sel"' : ''?>href="<?php echo ADMIN_URL?>settings/">Payment receipts</a></li>
+                <li><a <?php echo $this->searchParams['controller']=='packages' ? 'class="sel"' : ''?>href="<?php echo ADMIN_URL?>packages/">Clients package</a></li>
+                
+           	<li><a <?php echo $this->searchParams['controller']=='settings' ? 'class="sel"' : ''?>href="<?php echo ADMIN_URL?>jobs/billablejobs/">Billable Jobs</a></li>
+                          
+               <a href="/webbabysitter/admin/index/refreshcache" title="Refresh system cache: For better performance, some of the information are cached. Clearing the cache will give the updated information" class="fr" style="margin-right:10px;">Reset Cache</a>
+                </ul>
+             <?php }?>
+          </div>
+                    
+                    
+                    
+    <?= $this->render('header.phtml') ?>       
+<?php echo $this->layout()-> content; ?>
+           
+ <div >
+            <img src="/wp-content/themes/hb/img/website-redesign-pros.jpg" alt="Website Design &amp; Development" width="130" height="40" class="fr" /><img src="/wp-content/themes/hb/img/authorize-icon.jpg" width="110" height="40" alt="Authorize" /><img src="/wp-content/themes/hb/img/facebook-icon.jpg" width="85" height="40" alt="Facebook" /><img src="/wp-content/themes/hb/img/twitter-icon.jpg" width="80" height="40" alt="Twitter" />
+            </div>
+		</div><!-- #container -->
+		
+    </body>
+</html>

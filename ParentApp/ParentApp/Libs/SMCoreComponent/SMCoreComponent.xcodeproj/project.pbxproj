@@ -1,0 +1,1670 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2C087D011A7259CC00FFF7C6 /* SMUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D001A7259CC00FFF7C6 /* SMUILabel.m */; };
+		2C087D041A725A3900FFF7C6 /* SMUITextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D031A725A3900FFF7C6 /* SMUITextField.m */; };
+		2C087D071A725A9B00FFF7C6 /* SMUISegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D061A725A9B00FFF7C6 /* SMUISegmentedControl.m */; };
+		2C087D0A1A725B0400FFF7C6 /* SMUISlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D091A725B0400FFF7C6 /* SMUISlider.m */; };
+		2C087D0D1A725BE100FFF7C6 /* SMUISwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D0C1A725BE100FFF7C6 /* SMUISwitch.m */; };
+		2C087D101A725C7500FFF7C6 /* SMUIActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D0F1A725C7500FFF7C6 /* SMUIActivityIndicatorView.m */; };
+		2C087D131A725D6F00FFF7C6 /* SMUIProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D121A725D6F00FFF7C6 /* SMUIProgressView.m */; };
+		2C087D161A725DD900FFF7C6 /* SMUIPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D151A725DD900FFF7C6 /* SMUIPageControl.m */; };
+		2C087D191A725E2A00FFF7C6 /* SMUIScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D181A725E2A00FFF7C6 /* SMUIScrollView.m */; };
+		2C087D1C1A725EA300FFF7C6 /* SMUITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D1B1A725EA300FFF7C6 /* SMUITextView.m */; };
+		2C087D1F1A725EF900FFF7C6 /* SMUITableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D1E1A725EF900FFF7C6 /* SMUITableView.m */; };
+		2C087D221A72602000FFF7C6 /* SMUIStepper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D211A72602000FFF7C6 /* SMUIStepper.m */; };
+		2C087D251A7260AE00FFF7C6 /* SMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D241A7260AE00FFF7C6 /* SMTableViewCell.m */; };
+		2C087D281A7260F100FFF7C6 /* SMUIImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D271A7260F100FFF7C6 /* SMUIImageView.m */; };
+		2C087D2B1A72614400FFF7C6 /* SMUICollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D2A1A72614400FFF7C6 /* SMUICollectionView.m */; };
+		2C087D2E1A72619C00FFF7C6 /* SMUIDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D2D1A72619C00FFF7C6 /* SMUIDatePicker.m */; };
+		2C087D311A72626E00FFF7C6 /* SMUIBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D301A72626E00FFF7C6 /* SMUIBarButtonItem.m */; };
+		2C087D341A7262A300FFF7C6 /* SMUIToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D331A7262A300FFF7C6 /* SMUIToolbar.m */; };
+		2C087D371A7262D500FFF7C6 /* SMUITabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D361A7262D500FFF7C6 /* SMUITabBar.m */; };
+		2C087D3A1A72631A00FFF7C6 /* SMUISearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D391A72631A00FFF7C6 /* SMUISearchBar.m */; };
+		2C087D3D1A72637C00FFF7C6 /* SMUINavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D3C1A72637C00FFF7C6 /* SMUINavigationItem.m */; };
+		2C087D401A72641700FFF7C6 /* SMUINavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D3F1A72641700FFF7C6 /* SMUINavigationBar.m */; };
+		2C087D431A7264BC00FFF7C6 /* SMUIPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D421A7264BC00FFF7C6 /* SMUIPickerView.m */; };
+		2C087D461A72668800FFF7C6 /* SMUIWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D451A72668700FFF7C6 /* SMUIWebView.m */; };
+		2C087D4F1A7268C300FFF7C6 /* SMUITabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D4E1A7268C300FFF7C6 /* SMUITabBarItem.m */; };
+		2C087D521A726B3000FFF7C6 /* SMUITapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D511A726B3000FFF7C6 /* SMUITapGestureRecognizer.m */; };
+		2C087D551A726BEE00FFF7C6 /* SMUIPinchGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D541A726BEE00FFF7C6 /* SMUIPinchGestureRecognizer.m */; };
+		2C087D581A726C2400FFF7C6 /* SMUIRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D571A726C2400FFF7C6 /* SMUIRotationGestureRecognizer.m */; };
+		2C087D5B1A726C8A00FFF7C6 /* SMUISwipeGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D5A1A726C8A00FFF7C6 /* SMUISwipeGestureRecognizer.m */; };
+		2C087D5E1A726CF200FFF7C6 /* SMUIPanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D5D1A726CF200FFF7C6 /* SMUIPanGestureRecognizer.m */; };
+		2C087D621A726D7B00FFF7C6 /* SMUIScreenEdgePanGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D611A726D7B00FFF7C6 /* SMUIScreenEdgePanGestureRecognizer.m */; };
+		2C087D651A726DAB00FFF7C6 /* SMUILongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D641A726DAB00FFF7C6 /* SMUILongPressGestureRecognizer.m */; };
+		2C087D6F1A728BD800FFF7C6 /* SMNSMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D6E1A728BD800FFF7C6 /* SMNSMutableArray.m */; };
+		2C087D721A728C2B00FFF7C6 /* SMNSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D711A728C2B00FFF7C6 /* SMNSDictionary.m */; };
+		2C087D751A728C4F00FFF7C6 /* SMNSMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D741A728C4F00FFF7C6 /* SMNSMutableDictionary.m */; };
+		2C087D781A728C7A00FFF7C6 /* SMNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D771A728C7A00FFF7C6 /* SMNSString.m */; };
+		2C087D7E1A728DB200FFF7C6 /* SMNSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D7D1A728DB200FFF7C6 /* SMNSData.m */; };
+		2C087D811A728DEF00FFF7C6 /* SMNSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D801A728DEF00FFF7C6 /* SMNSDate.m */; };
+		2C087D841A728E4700FFF7C6 /* SMNSError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D831A728E4700FFF7C6 /* SMNSError.m */; };
+		2C087D871A728F5700FFF7C6 /* SMUIVisualEffectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D861A728F5700FFF7C6 /* SMUIVisualEffectView.m */; };
+		2C087D8A1A728FC500FFF7C6 /* SMNSURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D891A728FC500FFF7C6 /* SMNSURL.m */; };
+		2C087D8D1A72904000FFF7C6 /* SMNSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D8C1A72904000FFF7C6 /* SMNSObject.m */; };
+		2C087D931A72909D00FFF7C6 /* SMNSAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D921A72909D00FFF7C6 /* SMNSAssertionHandler.m */; };
+		2C087D961A7290C300FFF7C6 /* SMNSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D951A7290C300FFF7C6 /* SMNSAttributedString.m */; };
+		2C087D9C1A72910500FFF7C6 /* SMNSBlockOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087D9B1A72910500FFF7C6 /* SMNSBlockOperation.m */; };
+		2C087DA21A72915000FFF7C6 /* SMNSByteCountFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DA11A72915000FFF7C6 /* SMNSByteCountFormatter.m */; };
+		2C087DA51A72918C00FFF7C6 /* SMNSBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DA41A72918C00FFF7C6 /* SMNSBundle.m */; };
+		2C087DA81A7291B300FFF7C6 /* SMNSCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DA71A7291B300FFF7C6 /* SMNSCache.m */; };
+		2C087DAB1A7291D600FFF7C6 /* SMNSCachedURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DAA1A7291D600FFF7C6 /* SMNSCachedURLResponse.m */; };
+		2C087DAE1A7291F100FFF7C6 /* SMNSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DAD1A7291F100FFF7C6 /* SMNSCalendar.m */; };
+		2C087DB11A72921900FFF7C6 /* SMNSCharacterSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DB01A72921900FFF7C6 /* SMNSCharacterSet.m */; };
+		2C087DB41A72924B00FFF7C6 /* SMNSCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DB31A72924B00FFF7C6 /* SMNSCoder.m */; };
+		2C087DB71A72927000FFF7C6 /* SMNSComparisonPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DB61A72927000FFF7C6 /* SMNSComparisonPredicate.m */; };
+		2C087DBA1A72929800FFF7C6 /* SMNSCompoundPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DB91A72929800FFF7C6 /* SMNSCompoundPredicate.m */; };
+		2C087DBD1A729A2E00FFF7C6 /* SMNSCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DBC1A729A2E00FFF7C6 /* SMNSCondition.m */; };
+		2C087DC01A729A5100FFF7C6 /* SMNSConditionLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DBF1A729A5100FFF7C6 /* SMNSConditionLock.m */; };
+		2C087DC31A729A7200FFF7C6 /* SMNSConstantString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DC21A729A7200FFF7C6 /* SMNSConstantString.m */; };
+		2C087DC61A729A9200FFF7C6 /* SMNSCountedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DC51A729A9200FFF7C6 /* SMNSCountedSet.m */; };
+		2C087DCA1A729ABB00FFF7C6 /* SMNSDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DC91A729ABB00FFF7C6 /* SMNSDataDetector.m */; };
+		2C087DCD1A729AD800FFF7C6 /* SMNSDateComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DCC1A729AD800FFF7C6 /* SMNSDateComponents.m */; };
+		2C087DD11A729B0200FFF7C6 /* SMNSDateComponentsFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DD01A729B0200FFF7C6 /* SMNSDateComponentsFormatter.m */; };
+		2C087DD41A729B1900FFF7C6 /* SMNSDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DD31A729B1900FFF7C6 /* SMNSDateFormatter.m */; };
+		2C087DD71A729B3900FFF7C6 /* SMNSDateIntervalFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DD61A729B3900FFF7C6 /* SMNSDateIntervalFormatter.m */; };
+		2C087DDA1A729B6600FFF7C6 /* SMNSDecimalNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DD91A729B6600FFF7C6 /* SMNSDecimalNumber.m */; };
+		2C087DDD1A729B8000FFF7C6 /* SMNSDecimalNumberHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DDC1A729B8000FFF7C6 /* SMNSDecimalNumberHandler.m */; };
+		2C087DE01A729B9F00FFF7C6 /* SMNSDirectoryEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DDF1A729B9F00FFF7C6 /* SMNSDirectoryEnumerator.m */; };
+		2C087DE31A729BC100FFF7C6 /* SMNSEnergyFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DE21A729BC100FFF7C6 /* SMNSEnergyFormatter.m */; };
+		2C087DE61A729BDE00FFF7C6 /* SMNSEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DE51A729BDE00FFF7C6 /* SMNSEnumerator.m */; };
+		2C087DE91A729C1200FFF7C6 /* SMNSException.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DE81A729C1200FFF7C6 /* SMNSException.m */; };
+		2C087DEC1A729C3300FFF7C6 /* SMNSExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DEB1A729C3300FFF7C6 /* SMNSExpression.m */; };
+		2C087DEF1A729CAA00FFF7C6 /* SMNSExtensionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C087DEE1A729CAA00FFF7C6 /* SMNSExtensionContext.m */; };
+		2CEA1D541A7782F300E2F387 /* SMNSExtensionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D531A7782F300E2F387 /* SMNSExtensionItem.m */; };
+		2CEA1D571A77831C00E2F387 /* SMNSFileAccessIntent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D561A77831C00E2F387 /* SMNSFileAccessIntent.m */; };
+		2CEA1D5A1A77833900E2F387 /* SMNSFileCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D591A77833900E2F387 /* SMNSFileCoordinator.m */; };
+		2CEA1D5D1A77835500E2F387 /* SMNSFileHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D5C1A77835500E2F387 /* SMNSFileHandle.m */; };
+		2CEA1D601A77836F00E2F387 /* SMNSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D5F1A77836F00E2F387 /* SMNSFileManager.m */; };
+		2CEA1D631A77838D00E2F387 /* SMNSFileProviderExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D621A77838D00E2F387 /* SMNSFileProviderExtension.m */; };
+		2CEA1D661A77842400E2F387 /* SMNSFileSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D651A77842400E2F387 /* SMNSFileSecurity.m */; };
+		2CEA1D691A77844900E2F387 /* SMNSFileVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D681A77844900E2F387 /* SMNSFileVersion.m */; };
+		2CEA1D6C1A77846800E2F387 /* SMNSFileWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D6B1A77846800E2F387 /* SMNSFileWrapper.m */; };
+		2CEA1D6F1A77848500E2F387 /* SMNSFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D6E1A77848500E2F387 /* SMNSFormatter.m */; };
+		2CEA1D721A7784A200E2F387 /* SMNSHashTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D711A7784A200E2F387 /* SMNSHashTable.m */; };
+		2CEA1D751A7784CC00E2F387 /* SMNSHTTPCookie.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D741A7784CC00E2F387 /* SMNSHTTPCookie.m */; };
+		2CEA1D781A7784E700E2F387 /* SMNSHTTPCookieStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D771A7784E700E2F387 /* SMNSHTTPCookieStorage.m */; };
+		2CEA1D7B1A77850200E2F387 /* SMNSHTTPURLResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D7A1A77850200E2F387 /* SMNSHTTPURLResponse.m */; };
+		2CEA1D7E1A77852200E2F387 /* SMNSIndexPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D7D1A77852200E2F387 /* SMNSIndexPath.m */; };
+		2CEA1D811A77854800E2F387 /* SMNSIndexSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D801A77854800E2F387 /* SMNSIndexSet.m */; };
+		2CEA1D841A77855E00E2F387 /* SMNSInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D831A77855E00E2F387 /* SMNSInputStream.m */; };
+		2CEA1D871A77857600E2F387 /* SMNSInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D861A77857600E2F387 /* SMNSInvocation.m */; };
+		2CEA1D8A1A77859800E2F387 /* SMNSInvocationOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D891A77859800E2F387 /* SMNSInvocationOperation.m */; };
+		2CEA1D8D1A7785B100E2F387 /* SMNSItemProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D8C1A7785B100E2F387 /* SMNSItemProvider.m */; };
+		2CEA1D901A7788B500E2F387 /* SMNSJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D8F1A7788B500E2F387 /* SMNSJSONSerialization.m */; };
+		2CEA1D931A77890E00E2F387 /* SMNSKeyedArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D921A77890E00E2F387 /* SMNSKeyedArchiver.m */; };
+		2CEA1D961A77892700E2F387 /* SMNSKeyedUnarchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D951A77892700E2F387 /* SMNSKeyedUnarchiver.m */; };
+		2CEA1D991A77893D00E2F387 /* SMNSLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D981A77893D00E2F387 /* SMNSLayoutConstraint.m */; };
+		2CEA1D9C1A77895700E2F387 /* SMNSLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D9B1A77895700E2F387 /* SMNSLayoutManager.m */; };
+		2CEA1D9F1A77897300E2F387 /* SMNSLengthFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1D9E1A77897300E2F387 /* SMNSLengthFormatter.m */; };
+		2CEA1DA21A77899100E2F387 /* SMNSLinguisticTagger.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DA11A77899100E2F387 /* SMNSLinguisticTagger.m */; };
+		2CEA1DA51A7789A800E2F387 /* SMNSLocale.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DA41A7789A800E2F387 /* SMNSLocale.m */; };
+		2CEA1DA81A7789C600E2F387 /* SMNSLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DA71A7789C600E2F387 /* SMNSLock.m */; };
+		2CEA1DAB1A7789DC00E2F387 /* SMNSMachPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DAA1A7789DC00E2F387 /* SMNSMachPort.m */; };
+		2CEA1DAE1A7789F700E2F387 /* SMNSMapTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DAD1A7789F700E2F387 /* SMNSMapTable.m */; };
+		2CEA1DB11A778A0C00E2F387 /* SMNSMassFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DB01A778A0C00E2F387 /* SMNSMassFormatter.m */; };
+		2CEA1DB41A778A3400E2F387 /* SMNSMessagePort.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DB31A778A3400E2F387 /* SMNSMessagePort.m */; };
+		2CEA1DB71A778A4900E2F387 /* SMNSMetadataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DB61A778A4900E2F387 /* SMNSMetadataItem.m */; };
+		2CEA1DBA1A778A6200E2F387 /* SMNSMetadataQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DB91A778A6200E2F387 /* SMNSMetadataQuery.m */; };
+		2CEA1DBD1A778A7600E2F387 /* SMNSMetadataQueryAttributeValueTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DBC1A778A7600E2F387 /* SMNSMetadataQueryAttributeValueTuple.m */; };
+		2CEA1DC01A778A8900E2F387 /* SMNSMetadataQueryResultGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DBF1A778A8900E2F387 /* SMNSMetadataQueryResultGroup.m */; };
+		2CEA1DC31A778AA300E2F387 /* SMNSMethodSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DC21A778AA300E2F387 /* SMNSMethodSignature.m */; };
+		2CEA1DC61A77B34F00E2F387 /* SMNSMutableAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DC51A77B34F00E2F387 /* SMNSMutableAttributedString.m */; };
+		2CEA1DC91A77B37000E2F387 /* SMNSMutableCharacterSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DC81A77B37000E2F387 /* SMNSMutableCharacterSet.m */; };
+		2CEA1DCC1A77B38500E2F387 /* SMNSMutableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DCB1A77B38500E2F387 /* SMNSMutableData.m */; };
+		2CEA1DCF1A77B3C500E2F387 /* SMNSMutableIndexSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DCE1A77B3C500E2F387 /* SMNSMutableIndexSet.m */; };
+		2CEA1DD21A77B44600E2F387 /* SMNSMutableOrderedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DD11A77B44600E2F387 /* SMNSMutableOrderedSet.m */; };
+		2CEA1DD51A77B45A00E2F387 /* SMNSMutableParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DD41A77B45A00E2F387 /* SMNSMutableParagraphStyle.m */; };
+		2CEA1DD81A77B46F00E2F387 /* SMNSMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DD71A77B46F00E2F387 /* SMNSMutableSet.m */; };
+		2CEA1DDB1A77B48400E2F387 /* SMNSMutableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DDA1A77B48400E2F387 /* SMNSMutableString.m */; };
+		2CEA1DDF1A77B4A900E2F387 /* SMNSMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DDE1A77B4A900E2F387 /* SMNSMutableURLRequest.m */; };
+		2CEA1DE21A77B4C100E2F387 /* SMNSNetService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DE11A77B4C100E2F387 /* SMNSNetService.m */; };
+		2CEA1DE51A77B4D700E2F387 /* SMNSNetServiceBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DE41A77B4D700E2F387 /* SMNSNetServiceBrowser.m */; };
+		2CEA1DE81A77B4EC00E2F387 /* SMNSNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DE71A77B4EC00E2F387 /* SMNSNotification.m */; };
+		2CEA1DEB1A77B50B00E2F387 /* SMNSNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DEA1A77B50B00E2F387 /* SMNSNotificationCenter.m */; };
+		2CEA1DEE1A77B52000E2F387 /* SMNSNotificationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DED1A77B52000E2F387 /* SMNSNotificationQueue.m */; };
+		2CEA1DF11A77B53D00E2F387 /* SMNSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DF01A77B53D00E2F387 /* SMNSNull.m */; };
+		2CEA1DF41A77B55600E2F387 /* SMNSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DF31A77B55600E2F387 /* SMNSNumber.m */; };
+		2CEA1DF71A77B56A00E2F387 /* SMNSNumberFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DF61A77B56A00E2F387 /* SMNSNumberFormatter.m */; };
+		2CEA1DFA1A77B5BA00E2F387 /* SMNSOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DF91A77B5BA00E2F387 /* SMNSOperation.m */; };
+		2CEA1DFD1A77B5D900E2F387 /* SMNSOperationQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DFC1A77B5D900E2F387 /* SMNSOperationQueue.m */; };
+		2CEA1E001A77B5F400E2F387 /* SMNSOrderedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1DFF1A77B5F400E2F387 /* SMNSOrderedSet.m */; };
+		2CEA1E031A77B60D00E2F387 /* SMNSOrthography.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E021A77B60D00E2F387 /* SMNSOrthography.m */; };
+		2CEA1E061A77B62200E2F387 /* SMNSOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E051A77B62200E2F387 /* SMNSOutputStream.m */; };
+		2CEA1E091A77B63C00E2F387 /* SMNSParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E081A77B63C00E2F387 /* SMNSParagraphStyle.m */; };
+		2CEA1E0C1A77B64F00E2F387 /* SMNSPipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E0B1A77B64F00E2F387 /* SMNSPipe.m */; };
+		2CEA1E0F1A77B66700E2F387 /* SMNSPointerArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E0E1A77B66700E2F387 /* SMNSPointerArray.m */; };
+		2CEA1E121A77B67E00E2F387 /* SMNSPointerFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E111A77B67E00E2F387 /* SMNSPointerFunctions.m */; };
+		2CEA1E151A77B69400E2F387 /* SMNSPort.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E141A77B69400E2F387 /* SMNSPort.m */; };
+		2CEA1E181A77B6AA00E2F387 /* SMNSPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E171A77B6AA00E2F387 /* SMNSPredicate.m */; };
+		2CEA1E1B1A77B6BD00E2F387 /* SMNSProcessInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E1A1A77B6BD00E2F387 /* SMNSProcessInfo.m */; };
+		2CEA1E1E1A77B6D200E2F387 /* SMNSProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E1D1A77B6D200E2F387 /* SMNSProgress.m */; };
+		2CEA1E211A77B6E900E2F387 /* SMNSPropertyListSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E201A77B6E900E2F387 /* SMNSPropertyListSerialization.m */; };
+		2CEA1E241A77B6FD00E2F387 /* SMNSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E231A77B6FD00E2F387 /* SMNSProxy.m */; };
+		2CEA1E281A77B71900E2F387 /* SMNSPurgeableData.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E271A77B71900E2F387 /* SMNSPurgeableData.m */; };
+		2CEA1E2B1A77B73300E2F387 /* SMNSRecursiveLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E2A1A77B73300E2F387 /* SMNSRecursiveLock.m */; };
+		2CEA1E2E1A77B74700E2F387 /* SMNSRegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E2D1A77B74700E2F387 /* SMNSRegularExpression.m */; };
+		2CEA1E311A77B75E00E2F387 /* SMNSRunLoop.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E301A77B75E00E2F387 /* SMNSRunLoop.m */; };
+		2CEA1E341A77B77400E2F387 /* SMNSScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E331A77B77400E2F387 /* SMNSScanner.m */; };
+		2CEA1E371A77B82000E2F387 /* SMNSSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E361A77B82000E2F387 /* SMNSSet.m */; };
+		2CEA1E3A1A77B83600E2F387 /* SMNSShadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E391A77B83600E2F387 /* SMNSShadow.m */; };
+		2CEA1E3D1A77B84D00E2F387 /* SMNSSimpleCString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E3C1A77B84D00E2F387 /* SMNSSimpleCString.m */; };
+		2CEA1E401A77B86300E2F387 /* SMNSSortDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E3F1A77B86300E2F387 /* SMNSSortDescriptor.m */; };
+		2CEA1E431A77B87700E2F387 /* SMNSStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E421A77B87700E2F387 /* SMNSStream.m */; };
+		2CEA1E461A77B89F00E2F387 /* SMNSStringDrawingContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E451A77B89F00E2F387 /* SMNSStringDrawingContext.m */; };
+		2CEA1E491A77B8BE00E2F387 /* SMNSTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E481A77B8BE00E2F387 /* SMNSTextAttachment.m */; };
+		2CEA1E4C1A77B8D600E2F387 /* SMNSTextCheckingResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E4B1A77B8D600E2F387 /* SMNSTextCheckingResult.m */; };
+		2CEA1E4F1A77B8ED00E2F387 /* SMNSTextContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E4E1A77B8ED00E2F387 /* SMNSTextContainer.m */; };
+		2CEA1E521A77B8FF00E2F387 /* SMNSTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E511A77B8FF00E2F387 /* SMNSTextStorage.m */; };
+		2CEA1E551A77B91400E2F387 /* SMNSTextTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E541A77B91400E2F387 /* SMNSTextTab.m */; };
+		2CEA1E581A77B92E00E2F387 /* SMNSThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E571A77B92E00E2F387 /* SMNSThread.m */; };
+		2CEA1E5B1A77B94600E2F387 /* SMNSTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E5A1A77B94600E2F387 /* SMNSTimer.m */; };
+		2CEA1E5E1A77B9A000E2F387 /* SMNSTimeZone.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E5D1A77B9A000E2F387 /* SMNSTimeZone.m */; };
+		2CEA1E611A77B9BF00E2F387 /* SMNSUbiquitousKeyValueStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E601A77B9BF00E2F387 /* SMNSUbiquitousKeyValueStore.m */; };
+		2CEA1E641A77B9D300E2F387 /* SMNSUndoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E631A77B9D300E2F387 /* SMNSUndoManager.m */; };
+		2CEA1E9A1A77BC0800E2F387 /* SMNSUserActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E991A77BC0800E2F387 /* SMNSUserActivity.m */; };
+		2CEA1E9D1A77BC2600E2F387 /* SMNSUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E9C1A77BC2600E2F387 /* SMNSUserDefaults.m */; };
+		2CEA1EA01A77BC4000E2F387 /* SMNSUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1E9F1A77BC4000E2F387 /* SMNSUUID.m */; };
+		2CEA1EAC1A77C1C700E2F387 /* SMUIFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1EAB1A77C1C700E2F387 /* SMUIFont.m */; };
+		2CEA1EAF1A77C20F00E2F387 /* SMUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEA1EAE1A77C20F00E2F387 /* SMUIImage.m */; };
+		7895BCB91A8CADB40016A246 /* SMNSMutableIndexSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DCD1A77B3C500E2F387 /* SMNSMutableIndexSet.h */; };
+		7895BCBD1A8CADB40016A246 /* SMNSMutableArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D6D1A728BD800FFF7C6 /* SMNSMutableArray.h */; };
+		7895BCC01A8CADB40016A246 /* SMNSDictionary.m in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D711A728C2B00FFF7C6 /* SMNSDictionary.m */; };
+		7895BCC11A8CADB40016A246 /* SMNSMutableDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D731A728C4F00FFF7C6 /* SMNSMutableDictionary.h */; };
+		7895BCC31A8CADB50016A246 /* SMNSString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D761A728C7A00FFF7C6 /* SMNSString.h */; };
+		7895BCC51A8CADB50016A246 /* SMNSData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D7C1A728DB200FFF7C6 /* SMNSData.h */; };
+		7895BCC71A8CADB50016A246 /* SMNSDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D7F1A728DEF00FFF7C6 /* SMNSDate.h */; };
+		7895BCC91A8CADB50016A246 /* SMNSError.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D821A728E4700FFF7C6 /* SMNSError.h */; };
+		7895BCCB1A8CADB50016A246 /* SMNSURL.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D881A728FC500FFF7C6 /* SMNSURL.h */; };
+		7895BCCD1A8CADB50016A246 /* SMNSObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D8B1A72904000FFF7C6 /* SMNSObject.h */; };
+		7895BCCF1A8CADB50016A246 /* SMNSAssertionHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D911A72909D00FFF7C6 /* SMNSAssertionHandler.h */; };
+		7895BCD11A8CADB50016A246 /* SMNSAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D941A7290C300FFF7C6 /* SMNSAttributedString.h */; };
+		7895BCD31A8CADB50016A246 /* SMNSBlockOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087D9A1A72910500FFF7C6 /* SMNSBlockOperation.h */; };
+		7895BCD51A8CADB50016A246 /* SMNSByteCountFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DA01A72915000FFF7C6 /* SMNSByteCountFormatter.h */; };
+		7895BCD71A8CADB50016A246 /* SMNSBundle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DA31A72918C00FFF7C6 /* SMNSBundle.h */; };
+		7895BCD91A8CADB60016A246 /* SMNSCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DA61A7291B300FFF7C6 /* SMNSCache.h */; };
+		7895BCDB1A8CADB60016A246 /* SMNSCachedURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DA91A7291D600FFF7C6 /* SMNSCachedURLResponse.h */; };
+		7895BCDD1A8CADB60016A246 /* SMNSCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DAC1A7291F100FFF7C6 /* SMNSCalendar.h */; };
+		7895BCDF1A8CADB60016A246 /* SMNSCharacterSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DAF1A72921900FFF7C6 /* SMNSCharacterSet.h */; };
+		7895BCE11A8CADB60016A246 /* SMNSCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DB21A72924B00FFF7C6 /* SMNSCoder.h */; };
+		7895BCE31A8CADB60016A246 /* SMNSComparisonPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DB51A72927000FFF7C6 /* SMNSComparisonPredicate.h */; };
+		7895BCE51A8CADB60016A246 /* SMNSCompoundPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DB81A72929800FFF7C6 /* SMNSCompoundPredicate.h */; };
+		7895BCE71A8CADB70016A246 /* SMNSCondition.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DBB1A729A2E00FFF7C6 /* SMNSCondition.h */; };
+		7895BCE91A8CADB70016A246 /* SMNSConditionLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DBE1A729A5100FFF7C6 /* SMNSConditionLock.h */; };
+		7895BCEB1A8CADB70016A246 /* SMNSConstantString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DC11A729A7200FFF7C6 /* SMNSConstantString.h */; };
+		7895BCED1A8CADB70016A246 /* SMNSCountedSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DC41A729A9200FFF7C6 /* SMNSCountedSet.h */; };
+		7895BCEF1A8CADB80016A246 /* SMNSDataDetector.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DC81A729ABB00FFF7C6 /* SMNSDataDetector.h */; };
+		7895BCF11A8CADB80016A246 /* SMNSDateComponents.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DCB1A729AD800FFF7C6 /* SMNSDateComponents.h */; };
+		7895BCF31A8CADB80016A246 /* SMNSDateComponentsFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DCF1A729B0200FFF7C6 /* SMNSDateComponentsFormatter.h */; };
+		7895BCF51A8CADB80016A246 /* SMNSDateFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DD21A729B1900FFF7C6 /* SMNSDateFormatter.h */; };
+		7895BCF71A8CADB90016A246 /* SMNSDateIntervalFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DD51A729B3900FFF7C6 /* SMNSDateIntervalFormatter.h */; };
+		7895BCF91A8CADB90016A246 /* SMNSDecimalNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DD81A729B6600FFF7C6 /* SMNSDecimalNumber.h */; };
+		7895BCFB1A8CADB90016A246 /* SMNSDecimalNumberHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DDB1A729B8000FFF7C6 /* SMNSDecimalNumberHandler.h */; };
+		7895BCFD1A8CADB90016A246 /* SMNSDirectoryEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DDE1A729B9F00FFF7C6 /* SMNSDirectoryEnumerator.h */; };
+		7895BCFF1A8CADBA0016A246 /* SMNSEnergyFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DE11A729BC100FFF7C6 /* SMNSEnergyFormatter.h */; };
+		7895BD011A8CADBA0016A246 /* SMNSEnumerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DE41A729BDE00FFF7C6 /* SMNSEnumerator.h */; };
+		7895BD031A8CADBA0016A246 /* SMNSException.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DE71A729C1200FFF7C6 /* SMNSException.h */; };
+		7895BD051A8CADBB0016A246 /* SMNSExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DEA1A729C3300FFF7C6 /* SMNSExpression.h */; };
+		7895BD071A8CADBB0016A246 /* SMNSExtensionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C087DED1A729CAA00FFF7C6 /* SMNSExtensionContext.h */; };
+		7895BD091A8CADBB0016A246 /* SMNSExtensionItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D521A7782F300E2F387 /* SMNSExtensionItem.h */; };
+		7895BD0B1A8CADBB0016A246 /* SMNSFileAccessIntent.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D551A77831C00E2F387 /* SMNSFileAccessIntent.h */; };
+		7895BD0D1A8CADBC0016A246 /* SMNSFileCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D581A77833900E2F387 /* SMNSFileCoordinator.h */; };
+		7895BD0F1A8CADBC0016A246 /* SMNSFileHandle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D5B1A77835500E2F387 /* SMNSFileHandle.h */; };
+		7895BD111A8CADBD0016A246 /* SMNSFileManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D5E1A77836F00E2F387 /* SMNSFileManager.h */; };
+		7895BD131A8CADBD0016A246 /* SMNSFileProviderExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D611A77838D00E2F387 /* SMNSFileProviderExtension.h */; };
+		7895BD151A8CADBD0016A246 /* SMNSFileSecurity.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D641A77842400E2F387 /* SMNSFileSecurity.h */; };
+		7895BD171A8CADBE0016A246 /* SMNSFileVersion.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D671A77844900E2F387 /* SMNSFileVersion.h */; };
+		7895BD191A8CADBE0016A246 /* SMNSFileWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D6A1A77846800E2F387 /* SMNSFileWrapper.h */; };
+		7895BD1B1A8CADBE0016A246 /* SMNSFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D6D1A77848500E2F387 /* SMNSFormatter.h */; };
+		7895BD1D1A8CADBF0016A246 /* SMNSHashTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D701A7784A200E2F387 /* SMNSHashTable.h */; };
+		7895BD1F1A8CADBF0016A246 /* SMNSHTTPCookie.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D731A7784CC00E2F387 /* SMNSHTTPCookie.h */; };
+		7895BD211A8CADC00016A246 /* SMNSHTTPCookieStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D761A7784E700E2F387 /* SMNSHTTPCookieStorage.h */; };
+		7895BD231A8CADC00016A246 /* SMNSHTTPURLResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D791A77850200E2F387 /* SMNSHTTPURLResponse.h */; };
+		7895BD251A8CADC10016A246 /* SMNSIndexPath.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D7C1A77852200E2F387 /* SMNSIndexPath.h */; };
+		7895BD271A8CADC10016A246 /* SMNSIndexSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D7F1A77854800E2F387 /* SMNSIndexSet.h */; };
+		7895BD291A8CADC20016A246 /* SMNSInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D821A77855E00E2F387 /* SMNSInputStream.h */; };
+		7895BD2B1A8CADC20016A246 /* SMNSInvocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D851A77857600E2F387 /* SMNSInvocation.h */; };
+		7895BD2D1A8CADC20016A246 /* SMNSInvocationOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D881A77859800E2F387 /* SMNSInvocationOperation.h */; };
+		7895BD2F1A8CADC30016A246 /* SMNSItemProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D8B1A7785B100E2F387 /* SMNSItemProvider.h */; };
+		7895BD311A8CADC30016A246 /* SMNSJSONSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D8E1A7788B500E2F387 /* SMNSJSONSerialization.h */; };
+		7895BD331A8CADC40016A246 /* SMNSKeyedArchiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D911A77890E00E2F387 /* SMNSKeyedArchiver.h */; };
+		7895BD351A8CADC40016A246 /* SMNSKeyedUnarchiver.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D941A77892700E2F387 /* SMNSKeyedUnarchiver.h */; };
+		7895BD371A8CADC50016A246 /* SMNSLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D971A77893D00E2F387 /* SMNSLayoutConstraint.h */; };
+		7895BD391A8CADC60016A246 /* SMNSLayoutManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D9A1A77895700E2F387 /* SMNSLayoutManager.h */; };
+		7895BD3B1A8CADC60016A246 /* SMNSLengthFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1D9D1A77897200E2F387 /* SMNSLengthFormatter.h */; };
+		7895BD3D1A8CADC70016A246 /* SMNSLinguisticTagger.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DA01A77899100E2F387 /* SMNSLinguisticTagger.h */; };
+		7895BD3F1A8CADC70016A246 /* SMNSLocale.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DA31A7789A800E2F387 /* SMNSLocale.h */; };
+		7895BD411A8CADC80016A246 /* SMNSLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DA61A7789C600E2F387 /* SMNSLock.h */; };
+		7895BD431A8CADC80016A246 /* SMNSMachPort.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DA91A7789DC00E2F387 /* SMNSMachPort.h */; };
+		7895BD451A8CADC90016A246 /* SMNSMapTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DAC1A7789F700E2F387 /* SMNSMapTable.h */; };
+		7895BD471A8CADC90016A246 /* SMNSMassFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DAF1A778A0C00E2F387 /* SMNSMassFormatter.h */; };
+		7895BD491A8CADCA0016A246 /* SMNSMessagePort.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DB21A778A3400E2F387 /* SMNSMessagePort.h */; };
+		7895BD4B1A8CADCB0016A246 /* SMNSMetadataItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DB51A778A4900E2F387 /* SMNSMetadataItem.h */; };
+		7895BD4D1A8CADCB0016A246 /* SMNSMetadataQuery.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DB81A778A6200E2F387 /* SMNSMetadataQuery.h */; };
+		7895BD4F1A8CADCC0016A246 /* SMNSMetadataQueryAttributeValueTuple.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DBB1A778A7600E2F387 /* SMNSMetadataQueryAttributeValueTuple.h */; };
+		7895BD511A8CADCD0016A246 /* SMNSMetadataQueryResultGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DBE1A778A8900E2F387 /* SMNSMetadataQueryResultGroup.h */; };
+		7895BD531A8CADCD0016A246 /* SMNSMethodSignature.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DC11A778AA300E2F387 /* SMNSMethodSignature.h */; };
+		7895BD551A8CADCE0016A246 /* SMNSMutableAttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DC41A77B34E00E2F387 /* SMNSMutableAttributedString.h */; };
+		7895BD571A8CADCF0016A246 /* SMNSMutableCharacterSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DC71A77B37000E2F387 /* SMNSMutableCharacterSet.h */; };
+		7895BD591A8CADCF0016A246 /* SMNSMutableData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DCA1A77B38500E2F387 /* SMNSMutableData.h */; };
+		7895BD5B1A8CADD00016A246 /* SMNSMutableOrderedSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DD01A77B44600E2F387 /* SMNSMutableOrderedSet.h */; };
+		7895BD5D1A8CADD10016A246 /* SMNSMutableParagraphStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DD31A77B45A00E2F387 /* SMNSMutableParagraphStyle.h */; };
+		7895BD5F1A8CADD10016A246 /* SMNSMutableSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DD61A77B46F00E2F387 /* SMNSMutableSet.h */; };
+		7895BD611A8CADD20016A246 /* SMNSMutableString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DD91A77B48400E2F387 /* SMNSMutableString.h */; };
+		7895BD631A8CADD30016A246 /* SMNSMutableURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DDD1A77B4A900E2F387 /* SMNSMutableURLRequest.h */; };
+		7895BD651A8CADD30016A246 /* SMNSNetService.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DE01A77B4C100E2F387 /* SMNSNetService.h */; };
+		7895BD671A8CADD40016A246 /* SMNSNetServiceBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DE31A77B4D700E2F387 /* SMNSNetServiceBrowser.h */; };
+		7895BD691A8CADD50016A246 /* SMNSNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DE61A77B4EC00E2F387 /* SMNSNotification.h */; };
+		7895BD6B1A8CADD60016A246 /* SMNSNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DE91A77B50B00E2F387 /* SMNSNotificationCenter.h */; };
+		7895BD6D1A8CADD60016A246 /* SMNSNotificationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DEC1A77B52000E2F387 /* SMNSNotificationQueue.h */; };
+		7895BD6F1A8CADD70016A246 /* SMNSNull.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DEF1A77B53D00E2F387 /* SMNSNull.h */; };
+		7895BD711A8CADD80016A246 /* SMNSNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DF21A77B55600E2F387 /* SMNSNumber.h */; };
+		7895BD731A8CADD90016A246 /* SMNSNumberFormatter.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DF51A77B56A00E2F387 /* SMNSNumberFormatter.h */; };
+		7895BD751A8CADDA0016A246 /* SMNSOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DF81A77B5BA00E2F387 /* SMNSOperation.h */; };
+		7895BD771A8CADDA0016A246 /* SMNSOperationQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DFB1A77B5D900E2F387 /* SMNSOperationQueue.h */; };
+		7895BD791A8CADDB0016A246 /* SMNSOrderedSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1DFE1A77B5F400E2F387 /* SMNSOrderedSet.h */; };
+		7895BD7B1A8CADDC0016A246 /* SMNSOrthography.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E011A77B60D00E2F387 /* SMNSOrthography.h */; };
+		7895BD7D1A8CADDD0016A246 /* SMNSOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E041A77B62200E2F387 /* SMNSOutputStream.h */; };
+		7895BD7F1A8CADDE0016A246 /* SMNSParagraphStyle.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E071A77B63C00E2F387 /* SMNSParagraphStyle.h */; };
+		7895BD811A8CADDF0016A246 /* SMNSPipe.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E0A1A77B64F00E2F387 /* SMNSPipe.h */; };
+		7895BD831A8CADDF0016A246 /* SMNSPointerArray.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E0D1A77B66700E2F387 /* SMNSPointerArray.h */; };
+		7895BD851A8CADE00016A246 /* SMNSPointerFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E101A77B67E00E2F387 /* SMNSPointerFunctions.h */; };
+		7895BD871A8CADE10016A246 /* SMNSPort.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E131A77B69400E2F387 /* SMNSPort.h */; };
+		7895BD891A8CADE20016A246 /* SMNSPredicate.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E161A77B6AA00E2F387 /* SMNSPredicate.h */; };
+		7895BD8B1A8CADE30016A246 /* SMNSProcessInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E191A77B6BD00E2F387 /* SMNSProcessInfo.h */; };
+		7895BD8D1A8CADE40016A246 /* SMNSProgress.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E1C1A77B6D200E2F387 /* SMNSProgress.h */; };
+		7895BD8F1A8CADE50016A246 /* SMNSPropertyListSerialization.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E1F1A77B6E900E2F387 /* SMNSPropertyListSerialization.h */; };
+		7895BD911A8CADE60016A246 /* SMNSProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E221A77B6FD00E2F387 /* SMNSProxy.h */; };
+		7895BD931A8CADE70016A246 /* SMNSPurgeableData.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E261A77B71900E2F387 /* SMNSPurgeableData.h */; };
+		7895BD951A8CADE80016A246 /* SMNSRecursiveLock.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E291A77B73300E2F387 /* SMNSRecursiveLock.h */; };
+		7895BD971A8CADE80016A246 /* SMNSRegularExpression.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E2C1A77B74700E2F387 /* SMNSRegularExpression.h */; };
+		7895BD991A8CADE90016A246 /* SMNSRunLoop.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E2F1A77B75E00E2F387 /* SMNSRunLoop.h */; };
+		7895BD9B1A8CADEA0016A246 /* SMNSScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E321A77B77400E2F387 /* SMNSScanner.h */; };
+		7895BD9D1A8CADEB0016A246 /* SMNSSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E351A77B82000E2F387 /* SMNSSet.h */; };
+		7895BD9F1A8CADEC0016A246 /* SMNSShadow.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E381A77B83600E2F387 /* SMNSShadow.h */; };
+		7895BDA11A8CADED0016A246 /* SMNSSimpleCString.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E3B1A77B84D00E2F387 /* SMNSSimpleCString.h */; };
+		7895BDA31A8CADEE0016A246 /* SMNSSortDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E3E1A77B86300E2F387 /* SMNSSortDescriptor.h */; };
+		7895BDA51A8CADEF0016A246 /* SMNSStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E411A77B87700E2F387 /* SMNSStream.h */; };
+		7895BDA61A8CADF00016A246 /* SMNSStream.m in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E421A77B87700E2F387 /* SMNSStream.m */; };
+		7895BDA71A8CADF00016A246 /* SMNSStringDrawingContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E441A77B89F00E2F387 /* SMNSStringDrawingContext.h */; };
+		7895BDA91A8CADF20016A246 /* SMNSTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E471A77B8BE00E2F387 /* SMNSTextAttachment.h */; };
+		7895BDAB1A8CADF30016A246 /* SMNSTextCheckingResult.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E4A1A77B8D600E2F387 /* SMNSTextCheckingResult.h */; };
+		7895BDAD1A8CADF40016A246 /* SMNSTextContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E4D1A77B8ED00E2F387 /* SMNSTextContainer.h */; };
+		7895BDAF1A8CADF50016A246 /* SMNSTextStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E501A77B8FF00E2F387 /* SMNSTextStorage.h */; };
+		7895BDB11A8CADF60016A246 /* SMNSTextTab.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E531A77B91400E2F387 /* SMNSTextTab.h */; };
+		7895BDB31A8CADF70016A246 /* SMNSThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E561A77B92E00E2F387 /* SMNSThread.h */; };
+		7895BDB51A8CADF80016A246 /* SMNSTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E591A77B94600E2F387 /* SMNSTimer.h */; };
+		7895BDB71A8CADF90016A246 /* SMNSTimeZone.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E5C1A77B9A000E2F387 /* SMNSTimeZone.h */; };
+		7895BDB91A8CADFA0016A246 /* SMNSUbiquitousKeyValueStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E5F1A77B9BF00E2F387 /* SMNSUbiquitousKeyValueStore.h */; };
+		7895BDBB1A8CADFB0016A246 /* SMNSUndoManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E621A77B9D300E2F387 /* SMNSUndoManager.h */; };
+		7895BDBD1A8CADFC0016A246 /* SMNSUserActivity.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E981A77BC0800E2F387 /* SMNSUserActivity.h */; };
+		7895BDC11A8CADFF0016A246 /* SMNSUUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 2CEA1E9E1A77BC4000E2F387 /* SMNSUUID.h */; };
+		78E777ED1A98E73D003BD41A /* NSMutableArray+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E777E71A98E73D003BD41A /* NSMutableArray+Safe.h */; };
+		78E777EE1A98E73D003BD41A /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E777E81A98E73D003BD41A /* NSMutableArray+Safe.m */; };
+		78E777EF1A98E73D003BD41A /* NSMutableDictionary+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E777E91A98E73D003BD41A /* NSMutableDictionary+Safe.h */; };
+		78E777F01A98E73D003BD41A /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E777EA1A98E73D003BD41A /* NSMutableDictionary+Safe.m */; };
+		78E777F31A98E848003BD41A /* NSMutableArray+Safe.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 78E777E71A98E73D003BD41A /* NSMutableArray+Safe.h */; };
+		78E777F41A98E848003BD41A /* NSMutableDictionary+Safe.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 78E777E91A98E73D003BD41A /* NSMutableDictionary+Safe.h */; };
+		78E777F91A98E91D003BD41A /* NSString+Validation.h in Headers */ = {isa = PBXBuildFile; fileRef = 78E777F71A98E91D003BD41A /* NSString+Validation.h */; };
+		78E777FA1A98E91D003BD41A /* NSString+Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E777F81A98E91D003BD41A /* NSString+Validation.m */; };
+		78E777FB1A98E9D6003BD41A /* NSString+Validation.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 78E777F71A98E91D003BD41A /* NSString+Validation.h */; };
+		935958671A9CB016003BE036 /* NSArray+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = 935958651A9CB016003BE036 /* NSArray+Safe.h */; };
+		935958681A9CB016003BE036 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = 935958661A9CB016003BE036 /* NSArray+Safe.m */; };
+		9359586D1A9CB228003BE036 /* NSArray+Safe.m in Headers */ = {isa = PBXBuildFile; fileRef = 935958661A9CB016003BE036 /* NSArray+Safe.m */; };
+		A50A4BA61AA48BA200FC951F /* NSArray+Safe.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 935958651A9CB016003BE036 /* NSArray+Safe.h */; };
+		A513A1681AA72D0E00533B72 /* NSDictionary+Safe.h in Headers */ = {isa = PBXBuildFile; fileRef = A513A1661AA72D0D00533B72 /* NSDictionary+Safe.h */; };
+		A513A1691AA72D0E00533B72 /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = A513A1671AA72D0D00533B72 /* NSDictionary+Safe.m */; };
+		A513A16A1AA72D6000533B72 /* NSDictionary+Safe.h in Copy Files */ = {isa = PBXBuildFile; fileRef = A513A1661AA72D0D00533B72 /* NSDictionary+Safe.h */; };
+		A5EEF23D1AA85BA70074B718 /* SMCoreComponent.h in Copy Files */ = {isa = PBXBuildFile; fileRef = 2C087CE01A72583100FFF7C6 /* SMCoreComponent.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		2C087CDB1A72583100FFF7C6 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				A5EEF23D1AA85BA70074B718 /* SMCoreComponent.h in Copy Files */,
+				A513A16A1AA72D6000533B72 /* NSDictionary+Safe.h in Copy Files */,
+				A50A4BA61AA48BA200FC951F /* NSArray+Safe.h in Copy Files */,
+				78E777FB1A98E9D6003BD41A /* NSString+Validation.h in Copy Files */,
+				78E777F31A98E848003BD41A /* NSMutableArray+Safe.h in Copy Files */,
+				78E777F41A98E848003BD41A /* NSMutableDictionary+Safe.h in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2C087CDD1A72583100FFF7C6 /* libSMCoreComponent.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSMCoreComponent.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C087CE01A72583100FFF7C6 /* SMCoreComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMCoreComponent.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087CEE1A72583100FFF7C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C087CFC1A72594600FFF7C6 /* SMUIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIButton.h; sourceTree = "<group>"; };
+		2C087CFD1A72594600FFF7C6 /* SMUIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIButton.m; sourceTree = "<group>"; };
+		2C087CFF1A7259CC00FFF7C6 /* SMUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUILabel.h; sourceTree = "<group>"; };
+		2C087D001A7259CC00FFF7C6 /* SMUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUILabel.m; sourceTree = "<group>"; };
+		2C087D021A725A3900FFF7C6 /* SMUITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUITextField.h; sourceTree = "<group>"; };
+		2C087D031A725A3900FFF7C6 /* SMUITextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUITextField.m; sourceTree = "<group>"; };
+		2C087D051A725A9B00FFF7C6 /* SMUISegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUISegmentedControl.h; sourceTree = "<group>"; };
+		2C087D061A725A9B00FFF7C6 /* SMUISegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUISegmentedControl.m; sourceTree = "<group>"; };
+		2C087D081A725B0400FFF7C6 /* SMUISlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUISlider.h; sourceTree = "<group>"; };
+		2C087D091A725B0400FFF7C6 /* SMUISlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUISlider.m; sourceTree = "<group>"; };
+		2C087D0B1A725BE100FFF7C6 /* SMUISwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUISwitch.h; sourceTree = "<group>"; };
+		2C087D0C1A725BE100FFF7C6 /* SMUISwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUISwitch.m; sourceTree = "<group>"; };
+		2C087D0E1A725C7500FFF7C6 /* SMUIActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIActivityIndicatorView.h; sourceTree = "<group>"; };
+		2C087D0F1A725C7500FFF7C6 /* SMUIActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIActivityIndicatorView.m; sourceTree = "<group>"; };
+		2C087D111A725D6F00FFF7C6 /* SMUIProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIProgressView.h; sourceTree = "<group>"; };
+		2C087D121A725D6F00FFF7C6 /* SMUIProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIProgressView.m; sourceTree = "<group>"; };
+		2C087D141A725DD900FFF7C6 /* SMUIPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIPageControl.h; sourceTree = "<group>"; };
+		2C087D151A725DD900FFF7C6 /* SMUIPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIPageControl.m; sourceTree = "<group>"; };
+		2C087D171A725E2A00FFF7C6 /* SMUIScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIScrollView.h; sourceTree = "<group>"; };
+		2C087D181A725E2A00FFF7C6 /* SMUIScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIScrollView.m; sourceTree = "<group>"; };
+		2C087D1A1A725EA300FFF7C6 /* SMUITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUITextView.h; sourceTree = "<group>"; };
+		2C087D1B1A725EA300FFF7C6 /* SMUITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUITextView.m; sourceTree = "<group>"; };
+		2C087D1D1A725EF900FFF7C6 /* SMUITableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUITableView.h; sourceTree = "<group>"; };
+		2C087D1E1A725EF900FFF7C6 /* SMUITableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUITableView.m; sourceTree = "<group>"; };
+		2C087D201A72602000FFF7C6 /* SMUIStepper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIStepper.h; sourceTree = "<group>"; };
+		2C087D211A72602000FFF7C6 /* SMUIStepper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIStepper.m; sourceTree = "<group>"; };
+		2C087D231A7260AE00FFF7C6 /* SMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMTableViewCell.h; sourceTree = "<group>"; };
+		2C087D241A7260AE00FFF7C6 /* SMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMTableViewCell.m; sourceTree = "<group>"; };
+		2C087D261A7260F100FFF7C6 /* SMUIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIImageView.h; sourceTree = "<group>"; };
+		2C087D271A7260F100FFF7C6 /* SMUIImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIImageView.m; sourceTree = "<group>"; };
+		2C087D291A72614400FFF7C6 /* SMUICollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUICollectionView.h; sourceTree = "<group>"; };
+		2C087D2A1A72614400FFF7C6 /* SMUICollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUICollectionView.m; sourceTree = "<group>"; };
+		2C087D2C1A72619C00FFF7C6 /* SMUIDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIDatePicker.h; sourceTree = "<group>"; };
+		2C087D2D1A72619C00FFF7C6 /* SMUIDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIDatePicker.m; sourceTree = "<group>"; };
+		2C087D2F1A72626E00FFF7C6 /* SMUIBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIBarButtonItem.h; sourceTree = "<group>"; };
+		2C087D301A72626E00FFF7C6 /* SMUIBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIBarButtonItem.m; sourceTree = "<group>"; };
+		2C087D321A7262A300FFF7C6 /* SMUIToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIToolbar.h; sourceTree = "<group>"; };
+		2C087D331A7262A300FFF7C6 /* SMUIToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIToolbar.m; sourceTree = "<group>"; };
+		2C087D351A7262D500FFF7C6 /* SMUITabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUITabBar.h; sourceTree = "<group>"; };
+		2C087D361A7262D500FFF7C6 /* SMUITabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUITabBar.m; sourceTree = "<group>"; };
+		2C087D381A72631A00FFF7C6 /* SMUISearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUISearchBar.h; sourceTree = "<group>"; };
+		2C087D391A72631A00FFF7C6 /* SMUISearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUISearchBar.m; sourceTree = "<group>"; };
+		2C087D3B1A72637C00FFF7C6 /* SMUINavigationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUINavigationItem.h; sourceTree = "<group>"; };
+		2C087D3C1A72637C00FFF7C6 /* SMUINavigationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUINavigationItem.m; sourceTree = "<group>"; };
+		2C087D3E1A72641700FFF7C6 /* SMUINavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUINavigationBar.h; sourceTree = "<group>"; };
+		2C087D3F1A72641700FFF7C6 /* SMUINavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUINavigationBar.m; sourceTree = "<group>"; };
+		2C087D411A7264BC00FFF7C6 /* SMUIPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIPickerView.h; sourceTree = "<group>"; };
+		2C087D421A7264BC00FFF7C6 /* SMUIPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIPickerView.m; sourceTree = "<group>"; };
+		2C087D441A72668700FFF7C6 /* SMUIWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIWebView.h; sourceTree = "<group>"; };
+		2C087D451A72668700FFF7C6 /* SMUIWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIWebView.m; sourceTree = "<group>"; };
+		2C087D4D1A7268C300FFF7C6 /* SMUITabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUITabBarItem.h; sourceTree = "<group>"; };
+		2C087D4E1A7268C300FFF7C6 /* SMUITabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUITabBarItem.m; sourceTree = "<group>"; };
+		2C087D501A726B3000FFF7C6 /* SMUITapGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUITapGestureRecognizer.h; sourceTree = "<group>"; };
+		2C087D511A726B3000FFF7C6 /* SMUITapGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUITapGestureRecognizer.m; sourceTree = "<group>"; };
+		2C087D531A726BEE00FFF7C6 /* SMUIPinchGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIPinchGestureRecognizer.h; sourceTree = "<group>"; };
+		2C087D541A726BEE00FFF7C6 /* SMUIPinchGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIPinchGestureRecognizer.m; sourceTree = "<group>"; };
+		2C087D561A726C2400FFF7C6 /* SMUIRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIRotationGestureRecognizer.h; sourceTree = "<group>"; };
+		2C087D571A726C2400FFF7C6 /* SMUIRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIRotationGestureRecognizer.m; sourceTree = "<group>"; };
+		2C087D591A726C8A00FFF7C6 /* SMUISwipeGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUISwipeGestureRecognizer.h; sourceTree = "<group>"; };
+		2C087D5A1A726C8A00FFF7C6 /* SMUISwipeGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUISwipeGestureRecognizer.m; sourceTree = "<group>"; };
+		2C087D5C1A726CF200FFF7C6 /* SMUIPanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIPanGestureRecognizer.h; sourceTree = "<group>"; };
+		2C087D5D1A726CF200FFF7C6 /* SMUIPanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIPanGestureRecognizer.m; sourceTree = "<group>"; };
+		2C087D601A726D7B00FFF7C6 /* SMUIScreenEdgePanGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIScreenEdgePanGestureRecognizer.h; sourceTree = "<group>"; };
+		2C087D611A726D7B00FFF7C6 /* SMUIScreenEdgePanGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIScreenEdgePanGestureRecognizer.m; sourceTree = "<group>"; };
+		2C087D631A726DAB00FFF7C6 /* SMUILongPressGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUILongPressGestureRecognizer.h; sourceTree = "<group>"; };
+		2C087D641A726DAB00FFF7C6 /* SMUILongPressGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUILongPressGestureRecognizer.m; sourceTree = "<group>"; };
+		2C087D6D1A728BD800FFF7C6 /* SMNSMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableArray.h; sourceTree = "<group>"; };
+		2C087D6E1A728BD800FFF7C6 /* SMNSMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableArray.m; sourceTree = "<group>"; };
+		2C087D701A728C2B00FFF7C6 /* SMNSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSDictionary.h; sourceTree = "<group>"; };
+		2C087D711A728C2B00FFF7C6 /* SMNSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDictionary.m; sourceTree = "<group>"; };
+		2C087D731A728C4F00FFF7C6 /* SMNSMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableDictionary.h; sourceTree = "<group>"; };
+		2C087D741A728C4F00FFF7C6 /* SMNSMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableDictionary.m; sourceTree = "<group>"; };
+		2C087D761A728C7A00FFF7C6 /* SMNSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSString.h; sourceTree = "<group>"; };
+		2C087D771A728C7A00FFF7C6 /* SMNSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSString.m; sourceTree = "<group>"; };
+		2C087D7C1A728DB200FFF7C6 /* SMNSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSData.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087D7D1A728DB200FFF7C6 /* SMNSData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSData.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087D7F1A728DEF00FFF7C6 /* SMNSDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSDate.h; sourceTree = "<group>"; };
+		2C087D801A728DEF00FFF7C6 /* SMNSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDate.m; sourceTree = "<group>"; };
+		2C087D821A728E4700FFF7C6 /* SMNSError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSError.h; sourceTree = "<group>"; };
+		2C087D831A728E4700FFF7C6 /* SMNSError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSError.m; sourceTree = "<group>"; };
+		2C087D851A728F5700FFF7C6 /* SMUIVisualEffectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIVisualEffectView.h; sourceTree = "<group>"; };
+		2C087D861A728F5700FFF7C6 /* SMUIVisualEffectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIVisualEffectView.m; sourceTree = "<group>"; };
+		2C087D881A728FC500FFF7C6 /* SMNSURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSURL.h; sourceTree = "<group>"; };
+		2C087D891A728FC500FFF7C6 /* SMNSURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSURL.m; sourceTree = "<group>"; };
+		2C087D8B1A72904000FFF7C6 /* SMNSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSObject.h; sourceTree = "<group>"; };
+		2C087D8C1A72904000FFF7C6 /* SMNSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSObject.m; sourceTree = "<group>"; };
+		2C087D911A72909D00FFF7C6 /* SMNSAssertionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSAssertionHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087D921A72909D00FFF7C6 /* SMNSAssertionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSAssertionHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087D941A7290C300FFF7C6 /* SMNSAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSAttributedString.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087D951A7290C300FFF7C6 /* SMNSAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSAttributedString.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087D9A1A72910500FFF7C6 /* SMNSBlockOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSBlockOperation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087D9B1A72910500FFF7C6 /* SMNSBlockOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSBlockOperation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DA01A72915000FFF7C6 /* SMNSByteCountFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSByteCountFormatter.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DA11A72915000FFF7C6 /* SMNSByteCountFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSByteCountFormatter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DA31A72918C00FFF7C6 /* SMNSBundle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSBundle.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DA41A72918C00FFF7C6 /* SMNSBundle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSBundle.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DA61A7291B300FFF7C6 /* SMNSCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSCache.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DA71A7291B300FFF7C6 /* SMNSCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSCache.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DA91A7291D600FFF7C6 /* SMNSCachedURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSCachedURLResponse.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DAA1A7291D600FFF7C6 /* SMNSCachedURLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSCachedURLResponse.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DAC1A7291F100FFF7C6 /* SMNSCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSCalendar.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DAD1A7291F100FFF7C6 /* SMNSCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSCalendar.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DAF1A72921900FFF7C6 /* SMNSCharacterSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSCharacterSet.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DB01A72921900FFF7C6 /* SMNSCharacterSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSCharacterSet.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DB21A72924B00FFF7C6 /* SMNSCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSCoder.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DB31A72924B00FFF7C6 /* SMNSCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSCoder.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DB51A72927000FFF7C6 /* SMNSComparisonPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSComparisonPredicate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DB61A72927000FFF7C6 /* SMNSComparisonPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSComparisonPredicate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DB81A72929800FFF7C6 /* SMNSCompoundPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSCompoundPredicate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DB91A72929800FFF7C6 /* SMNSCompoundPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSCompoundPredicate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DBB1A729A2E00FFF7C6 /* SMNSCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSCondition.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DBC1A729A2E00FFF7C6 /* SMNSCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSCondition.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DBE1A729A5100FFF7C6 /* SMNSConditionLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSConditionLock.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DBF1A729A5100FFF7C6 /* SMNSConditionLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSConditionLock.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DC11A729A7200FFF7C6 /* SMNSConstantString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSConstantString.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DC21A729A7200FFF7C6 /* SMNSConstantString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSConstantString.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DC41A729A9200FFF7C6 /* SMNSCountedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSCountedSet.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DC51A729A9200FFF7C6 /* SMNSCountedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SMNSCountedSet.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		2C087DC81A729ABB00FFF7C6 /* SMNSDataDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SMNSDataDetector.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		2C087DC91A729ABB00FFF7C6 /* SMNSDataDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDataDetector.m; sourceTree = "<group>"; };
+		2C087DCB1A729AD800FFF7C6 /* SMNSDateComponents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSDateComponents.h; sourceTree = "<group>"; };
+		2C087DCC1A729AD800FFF7C6 /* SMNSDateComponents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDateComponents.m; sourceTree = "<group>"; };
+		2C087DCF1A729B0200FFF7C6 /* SMNSDateComponentsFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSDateComponentsFormatter.h; sourceTree = "<group>"; };
+		2C087DD01A729B0200FFF7C6 /* SMNSDateComponentsFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDateComponentsFormatter.m; sourceTree = "<group>"; };
+		2C087DD21A729B1900FFF7C6 /* SMNSDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSDateFormatter.h; sourceTree = "<group>"; };
+		2C087DD31A729B1900FFF7C6 /* SMNSDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDateFormatter.m; sourceTree = "<group>"; };
+		2C087DD51A729B3900FFF7C6 /* SMNSDateIntervalFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSDateIntervalFormatter.h; sourceTree = "<group>"; };
+		2C087DD61A729B3900FFF7C6 /* SMNSDateIntervalFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDateIntervalFormatter.m; sourceTree = "<group>"; };
+		2C087DD81A729B6600FFF7C6 /* SMNSDecimalNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSDecimalNumber.h; sourceTree = "<group>"; };
+		2C087DD91A729B6600FFF7C6 /* SMNSDecimalNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDecimalNumber.m; sourceTree = "<group>"; };
+		2C087DDB1A729B8000FFF7C6 /* SMNSDecimalNumberHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSDecimalNumberHandler.h; sourceTree = "<group>"; };
+		2C087DDC1A729B8000FFF7C6 /* SMNSDecimalNumberHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDecimalNumberHandler.m; sourceTree = "<group>"; };
+		2C087DDE1A729B9F00FFF7C6 /* SMNSDirectoryEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSDirectoryEnumerator.h; sourceTree = "<group>"; };
+		2C087DDF1A729B9F00FFF7C6 /* SMNSDirectoryEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSDirectoryEnumerator.m; sourceTree = "<group>"; };
+		2C087DE11A729BC100FFF7C6 /* SMNSEnergyFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSEnergyFormatter.h; sourceTree = "<group>"; };
+		2C087DE21A729BC100FFF7C6 /* SMNSEnergyFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSEnergyFormatter.m; sourceTree = "<group>"; };
+		2C087DE41A729BDE00FFF7C6 /* SMNSEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSEnumerator.h; sourceTree = "<group>"; };
+		2C087DE51A729BDE00FFF7C6 /* SMNSEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSEnumerator.m; sourceTree = "<group>"; };
+		2C087DE71A729C1200FFF7C6 /* SMNSException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSException.h; sourceTree = "<group>"; };
+		2C087DE81A729C1200FFF7C6 /* SMNSException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSException.m; sourceTree = "<group>"; };
+		2C087DEA1A729C3300FFF7C6 /* SMNSExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSExpression.h; sourceTree = "<group>"; };
+		2C087DEB1A729C3300FFF7C6 /* SMNSExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSExpression.m; sourceTree = "<group>"; };
+		2C087DED1A729CAA00FFF7C6 /* SMNSExtensionContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSExtensionContext.h; sourceTree = "<group>"; };
+		2C087DEE1A729CAA00FFF7C6 /* SMNSExtensionContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSExtensionContext.m; sourceTree = "<group>"; };
+		2CEA1D521A7782F300E2F387 /* SMNSExtensionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSExtensionItem.h; sourceTree = "<group>"; };
+		2CEA1D531A7782F300E2F387 /* SMNSExtensionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSExtensionItem.m; sourceTree = "<group>"; };
+		2CEA1D551A77831C00E2F387 /* SMNSFileAccessIntent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSFileAccessIntent.h; sourceTree = "<group>"; };
+		2CEA1D561A77831C00E2F387 /* SMNSFileAccessIntent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSFileAccessIntent.m; sourceTree = "<group>"; };
+		2CEA1D581A77833900E2F387 /* SMNSFileCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSFileCoordinator.h; sourceTree = "<group>"; };
+		2CEA1D591A77833900E2F387 /* SMNSFileCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSFileCoordinator.m; sourceTree = "<group>"; };
+		2CEA1D5B1A77835500E2F387 /* SMNSFileHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSFileHandle.h; sourceTree = "<group>"; };
+		2CEA1D5C1A77835500E2F387 /* SMNSFileHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSFileHandle.m; sourceTree = "<group>"; };
+		2CEA1D5E1A77836F00E2F387 /* SMNSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSFileManager.h; sourceTree = "<group>"; };
+		2CEA1D5F1A77836F00E2F387 /* SMNSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSFileManager.m; sourceTree = "<group>"; };
+		2CEA1D611A77838D00E2F387 /* SMNSFileProviderExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSFileProviderExtension.h; sourceTree = "<group>"; };
+		2CEA1D621A77838D00E2F387 /* SMNSFileProviderExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSFileProviderExtension.m; sourceTree = "<group>"; };
+		2CEA1D641A77842400E2F387 /* SMNSFileSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSFileSecurity.h; sourceTree = "<group>"; };
+		2CEA1D651A77842400E2F387 /* SMNSFileSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSFileSecurity.m; sourceTree = "<group>"; };
+		2CEA1D671A77844900E2F387 /* SMNSFileVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSFileVersion.h; sourceTree = "<group>"; };
+		2CEA1D681A77844900E2F387 /* SMNSFileVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSFileVersion.m; sourceTree = "<group>"; };
+		2CEA1D6A1A77846800E2F387 /* SMNSFileWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSFileWrapper.h; sourceTree = "<group>"; };
+		2CEA1D6B1A77846800E2F387 /* SMNSFileWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSFileWrapper.m; sourceTree = "<group>"; };
+		2CEA1D6D1A77848500E2F387 /* SMNSFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSFormatter.h; sourceTree = "<group>"; };
+		2CEA1D6E1A77848500E2F387 /* SMNSFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSFormatter.m; sourceTree = "<group>"; };
+		2CEA1D701A7784A200E2F387 /* SMNSHashTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSHashTable.h; sourceTree = "<group>"; };
+		2CEA1D711A7784A200E2F387 /* SMNSHashTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSHashTable.m; sourceTree = "<group>"; };
+		2CEA1D731A7784CC00E2F387 /* SMNSHTTPCookie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSHTTPCookie.h; sourceTree = "<group>"; };
+		2CEA1D741A7784CC00E2F387 /* SMNSHTTPCookie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSHTTPCookie.m; sourceTree = "<group>"; };
+		2CEA1D761A7784E700E2F387 /* SMNSHTTPCookieStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSHTTPCookieStorage.h; sourceTree = "<group>"; };
+		2CEA1D771A7784E700E2F387 /* SMNSHTTPCookieStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSHTTPCookieStorage.m; sourceTree = "<group>"; };
+		2CEA1D791A77850200E2F387 /* SMNSHTTPURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSHTTPURLResponse.h; sourceTree = "<group>"; };
+		2CEA1D7A1A77850200E2F387 /* SMNSHTTPURLResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSHTTPURLResponse.m; sourceTree = "<group>"; };
+		2CEA1D7C1A77852200E2F387 /* SMNSIndexPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSIndexPath.h; sourceTree = "<group>"; };
+		2CEA1D7D1A77852200E2F387 /* SMNSIndexPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSIndexPath.m; sourceTree = "<group>"; };
+		2CEA1D7F1A77854800E2F387 /* SMNSIndexSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSIndexSet.h; sourceTree = "<group>"; };
+		2CEA1D801A77854800E2F387 /* SMNSIndexSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSIndexSet.m; sourceTree = "<group>"; };
+		2CEA1D821A77855E00E2F387 /* SMNSInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSInputStream.h; sourceTree = "<group>"; };
+		2CEA1D831A77855E00E2F387 /* SMNSInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSInputStream.m; sourceTree = "<group>"; };
+		2CEA1D851A77857600E2F387 /* SMNSInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSInvocation.h; sourceTree = "<group>"; };
+		2CEA1D861A77857600E2F387 /* SMNSInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSInvocation.m; sourceTree = "<group>"; };
+		2CEA1D881A77859800E2F387 /* SMNSInvocationOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSInvocationOperation.h; sourceTree = "<group>"; };
+		2CEA1D891A77859800E2F387 /* SMNSInvocationOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSInvocationOperation.m; sourceTree = "<group>"; };
+		2CEA1D8B1A7785B100E2F387 /* SMNSItemProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSItemProvider.h; sourceTree = "<group>"; };
+		2CEA1D8C1A7785B100E2F387 /* SMNSItemProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSItemProvider.m; sourceTree = "<group>"; };
+		2CEA1D8E1A7788B500E2F387 /* SMNSJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSJSONSerialization.h; sourceTree = "<group>"; };
+		2CEA1D8F1A7788B500E2F387 /* SMNSJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSJSONSerialization.m; sourceTree = "<group>"; };
+		2CEA1D911A77890E00E2F387 /* SMNSKeyedArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSKeyedArchiver.h; sourceTree = "<group>"; };
+		2CEA1D921A77890E00E2F387 /* SMNSKeyedArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSKeyedArchiver.m; sourceTree = "<group>"; };
+		2CEA1D941A77892700E2F387 /* SMNSKeyedUnarchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSKeyedUnarchiver.h; sourceTree = "<group>"; };
+		2CEA1D951A77892700E2F387 /* SMNSKeyedUnarchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSKeyedUnarchiver.m; sourceTree = "<group>"; };
+		2CEA1D971A77893D00E2F387 /* SMNSLayoutConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSLayoutConstraint.h; sourceTree = "<group>"; };
+		2CEA1D981A77893D00E2F387 /* SMNSLayoutConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSLayoutConstraint.m; sourceTree = "<group>"; };
+		2CEA1D9A1A77895700E2F387 /* SMNSLayoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSLayoutManager.h; sourceTree = "<group>"; };
+		2CEA1D9B1A77895700E2F387 /* SMNSLayoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSLayoutManager.m; sourceTree = "<group>"; };
+		2CEA1D9D1A77897200E2F387 /* SMNSLengthFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSLengthFormatter.h; sourceTree = "<group>"; };
+		2CEA1D9E1A77897300E2F387 /* SMNSLengthFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSLengthFormatter.m; sourceTree = "<group>"; };
+		2CEA1DA01A77899100E2F387 /* SMNSLinguisticTagger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSLinguisticTagger.h; sourceTree = "<group>"; };
+		2CEA1DA11A77899100E2F387 /* SMNSLinguisticTagger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSLinguisticTagger.m; sourceTree = "<group>"; };
+		2CEA1DA31A7789A800E2F387 /* SMNSLocale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSLocale.h; sourceTree = "<group>"; };
+		2CEA1DA41A7789A800E2F387 /* SMNSLocale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSLocale.m; sourceTree = "<group>"; };
+		2CEA1DA61A7789C600E2F387 /* SMNSLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSLock.h; sourceTree = "<group>"; };
+		2CEA1DA71A7789C600E2F387 /* SMNSLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSLock.m; sourceTree = "<group>"; };
+		2CEA1DA91A7789DC00E2F387 /* SMNSMachPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMachPort.h; sourceTree = "<group>"; };
+		2CEA1DAA1A7789DC00E2F387 /* SMNSMachPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMachPort.m; sourceTree = "<group>"; };
+		2CEA1DAC1A7789F700E2F387 /* SMNSMapTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMapTable.h; sourceTree = "<group>"; };
+		2CEA1DAD1A7789F700E2F387 /* SMNSMapTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMapTable.m; sourceTree = "<group>"; };
+		2CEA1DAF1A778A0C00E2F387 /* SMNSMassFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMassFormatter.h; sourceTree = "<group>"; };
+		2CEA1DB01A778A0C00E2F387 /* SMNSMassFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMassFormatter.m; sourceTree = "<group>"; };
+		2CEA1DB21A778A3400E2F387 /* SMNSMessagePort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMessagePort.h; sourceTree = "<group>"; };
+		2CEA1DB31A778A3400E2F387 /* SMNSMessagePort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMessagePort.m; sourceTree = "<group>"; };
+		2CEA1DB51A778A4900E2F387 /* SMNSMetadataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMetadataItem.h; sourceTree = "<group>"; };
+		2CEA1DB61A778A4900E2F387 /* SMNSMetadataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMetadataItem.m; sourceTree = "<group>"; };
+		2CEA1DB81A778A6200E2F387 /* SMNSMetadataQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMetadataQuery.h; sourceTree = "<group>"; };
+		2CEA1DB91A778A6200E2F387 /* SMNSMetadataQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMetadataQuery.m; sourceTree = "<group>"; };
+		2CEA1DBB1A778A7600E2F387 /* SMNSMetadataQueryAttributeValueTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMetadataQueryAttributeValueTuple.h; sourceTree = "<group>"; };
+		2CEA1DBC1A778A7600E2F387 /* SMNSMetadataQueryAttributeValueTuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMetadataQueryAttributeValueTuple.m; sourceTree = "<group>"; };
+		2CEA1DBE1A778A8900E2F387 /* SMNSMetadataQueryResultGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMetadataQueryResultGroup.h; sourceTree = "<group>"; };
+		2CEA1DBF1A778A8900E2F387 /* SMNSMetadataQueryResultGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMetadataQueryResultGroup.m; sourceTree = "<group>"; };
+		2CEA1DC11A778AA300E2F387 /* SMNSMethodSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMethodSignature.h; sourceTree = "<group>"; };
+		2CEA1DC21A778AA300E2F387 /* SMNSMethodSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMethodSignature.m; sourceTree = "<group>"; };
+		2CEA1DC41A77B34E00E2F387 /* SMNSMutableAttributedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableAttributedString.h; sourceTree = "<group>"; };
+		2CEA1DC51A77B34F00E2F387 /* SMNSMutableAttributedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableAttributedString.m; sourceTree = "<group>"; };
+		2CEA1DC71A77B37000E2F387 /* SMNSMutableCharacterSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableCharacterSet.h; sourceTree = "<group>"; };
+		2CEA1DC81A77B37000E2F387 /* SMNSMutableCharacterSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableCharacterSet.m; sourceTree = "<group>"; };
+		2CEA1DCA1A77B38500E2F387 /* SMNSMutableData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableData.h; sourceTree = "<group>"; };
+		2CEA1DCB1A77B38500E2F387 /* SMNSMutableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableData.m; sourceTree = "<group>"; };
+		2CEA1DCD1A77B3C500E2F387 /* SMNSMutableIndexSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableIndexSet.h; sourceTree = "<group>"; };
+		2CEA1DCE1A77B3C500E2F387 /* SMNSMutableIndexSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableIndexSet.m; sourceTree = "<group>"; };
+		2CEA1DD01A77B44600E2F387 /* SMNSMutableOrderedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableOrderedSet.h; sourceTree = "<group>"; };
+		2CEA1DD11A77B44600E2F387 /* SMNSMutableOrderedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableOrderedSet.m; sourceTree = "<group>"; };
+		2CEA1DD31A77B45A00E2F387 /* SMNSMutableParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableParagraphStyle.h; sourceTree = "<group>"; };
+		2CEA1DD41A77B45A00E2F387 /* SMNSMutableParagraphStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableParagraphStyle.m; sourceTree = "<group>"; };
+		2CEA1DD61A77B46F00E2F387 /* SMNSMutableSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableSet.h; sourceTree = "<group>"; };
+		2CEA1DD71A77B46F00E2F387 /* SMNSMutableSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableSet.m; sourceTree = "<group>"; };
+		2CEA1DD91A77B48400E2F387 /* SMNSMutableString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableString.h; sourceTree = "<group>"; };
+		2CEA1DDA1A77B48400E2F387 /* SMNSMutableString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableString.m; sourceTree = "<group>"; };
+		2CEA1DDD1A77B4A900E2F387 /* SMNSMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSMutableURLRequest.h; sourceTree = "<group>"; };
+		2CEA1DDE1A77B4A900E2F387 /* SMNSMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSMutableURLRequest.m; sourceTree = "<group>"; };
+		2CEA1DE01A77B4C100E2F387 /* SMNSNetService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSNetService.h; sourceTree = "<group>"; };
+		2CEA1DE11A77B4C100E2F387 /* SMNSNetService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSNetService.m; sourceTree = "<group>"; };
+		2CEA1DE31A77B4D700E2F387 /* SMNSNetServiceBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSNetServiceBrowser.h; sourceTree = "<group>"; };
+		2CEA1DE41A77B4D700E2F387 /* SMNSNetServiceBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSNetServiceBrowser.m; sourceTree = "<group>"; };
+		2CEA1DE61A77B4EC00E2F387 /* SMNSNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSNotification.h; sourceTree = "<group>"; };
+		2CEA1DE71A77B4EC00E2F387 /* SMNSNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSNotification.m; sourceTree = "<group>"; };
+		2CEA1DE91A77B50B00E2F387 /* SMNSNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSNotificationCenter.h; sourceTree = "<group>"; };
+		2CEA1DEA1A77B50B00E2F387 /* SMNSNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSNotificationCenter.m; sourceTree = "<group>"; };
+		2CEA1DEC1A77B52000E2F387 /* SMNSNotificationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSNotificationQueue.h; sourceTree = "<group>"; };
+		2CEA1DED1A77B52000E2F387 /* SMNSNotificationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSNotificationQueue.m; sourceTree = "<group>"; };
+		2CEA1DEF1A77B53D00E2F387 /* SMNSNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSNull.h; sourceTree = "<group>"; };
+		2CEA1DF01A77B53D00E2F387 /* SMNSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSNull.m; sourceTree = "<group>"; };
+		2CEA1DF21A77B55600E2F387 /* SMNSNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSNumber.h; sourceTree = "<group>"; };
+		2CEA1DF31A77B55600E2F387 /* SMNSNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSNumber.m; sourceTree = "<group>"; };
+		2CEA1DF51A77B56A00E2F387 /* SMNSNumberFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSNumberFormatter.h; sourceTree = "<group>"; };
+		2CEA1DF61A77B56A00E2F387 /* SMNSNumberFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSNumberFormatter.m; sourceTree = "<group>"; };
+		2CEA1DF81A77B5BA00E2F387 /* SMNSOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSOperation.h; sourceTree = "<group>"; };
+		2CEA1DF91A77B5BA00E2F387 /* SMNSOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSOperation.m; sourceTree = "<group>"; };
+		2CEA1DFB1A77B5D900E2F387 /* SMNSOperationQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSOperationQueue.h; sourceTree = "<group>"; };
+		2CEA1DFC1A77B5D900E2F387 /* SMNSOperationQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSOperationQueue.m; sourceTree = "<group>"; };
+		2CEA1DFE1A77B5F400E2F387 /* SMNSOrderedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSOrderedSet.h; sourceTree = "<group>"; };
+		2CEA1DFF1A77B5F400E2F387 /* SMNSOrderedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSOrderedSet.m; sourceTree = "<group>"; };
+		2CEA1E011A77B60D00E2F387 /* SMNSOrthography.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSOrthography.h; sourceTree = "<group>"; };
+		2CEA1E021A77B60D00E2F387 /* SMNSOrthography.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSOrthography.m; sourceTree = "<group>"; };
+		2CEA1E041A77B62200E2F387 /* SMNSOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSOutputStream.h; sourceTree = "<group>"; };
+		2CEA1E051A77B62200E2F387 /* SMNSOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSOutputStream.m; sourceTree = "<group>"; };
+		2CEA1E071A77B63C00E2F387 /* SMNSParagraphStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSParagraphStyle.h; sourceTree = "<group>"; };
+		2CEA1E081A77B63C00E2F387 /* SMNSParagraphStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSParagraphStyle.m; sourceTree = "<group>"; };
+		2CEA1E0A1A77B64F00E2F387 /* SMNSPipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSPipe.h; sourceTree = "<group>"; };
+		2CEA1E0B1A77B64F00E2F387 /* SMNSPipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSPipe.m; sourceTree = "<group>"; };
+		2CEA1E0D1A77B66700E2F387 /* SMNSPointerArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSPointerArray.h; sourceTree = "<group>"; };
+		2CEA1E0E1A77B66700E2F387 /* SMNSPointerArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSPointerArray.m; sourceTree = "<group>"; };
+		2CEA1E101A77B67E00E2F387 /* SMNSPointerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSPointerFunctions.h; sourceTree = "<group>"; };
+		2CEA1E111A77B67E00E2F387 /* SMNSPointerFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSPointerFunctions.m; sourceTree = "<group>"; };
+		2CEA1E131A77B69400E2F387 /* SMNSPort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSPort.h; sourceTree = "<group>"; };
+		2CEA1E141A77B69400E2F387 /* SMNSPort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSPort.m; sourceTree = "<group>"; };
+		2CEA1E161A77B6AA00E2F387 /* SMNSPredicate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSPredicate.h; sourceTree = "<group>"; };
+		2CEA1E171A77B6AA00E2F387 /* SMNSPredicate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSPredicate.m; sourceTree = "<group>"; };
+		2CEA1E191A77B6BD00E2F387 /* SMNSProcessInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSProcessInfo.h; sourceTree = "<group>"; };
+		2CEA1E1A1A77B6BD00E2F387 /* SMNSProcessInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSProcessInfo.m; sourceTree = "<group>"; };
+		2CEA1E1C1A77B6D200E2F387 /* SMNSProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSProgress.h; sourceTree = "<group>"; };
+		2CEA1E1D1A77B6D200E2F387 /* SMNSProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSProgress.m; sourceTree = "<group>"; };
+		2CEA1E1F1A77B6E900E2F387 /* SMNSPropertyListSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSPropertyListSerialization.h; sourceTree = "<group>"; };
+		2CEA1E201A77B6E900E2F387 /* SMNSPropertyListSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSPropertyListSerialization.m; sourceTree = "<group>"; };
+		2CEA1E221A77B6FD00E2F387 /* SMNSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSProxy.h; sourceTree = "<group>"; };
+		2CEA1E231A77B6FD00E2F387 /* SMNSProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSProxy.m; sourceTree = "<group>"; };
+		2CEA1E261A77B71900E2F387 /* SMNSPurgeableData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSPurgeableData.h; sourceTree = "<group>"; };
+		2CEA1E271A77B71900E2F387 /* SMNSPurgeableData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSPurgeableData.m; sourceTree = "<group>"; };
+		2CEA1E291A77B73300E2F387 /* SMNSRecursiveLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSRecursiveLock.h; sourceTree = "<group>"; };
+		2CEA1E2A1A77B73300E2F387 /* SMNSRecursiveLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSRecursiveLock.m; sourceTree = "<group>"; };
+		2CEA1E2C1A77B74700E2F387 /* SMNSRegularExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSRegularExpression.h; sourceTree = "<group>"; };
+		2CEA1E2D1A77B74700E2F387 /* SMNSRegularExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSRegularExpression.m; sourceTree = "<group>"; };
+		2CEA1E2F1A77B75E00E2F387 /* SMNSRunLoop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSRunLoop.h; sourceTree = "<group>"; };
+		2CEA1E301A77B75E00E2F387 /* SMNSRunLoop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSRunLoop.m; sourceTree = "<group>"; };
+		2CEA1E321A77B77400E2F387 /* SMNSScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSScanner.h; sourceTree = "<group>"; };
+		2CEA1E331A77B77400E2F387 /* SMNSScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSScanner.m; sourceTree = "<group>"; };
+		2CEA1E351A77B82000E2F387 /* SMNSSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSSet.h; sourceTree = "<group>"; };
+		2CEA1E361A77B82000E2F387 /* SMNSSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSSet.m; sourceTree = "<group>"; };
+		2CEA1E381A77B83600E2F387 /* SMNSShadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSShadow.h; sourceTree = "<group>"; };
+		2CEA1E391A77B83600E2F387 /* SMNSShadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSShadow.m; sourceTree = "<group>"; };
+		2CEA1E3B1A77B84D00E2F387 /* SMNSSimpleCString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSSimpleCString.h; sourceTree = "<group>"; };
+		2CEA1E3C1A77B84D00E2F387 /* SMNSSimpleCString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSSimpleCString.m; sourceTree = "<group>"; };
+		2CEA1E3E1A77B86300E2F387 /* SMNSSortDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSSortDescriptor.h; sourceTree = "<group>"; };
+		2CEA1E3F1A77B86300E2F387 /* SMNSSortDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSSortDescriptor.m; sourceTree = "<group>"; };
+		2CEA1E411A77B87700E2F387 /* SMNSStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSStream.h; sourceTree = "<group>"; };
+		2CEA1E421A77B87700E2F387 /* SMNSStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSStream.m; sourceTree = "<group>"; };
+		2CEA1E441A77B89F00E2F387 /* SMNSStringDrawingContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSStringDrawingContext.h; sourceTree = "<group>"; };
+		2CEA1E451A77B89F00E2F387 /* SMNSStringDrawingContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSStringDrawingContext.m; sourceTree = "<group>"; };
+		2CEA1E471A77B8BE00E2F387 /* SMNSTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSTextAttachment.h; sourceTree = "<group>"; };
+		2CEA1E481A77B8BE00E2F387 /* SMNSTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSTextAttachment.m; sourceTree = "<group>"; };
+		2CEA1E4A1A77B8D600E2F387 /* SMNSTextCheckingResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSTextCheckingResult.h; sourceTree = "<group>"; };
+		2CEA1E4B1A77B8D600E2F387 /* SMNSTextCheckingResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSTextCheckingResult.m; sourceTree = "<group>"; };
+		2CEA1E4D1A77B8ED00E2F387 /* SMNSTextContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSTextContainer.h; sourceTree = "<group>"; };
+		2CEA1E4E1A77B8ED00E2F387 /* SMNSTextContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSTextContainer.m; sourceTree = "<group>"; };
+		2CEA1E501A77B8FF00E2F387 /* SMNSTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSTextStorage.h; sourceTree = "<group>"; };
+		2CEA1E511A77B8FF00E2F387 /* SMNSTextStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSTextStorage.m; sourceTree = "<group>"; };
+		2CEA1E531A77B91400E2F387 /* SMNSTextTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSTextTab.h; sourceTree = "<group>"; };
+		2CEA1E541A77B91400E2F387 /* SMNSTextTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSTextTab.m; sourceTree = "<group>"; };
+		2CEA1E561A77B92E00E2F387 /* SMNSThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSThread.h; sourceTree = "<group>"; };
+		2CEA1E571A77B92E00E2F387 /* SMNSThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSThread.m; sourceTree = "<group>"; };
+		2CEA1E591A77B94600E2F387 /* SMNSTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSTimer.h; sourceTree = "<group>"; };
+		2CEA1E5A1A77B94600E2F387 /* SMNSTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSTimer.m; sourceTree = "<group>"; };
+		2CEA1E5C1A77B9A000E2F387 /* SMNSTimeZone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSTimeZone.h; sourceTree = "<group>"; };
+		2CEA1E5D1A77B9A000E2F387 /* SMNSTimeZone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSTimeZone.m; sourceTree = "<group>"; };
+		2CEA1E5F1A77B9BF00E2F387 /* SMNSUbiquitousKeyValueStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSUbiquitousKeyValueStore.h; sourceTree = "<group>"; };
+		2CEA1E601A77B9BF00E2F387 /* SMNSUbiquitousKeyValueStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSUbiquitousKeyValueStore.m; sourceTree = "<group>"; };
+		2CEA1E621A77B9D300E2F387 /* SMNSUndoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSUndoManager.h; sourceTree = "<group>"; };
+		2CEA1E631A77B9D300E2F387 /* SMNSUndoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSUndoManager.m; sourceTree = "<group>"; };
+		2CEA1E981A77BC0800E2F387 /* SMNSUserActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSUserActivity.h; sourceTree = "<group>"; };
+		2CEA1E991A77BC0800E2F387 /* SMNSUserActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSUserActivity.m; sourceTree = "<group>"; };
+		2CEA1E9B1A77BC2600E2F387 /* SMNSUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSUserDefaults.h; sourceTree = "<group>"; };
+		2CEA1E9C1A77BC2600E2F387 /* SMNSUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSUserDefaults.m; sourceTree = "<group>"; };
+		2CEA1E9E1A77BC4000E2F387 /* SMNSUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMNSUUID.h; sourceTree = "<group>"; };
+		2CEA1E9F1A77BC4000E2F387 /* SMNSUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMNSUUID.m; sourceTree = "<group>"; };
+		2CEA1EAA1A77C1C700E2F387 /* SMUIFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIFont.h; sourceTree = "<group>"; };
+		2CEA1EAB1A77C1C700E2F387 /* SMUIFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIFont.m; sourceTree = "<group>"; };
+		2CEA1EAD1A77C20F00E2F387 /* SMUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUIImage.h; sourceTree = "<group>"; };
+		2CEA1EAE1A77C20F00E2F387 /* SMUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMUIImage.m; sourceTree = "<group>"; };
+		78E777E71A98E73D003BD41A /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safe.h"; sourceTree = "<group>"; };
+		78E777E81A98E73D003BD41A /* NSMutableArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Safe.m"; sourceTree = "<group>"; };
+		78E777E91A98E73D003BD41A /* NSMutableDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Safe.h"; sourceTree = "<group>"; };
+		78E777EA1A98E73D003BD41A /* NSMutableDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Safe.m"; sourceTree = "<group>"; };
+		78E777F71A98E91D003BD41A /* NSString+Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Validation.h"; sourceTree = "<group>"; };
+		78E777F81A98E91D003BD41A /* NSString+Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Validation.m"; sourceTree = "<group>"; };
+		935958651A9CB016003BE036 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
+		935958661A9CB016003BE036 /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
+		A513A1661AA72D0D00533B72 /* NSDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Safe.h"; sourceTree = "<group>"; };
+		A513A1671AA72D0D00533B72 /* NSDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Safe.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2C087CDA1A72583100FFF7C6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2C087CD41A72583100FFF7C6 = {
+			isa = PBXGroup;
+			children = (
+				2C087CDF1A72583100FFF7C6 /* SMCoreComponent */,
+				2C087CEC1A72583100FFF7C6 /* SMCoreComponentTests */,
+				2C087CDE1A72583100FFF7C6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2C087CDE1A72583100FFF7C6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2C087CDD1A72583100FFF7C6 /* libSMCoreComponent.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2C087CDF1A72583100FFF7C6 /* SMCoreComponent */ = {
+			isa = PBXGroup;
+			children = (
+				2C087D661A728AC000FFF7C6 /* Variables */,
+				2C087CFB1A72594600FFF7C6 /* UIComponents */,
+				2C087CE01A72583100FFF7C6 /* SMCoreComponent.h */,
+			);
+			path = SMCoreComponent;
+			sourceTree = "<group>";
+		};
+		2C087CEC1A72583100FFF7C6 /* SMCoreComponentTests */ = {
+			isa = PBXGroup;
+			children = (
+				2C087CED1A72583100FFF7C6 /* Supporting Files */,
+			);
+			path = SMCoreComponentTests;
+			sourceTree = "<group>";
+		};
+		2C087CED1A72583100FFF7C6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2C087CEE1A72583100FFF7C6 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2C087CFB1A72594600FFF7C6 /* UIComponents */ = {
+			isa = PBXGroup;
+			children = (
+				2C087CFC1A72594600FFF7C6 /* SMUIButton.h */,
+				2C087CFD1A72594600FFF7C6 /* SMUIButton.m */,
+				2C087CFF1A7259CC00FFF7C6 /* SMUILabel.h */,
+				2C087D001A7259CC00FFF7C6 /* SMUILabel.m */,
+				2C087D021A725A3900FFF7C6 /* SMUITextField.h */,
+				2C087D031A725A3900FFF7C6 /* SMUITextField.m */,
+				2C087D051A725A9B00FFF7C6 /* SMUISegmentedControl.h */,
+				2C087D061A725A9B00FFF7C6 /* SMUISegmentedControl.m */,
+				2C087D081A725B0400FFF7C6 /* SMUISlider.h */,
+				2C087D091A725B0400FFF7C6 /* SMUISlider.m */,
+				2C087D0B1A725BE100FFF7C6 /* SMUISwitch.h */,
+				2C087D0C1A725BE100FFF7C6 /* SMUISwitch.m */,
+				2C087D0E1A725C7500FFF7C6 /* SMUIActivityIndicatorView.h */,
+				2C087D0F1A725C7500FFF7C6 /* SMUIActivityIndicatorView.m */,
+				2C087D111A725D6F00FFF7C6 /* SMUIProgressView.h */,
+				2C087D121A725D6F00FFF7C6 /* SMUIProgressView.m */,
+				2C087D141A725DD900FFF7C6 /* SMUIPageControl.h */,
+				2C087D151A725DD900FFF7C6 /* SMUIPageControl.m */,
+				2C087D171A725E2A00FFF7C6 /* SMUIScrollView.h */,
+				2C087D181A725E2A00FFF7C6 /* SMUIScrollView.m */,
+				2C087D1A1A725EA300FFF7C6 /* SMUITextView.h */,
+				2C087D1B1A725EA300FFF7C6 /* SMUITextView.m */,
+				2C087D1D1A725EF900FFF7C6 /* SMUITableView.h */,
+				2C087D1E1A725EF900FFF7C6 /* SMUITableView.m */,
+				2C087D201A72602000FFF7C6 /* SMUIStepper.h */,
+				2C087D211A72602000FFF7C6 /* SMUIStepper.m */,
+				2C087D231A7260AE00FFF7C6 /* SMTableViewCell.h */,
+				2C087D241A7260AE00FFF7C6 /* SMTableViewCell.m */,
+				2C087D261A7260F100FFF7C6 /* SMUIImageView.h */,
+				2C087D271A7260F100FFF7C6 /* SMUIImageView.m */,
+				2C087D291A72614400FFF7C6 /* SMUICollectionView.h */,
+				2C087D2A1A72614400FFF7C6 /* SMUICollectionView.m */,
+				2C087D2C1A72619C00FFF7C6 /* SMUIDatePicker.h */,
+				2C087D2D1A72619C00FFF7C6 /* SMUIDatePicker.m */,
+				2C087D2F1A72626E00FFF7C6 /* SMUIBarButtonItem.h */,
+				2C087D301A72626E00FFF7C6 /* SMUIBarButtonItem.m */,
+				2C087D321A7262A300FFF7C6 /* SMUIToolbar.h */,
+				2C087D331A7262A300FFF7C6 /* SMUIToolbar.m */,
+				2C087D351A7262D500FFF7C6 /* SMUITabBar.h */,
+				2C087D361A7262D500FFF7C6 /* SMUITabBar.m */,
+				2C087D381A72631A00FFF7C6 /* SMUISearchBar.h */,
+				2C087D391A72631A00FFF7C6 /* SMUISearchBar.m */,
+				2C087D3B1A72637C00FFF7C6 /* SMUINavigationItem.h */,
+				2C087D3C1A72637C00FFF7C6 /* SMUINavigationItem.m */,
+				2C087D3E1A72641700FFF7C6 /* SMUINavigationBar.h */,
+				2C087D3F1A72641700FFF7C6 /* SMUINavigationBar.m */,
+				2C087D411A7264BC00FFF7C6 /* SMUIPickerView.h */,
+				2C087D421A7264BC00FFF7C6 /* SMUIPickerView.m */,
+				2C087D441A72668700FFF7C6 /* SMUIWebView.h */,
+				2C087D451A72668700FFF7C6 /* SMUIWebView.m */,
+				2C087D4D1A7268C300FFF7C6 /* SMUITabBarItem.h */,
+				2C087D4E1A7268C300FFF7C6 /* SMUITabBarItem.m */,
+				2C087D501A726B3000FFF7C6 /* SMUITapGestureRecognizer.h */,
+				2C087D511A726B3000FFF7C6 /* SMUITapGestureRecognizer.m */,
+				2C087D531A726BEE00FFF7C6 /* SMUIPinchGestureRecognizer.h */,
+				2C087D541A726BEE00FFF7C6 /* SMUIPinchGestureRecognizer.m */,
+				2C087D561A726C2400FFF7C6 /* SMUIRotationGestureRecognizer.h */,
+				2C087D571A726C2400FFF7C6 /* SMUIRotationGestureRecognizer.m */,
+				2C087D591A726C8A00FFF7C6 /* SMUISwipeGestureRecognizer.h */,
+				2C087D5A1A726C8A00FFF7C6 /* SMUISwipeGestureRecognizer.m */,
+				2C087D5C1A726CF200FFF7C6 /* SMUIPanGestureRecognizer.h */,
+				2C087D5D1A726CF200FFF7C6 /* SMUIPanGestureRecognizer.m */,
+				2C087D601A726D7B00FFF7C6 /* SMUIScreenEdgePanGestureRecognizer.h */,
+				2C087D611A726D7B00FFF7C6 /* SMUIScreenEdgePanGestureRecognizer.m */,
+				2C087D631A726DAB00FFF7C6 /* SMUILongPressGestureRecognizer.h */,
+				2C087D641A726DAB00FFF7C6 /* SMUILongPressGestureRecognizer.m */,
+				2C087D851A728F5700FFF7C6 /* SMUIVisualEffectView.h */,
+				2C087D861A728F5700FFF7C6 /* SMUIVisualEffectView.m */,
+				2CEA1EAA1A77C1C700E2F387 /* SMUIFont.h */,
+				2CEA1EAB1A77C1C700E2F387 /* SMUIFont.m */,
+				2CEA1EAD1A77C20F00E2F387 /* SMUIImage.h */,
+				2CEA1EAE1A77C20F00E2F387 /* SMUIImage.m */,
+			);
+			path = UIComponents;
+			sourceTree = "<group>";
+		};
+		2C087D661A728AC000FFF7C6 /* Variables */ = {
+			isa = PBXGroup;
+			children = (
+				935958651A9CB016003BE036 /* NSArray+Safe.h */,
+				935958661A9CB016003BE036 /* NSArray+Safe.m */,
+				78E777E71A98E73D003BD41A /* NSMutableArray+Safe.h */,
+				78E777E81A98E73D003BD41A /* NSMutableArray+Safe.m */,
+				78E777E91A98E73D003BD41A /* NSMutableDictionary+Safe.h */,
+				78E777EA1A98E73D003BD41A /* NSMutableDictionary+Safe.m */,
+				A513A1661AA72D0D00533B72 /* NSDictionary+Safe.h */,
+				A513A1671AA72D0D00533B72 /* NSDictionary+Safe.m */,
+				78E777F71A98E91D003BD41A /* NSString+Validation.h */,
+				78E777F81A98E91D003BD41A /* NSString+Validation.m */,
+				2CEA1DCD1A77B3C500E2F387 /* SMNSMutableIndexSet.h */,
+				2CEA1DCE1A77B3C500E2F387 /* SMNSMutableIndexSet.m */,
+				2C087D6D1A728BD800FFF7C6 /* SMNSMutableArray.h */,
+				2C087D6E1A728BD800FFF7C6 /* SMNSMutableArray.m */,
+				2C087D701A728C2B00FFF7C6 /* SMNSDictionary.h */,
+				2C087D711A728C2B00FFF7C6 /* SMNSDictionary.m */,
+				2C087D731A728C4F00FFF7C6 /* SMNSMutableDictionary.h */,
+				2C087D741A728C4F00FFF7C6 /* SMNSMutableDictionary.m */,
+				2C087D761A728C7A00FFF7C6 /* SMNSString.h */,
+				2C087D771A728C7A00FFF7C6 /* SMNSString.m */,
+				2C087D7C1A728DB200FFF7C6 /* SMNSData.h */,
+				2C087D7D1A728DB200FFF7C6 /* SMNSData.m */,
+				2C087D7F1A728DEF00FFF7C6 /* SMNSDate.h */,
+				2C087D801A728DEF00FFF7C6 /* SMNSDate.m */,
+				2C087D821A728E4700FFF7C6 /* SMNSError.h */,
+				2C087D831A728E4700FFF7C6 /* SMNSError.m */,
+				2C087D881A728FC500FFF7C6 /* SMNSURL.h */,
+				2C087D891A728FC500FFF7C6 /* SMNSURL.m */,
+				2C087D8B1A72904000FFF7C6 /* SMNSObject.h */,
+				2C087D8C1A72904000FFF7C6 /* SMNSObject.m */,
+				2C087D911A72909D00FFF7C6 /* SMNSAssertionHandler.h */,
+				2C087D921A72909D00FFF7C6 /* SMNSAssertionHandler.m */,
+				2C087D941A7290C300FFF7C6 /* SMNSAttributedString.h */,
+				2C087D951A7290C300FFF7C6 /* SMNSAttributedString.m */,
+				2C087D9A1A72910500FFF7C6 /* SMNSBlockOperation.h */,
+				2C087D9B1A72910500FFF7C6 /* SMNSBlockOperation.m */,
+				2C087DA01A72915000FFF7C6 /* SMNSByteCountFormatter.h */,
+				2C087DA11A72915000FFF7C6 /* SMNSByteCountFormatter.m */,
+				2C087DA31A72918C00FFF7C6 /* SMNSBundle.h */,
+				2C087DA41A72918C00FFF7C6 /* SMNSBundle.m */,
+				2C087DA61A7291B300FFF7C6 /* SMNSCache.h */,
+				2C087DA71A7291B300FFF7C6 /* SMNSCache.m */,
+				2C087DA91A7291D600FFF7C6 /* SMNSCachedURLResponse.h */,
+				2C087DAA1A7291D600FFF7C6 /* SMNSCachedURLResponse.m */,
+				2C087DAC1A7291F100FFF7C6 /* SMNSCalendar.h */,
+				2C087DAD1A7291F100FFF7C6 /* SMNSCalendar.m */,
+				2C087DAF1A72921900FFF7C6 /* SMNSCharacterSet.h */,
+				2C087DB01A72921900FFF7C6 /* SMNSCharacterSet.m */,
+				2C087DB21A72924B00FFF7C6 /* SMNSCoder.h */,
+				2C087DB31A72924B00FFF7C6 /* SMNSCoder.m */,
+				2C087DB51A72927000FFF7C6 /* SMNSComparisonPredicate.h */,
+				2C087DB61A72927000FFF7C6 /* SMNSComparisonPredicate.m */,
+				2C087DB81A72929800FFF7C6 /* SMNSCompoundPredicate.h */,
+				2C087DB91A72929800FFF7C6 /* SMNSCompoundPredicate.m */,
+				2C087DBB1A729A2E00FFF7C6 /* SMNSCondition.h */,
+				2C087DBC1A729A2E00FFF7C6 /* SMNSCondition.m */,
+				2C087DBE1A729A5100FFF7C6 /* SMNSConditionLock.h */,
+				2C087DBF1A729A5100FFF7C6 /* SMNSConditionLock.m */,
+				2C087DC11A729A7200FFF7C6 /* SMNSConstantString.h */,
+				2C087DC21A729A7200FFF7C6 /* SMNSConstantString.m */,
+				2C087DC41A729A9200FFF7C6 /* SMNSCountedSet.h */,
+				2C087DC51A729A9200FFF7C6 /* SMNSCountedSet.m */,
+				2C087DC81A729ABB00FFF7C6 /* SMNSDataDetector.h */,
+				2C087DC91A729ABB00FFF7C6 /* SMNSDataDetector.m */,
+				2C087DCB1A729AD800FFF7C6 /* SMNSDateComponents.h */,
+				2C087DCC1A729AD800FFF7C6 /* SMNSDateComponents.m */,
+				2C087DCF1A729B0200FFF7C6 /* SMNSDateComponentsFormatter.h */,
+				2C087DD01A729B0200FFF7C6 /* SMNSDateComponentsFormatter.m */,
+				2C087DD21A729B1900FFF7C6 /* SMNSDateFormatter.h */,
+				2C087DD31A729B1900FFF7C6 /* SMNSDateFormatter.m */,
+				2C087DD51A729B3900FFF7C6 /* SMNSDateIntervalFormatter.h */,
+				2C087DD61A729B3900FFF7C6 /* SMNSDateIntervalFormatter.m */,
+				2C087DD81A729B6600FFF7C6 /* SMNSDecimalNumber.h */,
+				2C087DD91A729B6600FFF7C6 /* SMNSDecimalNumber.m */,
+				2C087DDB1A729B8000FFF7C6 /* SMNSDecimalNumberHandler.h */,
+				2C087DDC1A729B8000FFF7C6 /* SMNSDecimalNumberHandler.m */,
+				2C087DDE1A729B9F00FFF7C6 /* SMNSDirectoryEnumerator.h */,
+				2C087DDF1A729B9F00FFF7C6 /* SMNSDirectoryEnumerator.m */,
+				2C087DE11A729BC100FFF7C6 /* SMNSEnergyFormatter.h */,
+				2C087DE21A729BC100FFF7C6 /* SMNSEnergyFormatter.m */,
+				2C087DE41A729BDE00FFF7C6 /* SMNSEnumerator.h */,
+				2C087DE51A729BDE00FFF7C6 /* SMNSEnumerator.m */,
+				2C087DE71A729C1200FFF7C6 /* SMNSException.h */,
+				2C087DE81A729C1200FFF7C6 /* SMNSException.m */,
+				2C087DEA1A729C3300FFF7C6 /* SMNSExpression.h */,
+				2C087DEB1A729C3300FFF7C6 /* SMNSExpression.m */,
+				2C087DED1A729CAA00FFF7C6 /* SMNSExtensionContext.h */,
+				2C087DEE1A729CAA00FFF7C6 /* SMNSExtensionContext.m */,
+				2CEA1D521A7782F300E2F387 /* SMNSExtensionItem.h */,
+				2CEA1D531A7782F300E2F387 /* SMNSExtensionItem.m */,
+				2CEA1D551A77831C00E2F387 /* SMNSFileAccessIntent.h */,
+				2CEA1D561A77831C00E2F387 /* SMNSFileAccessIntent.m */,
+				2CEA1D581A77833900E2F387 /* SMNSFileCoordinator.h */,
+				2CEA1D591A77833900E2F387 /* SMNSFileCoordinator.m */,
+				2CEA1D5B1A77835500E2F387 /* SMNSFileHandle.h */,
+				2CEA1D5C1A77835500E2F387 /* SMNSFileHandle.m */,
+				2CEA1D5E1A77836F00E2F387 /* SMNSFileManager.h */,
+				2CEA1D5F1A77836F00E2F387 /* SMNSFileManager.m */,
+				2CEA1D611A77838D00E2F387 /* SMNSFileProviderExtension.h */,
+				2CEA1D621A77838D00E2F387 /* SMNSFileProviderExtension.m */,
+				2CEA1D641A77842400E2F387 /* SMNSFileSecurity.h */,
+				2CEA1D651A77842400E2F387 /* SMNSFileSecurity.m */,
+				2CEA1D671A77844900E2F387 /* SMNSFileVersion.h */,
+				2CEA1D681A77844900E2F387 /* SMNSFileVersion.m */,
+				2CEA1D6A1A77846800E2F387 /* SMNSFileWrapper.h */,
+				2CEA1D6B1A77846800E2F387 /* SMNSFileWrapper.m */,
+				2CEA1D6D1A77848500E2F387 /* SMNSFormatter.h */,
+				2CEA1D6E1A77848500E2F387 /* SMNSFormatter.m */,
+				2CEA1D701A7784A200E2F387 /* SMNSHashTable.h */,
+				2CEA1D711A7784A200E2F387 /* SMNSHashTable.m */,
+				2CEA1D731A7784CC00E2F387 /* SMNSHTTPCookie.h */,
+				2CEA1D741A7784CC00E2F387 /* SMNSHTTPCookie.m */,
+				2CEA1D761A7784E700E2F387 /* SMNSHTTPCookieStorage.h */,
+				2CEA1D771A7784E700E2F387 /* SMNSHTTPCookieStorage.m */,
+				2CEA1D791A77850200E2F387 /* SMNSHTTPURLResponse.h */,
+				2CEA1D7A1A77850200E2F387 /* SMNSHTTPURLResponse.m */,
+				2CEA1D7C1A77852200E2F387 /* SMNSIndexPath.h */,
+				2CEA1D7D1A77852200E2F387 /* SMNSIndexPath.m */,
+				2CEA1D7F1A77854800E2F387 /* SMNSIndexSet.h */,
+				2CEA1D801A77854800E2F387 /* SMNSIndexSet.m */,
+				2CEA1D821A77855E00E2F387 /* SMNSInputStream.h */,
+				2CEA1D831A77855E00E2F387 /* SMNSInputStream.m */,
+				2CEA1D851A77857600E2F387 /* SMNSInvocation.h */,
+				2CEA1D861A77857600E2F387 /* SMNSInvocation.m */,
+				2CEA1D881A77859800E2F387 /* SMNSInvocationOperation.h */,
+				2CEA1D891A77859800E2F387 /* SMNSInvocationOperation.m */,
+				2CEA1D8B1A7785B100E2F387 /* SMNSItemProvider.h */,
+				2CEA1D8C1A7785B100E2F387 /* SMNSItemProvider.m */,
+				2CEA1D8E1A7788B500E2F387 /* SMNSJSONSerialization.h */,
+				2CEA1D8F1A7788B500E2F387 /* SMNSJSONSerialization.m */,
+				2CEA1D911A77890E00E2F387 /* SMNSKeyedArchiver.h */,
+				2CEA1D921A77890E00E2F387 /* SMNSKeyedArchiver.m */,
+				2CEA1D941A77892700E2F387 /* SMNSKeyedUnarchiver.h */,
+				2CEA1D951A77892700E2F387 /* SMNSKeyedUnarchiver.m */,
+				2CEA1D971A77893D00E2F387 /* SMNSLayoutConstraint.h */,
+				2CEA1D981A77893D00E2F387 /* SMNSLayoutConstraint.m */,
+				2CEA1D9A1A77895700E2F387 /* SMNSLayoutManager.h */,
+				2CEA1D9B1A77895700E2F387 /* SMNSLayoutManager.m */,
+				2CEA1D9D1A77897200E2F387 /* SMNSLengthFormatter.h */,
+				2CEA1D9E1A77897300E2F387 /* SMNSLengthFormatter.m */,
+				2CEA1DA01A77899100E2F387 /* SMNSLinguisticTagger.h */,
+				2CEA1DA11A77899100E2F387 /* SMNSLinguisticTagger.m */,
+				2CEA1DA31A7789A800E2F387 /* SMNSLocale.h */,
+				2CEA1DA41A7789A800E2F387 /* SMNSLocale.m */,
+				2CEA1DA61A7789C600E2F387 /* SMNSLock.h */,
+				2CEA1DA71A7789C600E2F387 /* SMNSLock.m */,
+				2CEA1DA91A7789DC00E2F387 /* SMNSMachPort.h */,
+				2CEA1DAA1A7789DC00E2F387 /* SMNSMachPort.m */,
+				2CEA1DAC1A7789F700E2F387 /* SMNSMapTable.h */,
+				2CEA1DAD1A7789F700E2F387 /* SMNSMapTable.m */,
+				2CEA1DAF1A778A0C00E2F387 /* SMNSMassFormatter.h */,
+				2CEA1DB01A778A0C00E2F387 /* SMNSMassFormatter.m */,
+				2CEA1DB21A778A3400E2F387 /* SMNSMessagePort.h */,
+				2CEA1DB31A778A3400E2F387 /* SMNSMessagePort.m */,
+				2CEA1DB51A778A4900E2F387 /* SMNSMetadataItem.h */,
+				2CEA1DB61A778A4900E2F387 /* SMNSMetadataItem.m */,
+				2CEA1DB81A778A6200E2F387 /* SMNSMetadataQuery.h */,
+				2CEA1DB91A778A6200E2F387 /* SMNSMetadataQuery.m */,
+				2CEA1DBB1A778A7600E2F387 /* SMNSMetadataQueryAttributeValueTuple.h */,
+				2CEA1DBC1A778A7600E2F387 /* SMNSMetadataQueryAttributeValueTuple.m */,
+				2CEA1DBE1A778A8900E2F387 /* SMNSMetadataQueryResultGroup.h */,
+				2CEA1DBF1A778A8900E2F387 /* SMNSMetadataQueryResultGroup.m */,
+				2CEA1DC11A778AA300E2F387 /* SMNSMethodSignature.h */,
+				2CEA1DC21A778AA300E2F387 /* SMNSMethodSignature.m */,
+				2CEA1DC41A77B34E00E2F387 /* SMNSMutableAttributedString.h */,
+				2CEA1DC51A77B34F00E2F387 /* SMNSMutableAttributedString.m */,
+				2CEA1DC71A77B37000E2F387 /* SMNSMutableCharacterSet.h */,
+				2CEA1DC81A77B37000E2F387 /* SMNSMutableCharacterSet.m */,
+				2CEA1DCA1A77B38500E2F387 /* SMNSMutableData.h */,
+				2CEA1DCB1A77B38500E2F387 /* SMNSMutableData.m */,
+				2CEA1DD01A77B44600E2F387 /* SMNSMutableOrderedSet.h */,
+				2CEA1DD11A77B44600E2F387 /* SMNSMutableOrderedSet.m */,
+				2CEA1DD31A77B45A00E2F387 /* SMNSMutableParagraphStyle.h */,
+				2CEA1DD41A77B45A00E2F387 /* SMNSMutableParagraphStyle.m */,
+				2CEA1DD61A77B46F00E2F387 /* SMNSMutableSet.h */,
+				2CEA1DD71A77B46F00E2F387 /* SMNSMutableSet.m */,
+				2CEA1DD91A77B48400E2F387 /* SMNSMutableString.h */,
+				2CEA1DDA1A77B48400E2F387 /* SMNSMutableString.m */,
+				2CEA1DDD1A77B4A900E2F387 /* SMNSMutableURLRequest.h */,
+				2CEA1DDE1A77B4A900E2F387 /* SMNSMutableURLRequest.m */,
+				2CEA1DE01A77B4C100E2F387 /* SMNSNetService.h */,
+				2CEA1DE11A77B4C100E2F387 /* SMNSNetService.m */,
+				2CEA1DE31A77B4D700E2F387 /* SMNSNetServiceBrowser.h */,
+				2CEA1DE41A77B4D700E2F387 /* SMNSNetServiceBrowser.m */,
+				2CEA1DE61A77B4EC00E2F387 /* SMNSNotification.h */,
+				2CEA1DE71A77B4EC00E2F387 /* SMNSNotification.m */,
+				2CEA1DE91A77B50B00E2F387 /* SMNSNotificationCenter.h */,
+				2CEA1DEA1A77B50B00E2F387 /* SMNSNotificationCenter.m */,
+				2CEA1DEC1A77B52000E2F387 /* SMNSNotificationQueue.h */,
+				2CEA1DED1A77B52000E2F387 /* SMNSNotificationQueue.m */,
+				2CEA1DEF1A77B53D00E2F387 /* SMNSNull.h */,
+				2CEA1DF01A77B53D00E2F387 /* SMNSNull.m */,
+				2CEA1DF21A77B55600E2F387 /* SMNSNumber.h */,
+				2CEA1DF31A77B55600E2F387 /* SMNSNumber.m */,
+				2CEA1DF51A77B56A00E2F387 /* SMNSNumberFormatter.h */,
+				2CEA1DF61A77B56A00E2F387 /* SMNSNumberFormatter.m */,
+				2CEA1DF81A77B5BA00E2F387 /* SMNSOperation.h */,
+				2CEA1DF91A77B5BA00E2F387 /* SMNSOperation.m */,
+				2CEA1DFB1A77B5D900E2F387 /* SMNSOperationQueue.h */,
+				2CEA1DFC1A77B5D900E2F387 /* SMNSOperationQueue.m */,
+				2CEA1DFE1A77B5F400E2F387 /* SMNSOrderedSet.h */,
+				2CEA1DFF1A77B5F400E2F387 /* SMNSOrderedSet.m */,
+				2CEA1E011A77B60D00E2F387 /* SMNSOrthography.h */,
+				2CEA1E021A77B60D00E2F387 /* SMNSOrthography.m */,
+				2CEA1E041A77B62200E2F387 /* SMNSOutputStream.h */,
+				2CEA1E051A77B62200E2F387 /* SMNSOutputStream.m */,
+				2CEA1E071A77B63C00E2F387 /* SMNSParagraphStyle.h */,
+				2CEA1E081A77B63C00E2F387 /* SMNSParagraphStyle.m */,
+				2CEA1E0A1A77B64F00E2F387 /* SMNSPipe.h */,
+				2CEA1E0B1A77B64F00E2F387 /* SMNSPipe.m */,
+				2CEA1E0D1A77B66700E2F387 /* SMNSPointerArray.h */,
+				2CEA1E0E1A77B66700E2F387 /* SMNSPointerArray.m */,
+				2CEA1E101A77B67E00E2F387 /* SMNSPointerFunctions.h */,
+				2CEA1E111A77B67E00E2F387 /* SMNSPointerFunctions.m */,
+				2CEA1E131A77B69400E2F387 /* SMNSPort.h */,
+				2CEA1E141A77B69400E2F387 /* SMNSPort.m */,
+				2CEA1E161A77B6AA00E2F387 /* SMNSPredicate.h */,
+				2CEA1E171A77B6AA00E2F387 /* SMNSPredicate.m */,
+				2CEA1E191A77B6BD00E2F387 /* SMNSProcessInfo.h */,
+				2CEA1E1A1A77B6BD00E2F387 /* SMNSProcessInfo.m */,
+				2CEA1E1C1A77B6D200E2F387 /* SMNSProgress.h */,
+				2CEA1E1D1A77B6D200E2F387 /* SMNSProgress.m */,
+				2CEA1E1F1A77B6E900E2F387 /* SMNSPropertyListSerialization.h */,
+				2CEA1E201A77B6E900E2F387 /* SMNSPropertyListSerialization.m */,
+				2CEA1E221A77B6FD00E2F387 /* SMNSProxy.h */,
+				2CEA1E231A77B6FD00E2F387 /* SMNSProxy.m */,
+				2CEA1E261A77B71900E2F387 /* SMNSPurgeableData.h */,
+				2CEA1E271A77B71900E2F387 /* SMNSPurgeableData.m */,
+				2CEA1E291A77B73300E2F387 /* SMNSRecursiveLock.h */,
+				2CEA1E2A1A77B73300E2F387 /* SMNSRecursiveLock.m */,
+				2CEA1E2C1A77B74700E2F387 /* SMNSRegularExpression.h */,
+				2CEA1E2D1A77B74700E2F387 /* SMNSRegularExpression.m */,
+				2CEA1E2F1A77B75E00E2F387 /* SMNSRunLoop.h */,
+				2CEA1E301A77B75E00E2F387 /* SMNSRunLoop.m */,
+				2CEA1E321A77B77400E2F387 /* SMNSScanner.h */,
+				2CEA1E331A77B77400E2F387 /* SMNSScanner.m */,
+				2CEA1E351A77B82000E2F387 /* SMNSSet.h */,
+				2CEA1E361A77B82000E2F387 /* SMNSSet.m */,
+				2CEA1E381A77B83600E2F387 /* SMNSShadow.h */,
+				2CEA1E391A77B83600E2F387 /* SMNSShadow.m */,
+				2CEA1E3B1A77B84D00E2F387 /* SMNSSimpleCString.h */,
+				2CEA1E3C1A77B84D00E2F387 /* SMNSSimpleCString.m */,
+				2CEA1E3E1A77B86300E2F387 /* SMNSSortDescriptor.h */,
+				2CEA1E3F1A77B86300E2F387 /* SMNSSortDescriptor.m */,
+				2CEA1E411A77B87700E2F387 /* SMNSStream.h */,
+				2CEA1E421A77B87700E2F387 /* SMNSStream.m */,
+				2CEA1E441A77B89F00E2F387 /* SMNSStringDrawingContext.h */,
+				2CEA1E451A77B89F00E2F387 /* SMNSStringDrawingContext.m */,
+				2CEA1E471A77B8BE00E2F387 /* SMNSTextAttachment.h */,
+				2CEA1E481A77B8BE00E2F387 /* SMNSTextAttachment.m */,
+				2CEA1E4A1A77B8D600E2F387 /* SMNSTextCheckingResult.h */,
+				2CEA1E4B1A77B8D600E2F387 /* SMNSTextCheckingResult.m */,
+				2CEA1E4D1A77B8ED00E2F387 /* SMNSTextContainer.h */,
+				2CEA1E4E1A77B8ED00E2F387 /* SMNSTextContainer.m */,
+				2CEA1E501A77B8FF00E2F387 /* SMNSTextStorage.h */,
+				2CEA1E511A77B8FF00E2F387 /* SMNSTextStorage.m */,
+				2CEA1E531A77B91400E2F387 /* SMNSTextTab.h */,
+				2CEA1E541A77B91400E2F387 /* SMNSTextTab.m */,
+				2CEA1E561A77B92E00E2F387 /* SMNSThread.h */,
+				2CEA1E571A77B92E00E2F387 /* SMNSThread.m */,
+				2CEA1E591A77B94600E2F387 /* SMNSTimer.h */,
+				2CEA1E5A1A77B94600E2F387 /* SMNSTimer.m */,
+				2CEA1E5C1A77B9A000E2F387 /* SMNSTimeZone.h */,
+				2CEA1E5D1A77B9A000E2F387 /* SMNSTimeZone.m */,
+				2CEA1E5F1A77B9BF00E2F387 /* SMNSUbiquitousKeyValueStore.h */,
+				2CEA1E601A77B9BF00E2F387 /* SMNSUbiquitousKeyValueStore.m */,
+				2CEA1E621A77B9D300E2F387 /* SMNSUndoManager.h */,
+				2CEA1E631A77B9D300E2F387 /* SMNSUndoManager.m */,
+				2CEA1E981A77BC0800E2F387 /* SMNSUserActivity.h */,
+				2CEA1E991A77BC0800E2F387 /* SMNSUserActivity.m */,
+				2CEA1E9B1A77BC2600E2F387 /* SMNSUserDefaults.h */,
+				2CEA1E9C1A77BC2600E2F387 /* SMNSUserDefaults.m */,
+				2CEA1E9E1A77BC4000E2F387 /* SMNSUUID.h */,
+				2CEA1E9F1A77BC4000E2F387 /* SMNSUUID.m */,
+			);
+			path = Variables;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7895BCB81A8CAD240016A246 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9359586D1A9CB228003BE036 /* NSArray+Safe.m in Headers */,
+				7895BCB91A8CADB40016A246 /* SMNSMutableIndexSet.h in Headers */,
+				7895BCBD1A8CADB40016A246 /* SMNSMutableArray.h in Headers */,
+				7895BCC01A8CADB40016A246 /* SMNSDictionary.m in Headers */,
+				7895BCC11A8CADB40016A246 /* SMNSMutableDictionary.h in Headers */,
+				7895BCC31A8CADB50016A246 /* SMNSString.h in Headers */,
+				7895BCC51A8CADB50016A246 /* SMNSData.h in Headers */,
+				7895BCC71A8CADB50016A246 /* SMNSDate.h in Headers */,
+				7895BCC91A8CADB50016A246 /* SMNSError.h in Headers */,
+				7895BCCB1A8CADB50016A246 /* SMNSURL.h in Headers */,
+				7895BCCD1A8CADB50016A246 /* SMNSObject.h in Headers */,
+				7895BCCF1A8CADB50016A246 /* SMNSAssertionHandler.h in Headers */,
+				7895BCD11A8CADB50016A246 /* SMNSAttributedString.h in Headers */,
+				7895BCD31A8CADB50016A246 /* SMNSBlockOperation.h in Headers */,
+				7895BCD51A8CADB50016A246 /* SMNSByteCountFormatter.h in Headers */,
+				7895BCD71A8CADB50016A246 /* SMNSBundle.h in Headers */,
+				7895BCD91A8CADB60016A246 /* SMNSCache.h in Headers */,
+				7895BCDB1A8CADB60016A246 /* SMNSCachedURLResponse.h in Headers */,
+				7895BCDD1A8CADB60016A246 /* SMNSCalendar.h in Headers */,
+				7895BCDF1A8CADB60016A246 /* SMNSCharacterSet.h in Headers */,
+				A513A1681AA72D0E00533B72 /* NSDictionary+Safe.h in Headers */,
+				7895BCE11A8CADB60016A246 /* SMNSCoder.h in Headers */,
+				7895BCE31A8CADB60016A246 /* SMNSComparisonPredicate.h in Headers */,
+				7895BCE51A8CADB60016A246 /* SMNSCompoundPredicate.h in Headers */,
+				935958671A9CB016003BE036 /* NSArray+Safe.h in Headers */,
+				7895BCE71A8CADB70016A246 /* SMNSCondition.h in Headers */,
+				7895BCE91A8CADB70016A246 /* SMNSConditionLock.h in Headers */,
+				7895BCEB1A8CADB70016A246 /* SMNSConstantString.h in Headers */,
+				7895BCED1A8CADB70016A246 /* SMNSCountedSet.h in Headers */,
+				7895BCEF1A8CADB80016A246 /* SMNSDataDetector.h in Headers */,
+				7895BCF11A8CADB80016A246 /* SMNSDateComponents.h in Headers */,
+				7895BCF31A8CADB80016A246 /* SMNSDateComponentsFormatter.h in Headers */,
+				7895BCF51A8CADB80016A246 /* SMNSDateFormatter.h in Headers */,
+				7895BCF71A8CADB90016A246 /* SMNSDateIntervalFormatter.h in Headers */,
+				7895BCF91A8CADB90016A246 /* SMNSDecimalNumber.h in Headers */,
+				7895BCFB1A8CADB90016A246 /* SMNSDecimalNumberHandler.h in Headers */,
+				7895BCFD1A8CADB90016A246 /* SMNSDirectoryEnumerator.h in Headers */,
+				7895BCFF1A8CADBA0016A246 /* SMNSEnergyFormatter.h in Headers */,
+				7895BD011A8CADBA0016A246 /* SMNSEnumerator.h in Headers */,
+				7895BD031A8CADBA0016A246 /* SMNSException.h in Headers */,
+				7895BD051A8CADBB0016A246 /* SMNSExpression.h in Headers */,
+				7895BD071A8CADBB0016A246 /* SMNSExtensionContext.h in Headers */,
+				7895BD091A8CADBB0016A246 /* SMNSExtensionItem.h in Headers */,
+				7895BD0B1A8CADBB0016A246 /* SMNSFileAccessIntent.h in Headers */,
+				7895BD0D1A8CADBC0016A246 /* SMNSFileCoordinator.h in Headers */,
+				7895BD0F1A8CADBC0016A246 /* SMNSFileHandle.h in Headers */,
+				7895BD111A8CADBD0016A246 /* SMNSFileManager.h in Headers */,
+				7895BD131A8CADBD0016A246 /* SMNSFileProviderExtension.h in Headers */,
+				7895BD151A8CADBD0016A246 /* SMNSFileSecurity.h in Headers */,
+				7895BD171A8CADBE0016A246 /* SMNSFileVersion.h in Headers */,
+				7895BD191A8CADBE0016A246 /* SMNSFileWrapper.h in Headers */,
+				7895BD1B1A8CADBE0016A246 /* SMNSFormatter.h in Headers */,
+				7895BD1D1A8CADBF0016A246 /* SMNSHashTable.h in Headers */,
+				7895BD1F1A8CADBF0016A246 /* SMNSHTTPCookie.h in Headers */,
+				7895BD211A8CADC00016A246 /* SMNSHTTPCookieStorage.h in Headers */,
+				7895BD231A8CADC00016A246 /* SMNSHTTPURLResponse.h in Headers */,
+				7895BD251A8CADC10016A246 /* SMNSIndexPath.h in Headers */,
+				7895BD271A8CADC10016A246 /* SMNSIndexSet.h in Headers */,
+				7895BD291A8CADC20016A246 /* SMNSInputStream.h in Headers */,
+				7895BD2B1A8CADC20016A246 /* SMNSInvocation.h in Headers */,
+				7895BD2D1A8CADC20016A246 /* SMNSInvocationOperation.h in Headers */,
+				7895BD2F1A8CADC30016A246 /* SMNSItemProvider.h in Headers */,
+				7895BD311A8CADC30016A246 /* SMNSJSONSerialization.h in Headers */,
+				7895BD331A8CADC40016A246 /* SMNSKeyedArchiver.h in Headers */,
+				7895BD351A8CADC40016A246 /* SMNSKeyedUnarchiver.h in Headers */,
+				7895BD371A8CADC50016A246 /* SMNSLayoutConstraint.h in Headers */,
+				7895BD391A8CADC60016A246 /* SMNSLayoutManager.h in Headers */,
+				7895BD3B1A8CADC60016A246 /* SMNSLengthFormatter.h in Headers */,
+				7895BD3D1A8CADC70016A246 /* SMNSLinguisticTagger.h in Headers */,
+				7895BD3F1A8CADC70016A246 /* SMNSLocale.h in Headers */,
+				7895BD411A8CADC80016A246 /* SMNSLock.h in Headers */,
+				7895BD431A8CADC80016A246 /* SMNSMachPort.h in Headers */,
+				7895BD451A8CADC90016A246 /* SMNSMapTable.h in Headers */,
+				7895BD471A8CADC90016A246 /* SMNSMassFormatter.h in Headers */,
+				7895BD491A8CADCA0016A246 /* SMNSMessagePort.h in Headers */,
+				78E777F91A98E91D003BD41A /* NSString+Validation.h in Headers */,
+				7895BD4B1A8CADCB0016A246 /* SMNSMetadataItem.h in Headers */,
+				78E777EF1A98E73D003BD41A /* NSMutableDictionary+Safe.h in Headers */,
+				7895BD4D1A8CADCB0016A246 /* SMNSMetadataQuery.h in Headers */,
+				7895BD4F1A8CADCC0016A246 /* SMNSMetadataQueryAttributeValueTuple.h in Headers */,
+				7895BD511A8CADCD0016A246 /* SMNSMetadataQueryResultGroup.h in Headers */,
+				7895BD531A8CADCD0016A246 /* SMNSMethodSignature.h in Headers */,
+				7895BD551A8CADCE0016A246 /* SMNSMutableAttributedString.h in Headers */,
+				7895BD571A8CADCF0016A246 /* SMNSMutableCharacterSet.h in Headers */,
+				7895BD591A8CADCF0016A246 /* SMNSMutableData.h in Headers */,
+				7895BD5B1A8CADD00016A246 /* SMNSMutableOrderedSet.h in Headers */,
+				7895BD5D1A8CADD10016A246 /* SMNSMutableParagraphStyle.h in Headers */,
+				7895BD5F1A8CADD10016A246 /* SMNSMutableSet.h in Headers */,
+				7895BD611A8CADD20016A246 /* SMNSMutableString.h in Headers */,
+				7895BD631A8CADD30016A246 /* SMNSMutableURLRequest.h in Headers */,
+				7895BD651A8CADD30016A246 /* SMNSNetService.h in Headers */,
+				7895BD671A8CADD40016A246 /* SMNSNetServiceBrowser.h in Headers */,
+				7895BD691A8CADD50016A246 /* SMNSNotification.h in Headers */,
+				7895BD6B1A8CADD60016A246 /* SMNSNotificationCenter.h in Headers */,
+				7895BD6D1A8CADD60016A246 /* SMNSNotificationQueue.h in Headers */,
+				7895BD6F1A8CADD70016A246 /* SMNSNull.h in Headers */,
+				7895BD711A8CADD80016A246 /* SMNSNumber.h in Headers */,
+				7895BD731A8CADD90016A246 /* SMNSNumberFormatter.h in Headers */,
+				7895BD751A8CADDA0016A246 /* SMNSOperation.h in Headers */,
+				78E777ED1A98E73D003BD41A /* NSMutableArray+Safe.h in Headers */,
+				7895BD771A8CADDA0016A246 /* SMNSOperationQueue.h in Headers */,
+				7895BD791A8CADDB0016A246 /* SMNSOrderedSet.h in Headers */,
+				7895BD7B1A8CADDC0016A246 /* SMNSOrthography.h in Headers */,
+				7895BD7D1A8CADDD0016A246 /* SMNSOutputStream.h in Headers */,
+				7895BD7F1A8CADDE0016A246 /* SMNSParagraphStyle.h in Headers */,
+				7895BD811A8CADDF0016A246 /* SMNSPipe.h in Headers */,
+				7895BD831A8CADDF0016A246 /* SMNSPointerArray.h in Headers */,
+				7895BD851A8CADE00016A246 /* SMNSPointerFunctions.h in Headers */,
+				7895BD871A8CADE10016A246 /* SMNSPort.h in Headers */,
+				7895BD891A8CADE20016A246 /* SMNSPredicate.h in Headers */,
+				7895BD8B1A8CADE30016A246 /* SMNSProcessInfo.h in Headers */,
+				7895BD8D1A8CADE40016A246 /* SMNSProgress.h in Headers */,
+				7895BD8F1A8CADE50016A246 /* SMNSPropertyListSerialization.h in Headers */,
+				7895BD911A8CADE60016A246 /* SMNSProxy.h in Headers */,
+				7895BD931A8CADE70016A246 /* SMNSPurgeableData.h in Headers */,
+				7895BD951A8CADE80016A246 /* SMNSRecursiveLock.h in Headers */,
+				7895BD971A8CADE80016A246 /* SMNSRegularExpression.h in Headers */,
+				7895BD991A8CADE90016A246 /* SMNSRunLoop.h in Headers */,
+				7895BD9B1A8CADEA0016A246 /* SMNSScanner.h in Headers */,
+				7895BD9D1A8CADEB0016A246 /* SMNSSet.h in Headers */,
+				7895BD9F1A8CADEC0016A246 /* SMNSShadow.h in Headers */,
+				7895BDA11A8CADED0016A246 /* SMNSSimpleCString.h in Headers */,
+				7895BDA31A8CADEE0016A246 /* SMNSSortDescriptor.h in Headers */,
+				7895BDA51A8CADEF0016A246 /* SMNSStream.h in Headers */,
+				7895BDA61A8CADF00016A246 /* SMNSStream.m in Headers */,
+				7895BDA71A8CADF00016A246 /* SMNSStringDrawingContext.h in Headers */,
+				7895BDA91A8CADF20016A246 /* SMNSTextAttachment.h in Headers */,
+				7895BDAB1A8CADF30016A246 /* SMNSTextCheckingResult.h in Headers */,
+				7895BDAD1A8CADF40016A246 /* SMNSTextContainer.h in Headers */,
+				7895BDAF1A8CADF50016A246 /* SMNSTextStorage.h in Headers */,
+				7895BDB11A8CADF60016A246 /* SMNSTextTab.h in Headers */,
+				7895BDB31A8CADF70016A246 /* SMNSThread.h in Headers */,
+				7895BDB51A8CADF80016A246 /* SMNSTimer.h in Headers */,
+				7895BDB71A8CADF90016A246 /* SMNSTimeZone.h in Headers */,
+				7895BDB91A8CADFA0016A246 /* SMNSUbiquitousKeyValueStore.h in Headers */,
+				7895BDBB1A8CADFB0016A246 /* SMNSUndoManager.h in Headers */,
+				7895BDBD1A8CADFC0016A246 /* SMNSUserActivity.h in Headers */,
+				7895BDC11A8CADFF0016A246 /* SMNSUUID.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		2C087CDC1A72583100FFF7C6 /* SMCoreComponent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2C087CF11A72583100FFF7C6 /* Build configuration list for PBXNativeTarget "SMCoreComponent" */;
+			buildPhases = (
+				2C087CD91A72583100FFF7C6 /* Sources */,
+				2C087CDA1A72583100FFF7C6 /* Frameworks */,
+				2C087CDB1A72583100FFF7C6 /* Copy Files */,
+				7895BCB81A8CAD240016A246 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SMCoreComponent;
+			productName = SMCoreComponent;
+			productReference = 2C087CDD1A72583100FFF7C6 /* libSMCoreComponent.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2C087CD51A72583100FFF7C6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = sofmen;
+				TargetAttributes = {
+					2C087CDC1A72583100FFF7C6 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = 2C087CD81A72583100FFF7C6 /* Build configuration list for PBXProject "SMCoreComponent" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2C087CD41A72583100FFF7C6;
+			productRefGroup = 2C087CDE1A72583100FFF7C6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2C087CDC1A72583100FFF7C6 /* SMCoreComponent */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2C087CD91A72583100FFF7C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2C087DEC1A729C3300FFF7C6 /* SMNSExpression.m in Sources */,
+				2C087D8A1A728FC500FFF7C6 /* SMNSURL.m in Sources */,
+				2CEA1D871A77857600E2F387 /* SMNSInvocation.m in Sources */,
+				2C087D751A728C4F00FFF7C6 /* SMNSMutableDictionary.m in Sources */,
+				2CEA1DA81A7789C600E2F387 /* SMNSLock.m in Sources */,
+				2C087DBA1A72929800FFF7C6 /* SMNSCompoundPredicate.m in Sources */,
+				2C087DAE1A7291F100FFF7C6 /* SMNSCalendar.m in Sources */,
+				2CEA1D841A77855E00E2F387 /* SMNSInputStream.m in Sources */,
+				2C087D4F1A7268C300FFF7C6 /* SMUITabBarItem.m in Sources */,
+				2C087D581A726C2400FFF7C6 /* SMUIRotationGestureRecognizer.m in Sources */,
+				2CEA1D6F1A77848500E2F387 /* SMNSFormatter.m in Sources */,
+				2C087D841A728E4700FFF7C6 /* SMNSError.m in Sources */,
+				2CEA1EAC1A77C1C700E2F387 /* SMUIFont.m in Sources */,
+				2CEA1D541A7782F300E2F387 /* SMNSExtensionItem.m in Sources */,
+				2CEA1D691A77844900E2F387 /* SMNSFileVersion.m in Sources */,
+				2CEA1D7B1A77850200E2F387 /* SMNSHTTPURLResponse.m in Sources */,
+				2CEA1E211A77B6E900E2F387 /* SMNSPropertyListSerialization.m in Sources */,
+				2C087D1C1A725EA300FFF7C6 /* SMUITextView.m in Sources */,
+				2C087D461A72668800FFF7C6 /* SMUIWebView.m in Sources */,
+				2CEA1DFA1A77B5BA00E2F387 /* SMNSOperation.m in Sources */,
+				2CEA1DB71A778A4900E2F387 /* SMNSMetadataItem.m in Sources */,
+				2CEA1D721A7784A200E2F387 /* SMNSHashTable.m in Sources */,
+				2CEA1DC31A778AA300E2F387 /* SMNSMethodSignature.m in Sources */,
+				2CEA1E2E1A77B74700E2F387 /* SMNSRegularExpression.m in Sources */,
+				2CEA1E5B1A77B94600E2F387 /* SMNSTimer.m in Sources */,
+				2CEA1E641A77B9D300E2F387 /* SMNSUndoManager.m in Sources */,
+				2C087D8D1A72904000FFF7C6 /* SMNSObject.m in Sources */,
+				2C087D401A72641700FFF7C6 /* SMUINavigationBar.m in Sources */,
+				2CEA1D931A77890E00E2F387 /* SMNSKeyedArchiver.m in Sources */,
+				2CEA1E9A1A77BC0800E2F387 /* SMNSUserActivity.m in Sources */,
+				2C087D071A725A9B00FFF7C6 /* SMUISegmentedControl.m in Sources */,
+				2CEA1DAB1A7789DC00E2F387 /* SMNSMachPort.m in Sources */,
+				2CEA1D9F1A77897300E2F387 /* SMNSLengthFormatter.m in Sources */,
+				78E777F01A98E73D003BD41A /* NSMutableDictionary+Safe.m in Sources */,
+				2CEA1DD51A77B45A00E2F387 /* SMNSMutableParagraphStyle.m in Sources */,
+				2C087DD71A729B3900FFF7C6 /* SMNSDateIntervalFormatter.m in Sources */,
+				2C087D9C1A72910500FFF7C6 /* SMNSBlockOperation.m in Sources */,
+				2CEA1DA51A7789A800E2F387 /* SMNSLocale.m in Sources */,
+				2CEA1DDB1A77B48400E2F387 /* SMNSMutableString.m in Sources */,
+				2CEA1DF11A77B53D00E2F387 /* SMNSNull.m in Sources */,
+				2CEA1E551A77B91400E2F387 /* SMNSTextTab.m in Sources */,
+				2CEA1D601A77836F00E2F387 /* SMNSFileManager.m in Sources */,
+				935958681A9CB016003BE036 /* NSArray+Safe.m in Sources */,
+				2CEA1E5E1A77B9A000E2F387 /* SMNSTimeZone.m in Sources */,
+				2CEA1D8A1A77859800E2F387 /* SMNSInvocationOperation.m in Sources */,
+				2CEA1E3A1A77B83600E2F387 /* SMNSShadow.m in Sources */,
+				2CEA1E001A77B5F400E2F387 /* SMNSOrderedSet.m in Sources */,
+				2CEA1DD81A77B46F00E2F387 /* SMNSMutableSet.m in Sources */,
+				2C087DDD1A729B8000FFF7C6 /* SMNSDecimalNumberHandler.m in Sources */,
+				2CEA1D661A77842400E2F387 /* SMNSFileSecurity.m in Sources */,
+				2CEA1E401A77B86300E2F387 /* SMNSSortDescriptor.m in Sources */,
+				2C087D191A725E2A00FFF7C6 /* SMUIScrollView.m in Sources */,
+				2C087DE91A729C1200FFF7C6 /* SMNSException.m in Sources */,
+				2C087D6F1A728BD800FFF7C6 /* SMNSMutableArray.m in Sources */,
+				2CEA1DC61A77B34F00E2F387 /* SMNSMutableAttributedString.m in Sources */,
+				2C087DD11A729B0200FFF7C6 /* SMNSDateComponentsFormatter.m in Sources */,
+				2C087DEF1A729CAA00FFF7C6 /* SMNSExtensionContext.m in Sources */,
+				2C087D551A726BEE00FFF7C6 /* SMUIPinchGestureRecognizer.m in Sources */,
+				2C087DD41A729B1900FFF7C6 /* SMNSDateFormatter.m in Sources */,
+				A513A1691AA72D0E00533B72 /* NSDictionary+Safe.m in Sources */,
+				2C087DB71A72927000FFF7C6 /* SMNSComparisonPredicate.m in Sources */,
+				2C087DE61A729BDE00FFF7C6 /* SMNSEnumerator.m in Sources */,
+				2CEA1DE21A77B4C100E2F387 /* SMNSNetService.m in Sources */,
+				2CEA1E0C1A77B64F00E2F387 /* SMNSPipe.m in Sources */,
+				2CEA1E4F1A77B8ED00E2F387 /* SMNSTextContainer.m in Sources */,
+				2CEA1DE81A77B4EC00E2F387 /* SMNSNotification.m in Sources */,
+				2C087DDA1A729B6600FFF7C6 /* SMNSDecimalNumber.m in Sources */,
+				2CEA1D9C1A77895700E2F387 /* SMNSLayoutManager.m in Sources */,
+				2CEA1E241A77B6FD00E2F387 /* SMNSProxy.m in Sources */,
+				2C087D621A726D7B00FFF7C6 /* SMUIScreenEdgePanGestureRecognizer.m in Sources */,
+				2CEA1D901A7788B500E2F387 /* SMNSJSONSerialization.m in Sources */,
+				2C087DB41A72924B00FFF7C6 /* SMNSCoder.m in Sources */,
+				2C087D0A1A725B0400FFF7C6 /* SMUISlider.m in Sources */,
+				2CEA1E371A77B82000E2F387 /* SMNSSet.m in Sources */,
+				2C087D311A72626E00FFF7C6 /* SMUIBarButtonItem.m in Sources */,
+				2C087D341A7262A300FFF7C6 /* SMUIToolbar.m in Sources */,
+				2CEA1D7E1A77852200E2F387 /* SMNSIndexPath.m in Sources */,
+				2C087D721A728C2B00FFF7C6 /* SMNSDictionary.m in Sources */,
+				2C087DA81A7291B300FFF7C6 /* SMNSCache.m in Sources */,
+				2CEA1E4C1A77B8D600E2F387 /* SMNSTextCheckingResult.m in Sources */,
+				2C087DE31A729BC100FFF7C6 /* SMNSEnergyFormatter.m in Sources */,
+				2C087D871A728F5700FFF7C6 /* SMUIVisualEffectView.m in Sources */,
+				2CEA1E581A77B92E00E2F387 /* SMNSThread.m in Sources */,
+				2C087D931A72909D00FFF7C6 /* SMNSAssertionHandler.m in Sources */,
+				2CEA1DCF1A77B3C500E2F387 /* SMNSMutableIndexSet.m in Sources */,
+				2C087D2B1A72614400FFF7C6 /* SMUICollectionView.m in Sources */,
+				2CEA1E611A77B9BF00E2F387 /* SMNSUbiquitousKeyValueStore.m in Sources */,
+				2CEA1DF71A77B56A00E2F387 /* SMNSNumberFormatter.m in Sources */,
+				2CEA1DD21A77B44600E2F387 /* SMNSMutableOrderedSet.m in Sources */,
+				2C087D521A726B3000FFF7C6 /* SMUITapGestureRecognizer.m in Sources */,
+				2CEA1E311A77B75E00E2F387 /* SMNSRunLoop.m in Sources */,
+				2CEA1E431A77B87700E2F387 /* SMNSStream.m in Sources */,
+				2C087D221A72602000FFF7C6 /* SMUIStepper.m in Sources */,
+				2CEA1D961A77892700E2F387 /* SMNSKeyedUnarchiver.m in Sources */,
+				2C087D781A728C7A00FFF7C6 /* SMNSString.m in Sources */,
+				2CEA1E031A77B60D00E2F387 /* SMNSOrthography.m in Sources */,
+				2C087D5B1A726C8A00FFF7C6 /* SMUISwipeGestureRecognizer.m in Sources */,
+				2CEA1E061A77B62200E2F387 /* SMNSOutputStream.m in Sources */,
+				2C087D3A1A72631A00FFF7C6 /* SMUISearchBar.m in Sources */,
+				2CEA1E9D1A77BC2600E2F387 /* SMNSUserDefaults.m in Sources */,
+				2C087D431A7264BC00FFF7C6 /* SMUIPickerView.m in Sources */,
+				2C087D101A725C7500FFF7C6 /* SMUIActivityIndicatorView.m in Sources */,
+				2CEA1DB41A778A3400E2F387 /* SMNSMessagePort.m in Sources */,
+				78E777FA1A98E91D003BD41A /* NSString+Validation.m in Sources */,
+				2C087D131A725D6F00FFF7C6 /* SMUIProgressView.m in Sources */,
+				2C087D251A7260AE00FFF7C6 /* SMTableViewCell.m in Sources */,
+				2C087DA21A72915000FFF7C6 /* SMNSByteCountFormatter.m in Sources */,
+				2CEA1DC91A77B37000E2F387 /* SMNSMutableCharacterSet.m in Sources */,
+				2CEA1DF41A77B55600E2F387 /* SMNSNumber.m in Sources */,
+				2C087DE01A729B9F00FFF7C6 /* SMNSDirectoryEnumerator.m in Sources */,
+				2C087DA51A72918C00FFF7C6 /* SMNSBundle.m in Sources */,
+				2C087D041A725A3900FFF7C6 /* SMUITextField.m in Sources */,
+				2CEA1DEB1A77B50B00E2F387 /* SMNSNotificationCenter.m in Sources */,
+				2CEA1DFD1A77B5D900E2F387 /* SMNSOperationQueue.m in Sources */,
+				2C087DAB1A7291D600FFF7C6 /* SMNSCachedURLResponse.m in Sources */,
+				2CEA1D571A77831C00E2F387 /* SMNSFileAccessIntent.m in Sources */,
+				2C087DBD1A729A2E00FFF7C6 /* SMNSCondition.m in Sources */,
+				2CEA1DBD1A778A7600E2F387 /* SMNSMetadataQueryAttributeValueTuple.m in Sources */,
+				2C087D651A726DAB00FFF7C6 /* SMUILongPressGestureRecognizer.m in Sources */,
+				2CEA1E151A77B69400E2F387 /* SMNSPort.m in Sources */,
+				2CEA1E341A77B77400E2F387 /* SMNSScanner.m in Sources */,
+				2CEA1DAE1A7789F700E2F387 /* SMNSMapTable.m in Sources */,
+				2C087D281A7260F100FFF7C6 /* SMUIImageView.m in Sources */,
+				2C087DC61A729A9200FFF7C6 /* SMNSCountedSet.m in Sources */,
+				2CEA1D751A7784CC00E2F387 /* SMNSHTTPCookie.m in Sources */,
+				2CEA1EA01A77BC4000E2F387 /* SMNSUUID.m in Sources */,
+				2CEA1D8D1A7785B100E2F387 /* SMNSItemProvider.m in Sources */,
+				2CEA1DC01A778A8900E2F387 /* SMNSMetadataQueryResultGroup.m in Sources */,
+				2C087D011A7259CC00FFF7C6 /* SMUILabel.m in Sources */,
+				2CEA1DBA1A778A6200E2F387 /* SMNSMetadataQuery.m in Sources */,
+				2CEA1E0F1A77B66700E2F387 /* SMNSPointerArray.m in Sources */,
+				2C087D161A725DD900FFF7C6 /* SMUIPageControl.m in Sources */,
+				2CEA1E1B1A77B6BD00E2F387 /* SMNSProcessInfo.m in Sources */,
+				2CEA1D781A7784E700E2F387 /* SMNSHTTPCookieStorage.m in Sources */,
+				2CEA1EAF1A77C20F00E2F387 /* SMUIImage.m in Sources */,
+				2C087D7E1A728DB200FFF7C6 /* SMNSData.m in Sources */,
+				2CEA1D631A77838D00E2F387 /* SMNSFileProviderExtension.m in Sources */,
+				2C087D961A7290C300FFF7C6 /* SMNSAttributedString.m in Sources */,
+				2C087DC31A729A7200FFF7C6 /* SMNSConstantString.m in Sources */,
+				2CEA1E1E1A77B6D200E2F387 /* SMNSProgress.m in Sources */,
+				2CEA1DEE1A77B52000E2F387 /* SMNSNotificationQueue.m in Sources */,
+				2CEA1D5A1A77833900E2F387 /* SMNSFileCoordinator.m in Sources */,
+				2C087DB11A72921900FFF7C6 /* SMNSCharacterSet.m in Sources */,
+				2C087DCA1A729ABB00FFF7C6 /* SMNSDataDetector.m in Sources */,
+				2CEA1D6C1A77846800E2F387 /* SMNSFileWrapper.m in Sources */,
+				2CEA1E281A77B71900E2F387 /* SMNSPurgeableData.m in Sources */,
+				2C087D2E1A72619C00FFF7C6 /* SMUIDatePicker.m in Sources */,
+				2CEA1E461A77B89F00E2F387 /* SMNSStringDrawingContext.m in Sources */,
+				2CEA1DE51A77B4D700E2F387 /* SMNSNetServiceBrowser.m in Sources */,
+				2C087D371A7262D500FFF7C6 /* SMUITabBar.m in Sources */,
+				2C087D0D1A725BE100FFF7C6 /* SMUISwitch.m in Sources */,
+				2C087D811A728DEF00FFF7C6 /* SMNSDate.m in Sources */,
+				2CEA1D5D1A77835500E2F387 /* SMNSFileHandle.m in Sources */,
+				2C087D3D1A72637C00FFF7C6 /* SMUINavigationItem.m in Sources */,
+				2C087D5E1A726CF200FFF7C6 /* SMUIPanGestureRecognizer.m in Sources */,
+				2CEA1DDF1A77B4A900E2F387 /* SMNSMutableURLRequest.m in Sources */,
+				2CEA1E3D1A77B84D00E2F387 /* SMNSSimpleCString.m in Sources */,
+				2CEA1E121A77B67E00E2F387 /* SMNSPointerFunctions.m in Sources */,
+				2CEA1DB11A778A0C00E2F387 /* SMNSMassFormatter.m in Sources */,
+				2CEA1E091A77B63C00E2F387 /* SMNSParagraphStyle.m in Sources */,
+				2CEA1E181A77B6AA00E2F387 /* SMNSPredicate.m in Sources */,
+				2CEA1E2B1A77B73300E2F387 /* SMNSRecursiveLock.m in Sources */,
+				2C087D1F1A725EF900FFF7C6 /* SMUITableView.m in Sources */,
+				78E777EE1A98E73D003BD41A /* NSMutableArray+Safe.m in Sources */,
+				2C087DCD1A729AD800FFF7C6 /* SMNSDateComponents.m in Sources */,
+				2CEA1E491A77B8BE00E2F387 /* SMNSTextAttachment.m in Sources */,
+				2CEA1D811A77854800E2F387 /* SMNSIndexSet.m in Sources */,
+				2C087DC01A729A5100FFF7C6 /* SMNSConditionLock.m in Sources */,
+				2CEA1D991A77893D00E2F387 /* SMNSLayoutConstraint.m in Sources */,
+				2CEA1E521A77B8FF00E2F387 /* SMNSTextStorage.m in Sources */,
+				2CEA1DA21A77899100E2F387 /* SMNSLinguisticTagger.m in Sources */,
+				2CEA1DCC1A77B38500E2F387 /* SMNSMutableData.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		2C087CEF1A72583100FFF7C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vicky Dulai (YC2F58TV67)";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "c0af7f27-7198-4857-ac07-e54f6e02522f";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2C087CF01A72583100FFF7C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vicky Dulai (YC2F58TV67)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "c0af7f27-7198-4857-ac07-e54f6e02522f";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2C087CF21A72583100FFF7C6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vicky Dulai (YC2F58TV67)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c0af7f27-7198-4857-ac07-e54f6e02522f";
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		2C087CF31A72583100FFF7C6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vicky Dulai (YC2F58TV67)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c0af7f27-7198-4857-ac07-e54f6e02522f";
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Release;
+		};
+		9B95CD691BCCFCE000796459 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vicky Dulai (YC2F58TV67)";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "c0af7f27-7198-4857-ac07-e54f6e02522f";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Distribution;
+		};
+		9B95CD6A1BCCFCE000796459 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Vicky Dulai (YC2F58TV67)";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "c0af7f27-7198-4857-ac07-e54f6e02522f";
+				SKIP_INSTALL = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Distribution;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C087CD81A72583100FFF7C6 /* Build configuration list for PBXProject "SMCoreComponent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C087CEF1A72583100FFF7C6 /* Debug */,
+				2C087CF01A72583100FFF7C6 /* Release */,
+				9B95CD691BCCFCE000796459 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2C087CF11A72583100FFF7C6 /* Build configuration list for PBXNativeTarget "SMCoreComponent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C087CF21A72583100FFF7C6 /* Debug */,
+				2C087CF31A72583100FFF7C6 /* Release */,
+				9B95CD6A1BCCFCE000796459 /* Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2C087CD51A72583100FFF7C6 /* Project object */;
+}

@@ -1,0 +1,27 @@
+<!-- old tab menu -->
+<!--<li <?php //echo $this->actionName=='profile' ? 'class="active"':''?>><a <?php //echo $this->actionName=='profile' ? 'class="active"':''?>  href="<?php //echo ADMIN_URL?>sitters/profile/<?php //echo $this->userid>0 ? 'modify/'.$this->userid:'create/new/'?>">Contact Information</a></li>
+
+<?php //if($this->userid>0){?>
+<li <?php //echo $this->actionName=='jobs' && $this->searchParams['view']=='pending' ? 'class="active"':''?>><a <?php //echo $this->actionName=='jobs' && $this->searchParams['view']=='pending' ? 'class="active"':''?> href="<?php //echo ADMIN_URL?>sitters/jobs/<?php //echo  $this->userid>0 ? 'user/'.$this->userid.'/view/pending/':''?>">Available Jobs</a></li>
+<li <?php //echo $this->actionName=='jobs' && $this->searchParams['view']=='confirmed' ? 'class="active"':''?>><a <?php //echo $this->actionName=='jobs' && $this->searchParams['view']=='confirmed' ? 'class="active"':''?> href="<?php //echo ADMIN_URL?>sitters/jobs/<?php //echo  $this->userid>0 ? 'user/'.$this->userid.'/view/confirmed/':''?>">Confirmed Jobs</a></li>
+<li <?php //echo $this->actionName=='jobs' && $this->searchParams['view']=='completed' ? 'class="active"':''?>><a <?php //echo $this->actionName=='jobs' && $this->searchParams['view']=='completed' ? 'class="active"':''?> href="<?php //echo ADMIN_URL?>sitters/jobs/<?php //echo  $this->userid>0 ? 'user/'.$this->userid.'/view/completed/':''?>">Completed Jobs</a></li>
+<li <?php //echo $this->actionName=='password' ? 'class="active"':''?>><a <?php //echo $this->actionName=='password' ? 'class="active"':''?> href="<?php //echo ADMIN_URL?>sitters/password/<?php //echo  $this->userid>0 ? 'user/'.$this->userid:''?>">Password</a></li>
+<li <?php //echo $this->actionName=='sitterearnings' ? 'class="active"':''?>><a <?php //echo $this->actionName=='sitterearnings' ? 'class="active"':''?> href="<?php //echo ADMIN_URL?>sitters/sitterearnings/<?php //echo  $this->userid>0 ? 'user/'.$this->userid:''?>">Sitter Earnings</a></li>
+
+<?php //}?>
+
+-->
+
+<li <?php echo $this->actionName=='profile' ? 'class="active"':''?>><a <?php echo $this->actionName=='profile' ? 'class="active"':''?>  href="<?php echo ADMIN_URL?>sitters/profile/<?php echo $this->userid>0 ? 'modify/'.$this->userid:'create/new/'?>">Contact Information</a></li>
+
+<?php if($this->userid>0){?>
+<li <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='pending' ? 'class="active"':''?>><a <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='pending' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/jobs/<?php echo  $this->userid>0 ? 'user/'.$this->userid.'/view/pending/':''?>">Open Job</a></li>
+<li <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='scheduled' ? 'class="active"':''?>><a <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='scheduled' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/jobs/<?php echo  $this->userid>0 ? 'user/'.$this->userid.'/view/scheduled/':''?>">Scheduled Job</a></li>
+<li <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='active' ? 'class="active"':''?>><a <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='active' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/jobs/<?php echo  $this->userid>0 ? 'user/'.$this->userid.'/view/active/':''?>">Active Job</a></li>
+<li <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='completed' ? 'class="active"':''?>><a <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='completed' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/jobs/<?php echo  $this->userid>0 ? 'user/'.$this->userid.'/view/completed/':''?>">Completed Job</a></li>
+ <li <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='closed' ? 'class="active"':''?>><a <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='closed' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/jobs/<?php echo  $this->userid>0 ? 'user/'.$this->userid.'/view/closed/':''?>">Closed Job</a></li>
+<li <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='cancelled' ? 'class="active"':''?>><a <?php echo $this->actionName=='jobs' && $this->searchParams['view']=='cancelled' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/jobs/<?php echo  $this->userid>0 ? 'user/'.$this->userid.'/view/cancelled/':''?>">Cancelled Job</a></li>
+<li <?php echo $this->actionName=='password' ? 'class="active"':''?>><a <?php echo $this->actionName=='password' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/password/<?php echo  $this->userid>0 ? 'user/'.$this->userid:''?>">Password</a></li>
+<li <?php echo $this->actionName=='sitterearnings' ? 'class="active"':''?>><a <?php echo $this->actionName=='sitterearnings' ? 'class="active"':''?> href="<?php echo ADMIN_URL?>sitters/sitterearnings/<?php echo  $this->userid>0 ? 'user/'.$this->userid:''?>">Sitter Earnings</a></li>
+
+<?php }?>

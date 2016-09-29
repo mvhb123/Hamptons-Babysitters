@@ -1,0 +1,220 @@
+ <?php if( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'&&$this->searchParams['search']=='sitter'){?>
+
+ <?php if(!empty($this->sitters)){?>
+                         <?php foreach($this->sitters as $sitter){?>
+                          <tr>
+                            <th><span class="check">
+                              <input class="check" type="checkbox" name="sitter[]" value="<?php echo $sitter['userid']?>" />
+                            </span></th>
+                            <th><a href="3"><?php echo $sitter['firstname'].' '.$sitter['lastname']?></a></th>
+                            <td><?php echo $sitter['phone']?></td>
+                            <td><a href="mailto:<?php echo $sitter['username']?>"><?php echo $sitter['username']?></a></td>
+                            <td><?php echo implode(', ',array_diff_key($this->jobPreferSearch,$sitter['prefer']));?></td>
+                          </tr>
+                          <?php }?>
+                          <?php }?>
+<?php die();}?>
+
+<?php
+
+if( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'&&$this->searchParams['sendto']=='sitter'){
+					
+  foreach($this->sentJobs as $sitter){
+									//if(!isset($this->sentJobs[$sitter['sitter_id']]))continue;
+									?>
+
+
+
+									<tr class="first">
+									  <th class="first"><span class="check">
+									   <input checked="checked" type="checkbox"  name="sitters[]" value="<?php echo $sitter['sitter_id']?>" />
+									  </span></th>
+									  <!-- .first for first row of the table (only if there is thead) -->
+										<th class="first"><a href="#"><?php echo $sitter['firstname'].' '.$sitter['lastname']?></a></th>
+										<td><?php echo $sitter['phone']?></td>
+										<td><a href="mailto:<?php echo $sitter['username']?>"><?php echo $sitter['username']?></a></td>
+										<!-- a.ico-comms for comment-like backgrounds -->
+									</tr>
+                                    <?php }?>
+                                    <?php die();}?>
+
+
+<div class="inner-container">
+            <div class="box box-100 altbox">
+              <div class="boxin">
+                <div class="header">
+                  <h3>#<?php echo str_pad($this->job_id,4,0,STR_PAD_LEFT);?></h3>
+                  <ul>
+				        <?php require_once('job-tabs.phtml');?>
+			          </ul>
+                </div>
+                <div class="content pad20">
+                    <div class="formbox floatright w450">
+                   
+                   <?php if(isset($this->selectedSitter)){?>
+                    <h1 class="formheading">Confirmed Sitter</h1>
+                      <div class="childcontainer"> <div class="thumb"><img src="/<?php echo $this->selectedSitter['thumb_image']?>" alt="" width="100" height="90" /></div>
+                      <div class="details">
+                <h1><a href="<?php echo SITE_URL?>sitters/profile/modify/<?php echo $this->selectedSitter['userid']?>"><?php echo $this->selectedSitter['firstname'].' '.$this->selectedSitter['lastname']?></a></h1>
+                <strong>Mob: </strong><?php echo $this->selectedSitter['phone']?><br />
+                <strong>Home: </strong><?php echo $this->selectedSitter['local_phone']?> <br />
+                <strong>Email: </strong><a href="mailto:<?php echo $this->selectedSitter['username']?>"><?php echo $this->selectedSitter['username']?></a>
+<ul class="actions">
+                    <li><a class="ico" href="<?php echo SITE_URL?>sitters/profile/modify/<?php echo $this->selectedSitter['userid']?>" title="edit"><img src="img/led-ico/pencil.png" alt="edit" /></a></li>
+                          <li><a class="ico" href="#" title="delete"><img src="img/led-ico/delete.png" alt="delete" /></a></li>
+                        </ul>
+              </div>
+            </div>
+                   <?php }?>   
+                      <div  id="sendto-div" <?php echo empty($this->sentJobs) ? 'style="display:none"' :''?>><h1 class="formheading">Assigned Sitter</h1>
+                      <table cellspacing="0" >
+								<thead>
+									<tr>
+									  <th><span class="check">
+									    <input class="check" type="checkbox" id="some7" name="some7" value="true" />
+									  </span></th>
+										<th>Name</th>
+										<td>Preferred Contact</td>
+										<td>Email</td>
+									</tr>
+								</thead>
+								<tbody id="sendto-table">
+								
+								<?php  if(!empty($this->sentJobs))foreach($this->sentJobs as $sitter){
+									//if(!isset($this->sentJobs[$sitter['sitter_id']]))continue;
+									?>
+
+
+
+									<tr class="first">
+									  <th class="first"><span class="check">
+									   <input checked="checked" type="checkbox"  name="sitters[]" value="<?php echo $sitter['sitter_id']?>" />
+									  </span></th>
+									  <!-- .first for first row of the table (only if there is thead) -->
+										<th class="first"><a href="#"><?php echo $sitter['firstname'].' '.$sitter['lastname']?></a></th>
+										<td><?php echo $sitter['phone']?></td>
+										<td><a href="mailto:<?php echo $sitter['username']?>"><?php echo $sitter['username']?></a></td>
+										<!-- a.ico-comms for comment-like backgrounds -->
+									</tr>
+                                    <?php }?>
+								</tbody>
+					  </table>
+                            <br clear="all" />
+                            <input class="button altbutton" type="submit" value="Resend" /> <input class="button altbutton" type="submit" value="Remove" /> <!--<input class="button altbutton" type="submit" value="Assign" />--> 
+                    </div>
+                    </div>
+                    <div class="formbox floatleft w450">
+                    <form name="searchSitterForm" method="post" onsubmit="searchSitter(this);return false;">
+                      <?php if(!empty($this->jobsPreferences)){?>
+                      <h1 class="formheading">Search / Assign Sitters</h1>
+              <?php foreach($this->jobsPreferences as $group){?>
+              <ul class="preflist">
+                <li class="sep"><strong><?php echo $group['label']?></strong> <a href="#">(+)Expand</a></li>
+					<?php foreach($group['prefer'] as $prefer){?>
+					<li>
+                          <label class="check">
+                    <input class="check" type="checkbox" id="some5" name="prefer[]" value="<?php echo $prefer['prefer_id']?>" checked="checked" />
+                    <?php echo $prefer['prefer_name']?></label>
+                        </li>
+                <?php }?>
+              
+               <?php }?></ul>  
+               <?php }?>  <br>
+                    <input class="button altbutton" type="submit" onclick="searchSitter(this.form);return false;" value="Search" />
+                    </form>
+
+                      <h1 class="formheading" id="sitter_count"><?php echo  count($this->sitters)?> Sitters Found</h1>
+                      <form method="post" name="sendToSitterForm" onsubmit="sendToSitter(this);return false;" class="basic" action="<?php echo SITE_URL.'jobs/assign/jobid/'.$this->job_id.'/'?>">
+                 
+                      <table cellspacing="0">
+                        <thead>
+                          <tr>
+                            <th><span class="check">
+                              <input class="check" type="checkbox" id="some2" name="" value="true" />
+                            </span></th>
+                            <th>Name</th>
+                            <td>Preferred Contact</td>
+                            <td>Email</td>
+                            <td>UnMatched Preference</td>
+                          </tr>
+                        </thead>
+                        <tbody id="sitters-table">
+                         
+                         <?php if(!empty($this->sitters)){?>
+                         <?php foreach($this->sitters as $sitter){?>
+                          <tr>
+                            <th><span class="check">
+                              <input class="check" type="checkbox" name="sitter[]" value="<?php echo $sitter['userid']?>" />
+                            </span></th>
+                            <th><a href="3"><?php echo $sitter['firstname'].' '.$sitter['lastname']?></a></th>
+                            <td><?php echo $sitter['phone']?></td>
+                            <td><a href="mailto:<?php echo $sitter['username']?>"><?php echo $sitter['username']?></a></td>
+							<td><?php echo implode(', ',array_diff_key($this->jobPreferSearch,$sitter['prefer']));?></td>
+                        
+                          </tr>
+                          <?php }?>
+                          <?php }?>
+                        </tbody>
+                      </table> 
+                      
+                       <br clear="all" /><input class="button altbutton" type="submit" value="Assign" onclick="sendToSitter(this.form);return false;" /> 
+                   </form> </div>
+                    <br clear="all" />
+                    
+                 
+                </div>
+              </div>
+            </div>
+            <br clear="all" />
+          </div>
+          <!-- .inner-container -->
+<script>
+
+function searchSitter(thisform){
+	//alert(thisform);
+	//alert($(thisform).serialize());
+	$.ajax({
+		
+		url:'<?php echo SITE_URL?>client/assign/modify/<?php echo $this->job_id?>/search/sitter/',
+		data:$(thisform).serialize(),
+		type:'post',
+		success:function(data){
+			$("#sitters-table").html(data);
+			$("#sitter_count").html($("#sitters-table tr").length+' Sitters Found');
+		}
+	
+	});
+}
+
+function sendToSitter(thisform){
+	
+	$.ajax({
+		
+		url:'<?php echo SITE_URL?>client/assign/modify/<?php echo $this->job_id?>/sendto/sitter/',
+		data:$(thisform).serialize(),
+		type:'post',
+		success:function(data){
+			$("#sendto-table").html(data);
+			$("#sendto-div").show();
+			 searchSitter(document.searchSitterForm);
+		}
+	
+	});
+}
+
+</script>
+
+
+<pre>
+<?php
+/*print_r($this->sitters);
+print_r($this->event);
+		
+		print_r($this->userid );
+		print_r($this->children);
+		print_r($this->selectedChild);
+		print_r($this->selectedAddress );///= $this->event['address_id'];
+		
+		print_r($this->addresses);
+*/
+?>

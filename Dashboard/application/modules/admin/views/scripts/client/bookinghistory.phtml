@@ -1,0 +1,66 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-sm-12">
+                <section class="panel clearfix">
+                  <div class="mar-top col-sm-12 text-right"><span><b>Total Credits Purchased: </b><?php echo $this->purchased_credits;?></span>&nbsp;&nbsp;&nbsp;&nbsp;<span><b>Total Available Credits: </b><?php echo $this->total_avail_credits;?></span></div>
+                   <div class="clearfix"></div>
+                    <div class="panel-body sub_list">
+                        <section id="flip-scroll">
+                            <?php if (!empty($this->subscriptions)) { ?>
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr>
+                                        	<th><a href="<?php echo $this->url(array('key' => 'job_id', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_id' ? 'desc' : 'asc')) ?>">Job ID</a></th>
+                                        	<th><a href="<?php echo $this->url(array('key' => 'client_name', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'client_name' ? 'desc' : 'asc')) ?>">Client Name</a></th>
+                                        	<th>Transaction ID</th>
+                                            <th>Payment Gateway</th>
+                                            <th><a href="<?php echo $this->url(array('key' => 'c.last_modified_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'c.last_modified_date' ? 'desc' : 'asc')) ?>">Date</a></th>
+                                            <th>Description</th>
+                                            <th class='text-right'><a href="<?php echo $this->url(array('key' => 'price', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'price' ? 'desc' : 'asc')) ?>">Amount</a></th>
+                                        	<!--  <th>Actions</th> -->
+                                            
+                                        </tr>
+                                   </thead>
+                                    <tbody>	
+
+                                        <?php foreach ($this->subscriptions as $sub) { ?>
+                                            <tr>
+                                            	<td><a href="<?php echo ADMIN_URL . 'client/events/user/' . $sub['userid'] . '/modify/' . $sub['job_id']?>"><?php echo $sub['job_id'] ?></a></td>
+                                                <td> <a href="<?php echo ADMIN_URL . 'client/profile/modify/' . $sub['userid'] ?>"><?php echo ucwords($sub['firstname'] . ' ' . $sub['lastname']) ?></a></td>
+                                                <td><?php echo $sub['transaction_id'] == 'No Payment' ? 'Free' : $sub['transaction_id'] ?> </td>
+                                                <td><?php echo $sub['payment_gateway'] ?> </td>
+                                                <td><?php echo date(DATE_FORMAT, strtotime($sub['last_modified_date'])) ?> </td>
+                                                <td><?php echo $sub['notes'] ?></td>
+                                                <td class='numeric'><?php echo $sub['payment_gateway'] != 'Free' ? '$' . $sub['price'] : 'No Charge' ?></td>
+                                               <!--  <td class='text-center'>
+                                                    <a class="btn btn-danger btn-xs fa fa-trash-o " onclick="if (confirm('Are you sure want to delete?'))
+                                                                        return true;
+                                                                    else
+                                                                        return false;"  href="<?php //echo ADMIN_URL . 'client/subscription/client/' . $this->userid . '/delete/' . $sub['client_sub_id'] ?>" title="Delete"></a>
+                                                </td>-->
+
+
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody><?php } ?>
+                            </table>
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+                </section>
+
+
+
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->

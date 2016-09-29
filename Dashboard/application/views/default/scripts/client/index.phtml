@@ -1,0 +1,187 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        <span class="table_heading">Job Summary</span>
+                        <a href="<?php echo SITE_URL ?>client/events/listevents/jobs" class="label label-success pull-right">View all  Jobs</a>
+                    </header>
+                    <div class="panel-body">
+                        <section id="flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed cf">
+                                <thead class="cf">
+                                    <tr>
+                                        <th><a href="<?php echo $this->url(array('key' => 'j.job_id', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'j.job_id' ? 'desc' : 'asc')) ?>">Job Number</a></th>
+                                        <th><a href="<?php echo $this->url(array('key' => 'job_start_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_start_date' ? 'desc' : 'asc')) ?>">Start Date</a></th>
+                                        <th><a href="<?php echo $this->url(array('key' => 'job_end_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_end_date' ? 'desc' : 'asc')) ?>">End date</th>	
+                                        <th>Babysitter</th>	
+                                        <th><a href="<?php echo $this->url(array('key' => 'job_status', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_status' ? 'desc' : 'asc')) ?>">Status</a></th>	
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $status_class = array('new' => 'btn-xs btn-info', 'pending' => 'btn-xs btn-warning', 'confirmed' => 'btn-xs btn-success', 'completed' => 'btn-xs btn-success', 'cancelled' => 'btn-xs btn-danger','closed' => 'btn-xs btn-success'); ?>
+                                    <?php foreach ($this->events as $event) { ?>
+                                        <tr>
+                                            <td> <a href="<?php echo SITE_URL . 'client/events/modify/' . $event['job_id'] ?>"><?php echo $this->jobnumber($event['job_id']) ?></a></td>
+                                            <td> <?php echo date('F d, Y - h:i a', strtotime($event['job_start_date'])) ?></td>
+                                            <td> <?php echo date('F d, Y - h:i a', strtotime($event['job_end_date'])) ?></td>
+                                            <td> <?php if ($event['sitter_user_id'] > 0) { ?> <a onclick='open_model();' href="<?php echo SITE_URL . 'client/sitterprofile/sitter/' . $event['sitter_user_id'] ?>" target="sitterpreview"> <?php echo ucwords($event['sitter_firstname'] . ' ' . $event['sitter_lastname']) ?></a><?php } else { ?> - <?php } ?></td>
+                                            <td> <span class="tag <?php echo $status_class[$event['job_status']] ?>"><?php echo ucwords($event['job_status']) ?></span></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        <span class="table_heading">Purchase History</span>
+                        <a href="<?php echo SITE_URL ?>client/subscription" class="label label-success pull-right">View all Transaction</a>
+                    </header>
+                    <div class="panel-body">
+                        <section id="flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed cf">
+                                <thead class="cf">
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th class="text-right">Amount</th>
+                                        <th>Credits</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($this->subscriptions as $sub) { ?>
+                                        <tr>
+                                            <td><?php echo date(DATE_FORMAT, strtotime($sub['last_modified_date'])) ?> </td>
+                                            <td><?php echo $sub['notes'] ?></td>
+                                            <td class="numeric"><?php echo money_format('%.2n',$sub['price']) ?></td>
+                                            <td><?php echo $sub['slots'] ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        <span class="table_heading">Children</span>
+                        <a href="<?php echo SITE_URL ?>client/children" class="label label-success pull-right">Add Children</a>
+                    </header>
+                    <div class="panel-body">
+                        <section id="flip-scroll">
+
+                            <?php if (!empty($this->children)) { ?>  
+                                <table class="table table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr>
+                                            <th>Photo</th>
+                                            <td>Name</td>
+                                            <td>Instructions</td>
+                                            <td>Age</td>
+                                            <td >Edit</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($this->children as $child) { ?>
+
+                                            <tr ><!-- .first for first row of the table (only if there is thead) -->
+                                                
+                                                
+                                                <?php 
+                                                
+                                                if(empty($child['thumb_image'])||!file_exists($child['thumb_image']))
+                                                {
+                                                    $image='uploads/noimage.jpg';
+                                                }
+                                                else
+                                                {
+                                                    $image=$child['thumb_image'];
+                                                }
+                                                
+                                                ?>
+                                                <th ><img src="<?php echo SITE_URL . $image ?>" alt="" width="50" height="40" style="border:1px solid #CCC;"/></th>
+                                                
+                                                
+                                                
+                                                
+                                                <td align="left" valign="top"><?php echo $child['child_name'] ?></td>
+                                                <td align="left" valign="top"><?php echo $child['notes'] ?> </td>
+                                                <td align="left" valign="top" ><?php echo $this->age($child['dob']) ?></td>
+                                                <td >
+                                                    <a  href="<?php echo SITE_URL . 'client/children/modify/'.$child['child_id']?>" title="edit" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
+                                                </td>
+                                                <!-- a.ico-comms for comment-like backgrounds -->
+                                            </tr>
+                                        <?php } ?>
+
+                                    </tbody>
+                                </table>
+                            <?php } else { ?>
+                                <div >No children added yet. To add children <a href="<?php echo SITE_URL . 'client/children/' ?>" class="btn btn-info">Click here</a></div>
+                            <?php } ?>
+
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!--  <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading clearfix">
+                        From our blog
+                        <a class="label label-success pull-right" href="http://www.hamptonsbabysitters.com/blog" title="Go to blog page"  >Read More&nbsp;»</a>
+                    </header>
+
+                    <?php //echo $this->blog() ?>
+                </section>
+            </div>
+        </div>-->
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade in" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Babysitter Info</h4>
+            </div>
+            <div class="modal-body sitter-profile>">
+                <iframe class="iframeblk" border="0"  name="sitterpreview"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+            </div>
+        </div>
+     </div>
+</div>
+<script>
+function open_model()
+    {
+        $('#myModal').modal('show');
+    }
+
+</script>

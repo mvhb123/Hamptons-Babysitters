@@ -1,0 +1,98 @@
+<div class="inner-container">
+				
+				<!-- Main content – all content is within boxes. Feel free to add your boxes (see the examples on the bottom of this document) and your content within -->
+				<div class="box box-100 altbox">
+				  <div class="boxin">
+				    <div class="header">
+				       <h3><?php echo $this->userInfo['firstname'].' '.$this->userInfo['lastname'] ?> - Jobs</h3>
+				        <ul>
+            
+<?php require_once('tabs.phtml');?>
+          </ul>
+			        </div>
+				    <div class="content">
+				    <form name="" method="post" >
+<input type="hidden" name="userid" value="<?php echo $this->userid;?>" />
+<table border="1">
+<thead>
+<tr>
+<th>Job Number</th>
+<th>Start Date</th>
+<th>End date</th>
+<th>Children Count</th>
+
+<th>Rate</th>
+<?php if($this->searchParams['view']=='pending'){?>
+<th>Assign</th>
+<?php }else if($this->searchParams['view']=='confirmed'){?>
+<th>Actual End Time</th>
+<th>Total Paid</th>
+<th> Complete</th>
+
+<?php }else if($this->searchParams['view']=='completed'){?>
+<th>Actual End Time</th>
+<th>Total Paid</th>
+
+<?php } ?>
+</tr>
+</thead>
+<?php if(!empty($this->jobs)){?>
+
+<?php foreach($this->jobs as $job){?>
+	<tr>
+		<th><a title="View/Edit" href="<?php echo ADMIN_URL.'client/events/user/'.$job['client_user_id'].'/modify/'.$job['job_id']?>"><?php echo $this->jobnumber($job['job_id'])?></a></th>
+		<td> <?php echo date(DATETIME_FORMAT,strtotime($job['job_start_date']))?></td>
+		<td> <?php echo date(DATETIME_FORMAT,strtotime($job['job_end_date']))?></td>
+		<td> <?php echo count($job['children'])?></td>
+		<td> $<?php echo $job['rate']?></td>
+		
+		<?php if($this->searchParams['view']=='pending'){?>
+		<td> 
+		 <input class="button altbutton" type="submit" name="jobaction[<?php echo $job['job_id']?>]" value="Accept" /> 
+		</td>
+		<?php }else if($this->searchParams['view']=='confirmed'){?>
+		<td><input type="text" style="width: 100px;" name="completed_date[<?php echo $job['job_id']?>]" id="end<?php echo $job['job_id']?>" class="txt"></td>
+		<td><input type="text" style="width: 100px;" name="total_paid[<?php echo $job['job_id']?>]" id="some3" class="txt"></td>
+		<td><input class="button altbutton" type="submit" name="jobaction[<?php echo $job['job_id']?>]" value="Complete" /></td> 
+		<?php  $endTimes[]='end'.$job['job_id']?>
+		
+		<?php }else if($this->searchParams['view']=='completed'){?>
+		<td> <?php echo date(DATETIME_FORMAT,strtotime($job['completed_date']))?></td>
+		<td> <?php echo $job['total_paid']?></td>
+		<?php }?>
+	</tr>
+	
+<?php }?>	
+<?php }else{?>
+<tr><td colspan="6">No records found</td></tr>
+<?php }?>
+</table>
+</form>
+<?php
+ echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml'); 
+?>
+			        </div>
+				  </div>
+			  </div>
+				<br clear="all" />
+			</div><!-- .inner-container -->
+
+<link type="text/css" href="<?php echo SITE_URL?>resources/css/redmond/jquery-ui-1.7.3.custom.css" rel="stylesheet" />	
+		 <script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-ui-1.7.3.custom.min.js"></script>
+        <script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-ui-timepicker-addon.js"></script>
+<style type="text/css">
+			/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+		</style>
+
+<script><?php if(!empty($endTimes)){?>
+$('<?php echo '#'.implode(',#',$endTimes)?>').datetimepicker({
+					dateFormat:'mm/dd/yy',ampm: true
+
+				});
+				<?php }?>
+				</script>

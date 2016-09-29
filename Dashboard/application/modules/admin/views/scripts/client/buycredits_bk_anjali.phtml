@@ -1,0 +1,150 @@
+<?php
+$errors = $this->subscribeForm->getMessages();
+if(!empty($errors))$this->errorMessage='Error while create/update client! Please verify your fields';
+
+foreach($errors as $key =>$err){
+	
+	$er[$key]=implode(', ',$err);
+	
+}
+$errors = $er;
+?>
+<div class="inner-container">
+    <div class="box box-100 altbox">
+              <div class="boxin">
+        <div class="header">
+                  <h3><?php echo $this->userInfo['firstname'].' '.$this->userInfo['lastname']?> - Buy Credits</h3>
+                  <ul>
+            <?php  include_once('tabs.phtml'); ?>
+          </ul>
+                </div>
+        <div class="content pad20">
+                  <div class="formbox floatleft w450">
+                  <form class="basic" id="subscribeform" enctype="multipart/form-data" method="post" action="/a/admin/client/checkout/client/<?php echo $this->userid?>">
+                  <dl class="zend_form">
+                  
+                  <?php if(!empty($this->packages)){?>
+				  <table>
+					  <thead>
+						  <th>Select </th>
+						  <th>Package </th>
+						  <th>Credit</th>
+						  <th>Price</th>
+					  </thead>
+				  
+                  <?php foreach( $this->packages as $pack){?>
+					<tr>
+						  <td><input <?php echo $this->selectedPackage==$pack['package_id'] ? 'checked="checked"':''?> type="radio" name="package"  value="<?php echo $pack['package_id']?>" /> </td>
+						  <td> <?php echo $pack['package_name']?>  </td>
+						  <td> <?php echo $pack['credits']?></td>
+						  <td> $<?php echo $pack['price']?></td>
+					  </tr>
+                  
+                  <?php }?>
+                  
+                  </table>
+                  <?php }?>
+                  
+<dd><input type="checkbox" value="free" name="checkout_type" title="No need of payment transaction" /> Free Purchase  
+</dd>
+<dd><input class="button altbutton" type="submit" name="subscribesubmit" id="subscribesubmit" value="Checkout">
+<a href="<?php echo ADMIN_URL.'client/subscription/client/'.$this->userid ?>" style="font-color:#FFFFFF"class="button altbutton" >Back to billing history</a></dd></dl></form>
+</dd></dl></form><br clear="all" />
+                   </div>
+            </div>
+                  <br clear="all" />
+                </div>
+      
+            </div>
+    <br clear="all" />
+  </div>
+                  
+<link type="text/css" href="<?php echo SITE_URL?>resources/css/redmond/jquery-ui-1.7.3.custom.css" rel="stylesheet" />	
+		 <script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-ui-1.7.3.custom.min.js"></script>
+        <script type="text/javascript">
+			$(function(){
+
+				$('#start_date,#end_date').datepicker({
+					ampm: true
+				});
+								
+			});
+		</script>
+		
+
+
+<script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-validator.js"></script>
+<script type="text/javascript">
+function selectSlots(){
+	if($("input[name=package]:checked").val()=='custom'){
+		$("#custom").slideDown();
+		
+		
+	}else $("#custom").slideUp();
+}
+$(document).ready(function() {
+	// validate signup form on keyup and submit
+	$("input[name=package]").change(function(){
+		selectSlots();
+		});
+	var validator = $("#subscribeform").validate({
+		rules: {	
+			package: {
+				required:true
+			},		
+			slots: {
+				required: function(){return $("input[name=package]:checked").val()=='custom'}
+			},
+			price: {
+				required: function(){return $("input[name=package]:checked").val()=='custom'}
+			}
+			
+		},
+		messages: {
+			package: {
+				required: 'Please select a Package'
+			},
+			slots: {
+				required: 'Please enter credits'
+			},
+			price: {
+				required: 'Enter the Amount'
+			}
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			//alert(element.attr('type'));
+			if ( element.is(":radio") )
+				error.appendTo( element.parent().next().next() );
+			else if ( element.is(":checkbox") )
+				error.appendTo ( element.next() );
+			else{
+				error.appendTo( element.parent());
+				
+			}
+		},
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			//$("#login").submit();
+			document.getElementById('login').submit();
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;").addClass("checked");
+		}
+	});
+	
+	<?php 
+	
+	if(!empty($errors)){
+		echo "validator.showErrors(".json_encode($errors).");";
+	}
+	?>
+	
+	//$("#login").valid();
+	
+
+});
+</script>
+

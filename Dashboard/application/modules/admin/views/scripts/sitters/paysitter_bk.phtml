@@ -1,0 +1,307 @@
+
+<?php
+//print_r($this->searchParams);die;
+?>
+<div class="inner-container">
+
+    <!-- Main content – all content is within boxes. Feel free to add your boxes (see the examples on the bottom of this document) and your content within -->
+    <div class="box box-100 altbox">
+        <div class="boxin">
+            <div class="header">
+                <h3>Pay Sitters</h3>
+            </div>
+            </br>
+
+            <form name="searchform" method="post">
+                <div style="margin-left:50px">
+                    <tr>
+
+                        <th><select name="sitter_user_id" id="sitters">
+
+                                <?php foreach ($this->unpaid_sitter_list as $sitter) { ?>
+                                    <option value="<?php echo $sitter['sitter_user_id']; ?>"
+                                    <?php if ($this->searchParams['sitter_user_id'] == $sitter['sitter_user_id']) { ?>
+                                                selected="selected" <?php } ?>><?php echo $sitter['firstname']; ?></option>
+                                        <?php } ?>      
+
+                            </select></th>
+
+                        <th><input type="submit" name="filter" value="Filter" /></th>
+                    </tr>
+
+                </div>
+
+            </form>
+            </br>
+            <div class="content">
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Select</th>
+                            <th>Job Id</a></th>
+                            <th>Sitter Name</th>
+                            <th>Date </th>
+                            <th>Amount $</th>
+                        <tr>
+
+                    </thead>
+                    <?php foreach ($this->unpaid_sitters_details as $details) { ?>
+                        <tr>
+                            <?php
+                            $rate = $details['rate'];
+
+                            if (empty($rate) || $rate == null) {
+                                $rate = $details['sitter_rate_pre'];
+                            } else {
+                                $rate = $details['rate'];
+                            }
+                            $amount = $details['hr'] * $rate;
+                            ?>
+                            <td><input type="checkbox" name="job_id" value="<?php echo $details['job_id'] ?>" data="<?php echo $amount; ?>" data-id="<?php echo $details['sitter_user_id']; ?>" ></td>
+
+                            <td><?php echo $details['job_id']; ?></td>
+                            <td><?php echo $details['firstname'] . " " . $details['lastname']; ?></td>
+                            <td><?php echo date('m/d/Y', strtotime($details['actual_end_date'])); ?></td>
+                            <td><?php echo $amount; ?></td>
+                        </tr>
+<?php } ?>
+
+                </table>
+<?php
+echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+?>
+
+            </div>
+
+            <form id="payment">
+                <div style="margin-left:50px;font-size:20px;font-weight:bold">Add Payment </div>
+                </br>
+
+                <div style="width:700px;margin-left:50px">
+                    <div style="font-size:16px;font-weight:bold;width:200px;float:left">Job Ids</div>
+
+                    <div style="float:left" id="job_id"></div>
+                    <input type="hidden" id="j_ids">
+                    <input type="hidden" id="userid" value="<?php echo $this->searchParams['sitter_user_id']; ?>">
+                    </br>
+                </div></br>
+                <div style="display:none;color:#b70b0b;float:left;margin-left:50px" id="job"></div>
+                </br>
+
+                <div style="width:700px;margin-left:50px">
+                    <div style="font-size:16px;font-weight:bold;width:200px;float:left">Amount</div>
+                    <div style="float:left" id="amount"></div>
+                    <input type="hidden" id="amounts">
+
+                    <div style="display:none" id="amt"></div>
+                </div></br></br>
+                <div style="width:700px;margin-left:38px">
+                    <input type="radio" name="type" value="check" checked>&nbsp;&nbsp;&nbsp;Check Number:
+                    &nbsp;&nbsp;&nbsp;
+                    <input type="text" name="c_number" id="check_number">
+
+                    </br>
+                    <div style="float:left;margin-left:10px;color:#b70b0b;display:none" id="c_n"></div>
+
+
+                    </br></br>
+
+                    <input type="radio" name="type" value="wire">&nbsp;&nbsp;&nbsp;Wire Number:
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="w_number" id="wire_number" style="display:none">
+                </div>
+
+                </br>
+                <div style="float:left;margin-left:40px;color:#b70b0b;display:none" id="w_n"></div>
+
+                </br></br>
+
+
+                <input style="margin-left:38px"type="button" value="Add Payment" onclick="add_payment()" class="button altbutton"/>
+
+                </br></br>
+
+
+            </form>
+
+
+        </div>
+    </div>
+    <br clear="all" />
+</div>
+
+
+
+
+
+
+<!-- .inner-container -->
+<link type="text/css"
+      href="<?php echo SITE_URL ?>resources/css/redmond/jquery-ui-1.7.3.custom.css"
+      rel="stylesheet" />
+<script type="text/javascript"
+src="<?php echo SITE_URL ?>resources/js/jquery-ui-1.7.3.custom.min.js"></script>
+<script type="text/javascript"
+src="<?php echo SITE_URL ?>resources/js/jquery-ui-timepicker-addon.js"></script>
+
+<script type="text/javascript" src="<?php echo SITE_URL ?>resources/js/jquery-validator.js"></script>
+
+<script type="text/javascript">
+    $(function(){
+    $("input[type=checkbox]").change(function(){
+    $("#w_n").hide();
+    $("#w_n").html("");
+    $("#c_n").hide();
+    $("#c_n").html("");
+    $("#job").hide();
+    $("#job").html("");
+
+    var sum=0;
+
+    jQuery('input[name=job_id]:checked').map(function(){
+    if ( this.checked ) {
+    sum += parseInt($(this).attr('data'));} else {
+    sum -= parseInt($(this).attr('data'));}});
+
+    var ele = jQuery('input[name=job_id]:checked').map(function(){
+    return this.value;}).get().join()
+
+    $("#job_id").html(ele);       
+    $("#amount").html(sum); 
+    $("#j_ids").val(ele);       
+    $("#amounts").val(sum);  }); 
+
+    $( "input[type='radio']" ).change(function() {
+    var select=($(this).val());
+    if(select=='check'){
+    $("#w_n").hide();
+    $("#w_n").html("");
+    $("#wire_number").hide();
+    $("#check_number").show();
+    }     
+    if(select=='wire'){
+
+    $("#c_n").hide();
+    $("#c_n").html("");
+    $("#wire_number").show();
+    $("#check_number").hide();
+    }});
+    });
+</script>
+
+<script>
+
+    function add_payment(){
+    var flag=false;
+    var id=$("#j_ids").val();
+    if(!id){
+    $("#job").show();
+    $("#job").html("Please select job Id for the payment");
+    var flag=false;}
+    else{
+    $("#job").hide();
+    $("#job").html("");
+    var flag=false;}
+
+    var val = $('input:radio[name=type]:checked').val();
+    if(val=='check'){
+    var p_type=$("#check_number").val();
+    if(!p_type){
+
+    $("#c_n").show();
+    $("#c_n").html("Please enter the check number");
+    var flag=false;}
+    else if(p_type.match(/^\d+$/)){
+    $("#c_n").hide();
+    $("#c_n").html("");
+    var flag=true;}
+
+    else{
+    $("#c_n").show();
+    $("#c_n").html("Please enter the valid check number");
+    var flag=false;}
+    }
+    else{
+    $("#c_n").hide();
+    $("#c_n").html("");
+    var p_type=$("#wire_number").val();
+
+    if(!p_type){
+    $("#w_n").show();
+    $("#w_n").html("Please enter the wire number");
+    var flag=false;}
+    else if(p_type.match(/^\d+$/)) {
+    $("#w_n").hide();
+    $("#w_n").html("");
+    var flag=true;}
+    else {
+    $("#w_n").show();
+    $("#w_n").html("Please enter the valid wire number");
+    var flag=false;}}
+
+    var job_id=$("#j_ids").val();
+    var id=$('select[name=sitter_user_id]').val();
+    $("#userid").val(id);
+
+    var sitter_id=$("#userid").val();
+    var total_amount=$("#amounts").val();
+
+    if(flag==true)
+    {
+
+    $.ajax({
+    url:"<?php echo ADMIN_URL.'sitters/updatesitterpaymentstatus' ?>",
+    data:{job_id:job_id,sitter_id:sitter_id,type:val,number:p_type,amount:total_amount},
+    dataType:'json',
+    type: 'post',
+<!--    async: false,-->
+    success:function(data){
+
+    if(data.status="success")
+    {
+    window.location.href = "<?php echo ADMIN_URL.'sitters/paysitter' ?>";
+    alert(data.message);
+    }
+    else
+    {
+
+    }
+
+    }
+    });
+
+
+    }
+    //to call ajax here
+
+
+
+    }
+
+</script>
+
+<style type="text/css">
+    /* css for timepicker */
+    .ui-timepicker-div .ui-widget-header {
+        margin-bottom: 8px;
+    }
+
+    .ui-timepicker-div dl {
+        text-align: left;
+    }
+
+    .ui-timepicker-div dl dt {
+        height: 25px;
+    }
+
+    .ui-timepicker-div dl dd {
+        margin: -25px 0 10px 65px;
+    }
+
+    .ui-timepicker-div td {
+        font-size: 90%;
+    }
+</style>
+<script>
+
+</script>

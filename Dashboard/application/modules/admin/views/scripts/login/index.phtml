@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+      <title>Log in · Admin</title>
+
+    <!-- Bootstrap core CSS -->
+    
+    
+    
+    
+    
+    
+    <link href="<?php echo SITE_URL?>resource/css/style.css" rel="stylesheet">
+
+    <link href="<?php echo SITE_URL?>resource/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo SITE_URL?>resource/css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link href="<?php echo SITE_URL?>resource/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="<?php echo SITE_URL?>resource/css/style-responsive.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    
+    
+         <script type="text/javascript" src="<?php echo SITE_URL?>resource/js/jquery.min.js"></script>
+         
+             <script src="<?php echo SITE_URL?>resource/js/jquery.js"></script>
+    <script src="<?php echo SITE_URL?>resource/js/bootstrap.min.js"></script>
+
+    
+</head>
+
+
+   <?php 
+   $this->errorMessage=$this->error;
+   $errors = $this->loginform->getMessages();
+if(!empty($errors))
+foreach($errors as $key =>$err){
+	if(!isset($err[0])){
+		foreach($err as $key2=>$r)
+			$er[$key.'['.$key2.']']=implode(', ',$r);
+		
+	}
+	else $er[$key]=implode(', ',$err);
+	
+}
+$errors = $er;?>  
+
+  <body class="login-body">
+
+    <div class="container">
+
+
+          
+          
+          
+    <form class="cmxform form-signin" id="form_login" enctype="application/x-www-form-urlencoded" method="post" action="<?php echo $this->loginform->getAction()?>"><!-- Default forms (table layout) -->    
+        <h2 class="form-signin-heading">sign in now</h2>
+        
+        <?php 
+                 if($this->errorMessage!=''){?>
+		<div class="error" style="text-align:center"><?php echo $this->errorMessage;?></div>
+	<?php }?>
+                  <?php  if($this->successMessage!=''){?>
+	<div><?php echo $this->successMessage;?></div>
+						<?php }?>
+        
+        
+        
+        <div class="login-wrap">
+          
+            
+            
+            <div class="form-group ">
+            
+     <input type="text" class="form-control" name="<?php echo $this->loginform->email->getName()?>" id="<?php echo $this->loginform->email->getName()?>" value="<?php echo $this->loginform->email->getValue()?>"  placeholder="Email" />
+ </div>
+            
+           <div class="form-group ">
+      <input type="password" class="form-control" name="<?php echo $this->loginform->password->getName()?>" id="<?php echo $this->loginform->password->getName()?>" value="" placeholder="Password" /></td><!-- class error for wrong filled inputs -->
+            </div>  
+                <span class="pull-right">
+                    <a data-toggle="modal" href="#myModal"> Forgot Password?</a>
+
+                </span>
+            </label>
+            <button class="btn btn-lg btn-login btn-block" type="submit">Sign in</button>
+            
+            <div class="registration">
+                Don't have an account yet?
+                <a class="" href="<?php echo SITE_URL?>register">
+                    Create an account
+                </a>
+            </div>
+
+        </div>
+ </form>
+          <!-- Modal -->
+          
+         <form class="cmxform form-signin" id="lost_password" name="lost_password" enctype="application/x-www-form-urlencoded" method="post" action="<?php echo $this->loginform->getAction()?>"><!-- Default forms (table layout) -->    
+     
+          
+          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title">Forgot Password ?</h4>
+                      </div>
+                      <div class="modal-body">
+                          <p>Enter your e-mail address below to reset your password.</p>
+                          
+                          
+                          
+                          <div class="error" style="display:none" id="lostmsg_error"><p style="color:#a94442"></p></div>
+						
+                        <div class="ok" style="display:none" id="lostmsg_ok"><p style="color:#3c763d"></p></div>
+			
+                          <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix" id="lost_email">
+
+                      </div>
+                      <div class="modal-footer">
+                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
+                         
+                          <input class="btn btn-success" type="submit" name="lost"  value="Send Password"  />
+			<span style="display:none;" id="sending">sending please wait..</span>
+
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+             
+             </form>
+          <!-- modal -->
+
+     
+
+    </div>
+      
+
+
+
+<script type="text/javascript" src="<?php echo SITE_URL?>resource/js/jquery-validator.js"></script>
+    <!-- js placed at the end of the document so the pages load faster -->
+
+<script type="text/javascript">
+$(document).ready(function() {
+	// validate signup form on keyup and submit
+	var validator = $("#form_login").validate({
+		rules: {
+			
+			email: {
+				required: true,
+				email:true,
+				
+				
+			},
+			password: {
+				required: true
+			}
+			
+		},
+		messages: {
+			email: {
+				required: "Enter the username."
+				
+			},
+			password: {
+				required: "Enter the password.",
+			}
+			
+		},
+		// the errorPlacement has to take the table layout into account
+		/*errorPlacement: function(error, element) {
+			//alert(element.attr('type'));
+			if ( element.is(":radio") )
+				error.appendTo( element.parent().next().next() );
+			else if ( element.is(":checkbox") )
+				error.appendTo ( element.next() );
+			else{
+				error.appendTo( element.parent());
+				
+			}
+		},*/
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			//$("#login").submit();
+			document.getElementById('login').submit();
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			//label.html("&nbsp;").addClass("checked");
+		}
+	});
+	
+	var lostvalidator = $("#lost_password").validate({
+		rules: {
+			
+			email: {
+				required: true,
+				email:true,
+				
+				
+			}
+			
+		},
+		messages: {
+			email: {
+				required: "Enter your email address."
+				
+			}
+			
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			//alert(element.attr('type'));
+			if ( element.is(":radio") )
+				error.appendTo( element.parent().next().next() );
+			else if ( element.is(":checkbox") )
+				error.appendTo ( element.next() );
+			else{
+				error.appendTo( element.parent());
+				
+			}
+		},
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			//$("#login").submit();
+			sendPassword();
+			//document.getElementById('login').submit();
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;").addClass("checked");
+		}
+	});
+		<?php 
+	
+	if(!empty($errors)){
+            
+         //   print_r($errors);die;
+		echo "validator.showErrors(".json_encode($errors).");";
+	}
+	?>
+	//$("#login").valid();
+
+
+});
+function tabbed(id){
+	if(id=='login_btn'){
+		$('#form_login').show();$('#lost_password').hide();
+		$("#login_btn").addClass('active');
+		$("#lost_btn").removeClass('active');
+	}else if(id=='lost_btn'){
+		$('#form_login').hide();$('#lost_password').show();
+		$("#lost_btn").addClass('active');
+		$("#login_btn").removeClass('active');
+	}
+}
+
+function sendPassword(){
+    
+  
+	var str =$(document.lost_password).serialize();
+      
+
+	$("input[name=lost]").hide();
+	$('#sending').show();
+	//$("input[name=lost]").parent().append('<p id="sending">sending please wait..</p>');
+	$.ajax(
+	{
+		url:'<?php echo ADMIN_URL.'login/lostpassword/'?>',
+		data:str,
+		type:'post',
+		dataType:'json',
+		success:function(data){
+                    alert(data.err);
+                  
+			if(data.err=='true'){
+				$("input[name=lost]").show();
+				$('#lostmsg_ok').show();
+				$('#lostmsg_error').hide();
+				$('#lostmsg_ok p').html(data.msg);
+				$('#sending').hide();
+			}else if(data.err=='false'){
+				$("input[name=lost]").show();
+				$('#lostmsg_ok').hide();
+				$('#lostmsg_error').show();
+				$('#lostmsg_error p').html(data.msg);
+				$('#sending').hide();
+			}
+		}
+		
+	}
+	);
+}
+
+</script>
+  </body>
+</html>

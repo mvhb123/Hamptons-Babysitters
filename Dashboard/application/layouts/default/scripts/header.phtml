@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>Baby sitters</title>
+      <script type="text/javascript">
+          var  ADMIN_URL ='<?php echo ADMIN_URL?>';
+          var base_url = '<?php echo SITE_URL?>';
+      </script>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="<?php echo SITE_URL?>resource/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo SITE_URL?>resource/css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link href="<?php echo SITE_URL?>resource/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="<?php echo SITE_URL?>resource/css/table-responsive.css" rel="stylesheet" />
+
+
+
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/bootstrap-fileupload/bootstrap-fileupload.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/bootstrap-colorpicker/css/colorpicker.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/jquery-multi-select/css/multi-select.css" />
+
+<!--     <link rel="stylesheet" type="text/css" href="http://www.codeply.com/css/bootstrap-multiselect.css" />-->
+    
+    
+    <!--right slidebar-->
+    <link href="<?php echo SITE_URL?>resource/css/slidebars.css" rel="stylesheet">    
+    <!--  summernote -->
+    <link href="<?php echo SITE_URL?>resource/assets/summernote/dist/summernote.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="<?php echo SITE_URL?>resource/css/style.css" rel="stylesheet">
+    <link href="<?php echo SITE_URL?>resource/css/style-responsive.css" rel="stylesheet" />
+
+      <link rel="stylesheet" href="<?php echo SITE_URL?>resource/assets/data-tables/DT_bootstrap.css" />
+      <!--toastr-->
+      <link href="<?php echo SITE_URL?>resource/assets/toastr-master/toastr.css" rel="stylesheet" type="text/css" />
+
+
+      <!--    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>-->
+<!--    <script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-1.10.2.js"></script>-->
+         
+        <script src="<?php echo SITE_URL?>resource/js/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/formValidation.min.js"></script>
+        <script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/bootstrap-formValidation.min.js"></script>
+        
+            
+        <!-- full calendar -->
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/fullcalendar1/fullcalendar.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL?>resource/assets/fullcalendar1/fullcalendar.print.css" media='print' />
+    <script src="<?php echo SITE_URL?>resource/assets/fullcalendar1/lib/moment.min.js"></script>
+    <script src="<?php echo SITE_URL?>resource/assets/fullcalendar1/fullcalendar.min.js"></script>
+    <!-- for margin -->
+    <script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/custom.js"></script>
+      <!--toastr-->
+      <script src="<?php echo SITE_URL?>resource/js/common.js"></script>
+
+
+
+  </head>
+  <body>
+  <section id="container" class="">
+      <!--header start-->
+      <header class="header white-bg">
+          <div class="sidebar-toggle-box">
+              <div data-original-title="Toggle Navigation" data-placement="right" class="fa fa-bars tooltips"></div>
+          </div>
+          <!--logo start-->
+          <?php if ($_SESSION['Zend_Auth']['storage']->usertype == 'A') { ?>
+              <a href=<?php echo ADMIN_URL ?> class="logo">Baby<span>sitter</span></a>
+          <?php } elseif($_SESSION['Zend_Auth']['storage']->usertype == 'P'){?>
+              <a href="<?php echo CLIENT_URL ?>" class="logo">Baby<span>sitter</span></a>
+          <?php } else{?>
+              <a href=<?php echo SITE_URL ?> class="logo">Baby<span>sitter</span></a>
+          <?php } ?>
+          <!--logo end-->
+          <div class="top-nav ">
+              <ul class="nav pull-right top-menu">
+                  <li>
+                      You are currently logged in as<span class="username"> <?php echo $_SESSION['Zend_Auth']['storage']->firstname?></span>
+                  </li>
+                  
+<!--                  <li>
+                      <input type="text" class="form-control search" placeholder="Search">
+                  </li>-->
+                  <!-- user login dropdown start-->
+<!--                  <li class="dropdown">
+                      <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                          <span class="username"><?php //echo $_SESSION['Zend_Auth']['storage']->firstname?></span>
+                          <b class="caret"></b>
+                      </a>
+                      <ul class="dropdown-menu extended logout">
+                          <div class="log-arrow-up"></div>
+                          <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                          <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                          <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
+                          <li><a href="/webbabysitter/admin/logout/"><i class="fa fa-key"></i> Log Out</a></li>
+                      </ul>
+                  </li>-->
+
+              </ul>
+          </div>
+      </header>
+      <!--header end-->

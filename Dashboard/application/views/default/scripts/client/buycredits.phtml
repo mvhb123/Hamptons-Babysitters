@@ -1,0 +1,287 @@
+<style >
+    section.panel {
+        margin-bottom: 20px;
+        background-color: #fff;
+        border: 1px solid transparent;
+        border-radius: 4px;
+        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+        border-color: #bce8f1;
+    }
+</style>
+
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel clearfix">
+                    <div class="panel-body">
+                        <section class="clearfix">
+                             <h4>Buy Credits</h4>
+                            <div class="col-sm-6">
+                                <?php if ($this->searchParams['msg'] != '') { ?>
+                                    <div class="smessage">
+                                        <p>Your message was sent successfully</p>
+                                    </div>
+                                <?php }
+                                ?>
+                                <div class="panel-body">
+                                    
+                                    <div id="errors" class="emessage"></div>
+                                <form class="cmxform form-horizontal tasi-form custom-form" id="subscribeform" enctype="multipart/form-data" method="post" action="<?php echo SITE_URL.'client/checkout/'?>">
+                                    <section id="flip-scroll">
+                                        <table class="table table-bordered table-striped table-condensed cf" id="selep">
+                                            <thead class="cf">
+                                                <tr>
+                                                    <th>Select </th>
+                                                    <th>Package </th>
+                                                    <th>Credit</th>
+                                                    <th class="text-right">Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody >
+                                            <?php foreach ($this->packages as $pack) { ?>
+                                                <tr>
+                                                    <td class="text-center">
+                                                    <div class="form-group radios">
+                                                        <label class="label_radio" style="min-height:21px !important">
+                                                            <input <?php echo $this->selectedPackage == $pack['package_id'] ? 'checked="checked"' : '' ?> type="radio" name="package"  value="<?php echo $pack['package_id'] ?>" class="form-control" />
+                                                        </label>
+                                                    </div>
+                                                    </td>
+                                                    <td> <?php echo $pack['package_name'] ?>  </td>
+                                                    <td> <?php echo $pack['credits'] ?></td>
+                                                    <td class="numeric"> <?php echo money_format('%.2n',$pack['price']) ?></td>
+                                                </tr>
+                                            <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </section>
+
+                                    <?php
+                                    if(!empty($this->paymentProfile) && isset($this->paymentProfile->client_payment_profile_id))
+                                    {
+                                      ?>
+                                        <section class="panel panel-info" >
+                                            <div class="panel-heading">
+                                                <div class="btn-group clearfix" data-toggle="buttons">
+                                                    <label class="btn btn-info chk ">
+                                                        <input class="" id="save_card" autocomplete="off" type="checkbox" title="Saved CC info For Next Time" value="1"  name="save_card" />
+                                                        <span class="glyphicon glyphicon-ok"></span>
+                                                    </label>
+
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+                                                <p><b>XXXX-XXXX-XXXX-<?php echo $this->paymentProfile->card_number;?></b></p>
+                                            </div>
+                                        </section>
+                                    <?php
+                                    }
+                                    ?>
+
+
+
+                                    <input class="btn btn-danger hidden" type="submit"  name="buy_auto" id="buy_auto" value="Buy">
+                                    <input class="btn btn-danger" type="submit"  name="subscribesubmit" id="subscribesubmit" value="Checkout">
+
+                                    <a href="<?php echo SITE_URL.'client/subscription' ?>"class="btn btn-default" >Back</a>
+                                </form>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="panel-body">
+                                    <section id="flip-scroll">
+                                        <b>For more than 10 bookings custom pricing is available for summer short-term continuous care as well as group child care (ie. house parties, weddings).  Please provide us with as much details as possible and we will contact you shortly.
+                                            Please <a href="<?php echo SITE_URL . 'misc/contact' ?>"  onclick="open_box();return false;"><strong style="color:#0000FF;">click here</strong></a>.</b>
+                                    </section>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalSuccess" class="modal fade in" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title"><b>Contact Us</b></h4>
+            </div>
+            <div class="modal-body">
+                
+                <span class="errMsg"></span>
+                <form id="basic" method="post" action="<?php echo SITE_URL ?>misc/contact/" class="cmxform form-horizontal tasi-form custom-form">
+                    <!--  <div class="text-center">Please Fill up the form </div><br /><br />-->
+                    <div>
+                        <div class="col-md-4"> Name </div>
+                        <div class="col-md-8">
+                            <input type="text" name="name" id="name"  value="<?php echo $this->userInfo['firstname'] . ' ' . $this->userInfo['lastname'] ?>" class="form-control" />
+                        </div><br /><br />
+                        <div>
+                            <div class="col-md-4"> Email </div>
+                            <div class="col-md-8" >
+                                <input type="email" name="email" id="email" value="<?php echo $this->userInfo['username'] ?>" class="form-control" />
+                            </div>
+                        </div><br /><br />
+                        <div>
+                            <div class="col-md-4">Number of days</div>
+                            <div class="col-md-8" >
+                                <input placeholder="Number of days" type="text" name="numberofdays" id="numberofdays" required="required"  value="" class="form-control" />
+                            </div>
+                        </div><br /><br />
+                        <div>
+                            <div class="col-md-4">Budget</div>
+                            <div class="col-md-8">
+                                <input placeholder="Provide your budget" type="text" name="budget"  id="budget"  value="" class="form-control" />
+                            </div>
+                        </div><br /><br />
+                        <div>
+                            <div class="col-md-4">Comments</div>
+                            <div class="col-md-8" >
+                                <textarea required="required" placeholder="please provide details" name="comments" class="form-control"></textarea>
+                            </div>
+                        </div><br /><br />
+                        <div>
+                            <div class="col-md-12 right">
+                                <button   class="btn btn-send" type="submit" value= "Submit">Submit</button>
+                                <button   class="btn btn-send" type="button" onclick="hide_popup()">Close</button>
+                            </div><br /><br /><br /><br />
+                        </div>
+                       </div>
+                </form>
+            </div>
+            <div  class="clearfix"></div>
+        </div>
+       
+    </div>
+</div><!-- /.modal-content -->
+
+<script type="text/javascript" src="<?php echo SITE_URL ?>resource/js/jquery-validator.js"></script>
+
+<script>
+
+
+    $(document).ready(function() {
+	// validate signup form on keyup and submit
+
+	var validator = $("#subscribeform").validate({
+            
+            errorLabelContainer: '#errors',
+           //  errorElement: 'span',
+    //errorClass: 'errMsg',
+		rules: {
+			package: {
+				required:true
+			},
+			slots: {
+				required: function(){return $("input[name=package]:checked").val()=='custom'}
+			},
+			price: {
+				required: function(){return $("input[name=package]:checked").val()=='custom'}
+			}
+
+		},
+		messages: {
+			package: {
+				required: 'Please select a Package.'
+			},
+			slots: {
+				required: 'Please enter credits.'
+			},
+			price: {
+				required: 'Enter the Amount.'
+			}
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			//alert(element.attr('type'));
+			//if ( element.is(":radio") )
+			//	error.appendTo( element.parent().parent().parent() );
+			//else 
+                            if ( element.is(":checkbox") )
+				error.appendTo ( element.next() );
+			else{
+				error.appendTo( element.parent());
+
+			}
+		},
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			//$("#login").submit();
+			document.getElementById('login').submit();
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;").addClass("checked");
+		}
+	});
+
+	<?php
+
+	if(!empty($errors)){
+		echo "validator.showErrors(".json_encode($errors).");";
+	}
+	?>
+
+
+	});
+
+    function selectSlots(){
+	if($("input[name=package]:checked").val()=='custom'){
+		$("#custom").slideDown();
+
+
+	}else $("#custom").slideUp();
+}
+
+    function open_box()
+    {
+        $('#myModalSuccess').modal('show');
+    }
+
+    function hide_popup()
+    {
+        $('#myModalSuccess').modal('hide');
+    }
+
+    var checkout = '<?php echo SITE_URL.'client/checkout/'?>';
+    var checkoutauto = '<?php echo SITE_URL.'client/checkoutauto/clientpayment/'.$this->paymentProfile->client_payment_profile_id?>';
+
+    $('#save_card').change(function() {
+        if($(this).is(":checked")) {
+            $('#subscribeform').attr('action',checkoutauto);
+
+            $('#subscribesubmit').addClass('hidden');
+            $('#buy_auto').removeClass('hidden');
+
+        }
+        else{
+            $('#subscribeform').attr('action',checkout);
+
+            $('#buy_auto').addClass('hidden');
+            $('#subscribesubmit').removeClass('hidden');
+
+        }
+
+    });
+
+
+$(":radio[name=package]").change(function() {
+    $("#selep label.r_on").removeClass("r_on"); //remove previous active class
+
+
+        $(this).closest("label").addClass("r_on"); //add active to radio selected tr
+
+        selectSlots();
+})
+</script>

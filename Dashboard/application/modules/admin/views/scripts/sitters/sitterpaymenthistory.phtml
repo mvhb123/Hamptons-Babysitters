@@ -1,0 +1,191 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                   <div class="fixed-position col-lg-11">
+                    <header class="panel-heading clearfix">
+                        Sitter Payment History
+                    </header>
+                    <form name="searchform" method="post" class="clearfix">
+                        <div>
+                            </br>
+                            <div class="col-md-3">	
+                                <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group btn-block  date default-date-picker clearfix">
+                                    <input type="text" id="payment_start_date" name="payment_start_date" class="form-control datep" value="<?php echo $this->searchParams['payment_start_date']; ?>" size="16" readonly="" placeholder="Start Date">
+                                    <span class="input-group-btn" style="width: auto">
+                                        <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group btn-block date default-date-picker clearfix">
+                                    
+                                    <input type="text" id="payment_end_date" name="payment_end_date" class="form-control datep" value="<?php echo $this->searchParams['payment_end_date']; ?>" size="16" readonly="" placeholder="End Date">
+                                     <span class="input-group-btn" style="width: auto">
+                                        <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">	
+                                <select name="userid" class="form-control">
+                                    <option value="0" <?php if ($this->searchParams['userid'] == 0) { ?> selected="selected" <?php } ?>>All Sitters</option>
+                                    <?php foreach ($this->sitters as $sitter) { ?>
+                                        <option value="<?php echo $sitter['userid']; ?>" <?php if ($this->searchParams['userid'] == $sitter['userid']) { ?> selected="selected" <?php } ?>><?php echo $sitter['name']; ?></option>
+                                    <?php } ?>   
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="submit" name="filter" value="Filter" class="btn btn-danger" />
+                            </div>
+                        </div>
+                    </form>   
+                   </div>
+                    
+                    <div class="panel-body list_margin">
+                        <section id="flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed cf">
+                                <thead class="cf">
+                                    <tr>
+                                        <th>Payment Id</th>
+                                        <th>Job IDs</th>
+                                        <th>Sitter Name</th>
+                                        <th>Date</th>
+                                        <th class="text-right">Amount</th>
+                                        <th>Detail</th>   
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if (!empty($this->sitter_payment_history_details)) { ?>
+                                        <?php foreach ($this->sitter_payment_history_details as $details) {?>
+                                            <tr>
+                                                <td><?php echo $details['sitter_payment_details_id']; ?></td>
+                                                <?php
+                                                    $parts = explode(",", $details['job_ids']);
+                                                    $result = implode(', ', $parts);
+                                                ?>
+                                                <td><?php echo $result; ?></td>
+                                                <td><a href="<?php echo ADMIN_URL . 'sitters/profile/modify/' . $details['sitter_id'] ?>"><?php echo $details['firstname'] . " " . $details['lastname']; ?></a></td>
+                                                <td ><?php echo date('m/d/Y', strtotime($details['date_added'])); ?></td>
+                                                <td class="numeric">
+                                                    <?php  echo money_format('%.2n', $details['total_paid']); ?>
+                                                </td>
+                                                <td class="table_input_padding text-center"><button class="btn btn-info" onclick="get_details(<?php echo $details['sitter_payment_details_id']; ?>)">Details</button></td>
+                                            </tr>
+                                        <?php } ?>	
+                                    <?php } else { ?>
+                                        <tr><td colspan="6">No records found</td></tr>
+                                    <?php } ?>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Total Amount</td>
+                                <td class="numeric"><?php echo   money_format('%.2n', $this->total_amount); ?></td>
+                                <td></td>
+                                </tbody>
+                            </table>
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+           
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+
+<script type="text/javascript">
+    function  get_details(payment_id)
+    {
+        $.ajax({
+            url: "<?php echo ADMIN_URL . 'sitters/paymentdetails' ?>",
+            cache: false,
+            //    contentType: false,
+            //  processData: false,
+            data: {payment_id: payment_id}, // Setting the data attribute of ajax with file_data
+            dataType: 'json',
+            type: 'post',
+            async: false,
+            success: function (data) {
+
+                if (data.status == 'success')
+                {
+                    $("#job_ids").text(data.job_ids);
+                    $("#sname").text(data.name);
+                    $("#total_paid").text(data.total_paid);
+                    $("#check_number").text(data.check_number);
+                    $("#wire_number").text(data.wire_number);
+                    $("#date_time").text(data.date_added);
+                    $('#myModalSuccess').modal('show');
+                }
+            },
+            complete: function () {
+            }
+        });
+    }
+
+    function hide_popup()
+    {
+        $('#myModalSuccess').modal('hide');
+    }
+</script>
+
+
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalSuccess" class="modal fade in" >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" >
+                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                <h4 class="modal-title">Payment Details</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="col-md-6"> Job ID </div>
+                    <div class="col-md-6" id="job_ids"> </div>
+                </div>
+                </br></br>
+                <div>
+                    <div class="col-md-6"> sitter </div>
+                    <div class="col-md-6" id="sname"> </div>
+                </div>
+                </br> </br>
+                <div>
+                    <div class="col-md-6">Total Paid</div>
+                    <div class="col-md-6" id="total_paid"></div>
+                </div>
+                </br></br>
+                <div>  
+                    <div class="col-md-6">Check Number</div>
+                    <div class="col-md-6" id="check_number"></div>    
+                </div>
+                </br></br>
+                <div>
+                    <div class="col-md-6">Wire Number  </div>                                                
+                    <div class="col-md-6" id="wire_number"></div>     
+                </div>
+                </br></br>
+                <div>
+                    <div class="col-md-6">Date  Time  </div>                                                
+                    <div class="col-md-6" id="date_time"></div>     
+                </div>
+                <div>
+                    <div class="col-md-12">   
+                        <button  style="float:right" class="btn btn-send" type="button" onclick="hide_popup()">Ok</button>
+                    </div>
+                </div>
+                <div  class="clearfix"></div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+
+
+

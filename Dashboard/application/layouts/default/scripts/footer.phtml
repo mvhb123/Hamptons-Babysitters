@@ -1,0 +1,98 @@
+  <!--footer start-->
+      <footer class="site-footer">
+          <div class="text-center">
+              2015 &copy; Babysitter.
+              <a href="#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+      <!--footer end-->
+  </section>
+
+
+
+
+
+  <!-- js placed at the end of the document so the pages load faster -->
+    
+    <script src="<?php echo SITE_URL?>resource/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="<?php echo SITE_URL?>resource/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="<?php echo SITE_URL?>resource/js/jquery.scrollTo.min.js"></script>
+    <script src="<?php echo SITE_URL?>resource/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+    <script type="text/javascript" language="javascript" src="<?php echo SITE_URL?>resource/assets/advanced-datatable/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/data-tables/DT_bootstrap.js"></script>
+
+    <script src="<?php echo SITE_URL?>resource/js/respond.min.js" ></script>
+
+    <!--toastr-->
+    <script src="<?php echo SITE_URL?>resource/assets/toastr-master/toastr.js"></script>
+
+  <!--      <script src="http://www.codeply.com/js/bootstrap-multiselect.js"></script>-->
+
+    <!--this page plugins-->
+
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/fuelux/js/spinner.min.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/bootstrap-daterangepicker/moment.min.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/jquery-multi-select/js/jquery.multi-select.js"></script>
+  <script type="text/javascript" src="<?php echo SITE_URL?>resource/assets/jquery-multi-select/js/jquery.quicksearch.js"></script>
+
+  <!--summernote-->
+  <script src="<?php echo SITE_URL?>resource/assets/summernote/dist/summernote.min.js"></script>
+  <!--right slidebar-->
+  <script src="<?php echo SITE_URL?>resource/js/slidebars.min.js"></script>
+  <!--common script for all pages-->
+  <script src="<?php echo SITE_URL?>resource/js/common-scripts.js"></script>
+    <!--this page  script only-->
+  <script src="<?php echo SITE_URL?>resource/js/advanced-form-components.js"></script>
+  <script src="<?php echo SITE_URL?>resource/js/form-component.js"></script>
+  <script>
+
+      jQuery(document).ready(function(){
+
+          $('.summernote').summernote({
+              height: 200,                 // set editor height
+
+              minHeight: null,             // set minimum height of editor
+              maxHeight: null,             // set maximum height of editor
+              focus: true                 // set focus to editable area after initializing summernote
+          });
+      });
+
+  </script>
+
+  <?php
+
+  //$flashMessenger = $this->_helper->getHelper('FlashMessenger');
+  $message_box = ($this->flashMessenger->getMessages());
+  $error = $message_box[0]['error'];
+  if (!empty($error)) {
+
+      ?>
+      <script >
+          alert_notification('error','',"<?php echo $error;?>")
+      </script>
+      <?php
+  }
+  $success = $message_box[0]['success'];
+  if (!empty($success)) {
+      ?>
+      <script >
+          alert_notification('success','',"<?php echo $success;?>")
+      </script>
+      <?php
+  }
+  ?>
+
+
+  </body>
+</html>

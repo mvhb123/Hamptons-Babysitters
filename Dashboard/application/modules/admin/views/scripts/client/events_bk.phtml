@@ -1,0 +1,717 @@
+<?php
+$childStyle = 'style="display:none"';
+$continueSubmit=true;
+$errors = $this->eventsForm->getMessages();
+if(!empty($errors))$this->errorMessage='Error while create/update client! Please verify your fields';
+
+foreach($errors as $key =>$err){
+	if(!isset($err[0])){
+		foreach($err as $key2=>$r)
+			$er[$key.'['.$key2.']']=implode(', ',$r);
+		
+	}
+	else $er[$key]=implode(', ',$err);
+	
+}
+$errors = $er;
+//var_dump($errors);die();
+?>
+<div class="inner-container">
+            <div class="box box-100 altbox">
+              <div class="boxin">
+                <div class="header">
+
+                  <h3><?php if($this->searchParams['modify']>0){?> View Job <?php echo $this->jobnumber($this->searchParams['modify']);}else {?>Add New Job<?php }?></h3>
+                  <ul>
+				      <?php  include_once('job-tabs.phtml'); ?>
+			          </ul>
+			          <a class="button" href="<?php echo ADMIN_URL.'client/events/user/'.$this->userid.'/listevents/jobs/'?>">Back to job listing&nbsp;»</a>
+                </div>
+                <div class="content pad20">
+                
+                 <?php if($_SESSION['jobSuccess']!=''){?>
+                <div class="msg msg-ok">
+						<p> <?php echo $_SESSION['jobSuccess']; unset($_SESSION['jobSuccess']);?></p>
+				</div>
+					<?php }?>
+                
+                 <?php if($_SESSION['jobSuccess']!=''){?>
+                <div class="msg msg-ok">
+						<p> <?php echo $_SESSION['jobSuccess']; unset($_SESSION['jobSuccess']);?></p>
+				</div>
+					<?php }?>
+                	 <?php if(strtotime($this->event['jobs_posted_date'])>0){?>
+                <div class="msg msg-info">
+						<p>Job Posted Time: <?php echo date(DATETIME_FORMAT,strtotime($this->event['jobs_posted_date']))?></p>
+					</div>
+              	<?php 
+				
+				$timeover = time()-strtotime($this->event['jobs_posted_date'])>86400;
+				if($timeover){?>
+					
+			<?php 	}
+					?>
+					 <?php }?>
+					 
+						<div class="msg msg-error" style="display:none"><p></p></div>
+						
+                 		
+
+ <form class="basic" id="eventsform" enctype="multipart/form-data" method="post" action="<?php echo $this->eventsForm->getAction();?>">
+  <div class="formbox floatleft w450">
+                    <h1 class="formheading">Date and Time</h1>
+                      <dl>
+                        <dt>
+
+                          <label for="some1">Start Date/Time:</label>
+                        </dt>
+                        <dd>
+                          <input  type="text" class="txt" name="start_date" id="start_date" value="<?php echo date(DATETIME_FORMAT,strtotime($this->eventsForm->start_date->getValue()))?>" />
+                          <small>Click on field to change date/time</small></dd>
+                        <dt>
+                          <label for="some2">End Date/Time:</label>
+
+                        </dt>
+                        <dd>
+                          <input type="text" class="txt" name="end_date" id="end_date" value="<?php  echo date(DATETIME_FORMAT,strtotime($this->eventsForm->end_date->getValue()))?>" />
+                          <small>Click on field to change date/time</small></dd>
+                       
+						</dl>
+                      <div class="msg msg-ok" id="ok" style="display:none"></div>
+					  <div class="msg msg-error" id="error" <?php if($this->errorMessageCredits==''){?>style="display:none" <?php }?>><?php echo $this->errorMessageCredits?></div>
+					 <div class="msg msg-info" id="info"><p>You have <strong><?php echo $this->credits?> Credits </strong> available</p></div>
+					<div class="msg msg-error" id="other_error" style="display:none"></div>		
+                      <h1 class="formheading">Location</h1>
+                      <dl>
+
+
+
+<?php
+if(!empty($this->addresses)){
+
+$states = $this->eventsForm->other->state->getMultiOptions();
+
+	?>
+	<?php foreach($this->addresses as $address){?>
+    <br clear="all">
+	<dt style="width:20px;"><input <?php echo  $address['address_id']==$this->selectedAddress || ((int)$this->selectedAddress<=0 && $address['address_type']=='local' ) ?'checked="checked"':''; ?> type="radio" name="address_id" value="<?php echo $address['address_id']?>" />
+		</dt><dd>	
+		<strong><?php echo strtoupper( $address['address_type'])?> ADDRESS</strong>	<br />
+		<?php if( $address['billing_name']!=''){?>Hotel Name: <?php echo $address['billing_name']?> <br /> <?php }?>
+		<?php if( $address['address_1']!=''){?>Cross Street: <?php echo $address['address_1']?> <br /> <?php }?>
+		Street Address: <?php echo $address['streat_address']?> <br />
+		City: <?php echo $address['city']?> <br />
+		Zip Code: <?php echo $address['zipcode']?> <br />
+		State: <?php echo  $states[$address['state']]?> <br />
+		</dd>
+	<?php }?>
+
+<?php }?>
+
+<br clear="all" />
+<dt style="width:20px;">
+ <label class="check">
+  <input class="check" type="radio" name="address_id" id="address_id_other" value="other"  /></label>
+	</dt>			
+		<dd>				 <label for="home_adress"><strong>ALTERNATE ADDRESS</strong></label>
+						     (Please specify below if  location differs from your local address)</dd>
+<br clear="all" />
+                        
+                    <dl id="other_address" style="display:none">    
+                       
+                      <dt style="width:43%;">
+                          <label for="some16">Hotel Name: (if applicable): </label>
+                        </dt>
+                        <dd style="width:53%">
+                          <input name="other[billing_name]" type="text" class="txt" id="some16" value="" />
+                             </dd>
+                        </dd>
+                        <dt>
+                          <label for="some11">Cross Street:</label>
+                        </dt>
+                        <dd>
+                          <input type="text" name="other[address_1]" id="local_address_1" class="txt required" value="<?php echo $this->eventsForm->other->address_1->getValue()?>">
+                           </dd>
+                        <dt>
+                          <label for="some10">Street Address:</label>
+                        </dt>
+                        <dd>
+                          <input type="text" class="txt required" name="other[streat_address]" id="local_streat_address" value="<?php echo $this->eventsForm->other->streat_address->getValue()?>">
+                           </dd>
+                        
+                        <dt>
+                          <label for="some12">City:</label>
+                        </dt>
+                        <dd>
+                          <input name="other[city]" id="local_city" type="text" class="txt required"  value="<?php echo $this->eventsForm->other->city->getValue()?>" />
+                           </dd>
+                        <dt>
+                          <label for="some13">State:</label>
+                        </dt>
+                        <dd>
+                          <select id="local_state" name="other[state]" class="txt required">
+                          
+                          <?php foreach($this->eventsForm->other->state->getMultiOptions() as $key=>$option){?>
+                          <option value="<?php echo $key?>" <?php echo $this->eventsForm->other->state->getValue()==$key ? 'checked="checked"' :''?>><?php echo $option?></option>
+                          <?php }?>
+                          
+                          </select>
+                           </dd>
+                        <dt>
+                          <label for="some14">Zip Code:</label>
+                        </dt>
+                        <dd>
+                           <input name="other[zipcode]" id="local_zipcode" type="text" class="txt required"  value="<?php echo $this->eventsForm->other->zipcode->getValue()?>" />
+                           </dd>
+
+                     
+                          </dl> 
+
+                      </dl>
+                    </div>
+                    <div class="formbox floatright w450">
+                      <h1 class="formheading">Select Children</h1>
+<?php
+
+
+?>
+                     <?php if(!empty($this->children)){?>  
+   <?php foreach($this->children as $child){?>
+    <div class="childcontainer">
+   
+		 <div class="thumb2">
+		 <input class="check" type="checkbox" value="<?php echo $child['child_id']?>"  <?php echo  in_array($child['child_id'],$this->selectedChild) || !(int)$this->searchParams['modify'] ?'checked="checked"':''; ?> name="child[]" />
+		<?php if($child['thumb_image']!=''){?>
+			<img src="<?php echo SITE_URL.$child['thumb_image']?>"  />
+			<?php }else {?>
+			<img alt="No Image" src="<?php echo SITE_URL.'resources/img/noimage.jpg'?>"  />
+			<?php }?>
+		</div>
+            <div class="details">
+                <h1><?php echo $child['child_name']?></h1>
+                <strong>Age</strong>&nbsp;&nbsp;<?php echo $this->age($child['dob']);?><br />
+               
+                <strong>Allergies</strong>&nbsp;&nbsp;<?php echo $child['allergy_status']?>
+						 <br />
+					 <?php if($child['allergy_status']=='Yes'){?>	 
+                <?php echo $child['allergies']?><br />
+                <?php }?>
+                
+                <strong>Medications</strong>&nbsp;&nbsp;<?php echo $child['medicator_status']?><br />
+                
+                <?php if($child['medicator_status']=='Yes'){?>	 
+                <?php echo $child['medicator']?><br />
+                <?php }?>
+                
+                <strong>Helpful Hints:</strong><br />
+                <?php echo $child['notes']?>
+                
+              </div>
+   </div>
+  
+   <?php }?>
+ <?php }else {
+	    $childStyle = 'style="display:block"';
+	   ?>
+	   <div class="msg msg-error" id="child_error" <?php echo $childStyle?>><p> Must add child’s profile to complete job request.  <a href="<?php echo ADMIN_URL.'client/children/parent/'.$this->userid?>"> Add Child Now</a> </p></div>		
+  
+	   <?php }?>
+<div class="msg msg-error" id="child_error" style="display:none" ><p> Please select child to schedule babysitter. </p></div>		
+                   
+             
+             
+              <?php if($this->childError!=''){?>
+              <div class="msg msg-error"> <p>Please select child to make job</p></div>		
+       <?php }?>
+       
+       <h1 class="formheading">Job Details</h1>
+            	
+     	Booking Fee Paid:<?php echo $this->event['credits_used']." ".Credit;?>
+     	</br></br>
+     	
+     	<input type="hidden" value="<?php echo $this->event['job_id'];?>" id="j_id">
+     	
+     	     	<input type="hidden" value="<?php echo $this->userid;?>" id="user_id">
+     	
+     	
+     	<?php 
+     	
+     	$start_date = $this->event['actual_start_date'];
+     	$end_date = $this->event['actual_end_date'];
+     	
+     	if((isset($start_date))&&(!empty($start_date)))
+     	{
+     		
+     		$diff = strtotime($end_date) - strtotime($start_date);
+     		$diff_in_hrs = $diff/3600;
+     	}
+     	
+     	else 
+     	{
+     		$start_date = $this->event['job_start_date'];
+     		$end_date = $this->event['job_end_date'];
+     		
+     		$diff = strtotime($end_date) - strtotime($start_date);
+     		$diff_in_hrs = $diff/3600;
+     	}
+     	
+     	?>
+       	Hours : <?php echo $diff_in_hrs;?>
+       	</br></br>
+        Kids : <?php echo $this->event['actual_child_count'];?>
+        
+        </br></br>
+        
+    	<input type="button" value="Add Child" onclick="addchild()" class="button altbutton"/>
+        
+         <div id="add_ok" class="msg msg-ok" style="display:none">
+		 </div>
+        
+        <div id="mydiv" style="display:none">
+        
+        <iframe id="frame" src="<?php echo ADMIN_URL.'client/addchildren' ?>"  width="400px" scrolling="no" height="500px">
+   
+   		</iframe>
+   		
+   		</div>
+         <h1 class="formheading"></h1>
+         
+         <?php 
+         $rate=$this->event['client_updated_rate'];
+         if($rate==null)
+         {
+         	$rate=$this->event['client_rate'];
+         }
+         
+         ?>
+         
+         Client Rate : <?php echo '$'. $rate;?>&nbsp;&nbsp;&nbsp;
+         
+         <input type="text" id="c_rate"   style="width:50px"/> &nbsp; &nbsp;
+         	
+         	<input type="button" value="Update Rate" onclick="update_rate()" class="button altbutton" required/>
+         <div class="msg msg-error" id="c_r_error" style="display:none"></div>
+         	 <div  id="c_ok" class="msg msg-ok" style="display:none">
+			  </div>
+         
+         
+         	
+         	</br></br>
+         	
+         	
+         Client Charge : <?php echo '$'. $rate*$diff_in_hrs; ?>
+          <h1 class="formheading"></h1>
+         
+         <?php 
+         $s_rate=$this->event['rate'];
+         if($s_rate==null)
+         {
+         	$s_rate=$this->event['sitter_rate_pre'];
+         }
+      
+         
+         ?>
+         
+          Sitter Rate : <?php echo '$'.$s_rate;?>
+          
+          &nbsp; &nbsp;
+          <input type="text" id="s_rate"  style="width:50px"/> &nbsp; &nbsp;
+         	
+         	<input type="button" value="Update Rate" onclick="update_sitter_rate()" class="button altbutton"/>
+                        <div class="msg msg-error" id="s_r_error" style="display:none">
+			         </div>
+			         
+			         <div id="s_ok" class="msg msg-ok" style="display:none">
+			         </div>
+         
+         
+         	</br></br>
+         Sitter Payout : <?php echo '$'. $s_rate*$diff_in_hrs;?>
+       </div>
+               
+        <h1 class="formheading">Sitter Requirements</h1>
+        <dl>        
+                       
+<?php if(!empty($this->preferences)){?>
+<table border="1">
+<?php 
+
+foreach($this->preferences as $groupId=>$group){?>
+	<tr>
+		<td><?php echo $group['label']?></td>
+		<td><?php  if(!empty($group['prefer']))
+		foreach($group['prefer'] as $p)
+			{?>
+			 <label class="check"><input class="check" <?php echo in_array($p['prefer_id'],@array_keys((array)$this->jobPreference[$groupId]['prefer'])) ||  in_array($p['prefer_id'],(array)$this->searchParams['prefer']) ? 'checked="checked"' :''?> type="checkbox" name="prefer[]" value="<?php echo $p['prefer_id']?>" /> <?php echo $p['prefer_name']?></label> 
+			
+			<?php }
+			
+			?></td>
+	</tr>
+<?php } ?>
+</table>
+<?php } ?>
+    </dl>
+                      <h1 class="formheading">Special Instructions</h1>
+
+                      
+
+                          <label for="some3">Special Requests/ Instructions:<br />
+<small>(ie.  Prefer babysitter who is open to staying an hour or two later if necessary)</small> </label>
+
+                          
+<textarea name="notes" id="notes"  cols="20" rows="5"><?php echo $this->eventsForm->notes->getValue()?></textarea>
+
+                        </dd></dl>
+                        <br clear="all" />
+                        <?php if($continueSubmit){?>
+                    <input class="button altbutton" type="submit" value="<?php echo $this->modify? 'Update':'Book It'?>" />
+					
+					<?php }?><input onclick="window.location='<?php echo ADMIN_URL.'client/events/user/'.$this->userid.'/listevents/jobs'?>'" class="button altbutton" type="button" value="Back to Job Listing"  />
+
+                    </div>
+                    
+                    <br clear="all" />
+
+</form>
+
+
+
+</div>
+             
+            </div>
+            <br clear="all" />
+          </div>
+                <!-- .inner-container -->
+          <link type="text/css" href="<?php echo SITE_URL?>resources/css/redmond/jquery-ui-1.8.12.custom.css" rel="stylesheet" />	
+		 <script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-ui-1.8.12.custom.min.js"></script>
+<script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-ui-timepicker-addon.js"></script>
+    
+<script type="text/javascript">
+			$(function(){
+
+				$('#start_date,#end_date').datetimepicker({
+					ampm: true
+				});
+				
+				
+								
+			});
+			$("input[name=address_id]").change(function(){
+				
+				if($("input[name=address_id]:checked").val()=='other')$('#other_address').show();else $('#other_address').hide();
+				
+			});
+		</script>
+		<style type="text/css">
+			/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+		</style>	          
+
+
+<div id="contact" name="contact" title="Short Term Custom booking" action="" style="display:none;"  >
+	<p class="validateTips">Please fill up the form .</p>
+
+	<form id="basic" method="post" action="<?php echo SITE_URL?>misc/contact/?page=events">
+	<dl><dd>
+		<span class="star">*</span><label for="name">Name</label></dd>
+		<dt>
+		<input type="text" name="name" id="name"  value="<?php echo $this->userInfo['firstname'].' '.$this->userInfo['lastname']?>" class="txt" />
+		<br>
+		</dt>
+		<dd>
+		<span class="star">*</span><label for="email">Email</label></dd>
+		<dt>
+		<input type="email" name="email" id="email" value="<?php echo $this->userInfo['username']?>" class="txt" />
+		</dt>
+		<dd><span class="star">*</span><label for="number">Number of days</label></dd>
+		<dt><input placeholder="Number of days" type="text" name="numberofdays" id="numberofdays" required="required"  value="" class="txt" /></dt>
+		<dd><label for="text">Budget</label></dd>
+		<dt><input placeholder="Provide your budget" type="text" name="budget"  id="budget"  value="" class="txt" /></dt>
+		<dd><span class="star">*</span><label for="">Comments</label></dd>
+		<dd><textarea required="required" placeholder="please provide details" name="comments"></textarea></dd>
+	</dl>
+	<input type="submit" class="button altbutton" value="Submit" /> <input type="button" onclick="$('#contact').dialog('close');" value="Close" class="button altbutton" />
+	</form>
+</div>
+<style>
+input[type=text],input[type=email],input[type=number],textarea{
+		width:100%
+		}
+</style>
+
+<script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-validator.js"></script>
+<script type="text/javascript">
+var form_valid=true;
+
+$(document).ready(function(){
+<?php 
+if(in_array($this->event['job_status'],array('completed'))){?>
+	$('input[type=button],input[type=submit]').hide();
+	$('input[type=checkbox],input[type=radio],textarea').attr('disabled','disabled');
+<?php }
+?>
+});
+$(document).ready(function() {
+	// validate signup form on keyup and submit
+	
+	var validator = $("#eventsform").validate({
+		rules: {			
+			start_date: {
+				required: true
+			},
+			end_date: {
+				required: true
+			},
+			'child[]':{
+				required:true
+
+			},
+			address_id:{
+				required:true
+			},
+			
+			'other[address_1]': {
+				required: function(){ return $('#address_id_other').is(':checked')}
+			},
+			'other[streat_address]': {
+				required: function(){ return $('#address_id_other').is(':checked')}
+			},
+			'other[zipcode]': {
+				required: function(){ return $('#address_id_other').is(':checked')}
+			},
+			'other[city]': {
+				required: function(){ return $('#address_id_other').is(':checked')}
+				
+			},
+			'other[state]': {
+				required: function(){ return $('#address_id_other').is(':checked')}
+			}
+			
+		},
+		messages: {
+			start_date: {
+				required: 'Please Select Job Start Date'
+			},
+			end_date: {
+				required: 'Please Select Job End date.'
+			},
+			address_id: {
+				required:'Please Select address.'
+			},
+			'child[]': {
+				required:'Please select child to schedule babysitter.'
+			}
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			//alert(element.attr('type'));
+			if ( element.is(":radio") ){
+				//$(".msg p").html('');
+				$("#other_error").hide();
+				error.appendTo($("#other_error"));
+				if(error.html()!='')$("#other_error").show();else $("#other_error").hide();
+				}
+			else if ( element.is(":checkbox") ){
+				$("#child_error").show();
+				//$(".msg p").html('');
+				$("#child_error p").html('');
+				error.appendTo ( $("#child_error p") );
+				
+				$("#child_error").show();
+				}
+			else{
+				error.appendTo( element.parent());
+				//$("#child_error").hide();
+			}
+		},
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			//$("#login").submit();
+			
+			document.getElementById('eventsform').submit();
+		
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			//checkCredits();
+			
+			 
+			label.html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;").addClass("checked");
+		}
+	});
+	
+	<?php 
+	
+	if(!empty($errors)){
+		echo "validator.showErrors(".json_encode($errors).");";
+	}
+	?>
+	
+	//$("#login").valid();
+	
+	
+	$( "#contact" ).dialog({
+			autoOpen: false,
+			height: 430,
+			width: 500,
+			modal: true,
+			draggable:false,
+			resizable:false
+		});
+
+	$(".child_checkbox").change(function(){
+		if($(this).is(':checked')){
+			
+			 $("#child_error").hide();
+			
+		 }
+		 
+		if( $(".child_checkbox:checked").length==0)
+		if($("#child_error p:eq(0)").html()!='')
+		  $("#child_error").show();
+		});
+		
+	
+	
+$("#start_date,#end_date").change(function(){
+	
+	checkCredits();
+});});
+function checkCredits(){
+	$.ajax({
+			url:'<?php echo $this->url()?>',
+			data:{start_date:$('#start_date').val(),end_date:$('#end_date').val(),check:'credits'},
+			dataType:'json',
+			success:function(data){
+			
+				 if(parseInt(data.required_credits)<=0){
+					
+					$("#ok").hide();
+					$("#error").show();
+					$("#error").html('<p>Start date should be less than end date</p>');
+					form_valid=false;
+					return false;
+				}
+				if(parseInt(data.calculated_credits)>0){
+					$("#ok").show();
+					$("#error").hide();
+					$("#ok").html('<p>You are going to book for <strong>'+data.required_credits+' day</strong> and '+data.required_credits+' credits will be used</p>');
+					form_valid=false;
+					//return false;
+				}else {
+					$("#ok").hide();
+					$("#error").show();
+					$("#error").html('<p>You are going to book for <strong>'+data.required_credits+' days.</strong></p><p>You do not have enough credits to book. <a href="/admin/a/client/buycredits/" title="Go to Buy Credits"> Buy credits now</a></p>');
+					form_valid=true;
+				}
+				//alert(data.available_credits);
+				//alert(data.calculated_credits);
+				}
+		});
+
+}
+
+function update_rate()
+{
+
+	var new_rate=$("#c_rate").val();
+
+	var job_id=$("#j_id").val();
+	if(!new_rate)
+	{
+		$("#c_r_error").show();
+		$("#c_r_error").html('<p>Please enter rate to update</p>');
+	}
+
+	else if(new_rate.match(/^\d+$/)) {
+		$("#c_r_error").hide();
+		
+		$.ajax({
+			url:"<?php echo ADMIN_URL.'jobs/updateclientrate' ?>",
+			data:{job_id:job_id,rate:new_rate},
+			dataType:'json',
+			 type: 'post',
+			
+			success:function(data){
+			
+				if(data.status="success")
+				{
+					$("#c_ok").show();
+					$("#c_ok").html('<p>Client rate has been updated successfully</p>');
+				}
+				else
+				{
+					$("#c_r_error").show();
+					$("#c_r_error").html('<p>Please enter a valid rate to update</p>');
+				}
+				location.reload();
+				}
+		});
+	}
+	else
+	{
+		$("#c_r_error").show();
+		$("#c_r_error").html('<p>Please enter a valid rate to update</p>');
+
+		}
+}
+
+function update_sitter_rate()
+{
+	var new_rate=$("#s_rate").val();
+
+	var job_id=$("#j_id").val();
+	if(!new_rate)
+	{
+		
+		$("#s_r_error").show();
+		$("#s_r_error").html('<p>Please enter a valid rate to update</p>');
+	
+	}
+
+	else if(new_rate.match(/^\d+$/)) {
+
+		$.ajax({
+			url:"<?php echo ADMIN_URL.'jobs/updatesitterrate' ?>",
+			data:{job_id:job_id,rate:new_rate},
+			dataType:'json',
+
+			 type: 'post',
+				success:function(data){
+			
+				if(data.status="success")
+				{
+
+
+					$("#s_ok").show();
+					$("#s_ok").html('<p>Sitter rate has been updated successfully</p>');
+				}
+				else
+				{
+					$("#s_r_error").show();
+					$("#s_r_error").html('<p>Please enter a valid rate to update</p>');
+				}
+				location.reload();
+				}
+		});
+	}
+	else
+	{
+		$("#s_r_error").show();
+		$("#s_r_error").html('<p>Please enter a valid rate to update</p>');
+
+	}
+}
+
+function addchild()
+{
+	$("#mydiv").show();
+
+}
+</script>

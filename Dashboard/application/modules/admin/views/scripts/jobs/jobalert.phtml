@@ -1,0 +1,135 @@
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                      <div class="fixed-position col-lg-12">
+                    <header class="panel-heading clearfix">
+                        Job Alerts  (Jobs will active in next 5 hours)
+                    </header>
+                    
+                    
+                    <form name="searchform" method="post" class="clearfix">
+                        <div>
+                            </br>
+                            <div class="col-md-2">	
+                                <input placeholder="Job Number" type="text" class="form-control width-60" name="job_id"  value="<?php echo $this->searchParams['job_id'] ?>" />  
+                            </div>
+                            <div class="col-md-3">
+                                <input placeholder="Client Name" type="text" class="form-control width-60" name="client" size="15"  value="<?php echo $this->searchParams['client'] ?>"/>
+                            </div>
+                            <div class="col-md-3">
+                                <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group date default-date-picker clearfix">
+                                    <input type="text" readonly  size="16"  value="<?php echo $this->searchParams['job_start_date'] ?>"  class="form-control datep" name="job_start_date" id="job_start_date" placeholder="Start Date">
+                                    <span class="input-group-btn" style="width: auto">
+                                        <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                    </span>  
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-3">	
+                                <div data-date-viewmode="years" data-date-format="mm-dd-yyyy"   class="input-group date default-date-picker clearfix">
+                                    <input type="text" readonly  size="16" class="form-control datep"  value="<?php echo $this->searchParams['job_end_date'] ?>" name="job_end_date" id="job_end_date" placeholder="End Date" >
+                                    <span class="input-group-btn" style="width: auto">
+                                        <button type="button" class="btn btn-danger date-set"><i class="fa fa-calendar"></i></button>
+                                    </span> 
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <input type="submit" name="filter" value="Filter" class="btn btn-danger" />
+                            </div>
+                        </div>
+                    </form>  
+                      </div>
+                    </br>
+                    
+                    
+                    
+                    <div class="panel-body" style="margin-top: 115px">
+                        <section id="flip-scroll">
+                            <table class="table table-bordered table-striped table-condensed cf">
+                                <thead class="cf">
+                                    <tr>
+                                        <th><a href="<?php echo $this->url(array('key' => 'j.job_id', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'j.job_id' ? 'desc' : 'asc')) ?>">Job Number</a></th>
+                                        <?php if (!in_array($this->searchParams['status'], array('pending', 'confirmed', 'completed', 'cancelled'))) { ?>
+                                            <th><a href="<?php echo $this->url(array('key' => 'j.jobs_posted_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'j.jobs_posted_date' ? 'desc' : 'asc')) ?>">Rec'd Date/Time</a></th>
+                                        <?php } ?>
+                                        <th><a href="<?php echo $this->url(array('key' => 'jm.job_start_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_start_date' ? 'desc' : 'asc')) ?>">Start Date/Time</a></th>
+                                        <th><a href="<?php echo $this->url(array('key' => 'job_end_date', 'odr' => $this->searchParams['odr'] == 'asc' && $this->searchParams['key'] == 'job_end_date' ? 'desc' : 'asc')) ?>">End Date/Time</a></th>
+                                        <th>Client</th>
+                                        <th>Child</th>
+                                        <th class="text-right">Sitter's Rate</th>
+                                        <th>Babysitter</th>
+
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                      
+
+                                <?php $status_class = array('new' => 'btn btn-default', 'pending' => 'btn btn-warning', 'confirmed' => 'btn btn-success', 'completed' => 'btn btn-success', 'cancelled' => 'btn btn-danger'); ?>
+
+                                <?php if (!empty($this->jobalert)) {
+                                    ?>
+                                        <?php foreach ($this->jobalert as $job) { ?>
+
+                                        <tr>
+                                            <th><a href="<?php echo ADMIN_URL . 'client/events/user/' . $job['client_user_id'] . '/modify/' . $job['job_id'] ?>"><?php echo str_pad($job['job_id'], 4, 0, STR_PAD_LEFT); ?></a></th>
+                                            <td> <?php echo date(DATETIME_FORMAT, strtotime($job['jobs_posted_date'])) ?></td>
+                                            <td> <?php echo date(DATETIME_FORMAT, strtotime($job['job_start_date'])) ?></td>
+                                            <td> <?php echo date(DATETIME_FORMAT, strtotime($job['job_end_date'])) ?></td>
+                                            <td> <a href="<?php echo ADMIN_URL . 'client/profile/modify/' . $job['client_user_id'] ?>"><?php echo ucwords($job['firstname'] . ' ' . $job['lastname'])?></a></td>
+                                          <?php
+                                                if (!empty($job['actual_child_count'])) {
+                                                    $children = $job['actual_child_count'];
+                                                } else {
+                                                    $children = $job['child_count'];
+                                                }
+                                                ?>
+                                                <td> <?php echo $children; ?></td>
+
+                                                 <?php
+                                              $job['rate']=number_format((float)$job['rate'], 2, '.', ''); 
+                                              ?>
+                                                <td class="numeric">
+                                                
+                                                 <span style="line-height: 33px; margin-right: 5px;">$</span><input onkeyup="saveRate(this);" rel="<?php echo $job['job_id'] ?>" type="text" name="rate[<?php echo $job['job_id'] ?>]" class="form-control" style="width: 63px; float: right"   value="<?php echo  $job['rate']?>" />
+                                            
+                                            </td>                                              <td> <a href="<?php echo ADMIN_URL . 'sitters/profile/modify/' . $job['sitter_user_id'] ?>"> <?php echo $job['sitter_firstname'] . ' ' . $job['sitter_lastname'] ?></a></td>
+                                            <td class="text-center"> <span class="<?php echo $status_class[$job['job_status']] ?>"><?php echo ucwords($job['job_status']) ?></span></td>
+                                        </tr>
+                                            <?php } ?>	
+                                    <?php } ?>       
+
+                                </tbody>
+                            </table>
+                            <?php
+                            echo $this->paginationControl($this->paginator, 'Sliding', 'client/pagination.phtml');
+                            ?>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!-- Right Slidebar start -->
+
+
+<script>
+    function saveRate(th) {
+
+        $.ajax({url: "<?php echo ADMIN_URL . 'client/events/' ?>",
+            data: {rate: th.value, saverate: 'rate', job_id: $(th).attr('rel')}, success: function (data) {
+            }
+        });
+    }
+
+</script>

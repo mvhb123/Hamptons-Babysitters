@@ -1,0 +1,405 @@
+ <style>
+ label.checked {
+    background: url("<?php echo SITE_URL?>/resources/img/checked.gif") no-repeat scroll 0 0 transparent;
+}
+ </style>
+ <div class="inner-container">
+            <div class="box box-100 altbox">
+              <div class="boxin">
+                <div class="header">
+                  <h3>Profile</h3>
+                  <ul>
+<?php  include_once('tabs.phtml'); ?>
+                  </ul>
+                </div>
+                <div class="content pad20">
+                 
+
+<?php $this->headTitle('Create Client'); ?>
+<?php //require_once('tabs.phtml');?>
+
+<?php
+
+$errors = $this->userform->getMessages();
+if(!empty($errors))$this->errorMessage='Error while updating information! Please verify your fields';
+
+foreach($errors as $key =>$err){
+	if(!isset($err[0])){
+		foreach($err as $key2=>$r)
+			$er[$key.'['.$key2.']']=implode(', ',$r);
+		
+	}
+	else $er[$key]=implode(', ',$err);
+	
+}
+$errors = $er;
+
+// echo $this->userform->setAction($this->url()); ?>
+
+<form id="userform" class="basic"  enctype="multipart/form-data" method="post" action="<?php echo $this->userform->getAction();?>"><dl class="zend_form">
+<h1 class="formheading">Contact Information</h1>
+                   <?php 
+                   if((int)$this->userInfo['profile_completed']<=0){?>
+						<div class="msg msg-info"><p><?php echo $this->globalMessages['ParentProfileNotUpdated'] ?></p></div>
+						<?php }?>
+                   
+                   
+                   <?php 
+                   if($this->errorMessage!=''){?>
+						<div class="msg msg-error"><p><?php echo $this->errorMessage;?></p></div>
+						<?php }?>
+                  <?php  if($this->successMessage!=''){?>
+						<div class="msg msg-ok"><p><?php echo $this->successMessage;?></p></div>
+						<?php }?>
+                   
+                    <span class="star">*required fields</span>  please add this reference and asterics next to required fields
+                    <br clear="all" />
+                    <div class="formbox floatleft w450">
+                      <dl>
+                        <dt>
+                          <label for="firstname"><span class="star">*</span>First Name:</label>
+                        </dt>
+                        <dd>
+                          <input name="firstname" type="text" class="txt" id="firstname" value="<?php echo $this->userform->firstname->getValue()?>" />
+                           </dd>
+                        <dt>
+                          <label for="lastname"><span class="star">*</span>Last Name:</label>
+                        </dt>
+                        <dd>
+                          <input name="lastname" type="text" class="txt" id="lastname" value="<?php echo $this->userform->lastname->getValue()?>" />
+                           </dd>
+                       
+                       
+                       <!--
+                        <dt>
+                          <label for="dob"><span class="star">*</span>Date of Birth:</label>
+                        </dt>
+                        <dd>
+                          <input name="dob" type="text" class="txt" id="dob" value="<?php echo $this->dob($this->userform->dob->getValue())?>" />
+                          
+                        </dd>
+                        -->
+                        
+                       <dt>
+                          <label for="spouse_firstname">Other Guardian :</label>
+                        </dt>
+                        <dd><br clear="all">
+                          <input name="spouse_firstname" type="text" class="txt" id="spouse_firstname" value="<?php echo $this->userform->spouse_firstname->getValue()?>" />
+                           </dd>
+                        
+
+                      </dl>
+                    </div>
+                    <div class="formbox floatright w450">
+                      <dl>
+                        <dt>
+                          <label for="phone"><span class="star">*</span>Mobile:</label></dt>
+                        <dd>
+                          <input name="phone" type="text" class="txt" id="phone" value="<?php echo $this->userform->phone->getValue()?>" />
+                           </dd>
+                        <dt>
+                          <label for="local_phone">Local Phone:</label>
+                        </dt>
+                        <dd>
+                          <input name="local_phone" type="text" class="txt" id="local_phone" value="<?php echo $this->userform->local_phone->getValue()?>" />
+                           </dd>
+                        <dt>
+                          <label for="work_phone">Work Phone:</label></dt>
+                        <dd>
+                          <input name="work_phone" type="text" class="txt" id="work_phone" value="<?php echo $this->userform->work_phone->getValue()?>" />
+                           </dd>
+                        
+                        <dt>
+                          <label for="username"><span class="star">*</span>Email:</label></dt>
+                        <dd>
+                          <input name="username" type="text" class="txt" id="username" value="<?php echo $this->userform->username->getValue()?>" />
+                           </dd>
+                      </dl>
+                      <dl>
+
+                          <strong><span class="star">*</span>Emergency Contact:</strong>
+                          <br clear="all" />
+
+                      <dt>
+                          <label for="emergency_contact">Name:</label></dt>
+                        <dd>
+                          <input name="emergency_contact" type="text" class="txt" id="emergency_contact" value="<?php echo $this->userform->emergency_contact->getValue()?>" />
+                           </dd>
+                          
+                          <dt>
+                          <label for="emergency_phone">Phone:</label></dt>
+                        <dd>
+                          <input name="emergency_phone" type="text" class="txt" id="emergency_phone" value="<?php echo $this->userform->emergency_phone->getValue()?>" />
+                           </dd>
+                      
+                      </dl>
+                    </div>
+                    <h1 class="formheading">Local Address</h1>
+                    <div class="formbox floatleft w450">
+                      <dl>
+                      <dt style="width:43%;">
+                          <label for="some16">Hotel Name: (if applicable): </label>
+                        </dt>
+                        <dd style="width:53%">
+                          <input name="local[billing_name]" type="text" class="txt" id="billing_name" value="<?php echo $this->userform->local->billing_name->getValue()?>" />
+                             </dd>
+                        </dd>
+                       
+                        <dt style="width:90px">
+                          <span class="star">*</span><label for="some10">Street Address:</label>
+                        </dt>
+                        <dd>
+                          <input type="text" class="txt required" name="local[streat_address]" id="local_streat_address" value="<?php echo $this->userform->local->streat_address->getValue()?>">
+                           </dd>
+                        
+                        <dt>
+                          <span class="star">*</span><label for="some12">City:</label>
+                        </dt>
+                        <dd>
+                          <input name="local[city]" id="local_city" type="text" class="txt required"  value="<?php echo $this->userform->local->city->getValue()?>" />
+                           </dd>
+                        <dt>
+                          <span class="star">*</span><label for="some13">State:</label>
+                        </dt>
+                        <dd>
+                          <select id="local_state" name="local[state]" class="txt required">
+                           <option value="">Select State</option>
+                         
+                          <?php foreach($this->userform->local->state->getMultiOptions() as $key=>$option){?>
+                          <option value="<?php echo $key?>" <?php echo $this->userform->local->state->getValue()==$key ? 'selected="selected"' :''?>><?php echo $option?></option>
+                          <?php }?>
+                          
+                          </select>
+                          <input type="hidden" name="local[country]" value="223" />
+                           </dd>
+                        <dt>
+                          <span class="star">*</span><label for="some14">Zip:</label>
+                        </dt>
+                        <dd>
+                           <input name="local[zipcode]" id="local_zipcode" type="text" class="txt required"  value="<?php echo $this->userform->local->zipcode->getValue()?>" />
+                           </dd>
+
+                      </dl>
+                    </div>
+                    <div class="formbox floatright w450">
+                      <dl>
+     
+                        <dd>
+						  <label class="check"><input class="check" type="checkbox" id="billing-address_type" name="billing[address_type]" <?php echo $this->billing_diff_local ? 'checked="checked"' : '' ?> value="<?php echo $this->userform->billing->address_type->getValue()?>" />
+						    Billing Address if different.</label>
+</dd>
+<br clear="all" />
+
+                        <dt>
+                          <label for="some15">Street Address:</label>
+                        </dt>
+                        <dd>
+                          <input name="billing[streat_address]" type="text" class="txt" id="billing-streat_address" value="<?php echo $this->userform->billing->streat_address->getValue()?>" />
+                          </dd>
+                        
+                        <dt>
+                          <label for="some17">City:</label>
+                        </dt>
+                        <dd>
+                          <input name="billing[city]" type="text" class="txt" id="billing-city" value="<?php echo $this->userform->billing->city->getValue()?>" />
+                           </dd>
+                        <dt>
+                          <label for="some18">State:</label>
+                        </dt>
+                        <dd>
+                          <select id="billing_state" name="billing[state]">
+											
+                          <option value="">Select State</option>
+                          <?php foreach($this->userform->billing->state->getMultiOptions() as $key=>$option){?>
+                          <option value="<?php echo $key?>" <?php echo $this->userform->billing->state->getValue()==$key ? 'selected="selected"':''?>><?php echo $option?></option>
+                          <?php }?>
+                          
+                         
+											</select>
+                           </dd>
+                        <dt>
+                          <label for="some18">Country:</label>
+                        </dt>
+                        <dd>
+                          <select  onchange="changeState(this);" name="billing[country]">
+											
+                          <option value="">Select Country</option>
+                          <?php foreach($this->userform->billing->country->getMultiOptions() as $key=>$option){?>
+                          <option value="<?php echo $key?>" <?php echo $this->userform->billing->country->getValue()==$key ? 'selected="selected"':''?>><?php echo $option?></option>
+                          <?php }?>
+                          
+                         
+											</select>
+                           </dd>
+                        <dt>
+                          <label for="some19">Zip:</label>
+                        </dt>
+                        <dd>
+                          <input name="billing[zipcode]" type="text" class="txt" id="billing-zipcode" value="<?php echo $this->userform->billing->zipcode->getValue()?>" />
+                           </dd>
+
+                      </dl>
+                    </div>
+                    <br clear="all" />
+                    <input class="button altbutton" type="submit" value="Update" />
+                    <input class="button altbutton" type="reset" value="Back" onclick="history.back()"/>
+                  
+
+<?php 
+//echo $this->userform;
+
+?>
+</form>
+</div>
+              </div>
+            </div>
+            <br clear="all" />
+          </div>
+
+<script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-validator.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// validate signup form on keyup and submit
+	
+	var validator = $("#userform").validate({
+		rules: {			
+			firstname: {
+				required: true
+			},
+			lastname: {
+				required: true
+			},
+			dob: {
+				required: true
+			},
+			username: {
+				required: true,
+				email:true
+			},
+			password: {
+				required: true
+			},profile_image: {
+				required: false
+			
+			},phone: {
+				required: true
+			},
+			'local[address_1]': {
+				required: false
+			},
+			'local[streat_address]': {
+				required: true
+			},
+			'local[zipcode]': {
+				required: true
+			},
+			'local[city]': {
+				required: true
+				
+			},
+			'local[state]': {
+				required: true
+			
+			},
+			'billing[streat_address]': {
+				required: function(){ return $('#billing-address_type').is(':checked')}
+			},
+			'billing[zipcode]': {
+				required: function(){ return $('#billing-address_type').is(':checked')}
+			},
+			'billing[city]': {
+				required: function(){ return $('#billing-address_type').is(':checked')}
+				
+			},
+			'billing[state]': {
+				required: function(){ return $('#billing-address_type').is(':checked')}
+			}
+			
+		},
+		messages: {
+			firstname: {
+				required:'Please enter the First Name'
+			},
+			lastname: {
+				required:'Please enter the Last Name'
+			},
+			dob: {
+				required:'Please enter the Date of Birth'
+			},
+			username: {
+				required:'This email is used for login/primary Email address',
+				email: "Your email address must be in the format of name@domain"
+   
+			},
+			profile_image: {
+				required: ''
+			
+			},phone: {
+				required: 'Please provide your phone number.'
+			}
+		},
+		// the errorPlacement has to take the table layout into account
+		errorPlacement: function(error, element) {
+			//alert(element.attr('type'));
+			if ( element.is(":radio") )
+				error.appendTo( element.parent().next().next() );
+			else if ( element.is(":checkbox") )
+				error.appendTo ( element.next() );
+			else{
+				error.appendTo( element.parent());
+				
+			}
+		},
+		// specifying a submitHandler prevents the default submit, good for the demo
+		submitHandler: function() {
+			//$("#login").submit();
+			document.getElementById('login').submit();
+		},
+		// set this class to error-labels to indicate valid fields
+		success: function(label) {
+			// set &nbsp; as text for IE
+			label.html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;").addClass("checked");
+		}
+	});
+	
+	<?php 
+	
+	if(!empty($errors)){
+		echo "validator.showErrors(".json_encode($errors).");";
+	}
+	?>
+	
+	//$("#login").valid();
+	
+
+});
+</script>
+<link type="text/css" href="<?php echo SITE_URL?>resources/css/redmond/jquery-ui-1.7.3.custom.css" rel="stylesheet" />	
+		 <script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-ui-1.7.3.custom.min.js"></script>
+        <script type="text/javascript" src="<?php echo SITE_URL?>resources/js/jquery-ui-timepicker-addon.js"></script>
+        <script type="text/javascript">
+			$(function(){
+
+				$('#dob').datepicker({
+					ampm: true,dateFormat:'mm/dd/yy',changeMonth: true,
+			changeYear: true,yearRange:'1921:2001'
+
+				});
+								
+			});
+			function changeState(th){
+	$.ajax({
+		url:'<?php echo SITE_URL?>misc/stateoptionsid',
+		data:{country_id:th.value},
+		success:function(data){$("#billing_state").html(data);}
+		});
+}
+		</script>
+		<style type="text/css">
+			/* css for timepicker */
+.ui-timepicker-div .ui-widget-header{ margin-bottom: 8px; }
+.ui-timepicker-div dl{ text-align: left; }
+.ui-timepicker-div dl dt{ height: 25px; }
+.ui-timepicker-div dl dd{ margin: -25px 0 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+		</style>

@@ -1,0 +1,88 @@
+<div class="dataTables_paginate paging_bootstrap pagination">
+				        <!-- pagination underneath the box's content -->
+				        <ul>
+<?php 
+
+$viewRenderer =
+                Zend_Controller_Action_HelperBroker::getStaticHelper(
+                    'ViewRenderer'
+                );
+$searchParams = $viewRenderer->view->searchParams;
+   // $searchParams = $this->view->searchParams;  
+   // var_dump($searchParams);   
+            
+ if ($this->pageCount): 
+ if (isset($this->previous)): 
+ $searchParams['page']=$this->first;
+   $url= $searchParams;
+
+
+?>
+<?php //by namraat?>
+<li ><a href="<?php echo $this->url($url);?>" >First</a></li>
+<?php 
+ else: 
+ endif; 
+ if (isset($this->previous)): 
+ $searchParams['page']=$this->previous;
+   $url= $searchParams;
+ ?>
+<li><a href ="<?php echo $this->url($url);?>" >Previous</a></li>
+<?php
+ else: 
+  //<span class="disabled">&lt; Previous</span> |
+
+ endif; 
+
+ foreach ($this->pagesInRange as $page): 
+   if ($page != $this->current): 
+   $searchParams['page']=$page;
+   $url= $searchParams;
+ ?>
+ <li><a href="<?php echo $this->url($url);?>" ><?php echo $page;?></a></li>
+   
+<?php
+   elseif($this->pageCount>1):
+  // var_dump($this->pageCount);
+   ?>
+<li class="active" ><a><?php echo $page;?></a></li>
+   
+<?php
+   endif; 
+
+ endforeach; 
+if (isset($this->next)): 
+$searchParams['page']=$this->next;
+   $url= $searchParams;
+
+?><li><a href="<?php echo $this->url($url);?>" >Next
+</a>
+</li>
+  <?php
+ else: 
+
+  //<span class="disabled">Next &gt;</span>
+
+ endif; 
+ if (isset($this->next)): 
+ $searchParams['page']=$this->last;
+   $url= $searchParams;
+?><li><a href="<?php echo $this->url($url);?>" >Last
+</a>
+</li>
+  <?php
+ else: 
+
+  //<span class="disabled">Last</span>
+
+ endif; 
+
+ endif; 
+ ?>
+ </ul>
+  
+ <?php if($this->lastItemNumber>3)  echo '<div align="left">'.
+ $this->firstItemNumber.' - '.$this->lastItemNumber.'
+of '.
+ $this->totalItemCount. ' Record(s)</div> ' ; ?>
+	</div>   
